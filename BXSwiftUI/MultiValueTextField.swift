@@ -1,3 +1,12 @@
+//**********************************************************************************************************************
+//
+//  MultiValueTextField.swift
+//	SwiftUI wrapper for a NSTextfield that supports multiple values
+//  Copyright ©2020 Peter Baumgartner. All rights reserved.
+//
+//**********************************************************************************************************************
+
+
 import SwiftUI
 import AppKit
 

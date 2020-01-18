@@ -1,3 +1,12 @@
+//**********************************************************************************************************************
+//
+//  MultiValuePicker.swift
+//	SwiftUI wrapper for a NSPopUpButton that supports multiple values
+//  Copyright ©2020 Peter Baumgartner. All rights reserved.
+//
+//**********************************************************************************************************************
+
+
 import BXSwiftUtils
 import SwiftUI
 import AppKit

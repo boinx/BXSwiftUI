@@ -1,3 +1,12 @@
+//**********************************************************************************************************************
+//
+//  CustomTextField.swift
+//	SwiftUI wrapper for NSTextField with custom behavior
+//  Copyright ©2020 Peter Baumgartner. All rights reserved.
+//
+//**********************************************************************************************************************
+
+
 import SwiftUI
 import AppKit
 

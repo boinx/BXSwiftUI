@@ -1,3 +1,12 @@
+//**********************************************************************************************************************
+//
+//  TextAlignment+AppKit.swift
+//	Converts TextAlignment from SwiftUI to AppKit
+//  Copyright ©2020 Peter Baumgartner. All rights reserved.
+//
+//**********************************************************************************************************************
+
+
 import SwiftUI
 import AppKit
 

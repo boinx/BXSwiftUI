@@ -1,3 +1,12 @@
+//**********************************************************************************************************************
+//
+//  MultiValueToggle.swift
+//	SwiftUI wrapper for a checkbox that supports multiple values (via mixed state)
+//  Copyright ©2020 Peter Baumgartner. All rights reserved.
+//
+//**********************************************************************************************************************
+
+
 import SwiftUI
 import AppKit
 

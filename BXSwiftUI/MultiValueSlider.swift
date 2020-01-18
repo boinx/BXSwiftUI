@@ -1,3 +1,12 @@
+//**********************************************************************************************************************
+//
+//  MultiValueSlider.swift
+//	SwiftUI wrapper for a NSSlider that supports multiple values
+//  Copyright ©2020 Peter Baumgartner. All rights reserved.
+//
+//**********************************************************************************************************************
+
+
 import SwiftUI
 import AppKit
 

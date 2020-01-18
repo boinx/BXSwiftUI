@@ -1,3 +1,12 @@
+//**********************************************************************************************************************
+//
+//  PropertyLabel.swift
+//	PropertyLabels communicate with each other and decide on a common maximum width for localization purposes
+//  Copyright ©2020 Peter Baumgartner. All rights reserved.
+//
+//**********************************************************************************************************************
+
+
 import SwiftUI
 
 
