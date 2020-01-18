@@ -1,4 +1,4 @@
-import FotoMagicoCore
+import BXSwiftUtils
 import SwiftUI
 import AppKit
 
