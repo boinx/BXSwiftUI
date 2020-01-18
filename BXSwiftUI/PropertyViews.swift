@@ -213,17 +213,27 @@ public struct MultiDoublePropertyView: View
 public struct IntPropertyView : View
 {
 	public var label:String = ""
-	@Binding public var labelWidth:CGFloat
-	@Binding public var value:Int
+//	@Binding public var labelWidth:CGFloat
+//	@Binding public var value:Int
+	public var labelWidth:Binding<CGFloat>
+	public var value:Binding<Int>
 	public var allCases:[LocalizableIntEnum] = []
+	
+	public init(label:String = "", labelWidth:Binding<CGFloat>, value:Binding<Int>, allCases:[LocalizableIntEnum])
+	{
+		self.label = label
+		self.labelWidth = labelWidth
+		self.value = value
+		self.allCases = allCases
+	}
 	
     public var body: some View
     {
 		HStack
 		{
-			PropertyLabel(label, width:labelWidth)
+			PropertyLabel(label, width:labelWidth.wrappedValue)
 
-			Picker(selection:$value, label:Text(""))
+			Picker(selection:value, label:Text(""))
 			{
 				ForEach(allCases, id:\.intValue)
 				{
