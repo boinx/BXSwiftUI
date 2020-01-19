@@ -51,19 +51,19 @@ public struct PropertyLabel : View
 
 /// Metadata to be attached to PropertyLabel views
 
-struct PropertyLabelData : Equatable
+public struct PropertyLabelData : Equatable
 {
-    let width:CGFloat
+    public let width:CGFloat
 }
 
 
-struct PropertyLabelKey : PreferenceKey
+public struct PropertyLabelKey : PreferenceKey
 {
-    typealias Value = [PropertyLabelData]
+	public typealias Value = [PropertyLabelData]
 
-	static var defaultValue:[PropertyLabelData] = []
+	public static var defaultValue:[PropertyLabelData] = []
 
-    static func reduce(value:inout [PropertyLabelData], nextValue:()->[PropertyLabelData])
+    public static func reduce(value:inout [PropertyLabelData], nextValue:()->[PropertyLabelData])
     {
 		value.append(contentsOf: nextValue())
     }

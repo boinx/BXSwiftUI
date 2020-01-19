@@ -12,13 +12,16 @@
 		D002FE7F23D22EC5002CF0A1 /* PropertyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7523D22EC5002CF0A1 /* PropertyLabel.swift */; };
 		D002FE8023D22EC5002CF0A1 /* MultiValuePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7623D22EC5002CF0A1 /* MultiValuePicker.swift */; };
 		D002FE8123D22EC5002CF0A1 /* MultiValueSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7723D22EC5002CF0A1 /* MultiValueSlider.swift */; };
-		D002FE8223D22EC5002CF0A1 /* PropertyViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7823D22EC5002CF0A1 /* PropertyViews.swift */; };
+		D002FE8223D22EC5002CF0A1 /* StringPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7823D22EC5002CF0A1 /* StringPropertyView.swift */; };
 		D002FE8323D22EC5002CF0A1 /* TypeCheckable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7923D22EC5002CF0A1 /* TypeCheckable.swift */; };
 		D002FE8423D22EC5002CF0A1 /* MultiValueTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7A23D22EC5002CF0A1 /* MultiValueTextField.swift */; };
 		D002FE8523D22EC5002CF0A1 /* TextAlignment+AppKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */; };
 		D002FE8623D22EC5002CF0A1 /* Formatter+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */; };
 		D002FE8723D22EC5002CF0A1 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7D23D22EC5002CF0A1 /* CustomTextField.swift */; };
 		D002FE8823D22EC5002CF0A1 /* MultiValueToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7E23D22EC5002CF0A1 /* MultiValueToggle.swift */; };
+		D0793E7E23D45D170069327F /* BoolPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E7D23D45D170069327F /* BoolPropertyView.swift */; };
+		D0793E8023D45D350069327F /* DoublePropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E7F23D45D350069327F /* DoublePropertyView.swift */; };
+		D0793E8223D45D5A0069327F /* IntPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E8123D45D5A0069327F /* IntPropertyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,13 +32,16 @@
 		D002FE7523D22EC5002CF0A1 /* PropertyLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyLabel.swift; sourceTree = "<group>"; };
 		D002FE7623D22EC5002CF0A1 /* MultiValuePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiValuePicker.swift; sourceTree = "<group>"; };
 		D002FE7723D22EC5002CF0A1 /* MultiValueSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiValueSlider.swift; sourceTree = "<group>"; };
-		D002FE7823D22EC5002CF0A1 /* PropertyViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyViews.swift; sourceTree = "<group>"; };
+		D002FE7823D22EC5002CF0A1 /* StringPropertyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringPropertyView.swift; sourceTree = "<group>"; };
 		D002FE7923D22EC5002CF0A1 /* TypeCheckable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeCheckable.swift; sourceTree = "<group>"; };
 		D002FE7A23D22EC5002CF0A1 /* MultiValueTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiValueTextField.swift; sourceTree = "<group>"; };
 		D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextAlignment+AppKit.swift"; sourceTree = "<group>"; };
 		D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+Custom.swift"; sourceTree = "<group>"; };
 		D002FE7D23D22EC5002CF0A1 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		D002FE7E23D22EC5002CF0A1 /* MultiValueToggle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiValueToggle.swift; sourceTree = "<group>"; };
+		D0793E7D23D45D170069327F /* BoolPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolPropertyView.swift; sourceTree = "<group>"; };
+		D0793E7F23D45D350069327F /* DoublePropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoublePropertyView.swift; sourceTree = "<group>"; };
+		D0793E8123D45D5A0069327F /* IntPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntPropertyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +75,10 @@
 		D002FE6923D22945002CF0A1 /* BXSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				D002FE7823D22EC5002CF0A1 /* PropertyViews.swift */,
+				D0793E7D23D45D170069327F /* BoolPropertyView.swift */,
+				D002FE7823D22EC5002CF0A1 /* StringPropertyView.swift */,
+				D0793E7F23D45D350069327F /* DoublePropertyView.swift */,
+				D0793E8123D45D5A0069327F /* IntPropertyView.swift */,
 				D002FE7523D22EC5002CF0A1 /* PropertyLabel.swift */,
 				D002FE7623D22EC5002CF0A1 /* MultiValuePicker.swift */,
 				D002FE7723D22EC5002CF0A1 /* MultiValueSlider.swift */,
@@ -178,12 +187,15 @@
 			files = (
 				D002FE8323D22EC5002CF0A1 /* TypeCheckable.swift in Sources */,
 				D002FE7F23D22EC5002CF0A1 /* PropertyLabel.swift in Sources */,
-				D002FE8223D22EC5002CF0A1 /* PropertyViews.swift in Sources */,
+				D002FE8223D22EC5002CF0A1 /* StringPropertyView.swift in Sources */,
 				D002FE8623D22EC5002CF0A1 /* Formatter+Custom.swift in Sources */,
 				D002FE8023D22EC5002CF0A1 /* MultiValuePicker.swift in Sources */,
+				D0793E7E23D45D170069327F /* BoolPropertyView.swift in Sources */,
 				D002FE8523D22EC5002CF0A1 /* TextAlignment+AppKit.swift in Sources */,
 				D002FE8123D22EC5002CF0A1 /* MultiValueSlider.swift in Sources */,
 				D002FE8423D22EC5002CF0A1 /* MultiValueTextField.swift in Sources */,
+				D0793E8023D45D350069327F /* DoublePropertyView.swift in Sources */,
+				D0793E8223D45D5A0069327F /* IntPropertyView.swift in Sources */,
 				D002FE8723D22EC5002CF0A1 /* CustomTextField.swift in Sources */,
 				D002FE8823D22EC5002CF0A1 /* MultiValueToggle.swift in Sources */,
 			);
