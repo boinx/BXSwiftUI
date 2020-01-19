@@ -19,10 +19,10 @@ import SwiftUI
 public struct StringPropertyView : View
 {
 	public var label:String = ""
-	public var labelWidth:Binding<CGFloat>
+	public var labelWidth:Binding<CGFloat>? = nil
 	public var value:Binding<String?>
 
-	public init(label:String = "", labelWidth:Binding<CGFloat>, value:Binding<String?>)
+	public init(label:String = "", labelWidth:Binding<CGFloat>? = nil, value:Binding<String?>)
 	{
 		self.label = label
 		self.labelWidth = labelWidth
@@ -33,7 +33,7 @@ public struct StringPropertyView : View
     {
 		HStack
 		{
-			PropertyLabel(label, width:labelWidth.wrappedValue)
+			PropertyLabel(label, width:labelWidth)
 				
 			CustomTextField(value:value, height:22.0, alignment:.leading)
 			{
@@ -51,10 +51,10 @@ public struct StringPropertyView : View
 public struct MultiStringPropertyView : View
 {
 	public var label:String = ""
-	public var labelWidth:Binding<CGFloat>
+	public var labelWidth:Binding<CGFloat>? = nil
 	public var values:Binding<Set<String>>
 	
-	public init(label:String = "", labelWidth:Binding<CGFloat>, values:Binding<Set<String>>)
+	public init(label:String = "", labelWidth:Binding<CGFloat>? = nil, values:Binding<Set<String>>)
 	{
 		self.label = label
 		self.labelWidth = labelWidth
@@ -65,7 +65,7 @@ public struct MultiStringPropertyView : View
     {
 		HStack
 		{
-			PropertyLabel(label, width:labelWidth.wrappedValue)
+			PropertyLabel(label, width:labelWidth)
 				
 			MultiValueTextField(values:values, height:22.0, alignment:.leading)
 			{

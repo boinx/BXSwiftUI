@@ -19,12 +19,12 @@ import SwiftUI
 public struct DoublePropertyView: View
 {
 	public var label:String = ""
-	public var labelWidth:Binding<CGFloat>
+	public var labelWidth:Binding<CGFloat>? = nil
 	public var value:Binding<Double>
 	public var range:ClosedRange<Double> = 0.0...60.0
 	public var formatter:Formatter? = nil
 	
-	public init(label:String = "", labelWidth:Binding<CGFloat>, value:Binding<Double>, range:ClosedRange<Double> = 0.0...60.0, formatter:Formatter? = nil)
+	public init(label:String = "", labelWidth:Binding<CGFloat>? = nil, value:Binding<Double>, range:ClosedRange<Double> = 0.0...60.0, formatter:Formatter? = nil)
 	{
 		self.label = label
 		self.labelWidth = labelWidth
@@ -69,12 +69,12 @@ public struct DoublePropertyView: View
 public struct MultiDoublePropertyView: View
 {
 	public var label:String = ""
-	public var labelWidth:Binding<CGFloat>
+	public var labelWidth:Binding<CGFloat>? = nil
 	public var values:Binding<Set<Double>>
 	public var range:ClosedRange<Double> = 0.0...60.0
 	public var formatter:Formatter? = nil
 	
-	public init(label:String = "", labelWidth:Binding<CGFloat>, values:Binding<Set<Double>>, range:ClosedRange<Double> = 0.0...60.0, formatter:Formatter? = nil)
+	public init(label:String = "", labelWidth:Binding<CGFloat>? = nil, values:Binding<Set<Double>>, range:ClosedRange<Double>, formatter:Formatter? = nil)
 	{
 		self.label = label
 		self.labelWidth = labelWidth

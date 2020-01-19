@@ -19,10 +19,10 @@ import SwiftUI
 public struct BoolPropertyView : View
 {
 	public var label:String = ""
-	public var labelWidth:Binding<CGFloat>
+	public var labelWidth:Binding<CGFloat>? = nil
 	public var value:Binding<Bool>
 
-	public init(label:String = "", labelWidth:Binding<CGFloat>, value:Binding<Bool>)
+	public init(label:String = "", labelWidth:Binding<CGFloat>? = nil, value:Binding<Bool>)
 	{
 		self.label = label
 		self.labelWidth = labelWidth
@@ -33,7 +33,7 @@ public struct BoolPropertyView : View
 	{
 		HStack
 		{
-			PropertyLabel(label, width:labelWidth.wrappedValue)
+			PropertyLabel(label, width:labelWidth)
 			Toggle("Enabled", isOn:value)
 			Spacer()
 		}
@@ -47,10 +47,10 @@ public struct BoolPropertyView : View
 public struct MultiBoolPropertyView : View
 {
 	public var label:String = ""
-	public var labelWidth:Binding<CGFloat>
+	public var labelWidth:Binding<CGFloat>? = nil
 	public var values:Binding<Set<Bool>>
 
-	public init(label:String = "", labelWidth:Binding<CGFloat>, values:Binding<Set<Bool>>)
+	public init(label:String = "", labelWidth:Binding<CGFloat>? = nil, values:Binding<Set<Bool>>)
 	{
 		self.label = label
 		self.labelWidth = labelWidth
@@ -61,7 +61,7 @@ public struct MultiBoolPropertyView : View
 	{
 		HStack
 		{
-			PropertyLabel(label, width:labelWidth.wrappedValue)
+			PropertyLabel(label, width:labelWidth)
 			MultiValueToggle(values:values, label:"Enabled")
 			Spacer()
 		}

@@ -19,11 +19,11 @@ import SwiftUI
 public struct IntPropertyView : View
 {
 	public var label:String = ""
-	public var labelWidth:Binding<CGFloat>
+	public var labelWidth:Binding<CGFloat>? = nil
 	public var value:Binding<Int>
 	public var allCases:[LocalizableIntEnum] = []
 	
-	public init(label:String = "", labelWidth:Binding<CGFloat>, value:Binding<Int>, allCases:[LocalizableIntEnum])
+	public init(label:String = "", labelWidth:Binding<CGFloat>? = nil, value:Binding<Int>, allCases:[LocalizableIntEnum])
 	{
 		self.label = label
 		self.labelWidth = labelWidth
@@ -35,7 +35,7 @@ public struct IntPropertyView : View
     {
 		HStack
 		{
-			PropertyLabel(label, width:labelWidth.wrappedValue)
+			PropertyLabel(label, width:labelWidth)
 
 			Picker(selection:value, label:Text(""))
 			{
@@ -55,11 +55,11 @@ public struct IntPropertyView : View
 public struct MultiIntPropertyView : View
 {
 	public var label:String = ""
-	public var labelWidth:Binding<CGFloat>
+	public var labelWidth:Binding<CGFloat>? = nil
 	public var values:Binding<Set<Int>>
 	public var allCases:[LocalizableIntEnum] = []
 	
-	public init(label:String = "", labelWidth:Binding<CGFloat>, values:Binding<Set<Int>>, allCases:[LocalizableIntEnum])
+	public init(label:String = "", labelWidth:Binding<CGFloat>? = nil, values:Binding<Set<Int>>, allCases:[LocalizableIntEnum])
 	{
 		self.label = label
 		self.labelWidth = labelWidth
@@ -76,7 +76,7 @@ public struct MultiIntPropertyView : View
     {
 		HStack
 		{
-			PropertyLabel(label, width:labelWidth.wrappedValue)
+			PropertyLabel(label, width:labelWidth)
 			MultiValuePicker(values:values, allCases:allCases)
 		}
 	}

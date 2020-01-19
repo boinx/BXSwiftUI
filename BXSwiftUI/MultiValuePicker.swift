@@ -58,7 +58,7 @@ struct MultiValuePicker : NSViewRepresentable
     func updateNSView(_ popup:NSPopUpButton, context:Context)
     {
 		popup.menu?.item(withTag:-2)?.isHidden = values.count > 0
-		popup.menu?.item(withTag:-1)?.isHidden = values.count == 0
+		popup.menu?.item(withTag:-1)?.isHidden = values.count < 2
 		popup.isEnabled = values.count > 0
 
 		if values.count > 1
