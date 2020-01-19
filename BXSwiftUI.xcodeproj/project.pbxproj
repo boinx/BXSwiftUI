@@ -22,6 +22,7 @@
 		D0793E7E23D45D170069327F /* BoolPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E7D23D45D170069327F /* BoolPropertyView.swift */; };
 		D0793E8023D45D350069327F /* DoublePropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E7F23D45D350069327F /* DoublePropertyView.swift */; };
 		D0793E8223D45D5A0069327F /* IntPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E8123D45D5A0069327F /* IntPropertyView.swift */; };
+		D0793E8A23D469870069327F /* BXSwiftUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0793E8923D469870069327F /* BXSwiftUtils.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		D0793E7D23D45D170069327F /* BoolPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolPropertyView.swift; sourceTree = "<group>"; };
 		D0793E7F23D45D350069327F /* DoublePropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoublePropertyView.swift; sourceTree = "<group>"; };
 		D0793E8123D45D5A0069327F /* IntPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntPropertyView.swift; sourceTree = "<group>"; };
+		D0793E8923D469870069327F /* BXSwiftUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BXSwiftUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0793E8A23D469870069327F /* BXSwiftUtils.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +64,7 @@
 				D002FE7423D22A0F002CF0A1 /* Config */,
 				D002FE6923D22945002CF0A1 /* BXSwiftUI */,
 				D002FE6823D22945002CF0A1 /* Products */,
+				D0793E8823D469870069327F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +104,14 @@
 				D002FE6B23D22945002CF0A1 /* Info.plist */,
 			);
 			name = Config;
+			sourceTree = "<group>";
+		};
+		D0793E8823D469870069327F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D0793E8923D469870069327F /* BXSwiftUtils.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
