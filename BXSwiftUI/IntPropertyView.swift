@@ -18,10 +18,10 @@ import SwiftUI
 
 public struct IntPropertyView : View
 {
-	public var label:String = ""
-	public var labelWidth:Binding<CGFloat>? = nil
-	public var value:Binding<Int>
-	public var allCases:[LocalizableIntEnum] = []
+	private var label:String = ""
+	private var labelWidth:Binding<CGFloat>? = nil
+	private var value:Binding<Int>
+	private var allCases:[LocalizableIntEnum] = []
 	
 	public init(label:String = "", labelWidth:Binding<CGFloat>? = nil, value:Binding<Int>, allCases:[LocalizableIntEnum])
 	{
@@ -54,17 +54,32 @@ public struct IntPropertyView : View
 
 public struct MultiIntPropertyView : View
 {
-	public var label:String = ""
-	public var labelWidth:Binding<CGFloat>? = nil
-	public var values:Binding<Set<Int>>
-	public var allCases:[LocalizableIntEnum] = []
+	private var label:String = ""
+	private var labelWidth:Binding<CGFloat>? = nil
+	private var values:Binding<Set<Int>>
+	private var orderedItems:[MultiValuePicker.Item] = []
+
+	/// Creates a MultiIntPropertyView with a simple array of enum cases. Menu item names and tags are generated automatically from this enum array.
 	
-	public init(label:String = "", labelWidth:Binding<CGFloat>? = nil, values:Binding<Set<Int>>, allCases:[LocalizableIntEnum])
+	public init(label:String = "", labelWidth:Binding<CGFloat>? = nil, values:Binding<Set<Int>>, orderedItems:[LocalizableIntEnum])
 	{
 		self.label = label
 		self.labelWidth = labelWidth
 		self.values = values
-		self.allCases = allCases
+		self.orderedItems = orderedItems.map
+		{
+			MultiValuePicker.Item.regular(icon:nil, title:$0.localizedName, value:$0.intValue)
+		}
+	}
+
+	/// Creates a MultiIntPropertyView with the provided closure. This closure provides more flexibility regarding ordering and inserting separators or disabled section names.
+	
+	public init(label:String = "", labelWidth:Binding<CGFloat>? = nil, values:Binding<Set<Int>>, orderedItems:()->[MultiValuePicker.Item])
+	{
+		self.label = label
+		self.labelWidth = labelWidth
+		self.values = values
+		self.orderedItems = orderedItems()
 	}
 
 	var isUnique:Bool
@@ -77,7 +92,7 @@ public struct MultiIntPropertyView : View
 		HStack
 		{
 			PropertyLabel(label, width:labelWidth)
-			MultiValuePicker(values:values, allCases:allCases)
+			MultiValuePicker(values:values, orderedItems:orderedItems)
 		}
 	}
 }

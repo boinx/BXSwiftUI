@@ -15,55 +15,114 @@ import AppKit
 //----------------------------------------------------------------------------------------------------------------------
 
 
-struct MultiValuePicker : NSViewRepresentable
+public struct MultiValuePicker : NSViewRepresentable
 {
+	// Binding to a set of zero or more Int values
+	
 	@Binding var values:Set<Int>
-	var allCases:[LocalizableIntEnum] = []
+	
+	// An ordered list of info for creating the popup menu items
+	
+	var orderedItems:[Item] = []
+	
 
-    func makeCoordinator() -> Coordinator
+	// This enum specifies a single item in the picker
+	
+	public enum Item
+	{
+		case regular(icon:NSImage?, title:String, value:Int)
+		case section(title:String)
+		case divider
+	}
+	
+	// Since we are dealing with multiple selection, a value can either be "none" (no selection), it can be
+	// "unique", or in case of multiple selected values that are different, it will be "multiple".
+	
+	private enum Values : Int
+	{
+		case none = -2
+		case multiple = -1
+		case unique = 0
+	}
+
+	
+	// Create an NSPopUpButton
+	
+	public func makeNSView(context:Context) -> NSPopUpButton
     {
-        return Coordinator(self)
-    }
-    
-    func makeNSView(context:Context) -> NSPopUpButton
-    {
+		var item:NSMenuItem
+		let smallFont = NSFont.systemFont(ofSize:NSFont.smallSystemFontSize)
+		let smallFontAttrs = [NSAttributedString.Key.font:smallFont]
+
+		// Create the popup menu
+		
         let popup = NSPopUpButton(frame:.zero)
         popup.autoenablesItems = false
+		popup.target = context.coordinator
+		popup.action = #selector(Coordinator.updateValues(with:))
+
+		// Add an invisible menu item for "none" (nothing is selected)
+		
+        item = NSMenuItem(title:"none", action:nil, keyEquivalent:"")
+		item.tag = Values.none.rawValue
+		item.isEnabled = false
+		item.isHidden = true
+		popup.menu?.addItem(item)
         
-        let item2 = NSMenuItem(title:"none", action:nil, keyEquivalent:"")
-		item2.tag = -2
-		item2.isEnabled = false
-		item2.isHidden = true
-		popup.menu?.addItem(item2)
+		// Add an invisible menu item for "multiple" (multiple different values are selected)
+		
+		item = NSMenuItem(title:"multiple", action:nil, keyEquivalent:"")
+		item.tag = Values.multiple.rawValue
+		item.isEnabled = false
+		item.isHidden = true
+		popup.menu?.addItem(item)
         
-		let item1 = NSMenuItem(title:"multiple", action:nil, keyEquivalent:"")
-		item1.tag = -1
-		item1.isEnabled = false
-		item1.isHidden = true
-		popup.menu?.addItem(item1)
-        
-        for info in self.allCases
+        for itemSpec in self.orderedItems
         {
-			let item = NSMenuItem(title:info.localizedName, action:nil, keyEquivalent:"")
-			item.tag = info.intValue
-			item.isEnabled = true
+			switch itemSpec
+			{
+				// Add a regular menu item
+					
+				case .regular(let icon,let title,let value):
+				
+					item = NSMenuItem(title:title, action:nil, keyEquivalent:"")
+					item.image = icon
+					item.tag = value
+					item.isEnabled = true
+
+				// Add a section name (disabled)
+				
+				case .section(let title):
+
+					item = NSMenuItem(title:title.uppercased(), action:nil, keyEquivalent:"")
+					item.attributedTitle = NSAttributedString(string:title.uppercased(),attributes:smallFontAttrs)
+					item.isEnabled = false
+
+				// Add a separator line
+
+				case .divider:
+				
+					item = NSMenuItem.separator()
+					item.isEnabled = false
+			}
+						
 			popup.menu?.addItem(item)
         }
         
-		popup.target = context.coordinator
-		popup.action = #selector(Coordinator.updateValues(with:))
 		return popup
     }
 
-    func updateNSView(_ popup:NSPopUpButton, context:Context)
+	// Something on the SwiftUI side has changed, so update the state of the NSPopUpButton
+	
+	public func updateNSView(_ popup:NSPopUpButton, context:Context)
     {
-		popup.menu?.item(withTag:-2)?.isHidden = values.count > 0
-		popup.menu?.item(withTag:-1)?.isHidden = values.count < 2
+		popup.menu?.item(withTag:Values.none.rawValue)?.isHidden = values.count > 0
+		popup.menu?.item(withTag:Values.multiple.rawValue)?.isHidden = values.count < 2
 		popup.isEnabled = values.count > 0
 
 		if values.count > 1
 		{
-			popup.selectItem(withTag:-1)
+			popup.selectItem(withTag:Values.multiple.rawValue)
 		}
 		else if let value = values.first
 		{
@@ -71,11 +130,13 @@ struct MultiValuePicker : NSViewRepresentable
 		}
 		else
 		{
-			popup.selectItem(withTag:-2)
+			popup.selectItem(withTag:Values.none.rawValue)
 		}
     }
     
-    class Coordinator : NSObject
+	// The NSPopUpButton side has changed, so update the SwiftUI state
+	
+	public class Coordinator : NSObject
     {
         var picker:MultiValuePicker
 
@@ -89,6 +150,11 @@ struct MultiValuePicker : NSViewRepresentable
 			let tag = sender.selectedTag()
 			picker.values = Set([tag])
         }
+    }
+    
+	public func makeCoordinator() -> Coordinator
+    {
+        return Coordinator(self)
     }
 }
 
