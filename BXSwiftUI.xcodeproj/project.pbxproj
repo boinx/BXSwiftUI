@@ -128,9 +128,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		D002FE6623D22945002CF0A1 /* BXSwiftUI */ = {
+		D002FE6623D22945002CF0A1 /* BXSwiftUI-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D002FE6F23D22945002CF0A1 /* Build configuration list for PBXNativeTarget "BXSwiftUI" */;
+			buildConfigurationList = D002FE6F23D22945002CF0A1 /* Build configuration list for PBXNativeTarget "BXSwiftUI-macOS" */;
 			buildPhases = (
 				D002FE6223D22945002CF0A1 /* Headers */,
 				D002FE6323D22945002CF0A1 /* Sources */,
@@ -141,7 +141,7 @@
 			);
 			dependencies = (
 			);
-			name = BXSwiftUI;
+			name = "BXSwiftUI-macOS";
 			productName = BXSwiftUI;
 			productReference = D002FE6723D22945002CF0A1 /* BXSwiftUI.framework */;
 			productType = "com.apple.product-type.framework";
@@ -176,7 +176,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D002FE6623D22945002CF0A1 /* BXSwiftUI */,
+				D002FE6623D22945002CF0A1 /* BXSwiftUI-macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -351,10 +351,11 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.boinx.BXSwiftUI;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = BXSwiftUI;
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -376,9 +377,10 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.boinx.BXSwiftUI;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = BXSwiftUI;
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
+				SUPPORTED_PLATFORMS = macosx;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -395,7 +397,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D002FE6F23D22945002CF0A1 /* Build configuration list for PBXNativeTarget "BXSwiftUI" */ = {
+		D002FE6F23D22945002CF0A1 /* Build configuration list for PBXNativeTarget "BXSwiftUI-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D002FE7023D22945002CF0A1 /* Debug */,
