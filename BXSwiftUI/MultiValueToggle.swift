@@ -19,11 +19,6 @@ struct MultiValueToggle : NSViewRepresentable
     @Binding var values:Set<Bool>
 	var label:String = ""
 	
-    func makeCoordinator() -> Coordinator
-    {
-        return Coordinator(self)
-    }
-    
     func makeNSView(context:Context) -> NSButton
     {
         let button = NSButton(frame:.zero)
@@ -69,6 +64,11 @@ struct MultiValueToggle : NSViewRepresentable
 			let value = sender.state != .off
 			toggle.values = Set([value])
         }
+    }
+
+    func makeCoordinator() -> Coordinator
+    {
+        return Coordinator(self)
     }
 }
 

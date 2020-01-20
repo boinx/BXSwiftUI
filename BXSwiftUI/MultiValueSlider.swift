@@ -19,11 +19,6 @@ struct MultiValueSlider : NSViewRepresentable
     @Binding var values:Set<Double>
 	public var `in`:ClosedRange<Double>
 	
-    func makeCoordinator() -> Coordinator
-    {
-        return Coordinator(self)
-    }
-    
     func makeNSView(context:Context) -> NSSlider
     {
         let slider = NSSlider(frame:.zero)
@@ -68,6 +63,11 @@ struct MultiValueSlider : NSViewRepresentable
 			slider.values = Set([sender.doubleValue])
         }
     }
+    
+    func makeCoordinator() -> Coordinator
+    {
+        return Coordinator(self)
+    }
 }
 
 
@@ -98,6 +98,18 @@ class NSMultiValueSliderCell : NSSliderCell
 			super.drawKnob()
 		}
 	}
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+struct MultiValueSlider_Previews: PreviewProvider
+{
+    static var previews: some View
+    {
+		MultiValueSlider(values:Binding.constant(Set([5.0,10.0,20.0])), in:0.0 ... 60.0)
+    }
 }
 
 

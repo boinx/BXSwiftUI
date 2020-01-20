@@ -31,11 +31,6 @@ struct CustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
 	var formatter:Formatter? = nil
 	var isActiveHandler:(NSTextFieldActiveHandler)? = nil
 
-    func makeCoordinator() -> Coordinator
-    {
-        return Coordinator(self)
-    }
-    
 	// Create the underlying NSCustomTextField
 	
     func makeNSView(context:Context) -> NSCustomTextField
@@ -111,6 +106,11 @@ struct CustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
             textfield.value = sender.integerValue as! T
         }
 	}
+	
+    func makeCoordinator() -> Coordinator
+    {
+        return Coordinator(self)
+    }
 }
 
 

@@ -23,26 +23,22 @@ extension TypeCheckable
 {
     static var isString:Bool
     {
-		let type = Self.defaultValue
-		return type is String
+		return Self.defaultValue is String
 	}
 
     static var isDouble:Bool
     {
-		let type = Self.defaultValue
-		return type is Double
+		return Self.defaultValue is Double
 	}
 
     static var isInt:Bool
     {
-		let type = Self.defaultValue
-		return type is Int
+		return Self.defaultValue is Int
 	}
 	
     static var isBool:Bool
     {
-		let type = Self.defaultValue
-		return type is Bool
+		return Self.defaultValue is Bool
 	}
 }
 

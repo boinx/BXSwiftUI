@@ -22,11 +22,6 @@ struct MultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheckab
 	var formatter:Formatter? = nil
 	var isActiveHandler:(NSTextFieldActiveHandler)? = nil
 
-    func makeCoordinator() -> Coordinator
-    {
-        return Coordinator(self)
-    }
-    
     func makeNSView(context:Context) -> NSCustomTextField
     {
 		var action = #selector(Coordinator.updateStringValues(with:))
@@ -110,7 +105,12 @@ struct MultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheckab
             textfield.values = Set([sender.integerValue as! T])
         }
     }
-}
+    
+    func makeCoordinator() -> Coordinator
+    {
+        return Coordinator(self)
+    }
+ }
 
 
 //----------------------------------------------------------------------------------------------------------------------
