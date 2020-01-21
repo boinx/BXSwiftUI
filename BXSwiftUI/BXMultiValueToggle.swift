@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  MultiValueToggle.swift
+//  BXMultiValueToggle.swift
 //	SwiftUI wrapper for a checkbox that supports multiple values (via mixed state)
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
@@ -14,7 +14,7 @@ import AppKit
 //----------------------------------------------------------------------------------------------------------------------
 
 
-struct MultiValueToggle : NSViewRepresentable
+struct BXMultiValueToggle : NSViewRepresentable
 {
     @Binding var values:Set<Bool>
 	var label:String = ""
@@ -52,9 +52,9 @@ struct MultiValueToggle : NSViewRepresentable
     
     class Coordinator : NSObject,NSTextFieldDelegate
     {
-        var toggle:MultiValueToggle
+        var toggle:BXMultiValueToggle
 
-        init(_ toggle:MultiValueToggle)
+        init(_ toggle:BXMultiValueToggle)
         {
             self.toggle = toggle
         }

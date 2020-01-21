@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  PropertyLabel.swift
+//  BXPropertyLabel.swift
 //	PropertyLabels communicate with each other and decide on a common maximum width for localization purposes
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
@@ -13,7 +13,7 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public struct PropertyLabel : View
+public struct BXPropertyLabel : View
 {
 	var title:String = ""
 //	var width:CGFloat = 70.0
@@ -58,7 +58,7 @@ public struct PropertyLabel : View
 
 public extension View
 {
-	// Stores the width of the widest PropertyLabel in the maxLabelWidth Binding - which is important when
+	// Stores the width of the widest BXPropertyLabel in the maxLabelWidth Binding - which is important when
 	// localizing for languages with longer strings. The controls will be left aligned at this width.
 
 
@@ -82,7 +82,7 @@ public extension View
 //----------------------------------------------------------------------------------------------------------------------
 
 
-/// Metadata to be attached to PropertyLabel views
+/// Metadata to be attached to BXPropertyLabel views
 
 public struct PropertyLabelData : Equatable
 {

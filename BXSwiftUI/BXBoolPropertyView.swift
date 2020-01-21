@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  BoolPropertyView.swift
+//  BXBoolPropertyView.swift
 //	Compound views for inspector style user interfaces
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
@@ -16,7 +16,7 @@ import SwiftUI
 
 /// Property view for a single value Bool
 
-public struct BoolPropertyView : View
+public struct BXBoolPropertyView : View
 {
 	public var label:String = ""
 	public var labelWidth:Binding<CGFloat>? = nil
@@ -33,7 +33,7 @@ public struct BoolPropertyView : View
 	{
 		HStack
 		{
-			PropertyLabel(label, width:labelWidth)
+			BXPropertyLabel(label, width:labelWidth)
 			Toggle("Enabled", isOn:value)
 			Spacer()
 		}
@@ -44,7 +44,7 @@ public struct BoolPropertyView : View
 
 /// Property view for multiple values of Bool
 
-public struct MultiBoolPropertyView : View
+public struct BXMultiBoolPropertyView : View
 {
 	public var label:String = ""
 	public var labelWidth:Binding<CGFloat>? = nil
@@ -61,8 +61,8 @@ public struct MultiBoolPropertyView : View
 	{
 		HStack
 		{
-			PropertyLabel(label, width:labelWidth)
-			MultiValueToggle(values:values, label:"Enabled")
+			BXPropertyLabel(label, width:labelWidth)
+			BXMultiValueToggle(values:values, label:"Enabled")
 			Spacer()
 		}
 		.frame(maxHeight:24.0, alignment:.top)

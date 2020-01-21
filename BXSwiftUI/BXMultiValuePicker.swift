@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  MultiValuePicker.swift
+//  BXMultiValuePicker.swift
 //	SwiftUI wrapper for a NSPopUpButton that supports multiple values
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
@@ -15,7 +15,7 @@ import AppKit
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public struct MultiValuePicker : NSViewRepresentable
+public struct BXMultiValuePicker : NSViewRepresentable
 {
 	// Binding to a set of zero or more Int values
 	
@@ -138,9 +138,9 @@ public struct MultiValuePicker : NSViewRepresentable
 	
 	public class Coordinator : NSObject
     {
-        var picker:MultiValuePicker
+        var picker:BXMultiValuePicker
 
-        init(_ picker:MultiValuePicker)
+        init(_ picker:BXMultiValuePicker)
         {
             self.picker = picker
         }

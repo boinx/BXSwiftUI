@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  DoublePropertyView.swift
+//  BXDoublePropertyView.swift
 //	Compound views for inspector style user interfaces
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
@@ -16,7 +16,7 @@ import SwiftUI
 
 /// Property view for a single value Double
 
-public struct DoublePropertyView: View
+public struct BXDoublePropertyView: View
 {
 	public var label:String = ""
 	public var labelWidth:Binding<CGFloat>? = nil
@@ -43,7 +43,7 @@ public struct DoublePropertyView: View
 
 				Spacer()
 
-				CustomTextField(value:value, height:17, alignment:.trailing, formatter:formatter)
+				BXCustomTextField(value:value, height:17, alignment:.trailing, formatter:formatter)
 				{
 					(nstextfield,isFirstResponder,isHovering) in
 					let isActive = isFirstResponder || isHovering
@@ -66,7 +66,7 @@ public struct DoublePropertyView: View
 
 /// Property view for multiple values of Double
 
-public struct MultiDoublePropertyView: View
+public struct BXMultiDoublePropertyView: View
 {
 	public var label:String = ""
 	public var labelWidth:Binding<CGFloat>? = nil
@@ -98,7 +98,7 @@ public struct MultiDoublePropertyView: View
 
 				Spacer()
 
-				MultiValueTextField(values:values, height:17, alignment:.trailing, formatter:formatter)
+				BXMultiValueTextField(values:values, height:17, alignment:.trailing, formatter:formatter)
 				{
 					(nstextfield,isFirstResponder,isHovering) in
 					let isActive = isFirstResponder || isHovering
@@ -111,7 +111,7 @@ public struct MultiDoublePropertyView: View
 				.offset(x:0,y:1)
 			}
 			
-			MultiValueSlider(values:values, in:range)
+			BXMultiValueSlider(values:values, in:range)
 				.zIndex(-1)
 		}
 		.frame(maxHeight:24.0, alignment:.top)

@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  StringPropertyView.swift
+//  BXStringPropertyView.swift
 //	Compound views for inspector style user interfaces
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
@@ -16,7 +16,7 @@ import SwiftUI
 
 /// Property view for a single value String?
 
-public struct StringPropertyView : View
+public struct BXStringPropertyView : View
 {
 	public var label:String = ""
 	public var labelWidth:Binding<CGFloat>? = nil
@@ -33,9 +33,9 @@ public struct StringPropertyView : View
     {
 		HStack
 		{
-			PropertyLabel(label, width:labelWidth)
+			BXPropertyLabel(label, width:labelWidth)
 				
-			CustomTextField(value:value, height:22.0, alignment:.leading)
+			BXCustomTextField(value:value, height:22.0, alignment:.leading)
 			{
 				(nstextfield,_,_) in
 				nstextfield.isBordered = true
@@ -48,7 +48,7 @@ public struct StringPropertyView : View
 
 /// Property view for multiple values of String
 
-public struct MultiStringPropertyView : View
+public struct BXMultiStringPropertyView : View
 {
 	public var label:String = ""
 	public var labelWidth:Binding<CGFloat>? = nil
@@ -65,9 +65,9 @@ public struct MultiStringPropertyView : View
     {
 		HStack
 		{
-			PropertyLabel(label, width:labelWidth)
+			BXPropertyLabel(label, width:labelWidth)
 				
-			MultiValueTextField(values:values, height:22.0, alignment:.leading)
+			BXMultiValueTextField(values:values, height:22.0, alignment:.leading)
 			{
 				nstextfield,_,_ in
 				nstextfield.isBordered = true

@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  MultiValueTextField.swift
+//  BXMultiValueTextField.swift
 //	SwiftUI wrapper for a NSTextfield that supports multiple values
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
@@ -14,7 +14,7 @@ import AppKit
 //----------------------------------------------------------------------------------------------------------------------
 
 
-struct MultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheckable
+struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheckable
 {
     @Binding var values:Set<T>
 	var height:CGFloat? = nil
@@ -83,9 +83,9 @@ struct MultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheckab
     
     class Coordinator : NSObject,NSTextFieldDelegate
     {
-        var textfield:MultiValueTextField<T>
+        var textfield:BXMultiValueTextField<T>
 
-        init(_ textfield:MultiValueTextField<T>)
+        init(_ textfield:BXMultiValueTextField<T>)
         {
             self.textfield = textfield
         }

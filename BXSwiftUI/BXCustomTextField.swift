@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  CustomTextField.swift
+//  BXCustomTextField.swift
 //	SwiftUI wrapper for NSTextField with custom behavior
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
@@ -23,7 +23,7 @@ typealias NSTextFieldActiveHandler = (NSCustomTextField,Bool,Bool)->Void
 /// CustomTextField uses an underlying NSCustomTextField to achieve behavior that isn't supported by SwiftUI
 /// as of 10.15 - that is why we drop down to AppKit and implement the desired behavior ourself.
 
-struct CustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
+struct BXCustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
 {
     @Binding var value:T
 	var height:CGFloat? = nil
@@ -84,9 +84,9 @@ struct CustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
     
     class Coordinator : NSObject,NSTextFieldDelegate
     {
-        var textfield:CustomTextField<T>
+        var textfield:BXCustomTextField<T>
 
-        init(_ textfield:CustomTextField<T>)
+        init(_ textfield:BXCustomTextField<T>)
         {
             self.textfield = textfield
         }

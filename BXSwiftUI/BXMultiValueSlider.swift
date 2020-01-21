@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  MultiValueSlider.swift
+//  BXMultiValueSlider.swift
 //	SwiftUI wrapper for a NSSlider that supports multiple values
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
@@ -14,7 +14,7 @@ import AppKit
 //----------------------------------------------------------------------------------------------------------------------
 
 
-struct MultiValueSlider : NSViewRepresentable
+struct BXMultiValueSlider : NSViewRepresentable
 {
     @Binding var values:Set<Double>
 	public var `in`:ClosedRange<Double>
@@ -51,9 +51,9 @@ struct MultiValueSlider : NSViewRepresentable
     
     class Coordinator : NSObject,NSTextFieldDelegate
     {
-        var slider:MultiValueSlider
+        var slider:BXMultiValueSlider
 
-        init(_ slider:MultiValueSlider)
+        init(_ slider:BXMultiValueSlider)
         {
             self.slider = slider
         }
@@ -108,7 +108,7 @@ struct MultiValueSlider_Previews: PreviewProvider
 {
     static var previews: some View
     {
-		MultiValueSlider(values:Binding.constant(Set([5.0,10.0,20.0])), in:0.0 ... 60.0)
+		BXMultiValueSlider(values:Binding.constant(Set([5.0,10.0,20.0])), in:0.0 ... 60.0)
     }
 }
 
