@@ -24,6 +24,7 @@
 		D0793E8023D45D350069327F /* BXDoublePropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E7F23D45D350069327F /* BXDoublePropertyView.swift */; };
 		D0793E8223D45D5A0069327F /* BXIntPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E8123D45D5A0069327F /* BXIntPropertyView.swift */; };
 		D0793E8A23D469870069327F /* BXSwiftUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0793E8923D469870069327F /* BXSwiftUtils.framework */; };
+		D0E2429623D8827D00145CEA /* BXDisclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2429523D8827D00145CEA /* BXDisclosureView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		D0793E7F23D45D350069327F /* BXDoublePropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXDoublePropertyView.swift; sourceTree = "<group>"; };
 		D0793E8123D45D5A0069327F /* BXIntPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIntPropertyView.swift; sourceTree = "<group>"; };
 		D0793E8923D469870069327F /* BXSwiftUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BXSwiftUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0E2429523D8827D00145CEA /* BXDisclosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXDisclosureView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				D002FE7A23D22EC5002CF0A1 /* BXMultiValueTextField.swift */,
 				D002FE7E23D22EC5002CF0A1 /* BXMultiValueToggle.swift */,
 				D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */,
+				D0E2429523D8827D00145CEA /* BXDisclosureView.swift */,
 				D002FE7D23D22EC5002CF0A1 /* BXCustomTextField.swift */,
 				D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */,
 				D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */,
@@ -201,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D002FE8323D22EC5002CF0A1 /* TypeCheckable.swift in Sources */,
+				D0E2429623D8827D00145CEA /* BXDisclosureView.swift in Sources */,
 				D002FE7F23D22EC5002CF0A1 /* BXPropertyLabel.swift in Sources */,
 				D002FE8223D22EC5002CF0A1 /* BXStringPropertyView.swift in Sources */,
 				D002FE8623D22EC5002CF0A1 /* Formatter+Custom.swift in Sources */,
