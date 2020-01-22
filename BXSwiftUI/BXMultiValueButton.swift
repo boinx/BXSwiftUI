@@ -26,30 +26,17 @@ public struct BXMultiValueButton : NSViewRepresentable
     var offStateImage:NSImage?
     var onStateImage:NSImage?
     var mixedStateImage:NSImage?
-	var size:CGSize = .zero
-	
+
+
 	public init(values:Binding<Set<Bool>>, label:String = "", offStateImage:NSImage?, onStateImage:NSImage?, mixedStateImage:NSImage?)
 	{
 		self.values = values
 		self.offStateImage = offStateImage
 		self.onStateImage = onStateImage
 		self.mixedStateImage = mixedStateImage
-		
-		var size = CGSize.zero
-		
-		size.width = max(size.width,offStateImage?.size.width ?? 0.0)
-		size.height = max(size.height,offStateImage?.size.height ?? 0.0)
-		
-		size.width = max(size.width,onStateImage?.size.width ?? 0.0)
-		size.height = max(size.height,onStateImage?.size.height ?? 0.0)
-		
-		size.width = max(size.width,mixedStateImage?.size.width ?? 0.0)
-		size.height = max(size.height,mixedStateImage?.size.height ?? 0.0)
-		
-		self.size = size
 	}
 	
-	/// Creates a checkbox style NSButton that allows for mixed state
+	/// Creates an image based NSButton that allows for mixed state
 	
 	public func makeNSView(context:Context) -> NSButton
     {
@@ -63,9 +50,15 @@ public struct BXMultiValueButton : NSViewRepresentable
 		button.target = context.coordinator
 		button.action = #selector(Coordinator.updateValues(with:))
 		
-		button.widthAnchor.constraint(equalToConstant:size.width).isActive = true
-		button.heightAnchor.constraint(equalToConstant:size.height).isActive = true
+		// Make sure that the button is only as big as the image. Please note that we assume here that
+		// all images are the same size.
 		
+		button.image = self.offStateImage
+		button.setContentHuggingPriority(.required, for:.horizontal)
+		button.setContentHuggingPriority(.required, for:.vertical)
+		button.setContentCompressionResistancePriority(.defaultLow, for:.horizontal)
+		button.setContentCompressionResistancePriority(.defaultLow, for:.vertical)
+
 		return button
     }
 
