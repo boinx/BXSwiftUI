@@ -19,6 +19,7 @@
 		D002FE8623D22EC5002CF0A1 /* Formatter+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */; };
 		D002FE8723D22EC5002CF0A1 /* BXCustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7D23D22EC5002CF0A1 /* BXCustomTextField.swift */; };
 		D002FE8823D22EC5002CF0A1 /* BXMultiValueToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7E23D22EC5002CF0A1 /* BXMultiValueToggle.swift */; };
+		D03A287223D705CA00673CB1 /* BXMultiValueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */; };
 		D0793E7E23D45D170069327F /* BXBoolPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E7D23D45D170069327F /* BXBoolPropertyView.swift */; };
 		D0793E8023D45D350069327F /* BXDoublePropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E7F23D45D350069327F /* BXDoublePropertyView.swift */; };
 		D0793E8223D45D5A0069327F /* BXIntPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E8123D45D5A0069327F /* BXIntPropertyView.swift */; };
@@ -40,6 +41,7 @@
 		D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+Custom.swift"; sourceTree = "<group>"; };
 		D002FE7D23D22EC5002CF0A1 /* BXCustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXCustomTextField.swift; sourceTree = "<group>"; };
 		D002FE7E23D22EC5002CF0A1 /* BXMultiValueToggle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXMultiValueToggle.swift; sourceTree = "<group>"; };
+		D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueButton.swift; sourceTree = "<group>"; };
 		D0793E7D23D45D170069327F /* BXBoolPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXBoolPropertyView.swift; sourceTree = "<group>"; };
 		D0793E7F23D45D350069327F /* BXDoublePropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXDoublePropertyView.swift; sourceTree = "<group>"; };
 		D0793E8123D45D5A0069327F /* BXIntPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIntPropertyView.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				D002FE7723D22EC5002CF0A1 /* BXMultiValueSlider.swift */,
 				D002FE7A23D22EC5002CF0A1 /* BXMultiValueTextField.swift */,
 				D002FE7E23D22EC5002CF0A1 /* BXMultiValueToggle.swift */,
+				D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */,
 				D002FE7D23D22EC5002CF0A1 /* BXCustomTextField.swift */,
 				D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */,
 				D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */,
@@ -208,6 +211,7 @@
 				D002FE8423D22EC5002CF0A1 /* BXMultiValueTextField.swift in Sources */,
 				D0793E8023D45D350069327F /* BXDoublePropertyView.swift in Sources */,
 				D0793E8223D45D5A0069327F /* BXIntPropertyView.swift in Sources */,
+				D03A287223D705CA00673CB1 /* BXMultiValueButton.swift in Sources */,
 				D002FE8723D22EC5002CF0A1 /* BXCustomTextField.swift in Sources */,
 				D002FE8823D22EC5002CF0A1 /* BXMultiValueToggle.swift in Sources */,
 			);
