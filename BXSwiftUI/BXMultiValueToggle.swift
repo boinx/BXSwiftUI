@@ -14,24 +14,29 @@ import AppKit
 //----------------------------------------------------------------------------------------------------------------------
 
 
-struct BXMultiValueToggle : NSViewRepresentable
+/// A checkbox that can take three different states: on, off, and mixed. The mixed state will be used
+/// if the bound values are not unique.
+
+public struct BXMultiValueToggle : NSViewRepresentable
 {
+	// Params
+	
     @Binding var values:Set<Bool>
 	var label:String = ""
 	
-    func makeNSView(context:Context) -> NSButton
+	/// Creates a checkbox style NSButton that allows for mixed state
+	
+    public func makeNSView(context:Context) -> NSButton
     {
-        let button = NSButton(frame:.zero)
-        button.setButtonType(.switch)
-        button.bezelStyle = .regularSquare
+        let button = NSButton(checkboxWithTitle:label, target:context.coordinator, action:#selector(Coordinator.updateValues(with:)))
         button.allowsMixedState = true
         button.title = label 
-		button.target = context.coordinator
-		button.action = #selector(Coordinator.updateValues(with:))
 		return button
     }
 
-    func updateNSView(_ button:NSButton, context:Context)
+	/// Something on the SwiftUI side has changed, so update the NSButton
+	
+    public func updateNSView(_ button:NSButton, context:Context)
     {
 		if values.count > 1
 		{
@@ -50,7 +55,9 @@ struct BXMultiValueToggle : NSViewRepresentable
 		}
     }
     
-    class Coordinator : NSObject,NSTextFieldDelegate
+    /// The NSButton was clicked, so update the state on the SwiftUI side
+    
+    public class Coordinator : NSObject
     {
         var toggle:BXMultiValueToggle
 
@@ -66,7 +73,7 @@ struct BXMultiValueToggle : NSViewRepresentable
         }
     }
 
-    func makeCoordinator() -> Coordinator
+    public func makeCoordinator() -> Coordinator
     {
         return Coordinator(self)
     }

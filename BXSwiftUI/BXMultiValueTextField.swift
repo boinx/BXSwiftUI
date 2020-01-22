@@ -16,12 +16,16 @@ import AppKit
 
 struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheckable
 {
+	// Params
+	
     @Binding var values:Set<T>
 	var height:CGFloat? = nil
 	var alignment:TextAlignment = .leading
 	var formatter:Formatter? = nil
 	var isActiveHandler:(NSTextFieldActiveHandler)? = nil
 
+	/// Creates the underlying NSCustomTextField
+	
     func makeNSView(context:Context) -> NSCustomTextField
     {
 		var action = #selector(Coordinator.updateStringValues(with:))
@@ -47,6 +51,8 @@ struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheck
 		return textfield
     }
 
+	/// Something on the SwiftUI side has changed, so update the NSCustomTextField
+	
     func updateNSView(_ textfield:NSCustomTextField, context:Context)
     {
 		if values.count == 0
@@ -80,6 +86,8 @@ struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheck
 			textfield.isEnabled = true
 		}
     }
+    
+    /// Editing has finished in the NSTextField, so update the values on the SwiftUI side
     
     class Coordinator : NSObject,NSTextFieldDelegate
     {
