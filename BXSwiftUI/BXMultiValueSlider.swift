@@ -28,6 +28,7 @@ struct BXMultiValueSlider : NSViewRepresentable
 		slider.doubleValue = `in`.lowerBound
 		slider.minValue = `in`.lowerBound
 		slider.maxValue = `in`.upperBound
+		
 		return slider
     }
 
@@ -97,6 +98,22 @@ class NSMultiValueSliderCell : NSSliderCell
 			self.doubleValue = value
 			super.drawKnob()
 		}
+	}
+
+	override open func drawKnob(_ knobRect:NSRect)
+	{
+		let rect = knobRect.insetBy(dx:4.0, dy:4.0)
+		let path = NSBezierPath(ovalIn:rect)
+		path.lineWidth = 1.5
+		
+		NSGraphicsContext.saveGraphicsState()
+		NSGraphicsContext.current?.compositingOperation = .copy
+		NSColor.clear.set()
+		path.fill()
+		NSGraphicsContext.restoreGraphicsState()
+		
+		NSColor.white.set()
+		path.stroke()
 	}
 }
 
