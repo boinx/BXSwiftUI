@@ -31,7 +31,7 @@ public struct BXDisclosureView<H,B> : View where H:View, B:View
 		VStack(alignment:.leading, spacing:12)
 		{
 			headerBuilder()
-
+			
 			if isExpanded.wrappedValue
 			{
 				bodyBuilder()
@@ -48,7 +48,8 @@ public struct BXDisclosureButton : View
 {
 	private var label:String
 	private var isExpanded:Binding<Bool>
-	
+	@Environment(\.font) var font
+
 	public init(_ label:String, isExpanded:Binding<Bool>)
 	{
 		self.label = label
@@ -57,14 +58,15 @@ public struct BXDisclosureButton : View
 	
 	public var body: some View
 	{
-		HStack(spacing:4.0)
+		HStack(spacing:2.0)
 		{
 			Text("▶︎")
-				.font(.subheadline)
+				.font(font)
+				.scaleEffect(0.85)
 				.rotationEffect(.degrees(isExpanded.wrappedValue ? 90 : 0))
 				
 			Text(label)
-				.font(.headline)
+				.font(font)
 		}
 		
 		.onTapGesture
