@@ -92,7 +92,10 @@ public struct BXMultiIntPropertyView : View
 		HStack
 		{
 			BXPropertyLabel(label, width:labelWidth)
-			BXMultiValuePicker(values:values, orderedItems:orderedItems)
+			
+				BXMultiValuePicker(values:values, orderedItems:orderedItems)
+					.environment(\.isEnabled, values.wrappedValue.count>0)
+					.modifier(StrokedPopupStyle())
 		}
 	}
 }
