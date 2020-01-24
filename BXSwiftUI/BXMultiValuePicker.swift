@@ -96,6 +96,7 @@ public struct BXMultiValuePicker : NSViewRepresentable
 
 					item = NSMenuItem(title:title.uppercased(), action:nil, keyEquivalent:"")
 					item.attributedTitle = NSAttributedString(string:title.uppercased(),attributes:smallFontAttrs)
+					item.tag = -666
 					item.isEnabled = false
 
 				// Add a separator line
@@ -103,6 +104,7 @@ public struct BXMultiValuePicker : NSViewRepresentable
 				case .divider:
 				
 					item = NSMenuItem.separator()
+					item.tag = -666
 					item.isEnabled = false
 			}
 						
