@@ -36,6 +36,39 @@ public extension Formatter
 		formatter.negativeFormat = "-#.#°"
 		return formatter
 	}()
+	
+	static var pixelsFormatter: NumberFormatter =
+	{
+		let formatter = NumberFormatter()
+		formatter.allowsFloats = false
+		formatter.numberStyle = .decimal
+		formatter.maximumFractionDigits = 0
+		formatter.positiveFormat = "#px"
+		formatter.negativeFormat = "-#px"
+		return formatter
+	}()
+	
+	static var pointsFormatter: NumberFormatter =
+	{
+		let formatter = NumberFormatter()
+		formatter.allowsFloats = false
+		formatter.numberStyle = .decimal
+		formatter.maximumFractionDigits = 0
+		formatter.positiveFormat = "#pt"
+		formatter.negativeFormat = "-#pt"
+		return formatter
+	}()
+	
+	static var factorFormatter: NumberFormatter =
+	{
+		let formatter = NumberFormatter()
+		formatter.allowsFloats = true
+		formatter.numberStyle = .decimal
+		formatter.maximumFractionDigits = 1
+		formatter.positiveFormat = "#x"
+		formatter.negativeFormat = "-#x"
+		return formatter
+	}()
 }
 
 
