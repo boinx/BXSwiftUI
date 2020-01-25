@@ -81,3 +81,18 @@ public struct BXDisclosureButton : View
 
 
 //----------------------------------------------------------------------------------------------------------------------
+
+
+public extension View
+{
+	func indent(leading:CGFloat = 0.0, top:CGFloat = 0.0, bottom:CGFloat = 0.0) -> some View
+	{
+		return self
+			.padding(.top,top)
+			.padding(.leading,leading)
+			.padding(.bottom,bottom)
+	}
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
