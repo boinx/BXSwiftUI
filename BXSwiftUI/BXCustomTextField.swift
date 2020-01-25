@@ -37,9 +37,21 @@ struct BXCustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
     {
 		var action = #selector(Coordinator.updateStringValue(with:))
 		
-		if value is Double
+		if value is URL
+		{
+			action = #selector(Coordinator.updateURLValue(with:))
+		}
+		else if value is Double
 		{
 			action = #selector(Coordinator.updateDoubleValue(with:))
+		}
+		else if value is Float
+		{
+			action = #selector(Coordinator.updateFloatValue(with:))
+		}
+		else if value is CGFloat
+		{
+			action = #selector(Coordinator.updateCGFloatValue(with:))
 		}
 		else if value is Int
 		{
@@ -66,9 +78,21 @@ struct BXCustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
 		{
 			textfield.stringValue = value
 		}
+		else if let value = self.value as? URL
+		{
+			textfield.stringValue = value.absoluteString
+		}
 		else if let value = self.value as? Double
 		{
 			textfield.doubleValue = value
+		}
+		else if let value = self.value as? Float
+		{
+			textfield.floatValue = value
+		}
+		else if let value = self.value as? CGFloat
+		{
+			textfield.doubleValue = Double(value)
 		}
 		else if let value = self.value as? Int
 		{
@@ -95,13 +119,28 @@ struct BXCustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
         {
             textfield.value = sender.stringValue as! T
         }
-        
+ 
+		 @objc func updateURLValue(with sender:NSTextField)
+		 {
+			 textfield.value = URL(string:sender.stringValue) as! T
+		 }
+
         @objc func updateDoubleValue(with sender:NSTextField)
         {
             textfield.value = sender.doubleValue as! T
         }
         
-        @objc func updateIntValue(with sender:NSTextField)
+        @objc func updateFloatValue(with sender:NSTextField)
+        {
+            textfield.value = sender.floatValue as! T
+        }
+        
+		@objc func updateCGFloatValue(with sender:NSTextField)
+		 {
+			 textfield.value = CGFloat(sender.doubleValue) as! T
+		 }
+		 
+		@objc func updateIntValue(with sender:NSTextField)
         {
             textfield.value = sender.integerValue as! T
         }
