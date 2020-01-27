@@ -69,6 +69,17 @@ public extension Formatter
 		formatter.negativeFormat = "-#x"
 		return formatter
 	}()
+	
+	static var doubleFormatter: NumberFormatter =
+	{
+		let formatter = NumberFormatter()
+		formatter.allowsFloats = true
+		formatter.numberStyle = .decimal
+		formatter.maximumFractionDigits = 6
+		formatter.positiveFormat = "#.#"
+		formatter.negativeFormat = "-#.#"
+		return formatter
+	}()
 }
 
 
