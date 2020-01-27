@@ -13,7 +13,7 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public struct BXArrayEditView<M,V> : View where M:Hashable, V:View
+public struct BXArrayEditView<M,V> : View where M:Identifiable, V:View
 {
 	private var label:String
 	private var labelWidth:Binding<CGFloat>? = nil
@@ -45,10 +45,11 @@ public struct BXArrayEditView<M,V> : View where M:Hashable, V:View
 				
 			body:
 			{
-				List(self.values.wrappedValue, id:\.self)
-				{
-					self.rowView($0)
-				}
+				Text("Placeholder")
+//				ForEach(self.values.wrappedValue)
+//				{
+//					self.rowView($0)
+//				}
 			})
 	}
 }

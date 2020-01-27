@@ -74,6 +74,7 @@
 		D0793E8123D45D5A0069327F /* BXIntPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIntPropertyView.swift; sourceTree = "<group>"; };
 		D0793E8923D469870069327F /* BXSwiftUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BXSwiftUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0C1249923DAE4A600DB3592 /* BXCircularSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXCircularSlider.swift; sourceTree = "<group>"; };
+		D0D25BC523DC954D00A1B61D /* Optional+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Combine.swift"; sourceTree = "<group>"; };
 		D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIndentationView.swift; sourceTree = "<group>"; };
 		D0E2429523D8827D00145CEA /* BXDisclosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXDisclosureView.swift; sourceTree = "<group>"; };
 		D0EBA10923D9881D00E82E59 /* BXCustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXCustomTextView.swift; sourceTree = "<group>"; };
@@ -200,6 +201,7 @@
 				D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */,
 				D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */,
 				D002FE7923D22EC5002CF0A1 /* TypeCheckable.swift */,
+				D0D25BC523DC954D00A1B61D /* Optional+Combine.swift */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
