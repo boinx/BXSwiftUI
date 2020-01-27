@@ -76,8 +76,6 @@ public extension Formatter
 		formatter.allowsFloats = true
 		formatter.numberStyle = .decimal
 		formatter.maximumFractionDigits = 6
-		formatter.positiveFormat = "#.#"
-		formatter.negativeFormat = "-#.#"
 		return formatter
 	}()
 }
