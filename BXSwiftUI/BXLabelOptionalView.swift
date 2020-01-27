@@ -51,25 +51,11 @@ public struct BXLabelOptionalView<M,V> : View where V:View
 
 				// "+" button to create value
 				
-				Text("⊕")
-					.font(.body)
-					.disabled(self.value == nil)
-					.opacity(self.value == nil ? 1.0 : 0.33)
-					.onTapGesture
-					{
-						self.plusAction()
-					}
+				BXLabelButton(title:"⊕", action:self.plusAction, isEnabled:self.value == nil)
 
 				// "-" button to destroy value
 				
-				Text("⊖")
-					.font(.body)
-					.disabled(self.value != nil)
-					.opacity(self.value != nil ? 1.0 : 0.33)
-					.onTapGesture
-					{
-						self.minusAction()
-					}
+				BXLabelButton(title:"⊖", action:self.minusAction, isEnabled:self.value != nil)
 			}
 			
 			// Make sure that we are aligned with other labels

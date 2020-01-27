@@ -17,17 +17,21 @@ public struct BXLabelView<Content> : View where Content:View
 {
 	var label:String = ""
 	var width:Binding<CGFloat>? = nil
+	var button1:(()->BXLabelButton)? = nil
+	var button2:(()->BXLabelButton)? = nil
 	var content:()->Content
-	
+
 	private var minWidth:CGFloat
 	{
 		width?.wrappedValue ?? 0.0
 	}
 	
-	public init(label:String = "", width:Binding<CGFloat>? = nil, @ViewBuilder content:@escaping ()->Content)
+	public init(label:String = "", width:Binding<CGFloat>? = nil, button1:(()->BXLabelButton)? = nil, button2:(()->BXLabelButton)? = nil, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.label = label
 		self.width = width
+		self.button1 = button1
+		self.button2 = button2
 		self.content = content
 	}
 	
@@ -37,10 +41,23 @@ public struct BXLabelView<Content> : View where Content:View
 		{
 			if self.label.count > 0
 			{
-				// The label consists of a single Text item
+				// The label consists of a Text item and optionally some buttons
 			
-				Text(self.label)
-			
+				HStack
+				{
+					Text(self.label)
+					
+					if self.button1 != nil
+					{
+						self.button1!()
+					}
+					
+					if self.button2 != nil
+					{
+						self.button2!()
+					}
+				}
+				
 					// Measure its size and attach a preference (with its width)
 					
 					.background( GeometryReader

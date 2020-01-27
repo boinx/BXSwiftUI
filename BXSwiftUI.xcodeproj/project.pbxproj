@@ -36,8 +36,9 @@
 		D0793E8023D45D350069327F /* BXDoublePropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E7F23D45D350069327F /* BXDoublePropertyView.swift */; };
 		D0793E8223D45D5A0069327F /* BXIntPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E8123D45D5A0069327F /* BXIntPropertyView.swift */; };
 		D0793E8A23D469870069327F /* BXSwiftUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0793E8923D469870069327F /* BXSwiftUtils.framework */; };
-		D0A23FFB23DEDBBA004E9F31 /* BXLabelOptionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A23FFA23DEDBBA004E9F31 /* BXLabelOptionalView.swift */; };
 		D0A2400023DF03D5004E9F31 /* BXOptionalDisclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A23FFF23DF03D5004E9F31 /* BXOptionalDisclosureView.swift */; };
+		D0A2400223DF3E27004E9F31 /* BXLabelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A2400123DF3E27004E9F31 /* BXLabelButton.swift */; };
+		D0A2400423DF5716004E9F31 /* BXOptionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A2400323DF5716004E9F31 /* BXOptionalView.swift */; };
 		D0C1249A23DAE4A600DB3592 /* BXCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C1249923DAE4A600DB3592 /* BXCircularSlider.swift */; };
 		D0D25BCC23DCB3B400A1B61D /* BXIndentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */; };
 		D0E2429623D8827D00145CEA /* BXDisclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2429523D8827D00145CEA /* BXDisclosureView.swift */; };
@@ -77,6 +78,8 @@
 		D0793E8923D469870069327F /* BXSwiftUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BXSwiftUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0A23FFA23DEDBBA004E9F31 /* BXLabelOptionalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXLabelOptionalView.swift; sourceTree = "<group>"; };
 		D0A23FFF23DF03D5004E9F31 /* BXOptionalDisclosureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXOptionalDisclosureView.swift; sourceTree = "<group>"; };
+		D0A2400123DF3E27004E9F31 /* BXLabelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXLabelButton.swift; sourceTree = "<group>"; };
+		D0A2400323DF5716004E9F31 /* BXOptionalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXOptionalView.swift; sourceTree = "<group>"; };
 		D0C1249923DAE4A600DB3592 /* BXCircularSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXCircularSlider.swift; sourceTree = "<group>"; };
 		D0D25BC523DC954D00A1B61D /* Optional+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Combine.swift"; sourceTree = "<group>"; };
 		D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIndentationView.swift; sourceTree = "<group>"; };
@@ -184,7 +187,9 @@
 				D0E2429523D8827D00145CEA /* BXDisclosureView.swift */,
 				D0A23FFF23DF03D5004E9F31 /* BXOptionalDisclosureView.swift */,
 				D002FE7523D22EC5002CF0A1 /* BXLabelView.swift */,
+				D0A2400123DF3E27004E9F31 /* BXLabelButton.swift */,
 				D0A23FFA23DEDBBA004E9F31 /* BXLabelOptionalView.swift */,
+				D0A2400323DF5716004E9F31 /* BXOptionalView.swift */,
 				D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */,
 			);
 			name = "View Hierarchy";
@@ -304,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0D25BCC23DCB3B400A1B61D /* BXIndentationView.swift in Sources */,
+				D0A2400223DF3E27004E9F31 /* BXLabelButton.swift in Sources */,
 				D02BC5AC23DC627900676CF3 /* BXBoolEditView.swift in Sources */,
 				D002FE8323D22EC5002CF0A1 /* TypeCheckable.swift in Sources */,
 				D0E2429623D8827D00145CEA /* BXDisclosureView.swift in Sources */,
@@ -317,6 +323,7 @@
 				D002FE8023D22EC5002CF0A1 /* BXMultiValuePicker.swift in Sources */,
 				D02BC59E23DC329E00676CF3 /* BXCGSizeEditView.swift in Sources */,
 				D0C1249A23DAE4A600DB3592 /* BXCircularSlider.swift in Sources */,
+				D0A2400423DF5716004E9F31 /* BXOptionalView.swift in Sources */,
 				D0793E7E23D45D170069327F /* BXBoolPropertyView.swift in Sources */,
 				D002FE8523D22EC5002CF0A1 /* TextAlignment+AppKit.swift in Sources */,
 				D0A2400023DF03D5004E9F31 /* BXOptionalDisclosureView.swift in Sources */,
@@ -324,7 +331,6 @@
 				D002FE8123D22EC5002CF0A1 /* BXMultiValueSlider.swift in Sources */,
 				D002FE8423D22EC5002CF0A1 /* BXMultiValueTextField.swift in Sources */,
 				D04B14DD23DB4773001203FD /* BXCheckboxStyle.swift in Sources */,
-				D0A23FFB23DEDBBA004E9F31 /* BXLabelOptionalView.swift in Sources */,
 				D0793E8023D45D350069327F /* BXDoublePropertyView.swift in Sources */,
 				D0793E8223D45D5A0069327F /* BXIntPropertyView.swift in Sources */,
 				D03A287223D705CA00673CB1 /* BXMultiValueButton.swift in Sources */,
