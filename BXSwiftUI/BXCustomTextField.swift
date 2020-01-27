@@ -14,7 +14,7 @@ import AppKit
 //----------------------------------------------------------------------------------------------------------------------
 
 
-typealias NSTextFieldActiveHandler = (NSCustomTextField,Bool,Bool)->Void
+public typealias NSTextFieldActiveHandler = (NSCustomTextField,Bool,Bool)->Void
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -23,37 +23,47 @@ typealias NSTextFieldActiveHandler = (NSCustomTextField,Bool,Bool)->Void
 /// CustomTextField uses an underlying NSCustomTextField to achieve behavior that isn't supported by SwiftUI
 /// as of 10.15 - that is why we drop down to AppKit and implement the desired behavior ourself.
 
-struct BXCustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
+public struct BXCustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
 {
-    @Binding var value:T
-	var height:CGFloat? = nil
-	var alignment:TextAlignment = .leading
-	var formatter:Formatter? = nil
-	var isActiveHandler:(NSTextFieldActiveHandler)? = nil
+//    @Binding public var value:T
+	public var value:Binding<T>
+	public var height:CGFloat? = nil
+	public var alignment:TextAlignment = .leading
+	public var formatter:Formatter? = nil
+	public var isActiveHandler:(NSTextFieldActiveHandler)? = nil
 
+	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, isActiveHandler:(NSTextFieldActiveHandler)? = nil)
+	{
+		self.value = value
+		self.height = height
+		self.alignment = alignment
+		self.formatter = formatter
+		self.isActiveHandler = isActiveHandler
+	}
+	
 	// Create the underlying NSCustomTextField
 	
-    func makeNSView(context:Context) -> NSCustomTextField
+	public func makeNSView(context:Context) -> NSCustomTextField
     {
 		var action = #selector(Coordinator.updateStringValue(with:))
 		
-		if value is URL
+		if value.wrappedValue is URL
 		{
 			action = #selector(Coordinator.updateURLValue(with:))
 		}
-		else if value is Double
+		else if value.wrappedValue is Double
 		{
 			action = #selector(Coordinator.updateDoubleValue(with:))
 		}
-		else if value is Float
+		else if value.wrappedValue is Float
 		{
 			action = #selector(Coordinator.updateFloatValue(with:))
 		}
-		else if value is CGFloat
+		else if value.wrappedValue is CGFloat
 		{
 			action = #selector(Coordinator.updateCGFloatValue(with:))
 		}
-		else if value is Int
+		else if value.wrappedValue is Int
 		{
 			action = #selector(Coordinator.updateIntValue(with:))
 		}
@@ -72,29 +82,29 @@ struct BXCustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
 
 	// SwiftUI side has changed, so update the NSCustomTextField
 	
-    func updateNSView(_ textfield:NSCustomTextField, context:Context)
+	public func updateNSView(_ textfield:NSCustomTextField, context:Context)
     {
-		if let value = self.value as? String
+		if let value = self.value.wrappedValue as? String
 		{
 			textfield.stringValue = value
 		}
-		else if let value = self.value as? URL
+		else if let value = self.value.wrappedValue as? URL
 		{
 			textfield.stringValue = value.absoluteString
 		}
-		else if let value = self.value as? Double
+		else if let value = self.value.wrappedValue as? Double
 		{
 			textfield.doubleValue = value
 		}
-		else if let value = self.value as? Float
+		else if let value = self.value.wrappedValue as? Float
 		{
 			textfield.floatValue = value
 		}
-		else if let value = self.value as? CGFloat
+		else if let value = self.value.wrappedValue as? CGFloat
 		{
 			textfield.doubleValue = Double(value)
 		}
-		else if let value = self.value as? Int
+		else if let value = self.value.wrappedValue as? Int
 		{
 			textfield.integerValue = value
 		}
@@ -106,7 +116,7 @@ struct BXCustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
     
     // The coordinator is responsible for notifying SwiftUI when editing occured in the NSCustomTextField
     
-    class Coordinator : NSObject,NSTextFieldDelegate
+	public class Coordinator : NSObject,NSTextFieldDelegate
     {
         var textfield:BXCustomTextField<T>
 
@@ -117,36 +127,36 @@ struct BXCustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
 		
         @objc func updateStringValue(with sender:NSTextField)
         {
-            textfield.value = sender.stringValue as! T
+            textfield.value.wrappedValue = sender.stringValue as! T
         }
  
 		 @objc func updateURLValue(with sender:NSTextField)
 		 {
-			 textfield.value = URL(string:sender.stringValue) as! T
+			 textfield.value.wrappedValue = URL(string:sender.stringValue) as! T
 		 }
 
         @objc func updateDoubleValue(with sender:NSTextField)
         {
-            textfield.value = sender.doubleValue as! T
+            textfield.value.wrappedValue = sender.doubleValue as! T
         }
         
         @objc func updateFloatValue(with sender:NSTextField)
         {
-            textfield.value = sender.floatValue as! T
+            textfield.value.wrappedValue = sender.floatValue as! T
         }
         
 		@objc func updateCGFloatValue(with sender:NSTextField)
 		 {
-			 textfield.value = CGFloat(sender.doubleValue) as! T
+			 textfield.value.wrappedValue = CGFloat(sender.doubleValue) as! T
 		 }
 		 
 		@objc func updateIntValue(with sender:NSTextField)
         {
-            textfield.value = sender.integerValue as! T
+            textfield.value.wrappedValue = sender.integerValue as! T
         }
 	}
 	
-    func makeCoordinator() -> Coordinator
+	public func makeCoordinator() -> Coordinator
     {
         return Coordinator(self)
     }
@@ -156,7 +166,7 @@ struct BXCustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
 //----------------------------------------------------------------------------------------------------------------------
 
 
-class NSCustomTextField : NSTextField
+public class NSCustomTextField : NSTextField
 {
 	var isActiveHandler:(NSTextFieldActiveHandler)? = nil
 	var trackingArea:NSTrackingArea? = nil
@@ -174,7 +184,7 @@ class NSCustomTextField : NSTextField
 		super.init(coder:coder)
 	}
 	
-	override var frame:NSRect
+	override public var frame:NSRect
 	{
 		set
 		{
@@ -188,7 +198,7 @@ class NSCustomTextField : NSTextField
 		}
 	}
 	
-	override func viewDidMoveToWindow()
+	override public func viewDidMoveToWindow()
 	{
 		super.viewDidMoveToWindow()
 		
@@ -216,24 +226,24 @@ class NSCustomTextField : NSTextField
 		}
 	}
 	
-	override func mouseEntered(with event:NSEvent)
+	override public func mouseEntered(with event:NSEvent)
 	{
 		self.isHovering = self.isEnabled
 	}
 
-	override func mouseExited(with event:NSEvent)
+	override public func mouseExited(with event:NSEvent)
 	{
 		self.isHovering = false
 	}
 
-	override func becomeFirstResponder() -> Bool
+	override public func becomeFirstResponder() -> Bool
 	{
 		self.isFirstResponder = true
 		self.selectText(nil)
 		return true
 	}
 	
-	override func resignFirstResponder() -> Bool
+	override public func resignFirstResponder() -> Bool
 	{
 		self.isFirstResponder = false
 		

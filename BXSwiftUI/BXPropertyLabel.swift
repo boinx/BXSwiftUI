@@ -24,7 +24,7 @@ public struct BXPropertyLabel : View
 		width?.wrappedValue ?? 0.0
 	}
 	
-	init(_ title:String, width:Binding<CGFloat>? = nil)
+	public init(_ title:String, width:Binding<CGFloat>? = nil)
 	{
 		self.title = title
 		self.width = width
