@@ -19,27 +19,25 @@ import SwiftUI
 public struct BXIntPropertyView : View
 {
 	private var label:String = ""
-	private var labelWidth:Binding<CGFloat>? = nil
+	private var width:Binding<CGFloat>? = nil
 	private var value:Binding<Int>
 	private var allCases:[LocalizableIntEnum] = []
 	
-	public init(label:String = "", labelWidth:Binding<CGFloat>? = nil, value:Binding<Int>, allCases:[LocalizableIntEnum])
+	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<Int>, allCases:[LocalizableIntEnum])
 	{
 		self.label = label
-		self.labelWidth = labelWidth
+		self.width = width
 		self.value = value
 		self.allCases = allCases
 	}
 	
     public var body: some View
     {
-		HStack
+		BXLabelView(label:label, width:width)
 		{
-			BXPropertyLabel(label, width:labelWidth)
-
-			Picker(selection:value, label:Text(""))
+			Picker(selection:self.value, label:Text(""))
 			{
-				ForEach(allCases, id:\.intValue)
+				ForEach(self.allCases, id:\.intValue)
 				{
 					Text($0.localizedName).tag($0.intValue)
 				}
@@ -55,16 +53,16 @@ public struct BXIntPropertyView : View
 public struct BXMultiIntPropertyView : View
 {
 	private var label:String = ""
-	private var labelWidth:Binding<CGFloat>? = nil
+	private var width:Binding<CGFloat>? = nil
 	private var values:Binding<Set<Int>>
 	private var orderedItems:[BXMultiValuePicker.Item] = []
 
 	/// Creates a MultiIntPropertyView with a simple array of enum cases. Menu item names and tags are generated automatically from this enum array.
 	
-	public init(label:String = "", labelWidth:Binding<CGFloat>? = nil, values:Binding<Set<Int>>, orderedItems:[LocalizableIntEnum])
+	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Int>>, orderedItems:[LocalizableIntEnum])
 	{
 		self.label = label
-		self.labelWidth = labelWidth
+		self.width = width
 		self.values = values
 		self.orderedItems = orderedItems.map
 		{
@@ -74,10 +72,10 @@ public struct BXMultiIntPropertyView : View
 
 	/// Creates a MultiIntPropertyView with the provided closure. This closure provides more flexibility regarding ordering and inserting separators or disabled section names.
 	
-	public init(label:String = "", labelWidth:Binding<CGFloat>? = nil, values:Binding<Set<Int>>, orderedItems:()->[BXMultiValuePicker.Item])
+	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Int>>, orderedItems:()->[BXMultiValuePicker.Item])
 	{
 		self.label = label
-		self.labelWidth = labelWidth
+		self.width = width
 		self.values = values
 		self.orderedItems = orderedItems()
 	}
@@ -89,13 +87,11 @@ public struct BXMultiIntPropertyView : View
 	
     public var body: some View
     {
-		HStack
+		BXLabelView(label:label, width:width)
 		{
-			BXPropertyLabel(label, width:labelWidth)
-			
-				BXMultiValuePicker(values:values, orderedItems:orderedItems)
-					.environment(\.isEnabled, values.wrappedValue.count>0)
-					.modifier(StrokedPopupStyle())
+			BXMultiValuePicker(values:self.values, orderedItems:self.orderedItems)
+				.environment(\.isEnabled, self.values.wrappedValue.count>0)
+				.modifier(StrokedPopupStyle())
 		}
 	}
 }

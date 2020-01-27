@@ -1,7 +1,7 @@
 //**********************************************************************************************************************
 //
-//  BXPropertyLabel.swift
-//	PropertyLabels communicate with each other and decide on a common maximum width for localization purposes
+//  BXLabelView.swift
+//	BXLabelViews communicate with each other and decide on a common maximum width for localization purposes
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
@@ -13,41 +13,50 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public struct BXPropertyLabel : View
+public struct BXLabelView<Content> : View where Content:View
 {
-	var title:String = ""
-//	var width:CGFloat = 70.0
+	var label:String = ""
 	var width:Binding<CGFloat>? = nil
-
+	var content:()->Content
+	
 	private var minWidth:CGFloat
 	{
 		width?.wrappedValue ?? 0.0
 	}
 	
-	public init(_ title:String, width:Binding<CGFloat>? = nil)
+	public init(label:String = "", width:Binding<CGFloat>? = nil, @ViewBuilder content:@escaping ()->Content)
 	{
-		self.title = title
+		self.label = label
 		self.width = width
+		self.content = content
 	}
 	
 	public var body: some View
 	{
-		// The title consists of a single Text item
-		
-		Text(title)
-		
-			// Measure its size and attach a preference (with its width)
-			
-			.background( GeometryReader
+		HStack
+		{
+			if self.label.count > 0
 			{
-				Color.clear.preference(
-					key:PropertyLabelKey.self,
-					value:[PropertyLabelData(width:$0.size.width)])
-			})
+				// The label consists of a single Text item
 			
-			// Resize the Text to the desired width - which will be the maximum width of all PropertyLabels
+				Text(self.label)
 			
-			.frame(minWidth:self.minWidth, alignment:.leading)
+					// Measure its size and attach a preference (with its width)
+					
+					.background( GeometryReader
+					{
+						Color.clear.preference(
+							key:BXLabelViewKey.self,
+							value:[BXLabelViewData(width:$0.size.width)])
+					})
+					
+					// Resize the Text to the desired width - which will be the maximum width of all BXLabelViews
+					
+					.frame(minWidth:self.minWidth, alignment:.leading)
+			}
+			
+			content()
+		}
 	}
 }
 
@@ -61,9 +70,9 @@ public extension View
 	// localizing for languages with longer strings. The controls will be left aligned at this width.
 
 
-	func resizePropertyLabels(to maxLabelWidth:Binding<CGFloat>) -> some View
+	func resizeLabelColumn(to maxLabelWidth:Binding<CGFloat>) -> some View
 	{
-		return self.onPreferenceChange(PropertyLabelKey.self)
+		return self.onPreferenceChange(BXLabelViewKey.self)
 		{
 			preferences in
 			
@@ -81,21 +90,21 @@ public extension View
 //----------------------------------------------------------------------------------------------------------------------
 
 
-/// Metadata to be attached to BXPropertyLabel views
+/// Metadata to be attached to BXLabelView views
 
-public struct PropertyLabelData : Equatable
+public struct BXLabelViewData : Equatable
 {
     public let width:CGFloat
 }
 
 
-public struct PropertyLabelKey : PreferenceKey
+public struct BXLabelViewKey : PreferenceKey
 {
-	public typealias Value = [PropertyLabelData]
+	public typealias Value = [BXLabelViewData]
 
-	public static var defaultValue:[PropertyLabelData] = []
+	public static var defaultValue:[BXLabelViewData] = []
 
-    public static func reduce(value:inout [PropertyLabelData], nextValue:()->[PropertyLabelData])
+    public static func reduce(value:inout [BXLabelViewData], nextValue:()->[BXLabelViewData])
     {
 		value.append(contentsOf: nextValue())
     }

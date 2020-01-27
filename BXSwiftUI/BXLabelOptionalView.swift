@@ -1,7 +1,7 @@
 //**********************************************************************************************************************
 //
-//  BXOptionalEditView.swift
-//	A view to edit a single Optional property
+//  BXLabelOptionalView.swift
+//	Adds BXLabelViews + and - buttons to the regular BXLabelView
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
@@ -13,29 +13,29 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public struct BXOptionalEditView<M,V> : View where V:View
+public struct BXLabelOptionalView<M,V> : View where V:View
 {
 	private var label:String
-	private var labelWidth:Binding<CGFloat>? = nil
+	private var width:Binding<CGFloat>? = nil
 	private var value:M?
-	private var createAction:()->Void
-	private var destroyAction:()->Void
+	private var plusAction:()->Void
+	private var minusAction:()->Void
 	private var content:(M)->V
 
 	@State private var isExpanded = false
 	
 	private var minWidth:CGFloat
 	{
-		labelWidth?.wrappedValue ?? 0.0
+		width?.wrappedValue ?? 0.0
 	}
 
-	public init(label:String, labelWidth:Binding<CGFloat>? = nil, value:M?, createAction:@escaping ()->Void, destroyAction:@escaping ()->Void, @ViewBuilder content:@escaping (M)->V)
+	public init(label:String = "", width:Binding<CGFloat>? = nil, value:M?, plusAction:@escaping ()->Void, minusAction:@escaping ()->Void, @ViewBuilder content:@escaping (M)->V)
 	{
 		self.label = label
-		self.labelWidth = labelWidth
+		self.width = width
 		self.value = value
-		self.createAction = createAction
-		self.destroyAction = destroyAction
+		self.plusAction = plusAction
+		self.minusAction = minusAction
 		self.content = content
 	}
 	
@@ -57,7 +57,7 @@ public struct BXOptionalEditView<M,V> : View where V:View
 					.opacity(self.value == nil ? 1.0 : 0.33)
 					.onTapGesture
 					{
-						self.createAction()
+						self.plusAction()
 					}
 
 				// "-" button to destroy value
@@ -68,7 +68,7 @@ public struct BXOptionalEditView<M,V> : View where V:View
 					.opacity(self.value != nil ? 1.0 : 0.33)
 					.onTapGesture
 					{
-						self.destroyAction()
+						self.minusAction()
 					}
 			}
 			
@@ -77,8 +77,8 @@ public struct BXOptionalEditView<M,V> : View where V:View
 			.background( GeometryReader
 			{
 				Color.clear.preference(
-					key:PropertyLabelKey.self,
-					value:[PropertyLabelData(width:$0.size.width)])
+					key:BXLabelViewKey.self,
+					value:[BXLabelViewData(width:$0.size.width)])
 			})
 			.frame(minWidth:self.minWidth, alignment:.leading)
 

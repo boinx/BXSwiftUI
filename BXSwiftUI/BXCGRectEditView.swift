@@ -16,26 +16,28 @@ import SwiftUI
 public struct BXCGRectEditView : View
 {
 	private var label:String
-	private var labelWidth:Binding<CGFloat>? = nil
+	private var width:Binding<CGFloat>? = nil
 	private var value:Binding<CGRect>
 	private var formatter:Formatter? = nil
 
-	@State private var isExpanded = false
 	private var x:Binding<CGFloat>
 	private var y:Binding<CGFloat>
-	private var width:Binding<CGFloat>
-	private var height:Binding<CGFloat>
+	private var w:Binding<CGFloat>
+	private var h:Binding<CGFloat>
 
-	public init(label:String, labelWidth:Binding<CGFloat>? = nil, value:Binding<CGRect>, formatter:Formatter? = .pointsFormatter)
+	@State private var isExpanded = false
+
+
+	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<CGRect>, formatter:Formatter? = .pointsFormatter)
 	{
 		self.label = label
-		self.labelWidth = labelWidth
+		self.width = width
 		self.value = value
 		self.formatter = formatter
 		self.x = Binding.constant(0.0)			// init with dummy values
 		self.y = Binding.constant(0.0)			// init with dummy values
-		self.width = Binding.constant(0.0)		// init with dummy values
-		self.height = Binding.constant(0.0)		// init with dummy values
+		self.w = Binding.constant(0.0)		// init with dummy values
+		self.h = Binding.constant(0.0)		// init with dummy values
 
 		// Now that self is fully initialized and accessible, we can create the internal bindings
 		// for x and y - they need access to self.value!
@@ -48,14 +50,15 @@ public struct BXCGRectEditView : View
 			get: { value.wrappedValue.origin.y },
 			set: { value.wrappedValue.origin.y = $0 })
 
-		self.width = Binding<CGFloat>(
+		self.w = Binding<CGFloat>(
 			get: { value.wrappedValue.size.width },
 			set: { value.wrappedValue.size.width = $0 })
 
-		self.height = Binding<CGFloat>(
+		self.h = Binding<CGFloat>(
 			get: { value.wrappedValue.size.height },
 			set: { value.wrappedValue.size.height = $0 })
 	}
+	
 	
 	public var body: some View
 	{
@@ -102,7 +105,7 @@ public struct BXCGRectEditView : View
 					{
 						Text("width")
 
-						BXCustomTextField(value:self.width, formatter:self.formatter)
+						BXCustomTextField(value:self.w, formatter:self.formatter)
 						{
 							(nstextfield,_,_) in
 							nstextfield.isBordered = true
@@ -114,7 +117,7 @@ public struct BXCGRectEditView : View
 					{
 						Text("height")
 
-						BXCustomTextField(value:self.height, formatter:self.formatter)
+						BXCustomTextField(value:self.h, formatter:self.formatter)
 						{
 							(nstextfield,_,_) in
 							nstextfield.isBordered = true

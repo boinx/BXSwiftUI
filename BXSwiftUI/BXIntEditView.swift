@@ -16,15 +16,15 @@ import SwiftUI
 public struct BXIntEditView : View
 {
 	private var label:String
-	private var labelWidth:Binding<CGFloat>? = nil
+	private var width:Binding<CGFloat>? = nil
 	private var value:Binding<Int>
 	private var formatter:Formatter? = nil
 
 
-	public init(label:String, labelWidth:Binding<CGFloat>? = nil, value:Binding<Int>, formatter:Formatter? = nil)
+	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<Int>, formatter:Formatter? = nil)
 	{
 		self.label = label
-		self.labelWidth = labelWidth
+		self.width = width
 		self.value = value
 		self.formatter = formatter
 	}
@@ -32,14 +32,9 @@ public struct BXIntEditView : View
 	
 	public var body: some View
 	{
-		HStack
+		BXLabelView(label:label, width:width)
 		{
-			if label.count > 0
-			{
-				BXPropertyLabel(label, width:labelWidth)
-			}
-			
-			BXCustomTextField(value:value, formatter:formatter)
+			BXCustomTextField(value:self.value, formatter:self.formatter)
 			{
 				(nstextfield,_,_) in
 				nstextfield.isBordered = true

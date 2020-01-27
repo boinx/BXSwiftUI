@@ -16,18 +16,19 @@ import SwiftUI
 public struct BXCGPointEditView : View
 {
 	private var label:String
-	private var labelWidth:Binding<CGFloat>? = nil
+	private var width:Binding<CGFloat>? = nil
 	private var value:Binding<CGPoint>
 	private var formatter:Formatter? = nil
 
-	@State private var isExpanded = false
 	private var x:Binding<CGFloat>
 	private var y:Binding<CGFloat>
-	
-	public init(label:String, labelWidth:Binding<CGFloat>? = nil, value:Binding<CGPoint>, formatter:Formatter? = .pointsFormatter)
+	@State private var isExpanded = false
+
+
+	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<CGPoint>, formatter:Formatter? = .pointsFormatter)
 	{
 		self.label = label
-		self.labelWidth = labelWidth
+		self.width = width
 		self.value = value
 		self.formatter = formatter
 		self.x = Binding.constant(0.0)		// init with dummy values
@@ -44,6 +45,7 @@ public struct BXCGPointEditView : View
 			get: { value.wrappedValue.y },
 			set: { value.wrappedValue.y = $0 })
 	}
+	
 	
 	public var body: some View
 	{

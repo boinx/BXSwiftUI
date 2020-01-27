@@ -19,23 +19,21 @@ import SwiftUI
 public struct BXStringPropertyView : View
 {
 	public var label:String = ""
-	public var labelWidth:Binding<CGFloat>? = nil
+	public var width:Binding<CGFloat>? = nil
 	public var value:Binding<String?>
 
-	public init(label:String = "", labelWidth:Binding<CGFloat>? = nil, value:Binding<String?>)
+	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<String?>)
 	{
 		self.label = label
-		self.labelWidth = labelWidth
+		self.width = width
 		self.value = value
 	}
 	
     public var body: some View
     {
-		HStack
+		BXLabelView(label:label, width:width)
 		{
-			BXPropertyLabel(label, width:labelWidth)
-				
-			BXCustomTextField(value:value, height:22.0, alignment:.leading)
+			BXCustomTextField(value:self.value, height:22.0, alignment:.leading)
 			{
 				(nstextfield,_,_) in
 				nstextfield.isBordered = true
@@ -51,23 +49,21 @@ public struct BXStringPropertyView : View
 public struct BXMultiStringPropertyView : View
 {
 	public var label:String = ""
-	public var labelWidth:Binding<CGFloat>? = nil
+	public var width:Binding<CGFloat>? = nil
 	public var values:Binding<Set<String>>
 	
-	public init(label:String = "", labelWidth:Binding<CGFloat>? = nil, values:Binding<Set<String>>)
+	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<String>>)
 	{
 		self.label = label
-		self.labelWidth = labelWidth
+		self.width = width
 		self.values = values
 	}
 	
     public var body: some View
     {
-		HStack
+		BXLabelView(label:label, width:width)
 		{
-			BXPropertyLabel(label, width:labelWidth)
-				
-			BXMultiValueTextField(values:values, height:22.0, alignment:.leading)
+			BXMultiValueTextField(values:self.values, height:22.0, alignment:.leading)
 			{
 				nstextfield,_,_ in
 				nstextfield.isBordered = true

@@ -16,35 +16,37 @@ import SwiftUI
 public struct BXCGSizeEditView : View
 {
 	private var label:String
-	private var labelWidth:Binding<CGFloat>? = nil
+	private var width:Binding<CGFloat>? = nil
 	private var value:Binding<CGSize>
 	private var formatter:Formatter? = nil
 
+	private var w:Binding<CGFloat>
+	private var h:Binding<CGFloat>
 	@State private var isExpanded = false
-	private var width:Binding<CGFloat>
-	private var height:Binding<CGFloat>
 
-	public init(label:String, labelWidth:Binding<CGFloat>? = nil, value:Binding<CGSize>, formatter:Formatter? = .pointsFormatter)
+
+	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<CGSize>, formatter:Formatter? = .pointsFormatter)
 	{
 		self.label = label
-		self.labelWidth = labelWidth
+		self.width = width
 		self.value = value
 		self.formatter = formatter
-		self.width = Binding.constant(0.0)		// init with dummy values
-		self.height = Binding.constant(0.0)		// init with dummy values
+		self.w = Binding.constant(0.0)		// init with dummy values
+		self.h = Binding.constant(0.0)		// init with dummy values
 
 		// Now that self is fully initialized and accessible, we can create the internal bindings
 		// for x and y - they need access to self.value!
 		
-		self.width = Binding<CGFloat>(
+		self.w = Binding<CGFloat>(
 			get: { value.wrappedValue.width },
 			set: { value.wrappedValue.width = $0 })
 
-		self.height = Binding<CGFloat>(
+		self.h = Binding<CGFloat>(
 			get: { value.wrappedValue.height },
 			set: { value.wrappedValue.height = $0 })
 	}
-	
+
+
 	public var body: some View
 	{
 		BXDisclosureView(isExpanded:$isExpanded,
@@ -66,7 +68,7 @@ public struct BXCGSizeEditView : View
 					{
 						Text("width")
 
-						BXCustomTextField(value:self.width, formatter:self.formatter)
+						BXCustomTextField(value:self.w, formatter:self.formatter)
 						{
 							(nstextfield,_,_) in
 							nstextfield.isBordered = true
@@ -78,7 +80,7 @@ public struct BXCGSizeEditView : View
 					{
 						Text("height")
 
-						BXCustomTextField(value:self.height, formatter:self.formatter)
+						BXCustomTextField(value:self.h, formatter:self.formatter)
 						{
 							(nstextfield,_,_) in
 							nstextfield.isBordered = true

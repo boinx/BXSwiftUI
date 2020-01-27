@@ -16,28 +16,23 @@ import SwiftUI
 public struct BXBoolEditView : View
 {
 	private var label:String
-	private var labelWidth:Binding<CGFloat>? = nil
+	private var width:Binding<CGFloat>? = nil
 	private var value:Binding<Bool>
 
 
-	public init(label:String, labelWidth:Binding<CGFloat>? = nil, value:Binding<Bool>)
+	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<Bool>)
 	{
 		self.label = label
-		self.labelWidth = labelWidth
+		self.width = width
 		self.value = value
 	}
 	
 	
 	public var body: some View
 	{
-		HStack
+		BXLabelView(label:label, width:width)
 		{
-			if label.count > 0
-			{
-				BXPropertyLabel(label, width:labelWidth)
-			}
-			
-			Toggle("", isOn:value).labelsHidden()
+			Toggle("", isOn:self.value).labelsHidden()
 		}
 	}
 }
