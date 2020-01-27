@@ -49,7 +49,7 @@ public struct BXOptionalEditView<M,V> : View where V:View
 				
 				Text(self.label)
 
-				// "+" button to create object
+				// "+" button to create value
 				
 				Text("⊕")
 					.font(.body)
@@ -60,7 +60,7 @@ public struct BXOptionalEditView<M,V> : View where V:View
 						self.createAction()
 					}
 
-				// "-" button to destroy object
+				// "-" button to destroy value
 				
 				Text("⊖")
 					.font(.body)
