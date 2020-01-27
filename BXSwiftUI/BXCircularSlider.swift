@@ -18,11 +18,13 @@ public struct BXCircularSlider : View
 	private var radius:CGFloat = 15.0
 	private var value:Binding<Double>
 
+
 	public init(radius:CGFloat = 15.0, value:Binding<Double>)
 	{
 		self.radius = radius
 		self.value = value
 	}
+	
 	
 	public var body: some View
 	{
@@ -55,7 +57,6 @@ public struct BXCircularSlider : View
 
 struct Arrow : Shape
 {
-
     func path(in rect: CGRect) -> Path
     {
 		let x0 = rect.midX

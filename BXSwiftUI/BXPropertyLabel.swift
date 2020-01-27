@@ -48,7 +48,6 @@ public struct BXPropertyLabel : View
 			// Resize the Text to the desired width - which will be the maximum width of all PropertyLabels
 			
 			.frame(minWidth:self.minWidth, alignment:.leading)
-//			.border(Color.red)
 	}
 }
 

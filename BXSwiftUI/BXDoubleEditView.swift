@@ -20,6 +20,7 @@ public struct BXDoubleEditView : View
 	private var value:Binding<Double>
 	private var formatter:Formatter? = nil
 
+
 	public init(label:String, labelWidth:Binding<CGFloat>? = nil, value:Binding<Double>, formatter:Formatter? = nil)
 	{
 		self.label = label
@@ -28,12 +29,16 @@ public struct BXDoubleEditView : View
 		self.formatter = formatter
 	}
 	
+	
 	public var body: some View
 	{
 		HStack
 		{
-			BXPropertyLabel(label, width:labelWidth)
-
+			if label.count > 0
+			{
+				BXPropertyLabel(label, width:labelWidth)
+			}
+			
 			BXCustomTextField(value:value, formatter:formatter)
 			{
 				(nstextfield,_,_) in

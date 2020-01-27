@@ -24,6 +24,7 @@ public struct BXMultiValueToggle : NSViewRepresentable
     @Binding var values:Set<Bool>
 	var label:String = ""
 	
+	
 	/// Creates a checkbox style NSButton that allows for mixed state
 	
     public func makeNSView(context:Context) -> NSButton
@@ -33,6 +34,7 @@ public struct BXMultiValueToggle : NSViewRepresentable
         button.title = label 
 		return button
     }
+
 
 	/// Something on the SwiftUI side has changed, so update the NSButton
 	
@@ -54,6 +56,7 @@ public struct BXMultiValueToggle : NSViewRepresentable
 			button.isEnabled = false
 		}
     }
+    
     
     /// The NSButton was clicked, so update the state on the SwiftUI side
     

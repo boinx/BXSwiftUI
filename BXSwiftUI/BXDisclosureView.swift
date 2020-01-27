@@ -19,12 +19,14 @@ public struct BXDisclosureView<H,B> : View where H:View, B:View
 	private var headerBuilder:()->H
 	private var bodyBuilder:()->B
 
+
 	public init(isExpanded:Binding<Bool>, @ViewBuilder header headerBuilder:@escaping ()->H, @ViewBuilder body bodyBuilder:@escaping ()->B)
 	{
 		self.isExpanded = isExpanded
 		self.headerBuilder = headerBuilder
 		self.bodyBuilder = bodyBuilder
 	}
+
 
 	public var body: some View
 	{
@@ -50,11 +52,13 @@ public struct BXDisclosureButton : View
 	private var isExpanded:Binding<Bool>
 	@Environment(\.font) var font
 
+
 	public init(_ label:String, isExpanded:Binding<Bool>)
 	{
 		self.label = label
 		self.isExpanded = isExpanded
 	}
+	
 	
 	public var body: some View
 	{

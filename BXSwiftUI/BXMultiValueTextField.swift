@@ -24,6 +24,7 @@ struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheck
 	var formatter:Formatter? = nil
 	var isActiveHandler:(NSTextFieldActiveHandler)? = nil
 
+
 	/// Creates the underlying NSCustomTextField
 	
     func makeNSView(context:Context) -> NSCustomTextField
@@ -50,6 +51,7 @@ struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheck
 		self.isActiveHandler?(textfield,false,false)
 		return textfield
     }
+
 
 	/// Something on the SwiftUI side has changed, so update the NSCustomTextField
 	
@@ -86,6 +88,7 @@ struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheck
 			textfield.isEnabled = true
 		}
     }
+    
     
     /// Editing has finished in the NSTextField, so update the values on the SwiftUI side
     

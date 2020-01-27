@@ -36,6 +36,7 @@ public struct BXMultiValueButton : NSViewRepresentable
 		self.mixedStateImage = mixedStateImage
 	}
 	
+	
 	/// Creates an image based NSButton that allows for mixed state
 	
 	public func makeNSView(context:Context) -> NSButton
@@ -62,6 +63,7 @@ public struct BXMultiValueButton : NSViewRepresentable
 		return button
     }
 
+
 	/// Something on the SwiftUI side has changed, so update the NSButton
 	
 	public func updateNSView(_ button:NSButton, context:Context)
@@ -85,6 +87,7 @@ public struct BXMultiValueButton : NSViewRepresentable
 			button.isEnabled = false
 		}
     }
+    
     
     /// The NSButton was clicked, so update the state on the SwiftUI side
     

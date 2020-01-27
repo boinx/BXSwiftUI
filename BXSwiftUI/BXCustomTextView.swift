@@ -30,6 +30,7 @@ struct BXCustomTextView : NSViewRepresentable
 	var alignment:TextAlignment = .leading
 	var isActiveHandler:(NSTextViewActiveHandler)? = nil
 
+
 	// Create the underlying NSCustomTextField
 	
     func makeNSView(context:Context) -> NSCustomTextField
@@ -47,6 +48,7 @@ struct BXCustomTextView : NSViewRepresentable
 		self.isActiveHandler?(textfield,false,false)
 		return textfield
     }
+
 
 	// SwiftUI side has changed, so update the NSCustomTextField
 	
@@ -69,6 +71,7 @@ struct BXCustomTextView : NSViewRepresentable
 			textfield.stringValue = ""
 		}
 	}
+    
     
     // The coordinator is responsible for notifying SwiftUI when editing occured in the NSCustomTextField
     

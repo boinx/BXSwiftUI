@@ -19,6 +19,7 @@ struct BXMultiValueSlider : NSViewRepresentable
     @Binding var values:Set<Double>
 	public var `in`:ClosedRange<Double>
 	
+	
     func makeNSView(context:Context) -> NSSlider
     {
         let slider = NSSlider(frame:.zero)
@@ -31,6 +32,7 @@ struct BXMultiValueSlider : NSViewRepresentable
 		
 		return slider
     }
+
 
     func updateNSView(_ slider:NSSlider, context:Context)
     {
@@ -49,6 +51,7 @@ struct BXMultiValueSlider : NSViewRepresentable
 		
 		slider.isEnabled = self.values.count > 0
     }
+    
     
     class Coordinator : NSObject,NSTextFieldDelegate
     {

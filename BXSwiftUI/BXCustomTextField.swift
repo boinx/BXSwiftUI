@@ -25,7 +25,6 @@ public typealias NSTextFieldActiveHandler = (NSCustomTextField,Bool,Bool)->Void
 
 public struct BXCustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
 {
-//    @Binding public var value:T
 	public var value:Binding<T>
 	public var height:CGFloat? = nil
 	public var alignment:TextAlignment = .leading

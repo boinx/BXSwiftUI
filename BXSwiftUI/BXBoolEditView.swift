@@ -19,6 +19,7 @@ public struct BXBoolEditView : View
 	private var labelWidth:Binding<CGFloat>? = nil
 	private var value:Binding<Bool>
 
+
 	public init(label:String, labelWidth:Binding<CGFloat>? = nil, value:Binding<Bool>)
 	{
 		self.label = label
@@ -26,11 +27,15 @@ public struct BXBoolEditView : View
 		self.value = value
 	}
 	
+	
 	public var body: some View
 	{
 		HStack
 		{
-			BXPropertyLabel(label, width:labelWidth)
+			if label.count > 0
+			{
+				BXPropertyLabel(label, width:labelWidth)
+			}
 			
 			Toggle("", isOn:value).labelsHidden()
 		}

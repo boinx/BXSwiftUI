@@ -19,6 +19,7 @@ public struct BXURLEditView : View
 	private var labelWidth:Binding<CGFloat>? = nil
 	private var value:Binding<URL>
 
+
 	public init(label:String, labelWidth:Binding<CGFloat>? = nil, value:Binding<URL>)
 	{
 		self.label = label
@@ -26,12 +27,16 @@ public struct BXURLEditView : View
 		self.value = value
 	}
 	
+	
 	public var body: some View
 	{
 		HStack
 		{
-			BXPropertyLabel(label, width:labelWidth)
-
+			if label.count > 0
+			{
+				BXPropertyLabel(label, width:labelWidth)
+			}
+			
 			BXCustomTextField(value:value)
 			{
 				(nstextfield,_,_) in

@@ -21,6 +21,7 @@ public struct BXIndentationView<Content> : View where Content:View
 	private var spacing:CGFloat
 	private var content:()->Content
 
+
 	public init(leading:CGFloat = 14, lineWidth:CGFloat = 2, lineColor:Color = Color(white:1.0, opacity:0.1), spacing:CGFloat = 14, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.leading = leading
@@ -29,6 +30,7 @@ public struct BXIndentationView<Content> : View where Content:View
 		self.spacing = spacing
 		self.content = content
 	}
+
 
 	private var line: some View
 	{
