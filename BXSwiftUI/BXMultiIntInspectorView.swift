@@ -14,43 +14,9 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
-/// Property view for a single value Int
+/// Inspector view for multiple values of Int
 
-public struct BXIntPropertyView : View
-{
-	private var label:String = ""
-	private var width:Binding<CGFloat>? = nil
-	private var value:Binding<Int>
-	private var allCases:[LocalizableIntEnum] = []
-	
-	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<Int>, allCases:[LocalizableIntEnum])
-	{
-		self.label = label
-		self.width = width
-		self.value = value
-		self.allCases = allCases
-	}
-	
-    public var body: some View
-    {
-		BXLabelView(label:label, width:width)
-		{
-			Picker(selection:self.value, label:Text(""))
-			{
-				ForEach(self.allCases, id:\.intValue)
-				{
-					Text($0.localizedName).tag($0.intValue)
-				}
-			}
-			.labelsHidden()
-		}
-	}
-}
-
-
-/// Property view for multiple values of Int
-
-public struct BXMultiIntPropertyView : View
+public struct BXMultiIntInspectorView : View
 {
 	private var label:String = ""
 	private var width:Binding<CGFloat>? = nil

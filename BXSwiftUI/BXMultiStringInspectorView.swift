@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  BXStringPropertyView.swift
+//  BXMultiStringInspectorView.swift
 //	Compound views for inspector style user interfaces
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
@@ -14,39 +14,9 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
-/// Property view for a single value String?
+/// Inspector view for multiple values of String
 
-public struct BXStringPropertyView : View
-{
-	public var label:String = ""
-	public var width:Binding<CGFloat>? = nil
-	public var value:Binding<String?>
-
-	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<String?>)
-	{
-		self.label = label
-		self.width = width
-		self.value = value
-	}
-	
-    public var body: some View
-    {
-		BXLabelView(label:label, width:width)
-		{
-			BXCustomTextField(value:self.value, height:22.0, alignment:.leading)
-			{
-				(nstextfield,_,_) in
-				nstextfield.isBordered = true
-				nstextfield.drawsBackground = true
-			}
-		}
-	}
-}
-
-
-/// Property view for multiple values of String
-
-public struct BXMultiStringPropertyView : View
+public struct BXMultiStringInspectorView : View
 {
 	public var label:String = ""
 	public var width:Binding<CGFloat>? = nil
