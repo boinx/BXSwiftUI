@@ -23,18 +23,9 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	
 	// An ordered list of info for creating the popup menu items
 	
-	var orderedItems:[Item] = []
+	var orderedItems:[BXMenuItemSpec] = []
 	
 
-	// This enum specifies a single item in the picker
-	
-	public enum Item
-	{
-		case regular(icon:NSImage?, title:String, value:Int)
-		case section(title:String)
-		case divider
-	}
-	
 	// Since we are dealing with multiple selection, a value can either be "none" (no selection), it can be
 	// "unique", or in case of multiple selected values that are different, it will be "multiple".
 	

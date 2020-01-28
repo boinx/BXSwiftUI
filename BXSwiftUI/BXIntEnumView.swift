@@ -1,7 +1,7 @@
 //**********************************************************************************************************************
 //
-//  BXIntPropertyView.swift
-//	Compound views for inspector style user interfaces
+//  BXIntEnumView.swift
+//	A popup menu to change an Int property
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
@@ -14,49 +14,52 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
-/// Inspector view for multiple values of Int
-
-public struct BXMultiIntInspectorView : View
+public struct BXIntEnumView : View
 {
 	private var label:String = ""
 	private var width:Binding<CGFloat>? = nil
-	private var values:Binding<Set<Int>>
+	private var value:Binding<Int>
 	private var orderedItems:[BXMenuItemSpec] = []
 
-	/// Creates a MultiIntPropertyView with a simple array of enum cases. Menu item names and tags are generated automatically from this enum array.
+	// Custom binding to make it compatible with underlying BXMultiValuePicker
 	
-	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Int>>, orderedItems:[LocalizableIntEnum])
+	private var multiValueBinding:Binding<Set<Int>>
+	{
+		Binding<Set<Int>>(
+			get: { Set([self.value.wrappedValue]) },
+			set: { self.value.wrappedValue = $0.first ?? 0 }
+		)
+	}
+
+	/// Creates a BXIntEnumView with a simple array of enum cases. Menu item names and tags are generated automatically from this enum array.
+	
+	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<Int>, orderedItems:[LocalizableIntEnum])
 	{
 		self.label = label
 		self.width = width
-		self.values = values
+		self.value = value
 		self.orderedItems = orderedItems.map
 		{
 			BXMenuItemSpec.regular(icon:nil, title:$0.localizedName, value:$0.intValue)
 		}
 	}
 
-	/// Creates a MultiIntPropertyView with an array of BXMenuItemSpecs. This provides more flexibility regarding ordering and inserting separators or disabled section names.
+	/// Creates a BXIntEnumView with an array of BXMenuItemSpecs. This more flexibility regarding ordering and inserting separators or disabled section names.
 	
-	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Int>>, orderedItems:[BXMenuItemSpec])
+	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<Int>, orderedItems:[BXMenuItemSpec])
 	{
 		self.label = label
 		self.width = width
-		self.values = values
+		self.value = value
 		self.orderedItems = orderedItems
 	}
 
-	var isUnique:Bool
-	{
-		values.wrappedValue.count < 2
-	}
-	
     public var body: some View
     {
 		BXLabelView(label:label, width:width)
 		{
-			BXMultiValuePicker(values:self.values, orderedItems:self.orderedItems)
-				.environment(\.isEnabled, self.values.wrappedValue.count>0)
+			BXMultiValuePicker(values:self.multiValueBinding, orderedItems:self.orderedItems)
+				.environment(\.isEnabled, true)
 				.modifier(StrokedPopupStyle())
 		}
 	}
@@ -64,5 +67,4 @@ public struct BXMultiIntInspectorView : View
 
 
 //----------------------------------------------------------------------------------------------------------------------
-
 
