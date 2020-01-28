@@ -13,6 +13,12 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
+/// SwiftUI is pretty particular when it comes to using optionals, because @ObservedObject cannot be used on
+/// optional datatypes. It can only be used on classes that adopt the ObservableObject protocol. In addition
+/// you cannot use the full Swift syntax toolbox inside the body function. BXOptionalView helps you with this
+/// problem by wrapping an optional type. If it can be unwrapped, it passes the unwrapped type to the content
+/// closure, otherwise it just displays Text("nil").
+
 public struct BXOptionalView<M,V> : View where V:View
 {
 	private var value:M?
@@ -28,10 +34,15 @@ public struct BXOptionalView<M,V> : View where V:View
 	{
 		Group
 		{
+			// Unwrap - if available then use content
+			
 			if self.value != nil
 			{
 				self.content(self.value!)
 			}
+			
+			// Otherwise just display "nil"
+			
 			else
 			{
 				Text("nil")

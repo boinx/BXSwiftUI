@@ -13,13 +13,15 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
+/// A Text based button that can be passed as an optional argument to BXLabelView
+
 public struct BXLabelButton : View
 {
-	var title:String = ""
-	var isEnabled:Bool
-	var action:()->Void
+	private var title:String = ""
+	private var isEnabled:Bool
+	private var action:()->Void
 	
-	var alpha:Double { isEnabled ? 1.0 : 0.33 }
+	private var alpha:Double { isEnabled ? 1.0 : 0.33 }
 	
 	public init(title:String = "", isEnabled:Bool, action:@escaping ()->Void)
 	{

@@ -13,6 +13,11 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
+/// A BXLabelview returns a HStack with a Text and (optionally) up to two buttons. The content view follows afterwards.
+/// The special difference to a regular HStack is, that all BXLabelviews communicate with each other and decide on a
+/// common width, so that the widest label can be displayed without truncating. This is super helpful when localizing
+/// to languages with longer strings.
+
 public struct BXLabelView<Content> : View where Content:View
 {
 	var label:String = ""
@@ -58,18 +63,18 @@ public struct BXLabelView<Content> : View where Content:View
 					}
 				}
 				
-					// Measure its size and attach a preference (with its width)
-					
-					.background( GeometryReader
-					{
-						Color.clear.preference(
-							key:BXLabelViewKey.self,
-							value:[BXLabelViewData(width:$0.size.width)])
-					})
-					
-					// Resize the Text to the desired width - which will be the maximum width of all BXLabelViews
-					
-					.frame(minWidth:self.minWidth, alignment:.leading)
+				// Measure its size and attach a preference (with its width)
+				
+				.background( GeometryReader
+				{
+					Color.clear.preference(
+						key:BXLabelViewKey.self,
+						value:[BXLabelViewData(width:$0.size.width)])
+				})
+				
+				// Resize the Text to the desired width - which will be the maximum width of all BXLabelViews
+				
+				.frame(minWidth:self.minWidth, alignment:.leading)
 			}
 			
 			content()
@@ -86,8 +91,7 @@ public extension View
 	// Stores the width of the widest BXPropertyLabel in the maxLabelWidth Binding - which is important when
 	// localizing for languages with longer strings. The controls will be left aligned at this width.
 
-
-	func resizeLabelColumn(to maxLabelWidth:Binding<CGFloat>) -> some View
+	func resizeBXLabelViews(to maxLabelWidth:Binding<CGFloat>) -> some View
 	{
 		return self.onPreferenceChange(BXLabelViewKey.self)
 		{
