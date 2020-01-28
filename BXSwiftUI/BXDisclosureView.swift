@@ -20,6 +20,14 @@ public struct BXDisclosureView<H,B> : View where H:View, B:View
 	private var bodyBuilder:()->B
 
 
+//	public init(label:String, isExpanded:Binding<Bool>, @ViewBuilder body bodyBuilder:@escaping ()->B)
+//	{
+//		self.isExpanded = isExpanded
+//		self.headerBuilder = { BXDisclosureButton(label, isExpanded:isExpanded) }
+//		self.bodyBuilder = bodyBuilder
+//	}
+
+
 	public init(isExpanded:Binding<Bool>, @ViewBuilder header headerBuilder:@escaping ()->H, @ViewBuilder body bodyBuilder:@escaping ()->B)
 	{
 		self.isExpanded = isExpanded
