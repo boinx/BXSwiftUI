@@ -32,6 +32,7 @@
 		D02BC5AC23DC627900676CF3 /* BXBoolEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC5AB23DC627800676CF3 /* BXBoolEditView.swift */; };
 		D03A287223D705CA00673CB1 /* BXMultiValueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */; };
 		D04B14DD23DB4773001203FD /* BXCheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B14DC23DB4773001203FD /* BXCheckboxStyle.swift */; };
+		D04C46AF23E15A7700A1CBAD /* BXAutomaticEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C46AE23E15A7700A1CBAD /* BXAutomaticEditView.swift */; };
 		D0793E7E23D45D170069327F /* BXMultiBoolInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E7D23D45D170069327F /* BXMultiBoolInspectorView.swift */; };
 		D0793E8023D45D350069327F /* BXMultiDoubleInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E7F23D45D350069327F /* BXMultiDoubleInspectorView.swift */; };
 		D0793E8223D45D5A0069327F /* BXMultiIntInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E8123D45D5A0069327F /* BXMultiIntInspectorView.swift */; };
@@ -73,6 +74,7 @@
 		D02BC5AB23DC627800676CF3 /* BXBoolEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXBoolEditView.swift; sourceTree = "<group>"; };
 		D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueButton.swift; sourceTree = "<group>"; };
 		D04B14DC23DB4773001203FD /* BXCheckboxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXCheckboxStyle.swift; sourceTree = "<group>"; };
+		D04C46AE23E15A7700A1CBAD /* BXAutomaticEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXAutomaticEditView.swift; sourceTree = "<group>"; };
 		D0793E7D23D45D170069327F /* BXMultiBoolInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiBoolInspectorView.swift; sourceTree = "<group>"; };
 		D0793E7F23D45D350069327F /* BXMultiDoubleInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiDoubleInspectorView.swift; sourceTree = "<group>"; };
 		D0793E8123D45D5A0069327F /* BXMultiIntInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiIntInspectorView.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				D02BC59D23DC329E00676CF3 /* BXCGSizeEditView.swift */,
 				D02BC59F23DC339D00676CF3 /* BXCGRectEditView.swift */,
 				D02BC5A323DC390400676CF3 /* BXArrayEditView.swift */,
+				D04C46AE23E15A7700A1CBAD /* BXAutomaticEditView.swift */,
 			);
 			name = "Editor Views";
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			files = (
 				D0D25BCC23DCB3B400A1B61D /* BXIndentationView.swift in Sources */,
 				D0A2400223DF3E27004E9F31 /* BXLabelButton.swift in Sources */,
+				D04C46AF23E15A7700A1CBAD /* BXAutomaticEditView.swift in Sources */,
 				D02BC5AC23DC627900676CF3 /* BXBoolEditView.swift in Sources */,
 				D002FE8323D22EC5002CF0A1 /* TypeCheckable.swift in Sources */,
 				D0E2429623D8827D00145CEA /* BXDisclosureView.swift in Sources */,
