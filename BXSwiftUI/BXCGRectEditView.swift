@@ -62,70 +62,47 @@ public struct BXCGRectEditView : View
 	
 	public var body: some View
 	{
-		BXDisclosureView(isExpanded:$isExpanded,
-
-			header:
+		BXLabelView(label:label, width:width)
+		{
+			HStack
 			{
-				HStack
+				Text("x")
+
+				BXCustomTextField(value:self.x, formatter:self.formatter)
 				{
-					BXDisclosureButton(self.label, isExpanded:self.$isExpanded)
-					Spacer()
+					(nstextfield,_,_) in
+					nstextfield.isBordered = true
+					nstextfield.drawsBackground = true
 				}
-			},
-				
-			body:
-			{
-				VStack
+
+				Text("y")
+
+				BXCustomTextField(value:self.y, formatter:self.formatter)
 				{
-					HStack
-					{
-						Text("x")
-
-						BXCustomTextField(value:self.x, formatter:self.formatter)
-						{
-							(nstextfield,_,_) in
-							nstextfield.isBordered = true
-							nstextfield.drawsBackground = true
-						}
-					}
-					
-					HStack
-					{
-						Text("y")
-
-						BXCustomTextField(value:self.y, formatter:self.formatter)
-						{
-							(nstextfield,_,_) in
-							nstextfield.isBordered = true
-							nstextfield.drawsBackground = true
-						}
-					}
-						
-					HStack
-					{
-						Text("width")
-
-						BXCustomTextField(value:self.w, formatter:self.formatter)
-						{
-							(nstextfield,_,_) in
-							nstextfield.isBordered = true
-							nstextfield.drawsBackground = true
-						}
-					}
-					
-					HStack
-					{
-						Text("height")
-
-						BXCustomTextField(value:self.h, formatter:self.formatter)
-						{
-							(nstextfield,_,_) in
-							nstextfield.isBordered = true
-							nstextfield.drawsBackground = true
-						}
-					}
+					(nstextfield,_,_) in
+					nstextfield.isBordered = true
+					nstextfield.drawsBackground = true
 				}
-			})
+
+				Text("width")
+
+				BXCustomTextField(value:self.w, formatter:self.formatter)
+				{
+					(nstextfield,_,_) in
+					nstextfield.isBordered = true
+					nstextfield.drawsBackground = true
+				}
+
+				Text("height")
+
+				BXCustomTextField(value:self.h, formatter:self.formatter)
+				{
+					(nstextfield,_,_) in
+					nstextfield.isBordered = true
+					nstextfield.drawsBackground = true
+				}
+			}
+		}
 	}
 }
 

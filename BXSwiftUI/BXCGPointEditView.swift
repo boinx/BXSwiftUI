@@ -49,46 +49,29 @@ public struct BXCGPointEditView : View
 	
 	public var body: some View
 	{
-		BXDisclosureView(isExpanded:$isExpanded,
-
-			header:
+		BXLabelView(label:label, width:width)
+		{
+			HStack
 			{
-				HStack
-				{
-					BXDisclosureButton(self.label, isExpanded:self.$isExpanded)
-					Spacer()
-				}
-			},
-				
-			body:
-			{
-				VStack
-				{
-					HStack
-					{
-						Text("x")
+				Text("x")
 
-						BXCustomTextField(value:self.x, formatter:self.formatter)
-						{
-							(nstextfield,_,_) in
-							nstextfield.isBordered = true
-							nstextfield.drawsBackground = true
-						}
-					}
-					
-					HStack
-					{
-						Text("y")
-
-						BXCustomTextField(value:self.y, formatter:self.formatter)
-						{
-							(nstextfield,_,_) in
-							nstextfield.isBordered = true
-							nstextfield.drawsBackground = true
-						}
-					}
+				BXCustomTextField(value:self.x, formatter:self.formatter)
+				{
+					(nstextfield,_,_) in
+					nstextfield.isBordered = true
+					nstextfield.drawsBackground = true
 				}
-			})
+
+				Text("y")
+
+				BXCustomTextField(value:self.y, formatter:self.formatter)
+				{
+					(nstextfield,_,_) in
+					nstextfield.isBordered = true
+					nstextfield.drawsBackground = true
+				}
+			}
+		}
 	}
 }
 
