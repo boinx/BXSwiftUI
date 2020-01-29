@@ -19,6 +19,7 @@
 		D002FE8623D22EC5002CF0A1 /* Formatter+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */; };
 		D002FE8723D22EC5002CF0A1 /* BXCustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7D23D22EC5002CF0A1 /* BXCustomTextField.swift */; };
 		D002FE8823D22EC5002CF0A1 /* BXMultiValueToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7E23D22EC5002CF0A1 /* BXMultiValueToggle.swift */; };
+		D011B1CB23E1C73D00643F20 /* BXStrokedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011B1CA23E1C73D00643F20 /* BXStrokedButtonStyle.swift */; };
 		D02BC58C23DC26E500676CF3 /* BXStringEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC58B23DC26E400676CF3 /* BXStringEditView.swift */; };
 		D02BC59023DC297400676CF3 /* BXIntEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC58F23DC297400676CF3 /* BXIntEditView.swift */; };
 		D02BC59223DC29CB00676CF3 /* BXDoubleEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC59123DC29CB00676CF3 /* BXDoubleEditView.swift */; };
@@ -61,6 +62,7 @@
 		D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+Custom.swift"; sourceTree = "<group>"; };
 		D002FE7D23D22EC5002CF0A1 /* BXCustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXCustomTextField.swift; sourceTree = "<group>"; };
 		D002FE7E23D22EC5002CF0A1 /* BXMultiValueToggle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXMultiValueToggle.swift; sourceTree = "<group>"; };
+		D011B1CA23E1C73D00643F20 /* BXStrokedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXStrokedButtonStyle.swift; sourceTree = "<group>"; };
 		D02BC58B23DC26E400676CF3 /* BXStringEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXStringEditView.swift; sourceTree = "<group>"; };
 		D02BC58F23DC297400676CF3 /* BXIntEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIntEditView.swift; sourceTree = "<group>"; };
 		D02BC59123DC29CB00676CF3 /* BXDoubleEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXDoubleEditView.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 		D02BC58E23DC270F00676CF3 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
+				D011B1CA23E1C73D00643F20 /* BXStrokedButtonStyle.swift */,
 				D04B14DC23DB4773001203FD /* BXCheckboxStyle.swift */,
 			);
 			name = Styles;
@@ -341,6 +344,7 @@
 				D0793E8223D45D5A0069327F /* BXMultiIntInspectorView.swift in Sources */,
 				D03A287223D705CA00673CB1 /* BXMultiValueButton.swift in Sources */,
 				D02BC5A423DC390500676CF3 /* BXArrayEditView.swift in Sources */,
+				D011B1CB23E1C73D00643F20 /* BXStrokedButtonStyle.swift in Sources */,
 				D02BC59223DC29CB00676CF3 /* BXDoubleEditView.swift in Sources */,
 				D002FE8723D22EC5002CF0A1 /* BXCustomTextField.swift in Sources */,
 				D02BC5A223DC37A500676CF3 /* BXURLEditView.swift in Sources */,
