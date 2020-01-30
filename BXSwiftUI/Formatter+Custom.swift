@@ -70,6 +70,17 @@ public extension Formatter
 		return formatter
 	}()
 	
+	static var percentFormatter: NumberFormatter =
+	{
+		let formatter = NumberFormatter()
+//		formatter.allowsFloats = false
+		formatter.numberStyle = .percent
+//		formatter.maximumFractionDigits = 0
+//		formatter.positiveFormat = "#%"
+//		formatter.negativeFormat = "-#%"
+		return formatter
+	}()
+	
 	static var doubleFormatter: NumberFormatter =
 	{
 		let formatter = NumberFormatter()
