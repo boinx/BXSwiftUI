@@ -38,6 +38,8 @@
 		D077D5C523E2F05D00C1D20F /* Image+SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077D5C423E2F05D00C1D20F /* Image+SFSymbols.swift */; };
 		D077D5C723E2FB4900C1D20F /* View+enabled.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077D5C623E2FB4900C1D20F /* View+enabled.swift */; };
 		D077D5CC23E3104400C1D20F /* BXButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077D5CB23E3104400C1D20F /* BXButton.swift */; };
+		D077D5D023E32ED800C1D20F /* NSSavePanel+show.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077D5CF23E32ED800C1D20F /* NSSavePanel+show.swift */; };
+		D077D5D423E348B400C1D20F /* NSOpenPanel+show.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077D5D323E348B400C1D20F /* NSOpenPanel+show.swift */; };
 		D0793E7E23D45D170069327F /* BXMultiBoolInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E7D23D45D170069327F /* BXMultiBoolInspectorView.swift */; };
 		D0793E8023D45D350069327F /* BXMultiDoubleInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E7F23D45D350069327F /* BXMultiDoubleInspectorView.swift */; };
 		D0793E8223D45D5A0069327F /* BXMultiIntInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E8123D45D5A0069327F /* BXMultiIntInspectorView.swift */; };
@@ -84,6 +86,8 @@
 		D077D5C423E2F05D00C1D20F /* Image+SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+SFSymbols.swift"; sourceTree = "<group>"; };
 		D077D5C623E2FB4900C1D20F /* View+enabled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+enabled.swift"; sourceTree = "<group>"; };
 		D077D5CB23E3104400C1D20F /* BXButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXButton.swift; sourceTree = "<group>"; };
+		D077D5CF23E32ED800C1D20F /* NSSavePanel+show.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSavePanel+show.swift"; sourceTree = "<group>"; };
+		D077D5D323E348B400C1D20F /* NSOpenPanel+show.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSOpenPanel+show.swift"; sourceTree = "<group>"; };
 		D0793E7D23D45D170069327F /* BXMultiBoolInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiBoolInspectorView.swift; sourceTree = "<group>"; };
 		D0793E7F23D45D350069327F /* BXMultiDoubleInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiDoubleInspectorView.swift; sourceTree = "<group>"; };
 		D0793E8123D45D5A0069327F /* BXMultiIntInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiIntInspectorView.swift; sourceTree = "<group>"; };
@@ -229,6 +233,8 @@
 				D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */,
 				D002FE7923D22EC5002CF0A1 /* TypeCheckable.swift */,
 				D0D25BC523DC954D00A1B61D /* Optional+Combine.swift */,
+				D077D5D323E348B400C1D20F /* NSOpenPanel+show.swift */,
+				D077D5CF23E32ED800C1D20F /* NSSavePanel+show.swift */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -349,9 +355,11 @@
 				D002FE8023D22EC5002CF0A1 /* BXMultiValuePicker.swift in Sources */,
 				D02BC59E23DC329E00676CF3 /* BXCGSizeEditView.swift in Sources */,
 				D0C1249A23DAE4A600DB3592 /* BXCircularSlider.swift in Sources */,
+				D077D5D023E32ED800C1D20F /* NSSavePanel+show.swift in Sources */,
 				D0A2400423DF5716004E9F31 /* BXOptionalView.swift in Sources */,
 				D0793E7E23D45D170069327F /* BXMultiBoolInspectorView.swift in Sources */,
 				D002FE8523D22EC5002CF0A1 /* TextAlignment+AppKit.swift in Sources */,
+				D077D5D423E348B400C1D20F /* NSOpenPanel+show.swift in Sources */,
 				D0FFC33123E039F100BEA7A4 /* BXMenuItemSpec.swift in Sources */,
 				D02BC58C23DC26E500676CF3 /* BXStringEditView.swift in Sources */,
 				D002FE8123D22EC5002CF0A1 /* BXMultiValueSlider.swift in Sources */,
