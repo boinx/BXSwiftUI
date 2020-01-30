@@ -22,21 +22,25 @@ public struct BXLabelView<Content> : View where Content:View
 {
 	var label:String = ""
 	var width:Binding<CGFloat>? = nil
-	var button1:(()->BXLabelButton)? = nil
-	var button2:(()->BXLabelButton)? = nil
+	var button1:BXButtonBuilder? = nil
+	var button2:BXButtonBuilder? = nil
+	var button3:BXButtonBuilder? = nil
 	var content:()->Content
 
+	public typealias BXButtonBuilder = ()->BXButton
+	
 	private var minWidth:CGFloat
 	{
 		width?.wrappedValue ?? 0.0
 	}
 	
-	public init(label:String = "", width:Binding<CGFloat>? = nil, button1:(()->BXLabelButton)? = nil, button2:(()->BXLabelButton)? = nil, @ViewBuilder content:@escaping ()->Content)
+	public init(label:String = "", width:Binding<CGFloat>? = nil, button1:BXButtonBuilder? = nil, button2:BXButtonBuilder? = nil, button3:BXButtonBuilder? = nil, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.label = label
 		self.width = width
 		self.button1 = button1
 		self.button2 = button2
+		self.button3 = button3
 		self.content = content
 	}
 	
@@ -60,6 +64,11 @@ public struct BXLabelView<Content> : View where Content:View
 					if self.button2 != nil
 					{
 						self.button2!()
+					}
+					
+					if self.button3 != nil
+					{
+						self.button3!()
 					}
 				}
 				
