@@ -135,6 +135,7 @@
 				D02BC58D23DC26FB00676CF3 /* Editor Views */,
 				D02BC59723DC2B1B00676CF3 /* Inspector Views */,
 				D02BC59523DC2AB200676CF3 /* Controls */,
+				D077D5C823E2FB6D00C1D20F /* SF Symbols */,
 				D02BC58E23DC270F00676CF3 /* Styles */,
 				D02BC59C23DC2D5500676CF3 /* Misc */,
 			);
@@ -224,13 +225,20 @@
 			children = (
 				D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */,
 				D077D5C223E2E14C00C1D20F /* Binding+Optional.swift */,
-				D077D5C423E2F05D00C1D20F /* Image+SFSymbols.swift */,
 				D077D5C623E2FB4900C1D20F /* View+enabled.swift */,
 				D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */,
 				D002FE7923D22EC5002CF0A1 /* TypeCheckable.swift */,
 				D0D25BC523DC954D00A1B61D /* Optional+Combine.swift */,
 			);
 			name = Misc;
+			sourceTree = "<group>";
+		};
+		D077D5C823E2FB6D00C1D20F /* SF Symbols */ = {
+			isa = PBXGroup;
+			children = (
+				D077D5C423E2F05D00C1D20F /* Image+SFSymbols.swift */,
+			);
+			name = "SF Symbols";
 			sourceTree = "<group>";
 		};
 		D0793E8823D469870069327F /* Frameworks */ = {
