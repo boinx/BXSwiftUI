@@ -33,7 +33,7 @@ public struct BXStrokedCheckboxStyle : ToggleStyle
                     .stroke(Color.gray, lineWidth:0.5)
 					.frame(width:width, height:width)
 					
-				if configuration.$isOn.wrappedValue
+				if configuration.isOn
 				{
 					Text("✓").bold().offset(x:0.5, y:0)
 				}
