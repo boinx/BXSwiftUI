@@ -12,15 +12,27 @@ import SwiftUI
 
 //----------------------------------------------------------------------------------------------------------------------
 
+
 public struct BXStrokedButtonStyle: ButtonStyle
 {
-	public init() { }
-
+	private var enabled:Bool
+	
 	@Environment(\.colorScheme) var colorScheme
+
+	public init(_ enabled:Bool = true)
+	{
+		self.enabled = enabled
+	}
 
 	private func radius(for geometry:GeometryProxy) -> CGFloat
 	{
 		0.25 * geometry.size.height
+	}
+	
+	private var insets : EdgeInsets
+	{
+		let spacing:CGFloat = enabled ? 12.0 : 0.0
+		return EdgeInsets(top:2, leading:spacing, bottom:3, trailing:spacing)
 	}
 	
 	private func fillColor(for isPressed:Bool) -> Color
@@ -33,19 +45,22 @@ public struct BXStrokedButtonStyle: ButtonStyle
     public func makeBody(configuration:BXStrokedButtonStyle.Configuration) -> some View
     {
 		configuration.label
-            .padding(EdgeInsets(top:2, leading:12, bottom:3, trailing:12))
+            .padding(self.insets)
             .background(
 				GeometryReader
 				{
 					geometry in
 					
-					ZStack
+					if self.enabled
 					{
-						RoundedRectangle(cornerRadius:self.radius(for:geometry))
-							.fill(self.fillColor(for:configuration.isPressed))
-						
-						RoundedRectangle(cornerRadius:self.radius(for:geometry))
-							.stroke(Color.gray,lineWidth:0.5)
+						ZStack
+						{
+							RoundedRectangle(cornerRadius:self.radius(for:geometry))
+								.fill(self.fillColor(for:configuration.isPressed))
+							
+							RoundedRectangle(cornerRadius:self.radius(for:geometry))
+								.stroke(Color.gray,lineWidth:0.5)
+						}
 					}
 				}
 			)
