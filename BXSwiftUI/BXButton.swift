@@ -21,7 +21,7 @@ public struct BXButton : View
 	private var isBordered:Bool
 	private var action:()->Void
 
-	
+
 	public init(systemName:String? = nil, title:String? = nil, isBordered:Bool = false, isEnabled:Bool = true, action:@escaping ()->Void)
 	{
 		self.systemName = systemName
@@ -34,9 +34,13 @@ public struct BXButton : View
 	
 	public var body: some View
 	{
+		// Button color depends on isEnabled state
+		
 		let activeColor = isEnabled ? Color.primary : Color.primary.opacity(0.33)
 		
-		return Button(action:self.action)
+		// Define the button with its contents
+		
+		let button = Button(action:self.action)
 		{
 			HStack(spacing:4)
 			{
@@ -51,8 +55,22 @@ public struct BXButton : View
 				}
 			}
 		}
-		.buttonStyle(BXStrokedButtonStyle(isBordered))
 		.enabled(isEnabled)
+		
+		// If a border is desired, then use the global buttonStyle (Environment), otherwise override 
+		// with BorderlessButtonStyle.
+		
+		return Group
+		{
+			if isBordered
+			{
+				button
+			}
+			else
+			{
+				button.buttonStyle(BorderlessButtonStyle())
+			}
+		}
 	}
 }
 
