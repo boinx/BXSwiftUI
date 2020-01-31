@@ -46,6 +46,7 @@
 		D0793E8A23D469870069327F /* BXSwiftUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0793E8923D469870069327F /* BXSwiftUtils.framework */; };
 		D082496723E40ABB006142CE /* BXTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EBA10923D9881D00E82E59 /* BXTextView.swift */; };
 		D082496923E4141C006142CE /* BXAttributedStringEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D082496823E4141C006142CE /* BXAttributedStringEditView.swift */; };
+		D08FB76D23E48D2400C1A193 /* BXTextView_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FB76C23E48D2400C1A193 /* BXTextView_macOS.swift */; };
 		D0A2400423DF5716004E9F31 /* BXOptionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A2400323DF5716004E9F31 /* BXOptionalView.swift */; };
 		D0C1249A23DAE4A600DB3592 /* BXCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C1249923DAE4A600DB3592 /* BXCircularSlider.swift */; };
 		D0D25BCC23DCB3B400A1B61D /* BXIndentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */; };
@@ -95,6 +96,7 @@
 		D0793E8123D45D5A0069327F /* BXMultiIntInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiIntInspectorView.swift; sourceTree = "<group>"; };
 		D0793E8923D469870069327F /* BXSwiftUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BXSwiftUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D082496823E4141C006142CE /* BXAttributedStringEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXAttributedStringEditView.swift; sourceTree = "<group>"; };
+		D08FB76C23E48D2400C1A193 /* BXTextView_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXTextView_macOS.swift; sourceTree = "<group>"; };
 		D0A2400323DF5716004E9F31 /* BXOptionalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXOptionalView.swift; sourceTree = "<group>"; };
 		D0C1249923DAE4A600DB3592 /* BXCircularSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXCircularSlider.swift; sourceTree = "<group>"; };
 		D0D25BC523DC954D00A1B61D /* Optional+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Combine.swift"; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				D077D5CB23E3104400C1D20F /* BXButton.swift */,
 				D002FE7D23D22EC5002CF0A1 /* BXCustomTextField.swift */,
 				D0EBA10923D9881D00E82E59 /* BXTextView.swift */,
+				D08FB76C23E48D2400C1A193 /* BXTextView_macOS.swift */,
 				D0C1249923DAE4A600DB3592 /* BXCircularSlider.swift */,
 				D002FE7723D22EC5002CF0A1 /* BXMultiValueSlider.swift */,
 				D002FE7A23D22EC5002CF0A1 /* BXMultiValueTextField.swift */,
@@ -349,6 +352,7 @@
 				D002FE8323D22EC5002CF0A1 /* TypeCheckable.swift in Sources */,
 				D0E2429623D8827D00145CEA /* BXDisclosureView.swift in Sources */,
 				D002FE7F23D22EC5002CF0A1 /* BXLabelView.swift in Sources */,
+				D08FB76D23E48D2400C1A193 /* BXTextView_macOS.swift in Sources */,
 				D02BC59923DC2C6400676CF3 /* BXFloatEditView.swift in Sources */,
 				D002FE8223D22EC5002CF0A1 /* BXMultiStringInspectorView.swift in Sources */,
 				D02BC59423DC29ED00676CF3 /* BXCGPointEditView.swift in Sources */,
