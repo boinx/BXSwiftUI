@@ -14,7 +14,7 @@ import AppKit
 //----------------------------------------------------------------------------------------------------------------------
 
 
-typealias NSTextViewActiveHandler = (NSCustomTextView,Bool,Bool)->Void
+typealias NSTextViewActiveHandler = (NSTextView,Bool,Bool)->Void
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -26,78 +26,66 @@ typealias NSTextViewActiveHandler = (NSCustomTextView,Bool,Bool)->Void
 struct BXCustomTextView : NSViewRepresentable
 {
     @Binding var value:NSAttributedString
-	var height:CGFloat? = nil
-	var alignment:TextAlignment = .leading
-	var isActiveHandler:(NSTextViewActiveHandler)? = nil
-
-
-	// Create the underlying NSCustomTextField
+	@Binding var size:CGSize
 	
-    func makeNSView(context:Context) -> NSCustomTextField
-    {
-		var action = #selector(Coordinator.updateStringValue(with:))
+//	var height:CGFloat? = nil
+//	var alignment:TextAlignment = .leading
+//	var isActiveHandler:(NSTextViewActiveHandler)? = nil
 
-        let textfield = NSCustomTextView(frame:.zero)
-        textfield.delegate = context.coordinator
-        textfield.alignment = alignment.nstextalignment
-        textfield.formatter = formatter
-        textfield.fixedHeight = self.height
-		textfield.target = context.coordinator
-		textfield.action = action
-		textfield.isActiveHandler = { self.isActiveHandler?($0,$1,$2) }
-		self.isActiveHandler?(textfield,false,false)
-		return textfield
+
+	// Create the underlying NSCustomTextView
+	
+    func makeNSView(context:Context) -> NSCustomTextView
+    {
+        let textView = NSCustomTextView(frame:.zero)
+        textView.delegate = context.coordinator
+        textView.textContainerInset = NSMakeSize(0.0,4.0)
+
+		textView.window?.makeFirstResponder(textView)
+		return textView
     }
 
 
-	// SwiftUI side has changed, so update the NSCustomTextField
+	// SwiftUI side has changed, so update the NSTextView
 	
-    func updateNSView(_ textfield:NSCustomTextField, context:Context)
+    func updateNSView(_ textView:NSCustomTextView, context:Context)
     {
-		if let value = self.value as? String
+		let n = textView.textStorage?.length ?? 0
+		let range = NSMakeRange(0,n)
+		
+		textView.textStorage?.replaceCharacters(in:range, with:self.value)
+		
+		DispatchQueue.main.async
 		{
-			textfield.stringValue = value
-		}
-		else if let value = self.value as? Double
-		{
-			textfield.doubleValue = value
-		}
-		else if let value = self.value as? Int
-		{
-			textfield.integerValue = value
-		}
-		else
-		{
-			textfield.stringValue = ""
+			self.size = textView.calulateSize()
 		}
 	}
     
-    
-    // The coordinator is responsible for notifying SwiftUI when editing occured in the NSCustomTextField
-    
-    class Coordinator : NSObject,NSTextFieldDelegate
-    {
-        var textfield:BXCustomTextField<T>
 
-        init(_ textfield:BXCustomTextField<T>)
+    // The coordinator is responsible for notifying SwiftUI when editing occured in the NSCustomTextField
+
+    class Coordinator : NSObject, NSTextViewDelegate
+    {
+        var swituiTextView:BXCustomTextView
+
+        init(_ textView:BXCustomTextView)
         {
-            self.textfield = textfield
+            self.swituiTextView = textView
         }
 		
-        @objc func updateStringValue(with sender:NSTextField)
-        {
-            textfield.value = sender.stringValue as! T
-        }
-        
-        @objc func updateDoubleValue(with sender:NSTextField)
-        {
-            textfield.value = sender.doubleValue as! T
-        }
-        
-        @objc func updateIntValue(with sender:NSTextField)
-        {
-            textfield.value = sender.integerValue as! T
-        }
+		func textDidChange(_ notification:Notification)
+		{
+			guard let textView = notification.object as? NSCustomTextView else { return }
+			guard let textStorage = textView.textStorage else { return }
+			
+			// Store the new text value in the BXCustomTextView
+			
+			self.swituiTextView.value = NSAttributedString(attributedString:textStorage)
+			
+			// Notify the SwiftUI layout system of the required size
+			
+			self.swituiTextView.size = textView.calulateSize()
+		}
 	}
 	
     func makeCoordinator() -> Coordinator
@@ -110,38 +98,45 @@ struct BXCustomTextView : NSViewRepresentable
 //----------------------------------------------------------------------------------------------------------------------
 
 
+// MARK: -
+
 class NSCustomTextView : NSTextView
 {
-	var isActiveHandler:(NSTextFieldActiveHandler)? = nil
 	var trackingArea:NSTrackingArea? = nil
 	var isFirstResponder = false { didSet { self.notify() } }
 	var isHovering = false { didSet { self.notify() } }
-	var fixedHeight:CGFloat? = nil
+	var isActiveHandler:(NSTextViewActiveHandler)? = nil
+//	var fixedHeight:CGFloat? = nil
+
+    override init(frame:NSRect, textContainer:NSTextContainer?)
+    {
+		super.init(frame:frame, textContainer:textContainer)
+    }
 
 	override init(frame:NSRect)
 	{
 		super.init(frame:frame)
 	}
-	
+
 	required init?(coder:NSCoder)
 	{
 		super.init(coder:coder)
 	}
-	
-	override var frame:NSRect
-	{
-		set
-		{
-			var f = newValue
-			if let h = fixedHeight { f.size.height = h }
-			super.frame = f
-		}
-		get
-		{
-			return super.frame
-		}
-	}
-	
+
+//	override var frame:NSRect
+//	{
+//		set
+//		{
+//			var f = newValue
+//			if let h = fixedHeight { f.size.height = h }
+//			super.frame = f
+//		}
+//		get
+//		{
+//			return super.frame
+//		}
+//	}
+
 	override func viewDidMoveToWindow()
 	{
 		super.viewDidMoveToWindow()
@@ -151,16 +146,16 @@ class NSCustomTextView : NSTextView
 			self.prepare()
 		}
 	}
-	
+
 	func prepare()
 	{
 		let trackingArea = NSTrackingArea(rect:self.bounds, options:[.mouseEnteredAndExited,.activeAlways], owner:self, userInfo:nil)
 		self.addTrackingArea(trackingArea)
 		self.trackingArea = trackingArea
-		
+
 		self.window?.recalculateKeyViewLoop()
 	}
-	
+
 	func cleanup()
 	{
 		if let trackingArea = trackingArea
@@ -169,10 +164,10 @@ class NSCustomTextView : NSTextView
 			self.trackingArea = nil
 		}
 	}
-	
+
 	override func mouseEntered(with event:NSEvent)
 	{
-		self.isHovering = self.isEnabled
+		self.isHovering = true //self.isEnabled
 	}
 
 	override func mouseExited(with event:NSEvent)
@@ -183,14 +178,14 @@ class NSCustomTextView : NSTextView
 	override func becomeFirstResponder() -> Bool
 	{
 		self.isFirstResponder = true
-		self.selectText(nil)
+//		self.selectText(nil)
 		return true
 	}
-	
+
 	override func resignFirstResponder() -> Bool
 	{
 		self.isFirstResponder = false
-		
+
 //		if self.nextKeyView == nil, let window = self.window
 //		{
 //			DispatchQueue.main.async
@@ -199,13 +194,23 @@ class NSCustomTextView : NSTextView
 //				window.makeFirstResponder(firstResponder	)
 //			}
 //		}
-		
+
 		return true
 	}
-	
+
 	@objc func notify()
 	{
 		self.isActiveHandler?(self,isFirstResponder,isHovering)
+	}
+	
+	func calulateSize() -> CGSize
+	{
+		guard let textContainer = self.textContainer else { return .zero }
+		
+		self.layoutManager?.glyphRange(for:textContainer) // This forces a text layout pass
+		let frame = self.layoutManager?.usedRect(for:textContainer) ?? NSZeroRect
+		
+		return CGSize(width:frame.width, height:frame.height+8.0)
 	}
 }
 
