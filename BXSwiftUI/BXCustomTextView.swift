@@ -26,10 +26,7 @@ typealias NSTextViewActiveHandler = (NSTextView,Bool,Bool)->Void
 struct BXCustomTextView : NSViewRepresentable
 {
     @Binding var value:NSAttributedString
-	@Binding var size:CGSize
-	
-//	var height:CGFloat? = nil
-//	var alignment:TextAlignment = .leading
+	@Binding var fittingSize:CGSize
 //	var isActiveHandler:(NSTextViewActiveHandler)? = nil
 
 
@@ -38,27 +35,60 @@ struct BXCustomTextView : NSViewRepresentable
     func makeNSView(context:Context) -> NSCustomTextView
     {
         let textView = NSCustomTextView(frame:.zero)
-        textView.delegate = context.coordinator
-        textView.textContainerInset = NSMakeSize(0.0,4.0)
 
-		textView.window?.makeFirstResponder(textView)
+		textView.isRichText = true
+		textView.usesFontPanel	= true
+		textView.allowsUndo	= true
+        textView.delegate = context.coordinator
+        
+        textView.textContainerInset = NSMakeSize(0.0,3.0)
+        textView.textContainer?.widthTracksTextView = true
+        textView.textContainer?.heightTracksTextView = false
+		textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.autoresizingMask = [.width, .height]
+	
 		return textView
     }
 
 
 	// SwiftUI side has changed, so update the NSTextView
 	
-    func updateNSView(_ textView:NSCustomTextView, context:Context)
+	func updateNSView(_ textView:NSCustomTextView, context:Context)
     {
+		// Save the current selection and restore it later, because the following steps
+		// will replace the whole text and thus destroy the selected range.
+		
+		let savedSelectedRanges = textView.selectedRanges
+		defer { textView.selectedRanges = savedSelectedRanges }
+        
+		// Replace the text with the new value
+		
 		let n = textView.textStorage?.length ?? 0
 		let range = NSMakeRange(0,n)
 		
 		textView.textStorage?.replaceCharacters(in:range, with:self.value)
 		
-		DispatchQueue.main.async
+		// Also apply some external environment values
+		
+		if let lineLimit = context.environment.lineLimit
 		{
-			self.size = textView.calulateSize()
+            textView.textContainer?.maximumNumberOfLines = lineLimit
+        }
+         
+        // The first time we get here, we need to measure the size of the view (which depends
+        // on the text) and notify the SwiftUI layout system accordingly.
+        
+        if context.coordinator.updateCount == 0
+        {
+			let size = textView.calulateSize()
+			
+			DispatchQueue.main.async
+			{
+				self.fittingSize = size
+			}
 		}
+		
+		context.coordinator.updateCount += 1
 	}
     
 
@@ -67,6 +97,7 @@ struct BXCustomTextView : NSViewRepresentable
     class Coordinator : NSObject, NSTextViewDelegate
     {
         var swituiTextView:BXCustomTextView
+		var updateCount = 0
 
         init(_ textView:BXCustomTextView)
         {
@@ -83,8 +114,8 @@ struct BXCustomTextView : NSViewRepresentable
 			self.swituiTextView.value = NSAttributedString(attributedString:textStorage)
 			
 			// Notify the SwiftUI layout system of the required size
-			
-			self.swituiTextView.size = textView.calulateSize()
+
+			self.swituiTextView.fittingSize = textView.calulateSize()
 		}
 	}
 	
@@ -106,7 +137,6 @@ class NSCustomTextView : NSTextView
 	var isFirstResponder = false { didSet { self.notify() } }
 	var isHovering = false { didSet { self.notify() } }
 	var isActiveHandler:(NSTextViewActiveHandler)? = nil
-//	var fixedHeight:CGFloat? = nil
 
     override init(frame:NSRect, textContainer:NSTextContainer?)
     {
@@ -122,20 +152,6 @@ class NSCustomTextView : NSTextView
 	{
 		super.init(coder:coder)
 	}
-
-//	override var frame:NSRect
-//	{
-//		set
-//		{
-//			var f = newValue
-//			if let h = fixedHeight { f.size.height = h }
-//			super.frame = f
-//		}
-//		get
-//		{
-//			return super.frame
-//		}
-//	}
 
 	override func viewDidMoveToWindow()
 	{
@@ -178,23 +194,12 @@ class NSCustomTextView : NSTextView
 	override func becomeFirstResponder() -> Bool
 	{
 		self.isFirstResponder = true
-//		self.selectText(nil)
 		return true
 	}
 
 	override func resignFirstResponder() -> Bool
 	{
 		self.isFirstResponder = false
-
-//		if self.nextKeyView == nil, let window = self.window
-//		{
-//			DispatchQueue.main.async
-//			{
-//				let firstResponder = window.initialFirstResponder
-//				window.makeFirstResponder(firstResponder	)
-//			}
-//		}
-
 		return true
 	}
 
@@ -206,11 +211,16 @@ class NSCustomTextView : NSTextView
 	func calulateSize() -> CGSize
 	{
 		guard let textContainer = self.textContainer else { return .zero }
-		
+
 		self.layoutManager?.glyphRange(for:textContainer) // This forces a text layout pass
 		let frame = self.layoutManager?.usedRect(for:textContainer) ?? NSZeroRect
-		
-		return CGSize(width:frame.width, height:frame.height+8.0)
+	
+		var w = frame.width + 2 * self.textContainerInset.width
+		var h = frame.height + 2 * self.textContainerInset.height
+		w = max(w,20.0)
+		h = max(h,20.0)
+
+		return CGSize(width:w, height:h)
 	}
 }
 

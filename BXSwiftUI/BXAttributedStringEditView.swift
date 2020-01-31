@@ -19,7 +19,8 @@ public struct BXAttributedStringEditView : View
 	private var width:Binding<CGFloat>? = nil
 	private var value:Binding<NSAttributedString>
 
-	@State var size:CGSize = CGSize(width:20, height:20)
+	@State private var fittingSize:CGSize = CGSize(width:20, height:20)
+//	@State var text = "Testing…\n123\n456\n789"
 	
 	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<NSAttributedString>)
 	{
@@ -31,15 +32,23 @@ public struct BXAttributedStringEditView : View
 	
 	public var body: some View
 	{
-		BXLabelView(label:label, width:width, alignment:.top)
+		BXLabelView(label:label, width:width)
 		{
-			BXCustomTextView(value:self.value, size:self.$size)
+//			TextField("", text: self.$text)
+//				.alignmentGuide(.firstTextBaseline) { _ in 16.0 }
+//				.lineLimit(0)
+			
+			BXCustomTextView(value:self.value, fittingSize:self.$fittingSize)
 //			{
 //				(nstextfield,_,_) in
 //				nstextfield.isBordered = true
 //				nstextfield.drawsBackground = true
 //			}
-			.frame(minHeight:self.size.height)
+			.alignmentGuide(.firstTextBaseline)
+			{
+				_ in return 15.0
+			}
+			.frame(height:self.fittingSize.height)
 		}
 	}
 }
