@@ -19,6 +19,7 @@ import SwiftUI
 /// support this out of the box, then this code will have to tagged as unavailable on those system version to
 /// avoid duplicate warnings.
 
+
 public struct Image : View
 {
 	// Whenever new images are needed, then copy/paste the name and icon from the SF Symbols app in the
@@ -74,6 +75,40 @@ public struct Image : View
 		"speaker.3.fill" :						"􀊩",
 		"speaker.slash" :      					"􀊢",
 		"speaker.slash.fill" :					"􀊣",
+
+		"play" :								"􀊃",
+		"play.fill" :							"􀊄",
+		"play.circle" :							"􀊕",
+		"play.circle.fill" :					"􀊖",
+		"play.rectangle" :						"􀊙",
+		"play.rectangle.fill" :					"􀊚",
+		"pause" :								"􀊅",
+		"pause.fill" :							"􀊆",
+		"pause.circle" :						"􀊗",
+		"pause.circle.fill" :					"􀊘",
+		"pause.rectangle" :						"􀊛",
+		"pause.rectangle.fill" :				"􀊜",
+		"stop" :								"􀛶",
+		"stop.fill" :							"􀛷",
+		"stop.circle" :							"􀜪",
+		"stop.circle.fill" :					"􀜫",
+		"backward" :							"􀊉",
+		"backward.fill" :						"􀊊",
+		"forward" :								"􀊋",
+		"forward.fill" :						"􀊌",
+		"backward.end" :						"􀊍",
+		"backward.end.fill" :					"􀊎",
+		"forward.end" :							"􀊏",
+		"forward.end.fill" :					"􀊐",
+		"backward.end.alt" :					"􀊑",
+		"backward.end.alt.fill" :				"􀊒",
+		"forward.end.alt" :						"􀊓",
+		"forward.end.alt.fill" :				"􀊔",
+
+		"shuffle" :								"􀊝",
+		"repeat" :								"􀊞",
+		"goforward" :							"􀍿",
+		"gobackward" :							"􀎀",
 	]
 
 	let symbol:String
