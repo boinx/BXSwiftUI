@@ -17,7 +17,6 @@
 		D002FE8423D22EC5002CF0A1 /* BXMultiValueTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7A23D22EC5002CF0A1 /* BXMultiValueTextField.swift */; };
 		D002FE8523D22EC5002CF0A1 /* TextAlignment+AppKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */; };
 		D002FE8623D22EC5002CF0A1 /* Formatter+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */; };
-		D002FE8723D22EC5002CF0A1 /* BXCustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7D23D22EC5002CF0A1 /* BXCustomTextField.swift */; };
 		D002FE8823D22EC5002CF0A1 /* BXMultiValueToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7E23D22EC5002CF0A1 /* BXMultiValueToggle.swift */; };
 		D011B1CB23E1C73D00643F20 /* BXStrokedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011B1CA23E1C73D00643F20 /* BXStrokedButtonStyle.swift */; };
 		D02BC58C23DC26E500676CF3 /* BXStringEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC58B23DC26E400676CF3 /* BXStringEditView.swift */; };
@@ -47,6 +46,7 @@
 		D082496723E40ABB006142CE /* BXTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EBA10923D9881D00E82E59 /* BXTextView.swift */; };
 		D082496923E4141C006142CE /* BXAttributedStringEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D082496823E4141C006142CE /* BXAttributedStringEditView.swift */; };
 		D08FB76D23E48D2400C1A193 /* BXTextView_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FB76C23E48D2400C1A193 /* BXTextView_macOS.swift */; };
+		D08FB76F23E4920A00C1A193 /* BXTextField_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FB76E23E4920A00C1A193 /* BXTextField_macOS.swift */; };
 		D0A2400423DF5716004E9F31 /* BXOptionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A2400323DF5716004E9F31 /* BXOptionalView.swift */; };
 		D0C1249A23DAE4A600DB3592 /* BXCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C1249923DAE4A600DB3592 /* BXCircularSlider.swift */; };
 		D0D25BCC23DCB3B400A1B61D /* BXIndentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */; };
@@ -68,7 +68,6 @@
 		D002FE7A23D22EC5002CF0A1 /* BXMultiValueTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXMultiValueTextField.swift; sourceTree = "<group>"; };
 		D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextAlignment+AppKit.swift"; sourceTree = "<group>"; };
 		D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+Custom.swift"; sourceTree = "<group>"; };
-		D002FE7D23D22EC5002CF0A1 /* BXCustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXCustomTextField.swift; sourceTree = "<group>"; };
 		D002FE7E23D22EC5002CF0A1 /* BXMultiValueToggle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXMultiValueToggle.swift; sourceTree = "<group>"; };
 		D011B1CA23E1C73D00643F20 /* BXStrokedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXStrokedButtonStyle.swift; sourceTree = "<group>"; };
 		D02BC58B23DC26E400676CF3 /* BXStringEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXStringEditView.swift; sourceTree = "<group>"; };
@@ -97,6 +96,7 @@
 		D0793E8923D469870069327F /* BXSwiftUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BXSwiftUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D082496823E4141C006142CE /* BXAttributedStringEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXAttributedStringEditView.swift; sourceTree = "<group>"; };
 		D08FB76C23E48D2400C1A193 /* BXTextView_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXTextView_macOS.swift; sourceTree = "<group>"; };
+		D08FB76E23E4920A00C1A193 /* BXTextField_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXTextField_macOS.swift; sourceTree = "<group>"; };
 		D0A2400323DF5716004E9F31 /* BXOptionalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXOptionalView.swift; sourceTree = "<group>"; };
 		D0C1249923DAE4A600DB3592 /* BXCircularSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXCircularSlider.swift; sourceTree = "<group>"; };
 		D0D25BC523DC954D00A1B61D /* Optional+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Combine.swift"; sourceTree = "<group>"; };
@@ -195,7 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				D077D5CB23E3104400C1D20F /* BXButton.swift */,
-				D002FE7D23D22EC5002CF0A1 /* BXCustomTextField.swift */,
+				D08FB76E23E4920A00C1A193 /* BXTextField_macOS.swift */,
 				D0EBA10923D9881D00E82E59 /* BXTextView.swift */,
 				D08FB76C23E48D2400C1A193 /* BXTextView_macOS.swift */,
 				D0C1249923DAE4A600DB3592 /* BXCircularSlider.swift */,
@@ -356,6 +356,7 @@
 				D02BC59923DC2C6400676CF3 /* BXFloatEditView.swift in Sources */,
 				D002FE8223D22EC5002CF0A1 /* BXMultiStringInspectorView.swift in Sources */,
 				D02BC59423DC29ED00676CF3 /* BXCGPointEditView.swift in Sources */,
+				D08FB76F23E4920A00C1A193 /* BXTextField_macOS.swift in Sources */,
 				D002FE8623D22EC5002CF0A1 /* Formatter+Custom.swift in Sources */,
 				D02BC5A023DC339D00676CF3 /* BXCGRectEditView.swift in Sources */,
 				D02BC59B23DC2C9F00676CF3 /* BXCGFloatEditView.swift in Sources */,
@@ -382,7 +383,6 @@
 				D011B1CB23E1C73D00643F20 /* BXStrokedButtonStyle.swift in Sources */,
 				D02BC59223DC29CB00676CF3 /* BXDoubleEditView.swift in Sources */,
 				D082496923E4141C006142CE /* BXAttributedStringEditView.swift in Sources */,
-				D002FE8723D22EC5002CF0A1 /* BXCustomTextField.swift in Sources */,
 				D077D5CC23E3104400C1D20F /* BXButton.swift in Sources */,
 				D02BC5A223DC37A500676CF3 /* BXURLEditView.swift in Sources */,
 				D082496723E40ABB006142CE /* BXTextView.swift in Sources */,

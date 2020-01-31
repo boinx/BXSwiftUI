@@ -32,12 +32,7 @@ public struct BXStringEditView : View
 	{
 		BXLabelView(label:label, width:width)
 		{
-			BXCustomTextField(value:self.value)
-			{
-				(nstextfield,_,_) in
-				nstextfield.isBordered = true
-				nstextfield.drawsBackground = true
-			}
+			BXTextField(value:self.value)
 		}
 	}
 }

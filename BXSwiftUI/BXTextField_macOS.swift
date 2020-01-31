@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  BXCustomTextField.swift
+//  BXTextField.swift
 //	SwiftUI wrapper for NSTextField with custom behavior
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
@@ -14,24 +14,24 @@ import AppKit
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public typealias NSTextFieldActiveHandler = (NSCustomTextField,Bool,Bool)->Void
+public typealias BXTextFieldActiveHandler = (NSTextField,Bool,Bool)->Void
 
 
 //----------------------------------------------------------------------------------------------------------------------
 
 
-/// CustomTextField uses an underlying NSCustomTextField to achieve behavior that isn't supported by SwiftUI
+/// BXTextField uses an underlying NSTextField to achieve behavior that isn't supported by SwiftUI
 /// as of 10.15 - that is why we drop down to AppKit and implement the desired behavior ourself.
 
-public struct BXCustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
+public struct BXTextField<T> : NSViewRepresentable
 {
 	public var value:Binding<T>
 	public var height:CGFloat? = nil
 	public var alignment:TextAlignment = .leading
 	public var formatter:Formatter? = nil
-	public var isActiveHandler:(NSTextFieldActiveHandler)? = nil
+	public var isActiveHandler:(BXTextFieldActiveHandler)? = nil
 
-	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, isActiveHandler:(NSTextFieldActiveHandler)? = nil)
+	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, isActiveHandler:(BXTextFieldActiveHandler)? = nil)
 	{
 		self.value = value
 		self.height = height
@@ -42,7 +42,7 @@ public struct BXCustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
 	
 	// Create the underlying NSCustomTextField
 	
-	public func makeNSView(context:Context) -> NSCustomTextField
+	public func makeNSView(context:Context) -> BXNativeTextField
     {
 		var action = #selector(Coordinator.updateStringValue(with:))
 		
@@ -67,13 +67,15 @@ public struct BXCustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
 			action = #selector(Coordinator.updateIntValue(with:))
 		}
 
-        let textfield = NSCustomTextField(frame:.zero)
+        let textfield = BXNativeTextField(frame:.zero)
         textfield.delegate = context.coordinator
         textfield.alignment = alignment.nstextalignment
         textfield.formatter = formatter
         textfield.fixedHeight = self.height
 		textfield.target = context.coordinator
 		textfield.action = action
+		textfield.isBordered = true
+		textfield.drawsBackground = true
 		textfield.isActiveHandler = { self.isActiveHandler?($0,$1,$2) }
 		self.isActiveHandler?(textfield,false,false)
 		return textfield
@@ -81,7 +83,7 @@ public struct BXCustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
 
 	// SwiftUI side has changed, so update the NSCustomTextField
 	
-	public func updateNSView(_ textfield:NSCustomTextField, context:Context)
+	public func updateNSView(_ textfield:BXNativeTextField, context:Context)
     {
 		if let value = self.value.wrappedValue as? String
 		{
@@ -117,9 +119,9 @@ public struct BXCustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
     
 	public class Coordinator : NSObject,NSTextFieldDelegate
     {
-        var textfield:BXCustomTextField<T>
+        var textfield:BXTextField<T>
 
-        init(_ textfield:BXCustomTextField<T>)
+        init(_ textfield:BXTextField<T>)
         {
             self.textfield = textfield
         }
@@ -165,9 +167,9 @@ public struct BXCustomTextField<T> : NSViewRepresentable //where T:TypeCheckable
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public class NSCustomTextField : NSTextField
+public class BXNativeTextField : NSTextField
 {
-	var isActiveHandler:(NSTextFieldActiveHandler)? = nil
+	var isActiveHandler:(BXTextFieldActiveHandler)? = nil
 	var trackingArea:NSTrackingArea? = nil
 	var isFirstResponder = false { didSet { self.notify() } }
 	var isHovering = false { didSet { self.notify() } }

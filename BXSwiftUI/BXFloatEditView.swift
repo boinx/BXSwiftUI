@@ -34,12 +34,7 @@ public struct BXFloatEditView : View
 	{
 		BXLabelView(label:label, width:width)
 		{
-			BXCustomTextField(value:self.value, formatter:self.formatter)
-			{
-				(nstextfield,_,_) in
-				nstextfield.isBordered = true
-				nstextfield.drawsBackground = true
-			}
+			BXTextField(value:self.value, formatter:self.formatter)
 		}
 	}
 }

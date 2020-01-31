@@ -22,12 +22,12 @@ struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheck
 	var height:CGFloat? = nil
 	var alignment:TextAlignment = .leading
 	var formatter:Formatter? = nil
-	var isActiveHandler:(NSTextFieldActiveHandler)? = nil
+	var isActiveHandler:(BXTextFieldActiveHandler)? = nil
 
 
-	/// Creates the underlying NSCustomTextField
+	/// Creates the underlying BXNativeTextField
 	
-    func makeNSView(context:Context) -> NSCustomTextField
+    func makeNSView(context:Context) -> BXNativeTextField
     {
 		var action = #selector(Coordinator.updateStringValues(with:))
 		
@@ -40,7 +40,7 @@ struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheck
 			action = #selector(Coordinator.updateIntValues(with:))
 		}
 
-        let textfield = NSCustomTextField(frame:.zero)
+        let textfield = BXNativeTextField(frame:.zero)
         textfield.delegate = context.coordinator
         textfield.alignment = alignment.nstextalignment
         textfield.formatter = formatter
@@ -55,7 +55,7 @@ struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheck
 
 	/// Something on the SwiftUI side has changed, so update the NSCustomTextField
 	
-    func updateNSView(_ textfield:NSCustomTextField, context:Context)
+    func updateNSView(_ textfield:BXNativeTextField, context:Context)
     {
 		if values.count == 0
 		{

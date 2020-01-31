@@ -55,21 +55,11 @@ public struct BXCGPointEditView : View
 			{
 				Text("x")
 
-				BXCustomTextField(value:self.x, formatter:self.formatter)
-				{
-					(nstextfield,_,_) in
-					nstextfield.isBordered = true
-					nstextfield.drawsBackground = true
-				}
+				BXTextField(value:self.x, formatter:self.formatter)
 
 				Text("y")
 
-				BXCustomTextField(value:self.y, formatter:self.formatter)
-				{
-					(nstextfield,_,_) in
-					nstextfield.isBordered = true
-					nstextfield.drawsBackground = true
-				}
+				BXTextField(value:self.y, formatter:self.formatter)
 			}
 		}
 	}

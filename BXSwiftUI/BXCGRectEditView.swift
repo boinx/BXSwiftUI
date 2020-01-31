@@ -67,40 +67,16 @@ public struct BXCGRectEditView : View
 			HStack
 			{
 				Text("x")
-
-				BXCustomTextField(value:self.x, formatter:self.formatter)
-				{
-					(nstextfield,_,_) in
-					nstextfield.isBordered = true
-					nstextfield.drawsBackground = true
-				}
-
+				BXTextField(value:self.x, formatter:self.formatter)
+				
 				Text("y")
-
-				BXCustomTextField(value:self.y, formatter:self.formatter)
-				{
-					(nstextfield,_,_) in
-					nstextfield.isBordered = true
-					nstextfield.drawsBackground = true
-				}
+				BXTextField(value:self.y, formatter:self.formatter)
 
 				Text("width")
-
-				BXCustomTextField(value:self.w, formatter:self.formatter)
-				{
-					(nstextfield,_,_) in
-					nstextfield.isBordered = true
-					nstextfield.drawsBackground = true
-				}
+				BXTextField(value:self.w, formatter:self.formatter)
 
 				Text("height")
-
-				BXCustomTextField(value:self.h, formatter:self.formatter)
-				{
-					(nstextfield,_,_) in
-					nstextfield.isBordered = true
-					nstextfield.drawsBackground = true
-				}
+				BXTextField(value:self.h, formatter:self.formatter)
 			}
 		}
 	}
