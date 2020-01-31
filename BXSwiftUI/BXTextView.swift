@@ -1,7 +1,7 @@
 //**********************************************************************************************************************
 //
-//  BXCustomTextField.swift
-//	SwiftUI wrapper for NSTextField with custom behavior
+//  BXTextView.swift
+//	SwiftUI wrapper for NSTextView
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
@@ -14,20 +14,92 @@ import AppKit
 //----------------------------------------------------------------------------------------------------------------------
 
 
-typealias NSTextViewActiveHandler = (NSTextView,Bool,Bool)->Void
+/// BXTextView wraps an NSTextView on macOS or a UITextView on iOS. It doesn't need to be enclosed in a
+/// ScrollView, since it can resize itself automatically to fit the dimensions of its text.
+
+public struct BXTextView : View
+{
+    private var value:Binding<NSAttributedString>
+	private var isActiveHandler:(BXTextViewActiveHandler)? = nil
+
+	@State private var fittingSize:CGSize = CGSize(width:20, height:20)
+
+
+	/// BXTextView wraps an NSTextView on macOS or a UITextView on iOS. It doesn't need to be enclosed in a
+	/// ScrollView, since it can resize itself automatically to fit the dimensions of its text.
+	///
+	/// - parameter value: The NSAttributedString containing the text to be edited
+	/// - parameter isActiveHandler: A closure that is called repeatedly as the mouse enters or exits the view,
+	/// or when editing starts or ends. Can be used to change the appearance of the view.
+
+	public init(value:Binding<NSAttributedString>, isActiveHandler:(BXTextViewActiveHandler)? = nil)
+	{
+		self.value = value
+		self.isActiveHandler = isActiveHandler
+	}
+	
+
+	public var body: some View
+	{
+		#if os(macOS)
+		
+		return BXmacOSTextView(value:self.value, fittingSize:self.$fittingSize, isActiveHandler:isActiveHandler)
+			
+			// Since we are dealing with rich text, we do not really know where the first baseline should be.
+			// So simply assume the first text baseline to be 15pt from the top.
+			
+			.alignmentGuide(.firstTextBaseline) { _ in return 15.0 }
+			
+			// Once the correct fitting size has been calculated and set, resize the view to the exact height.
+			
+			.frame(height:self.fittingSize.height)
+			
+		#elseif os(iOS)
+		
+		#warning("TODO: implement")
+		
+		#endif
+	}
+}
 
 
 //----------------------------------------------------------------------------------------------------------------------
 
 
-/// CustomTextField uses an underlying NSCustomTextField to achieve behavior that isn't supported by SwiftUI
+#if os(macOS)
+
+/// This handler is called repeately as text editing begin or ends, and when the mouse enters or exits the view.
+/// The arguments are the NSTextView, a Bool indicating whether it is firstResponder (currently editing), and
+/// a Bool indicating whether the mouse is currently inside the view. The appearance can be modified as desired.
+
+public typealias BXTextViewActiveHandler = (NSTextView,Bool,Bool)->Void
+
+#elseif os(iOS)
+
+/// This handler is called repeately as text editing begin or ends. The argument are the UITextView and a Bool
+/// indicating whether the text is currently being edited. The appearance can be modified as desired.
+
+public typealias BXTextViewActiveHandler = (UITextView,Bool)->Void
+
+
+#endif
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+// MARK: -
+
+#if os(macOS)
+
+/// BXmacOSTextView uses an underlying NSTextView subclass to achieve behavior that isn't supported by SwiftUI
 /// as of 10.15 - that is why we drop down to AppKit and implement the desired behavior ourself.
 
-struct BXCustomTextView : NSViewRepresentable
+fileprivate struct BXmacOSTextView : NSViewRepresentable
 {
     @Binding var value:NSAttributedString
 	@Binding var fittingSize:CGSize
-//	var isActiveHandler:(NSTextViewActiveHandler)? = nil
+	var isActiveHandler:(BXTextViewActiveHandler)? = nil
 
 
 	// Create the underlying NSCustomTextView
@@ -37,9 +109,11 @@ struct BXCustomTextView : NSViewRepresentable
         let textView = NSCustomTextView(frame:.zero)
 
 		textView.isRichText = true
-		textView.usesFontPanel	= true
+		textView.usesFontPanel = true
 		textView.allowsUndo	= true
+		
         textView.delegate = context.coordinator
+        textView.isActiveHandler = self.isActiveHandler
         
         textView.textContainerInset = NSMakeSize(0.0,3.0)
         textView.textContainer?.widthTracksTextView = true
@@ -65,7 +139,6 @@ struct BXCustomTextView : NSViewRepresentable
 		
 		let n = textView.textStorage?.length ?? 0
 		let range = NSMakeRange(0,n)
-		
 		textView.textStorage?.replaceCharacters(in:range, with:self.value)
 		
 		// Also apply some external environment values
@@ -80,7 +153,7 @@ struct BXCustomTextView : NSViewRepresentable
         
         if context.coordinator.updateCount == 0
         {
-			let size = textView.calulateSize()
+			let size = textView.fittingSize()
 			
 			DispatchQueue.main.async
 			{
@@ -92,14 +165,14 @@ struct BXCustomTextView : NSViewRepresentable
 	}
     
 
-    // The coordinator is responsible for notifying SwiftUI when editing occured in the NSCustomTextField
+    // The text was edited by the user, so notify Swift UI of the new value and changed size.
 
     class Coordinator : NSObject, NSTextViewDelegate
     {
-        var swituiTextView:BXCustomTextView
+        var swituiTextView:BXmacOSTextView
 		var updateCount = 0
 
-        init(_ textView:BXCustomTextView)
+        init(_ textView:BXmacOSTextView)
         {
             self.swituiTextView = textView
         }
@@ -115,7 +188,7 @@ struct BXCustomTextView : NSViewRepresentable
 			
 			// Notify the SwiftUI layout system of the required size
 
-			self.swituiTextView.fittingSize = textView.calulateSize()
+			self.swituiTextView.fittingSize = textView.fittingSize()
 		}
 	}
 	
@@ -125,19 +198,25 @@ struct BXCustomTextView : NSViewRepresentable
     }
 }
 
+#endif
+
 
 //----------------------------------------------------------------------------------------------------------------------
 
 
 // MARK: -
 
+#if os(macOS)
+
 class NSCustomTextView : NSTextView
 {
+	var isActiveHandler:(BXTextViewActiveHandler)? = nil
 	var trackingArea:NSTrackingArea? = nil
 	var isFirstResponder = false { didSet { self.notify() } }
 	var isHovering = false { didSet { self.notify() } }
-	var isActiveHandler:(NSTextViewActiveHandler)? = nil
 
+	// Create the underlying NSTextView
+	
     override init(frame:NSRect, textContainer:NSTextContainer?)
     {
 		super.init(frame:frame, textContainer:textContainer)
@@ -163,6 +242,8 @@ class NSCustomTextView : NSTextView
 		}
 	}
 
+	// Install NSTrackingArea to track mouse enter/exit events
+	
 	func prepare()
 	{
 		let trackingArea = NSTrackingArea(rect:self.bounds, options:[.mouseEnteredAndExited,.activeAlways], owner:self, userInfo:nil)
@@ -191,6 +272,8 @@ class NSCustomTextView : NSTextView
 		self.isHovering = false
 	}
 
+	// Track begin/end of editing session
+	
 	override func becomeFirstResponder() -> Bool
 	{
 		self.isFirstResponder = true
@@ -203,12 +286,16 @@ class NSCustomTextView : NSTextView
 		return true
 	}
 
+	// Notify others of changes
+	
 	@objc func notify()
 	{
 		self.isActiveHandler?(self,isFirstResponder,isHovering)
 	}
 	
-	func calulateSize() -> CGSize
+	// Calculate the fitting size for the text
+	
+	func fittingSize() -> CGSize
 	{
 		guard let textContainer = self.textContainer else { return .zero }
 
@@ -223,6 +310,8 @@ class NSCustomTextView : NSTextView
 		return CGSize(width:w, height:h)
 	}
 }
+
+#endif
 
 
 //----------------------------------------------------------------------------------------------------------------------
