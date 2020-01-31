@@ -22,6 +22,7 @@ public struct BXLabelView<Content> : View where Content:View
 {
 	var label:String = ""
 	var width:Binding<CGFloat>? = nil
+	var alignment:VerticalAlignment = .center
 	var button1:BXButtonBuilder? = nil
 	var button2:BXButtonBuilder? = nil
 	var button3:BXButtonBuilder? = nil
@@ -34,10 +35,11 @@ public struct BXLabelView<Content> : View where Content:View
 		width?.wrappedValue ?? 0.0
 	}
 	
-	public init(label:String = "", width:Binding<CGFloat>? = nil, button1:BXButtonBuilder? = nil, button2:BXButtonBuilder? = nil, button3:BXButtonBuilder? = nil, @ViewBuilder content:@escaping ()->Content)
+	public init(label:String = "", width:Binding<CGFloat>? = nil, alignment:VerticalAlignment = .center, button1:BXButtonBuilder? = nil, button2:BXButtonBuilder? = nil, button3:BXButtonBuilder? = nil, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.label = label
 		self.width = width
+		self.alignment = alignment
 		self.button1 = button1
 		self.button2 = button2
 		self.button3 = button3
@@ -46,7 +48,7 @@ public struct BXLabelView<Content> : View where Content:View
 	
 	public var body: some View
 	{
-		HStack
+		HStack(alignment:alignment)
 		{
 			if self.label.count > 0
 			{
