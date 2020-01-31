@@ -46,18 +46,18 @@ public struct BXButton : View
 			{
 				if systemName != nil
 				{
-					Image(systemName:systemName!).foregroundColor(activeColor)
+					Image(systemName:systemName!)
 				}
 				
 				if title != nil
 				{
-					Text(title!).foregroundColor(activeColor)
+					Text(title!)
 				}
 			}
 		}
 		.enabled(isEnabled)
 		
-		// If a border is desired, then use the global buttonStyle (Environment), otherwise override 
+		// If a border is desired, then use the global buttonStyle (Environment), otherwise override
 		// with BorderlessButtonStyle.
 		
 		return Group
@@ -68,7 +68,7 @@ public struct BXButton : View
 			}
 			else
 			{
-				button.buttonStyle(BorderlessButtonStyle())
+				button.foregroundColor(activeColor).buttonStyle(BorderlessButtonStyle())
 			}
 		}
 	}
