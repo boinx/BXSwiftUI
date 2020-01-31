@@ -20,26 +20,24 @@ import SwiftUI
 
 public struct BXLabelView<Content> : View where Content:View
 {
-	var label:String = ""
-	var width:Binding<CGFloat>? = nil
-	var alignment:VerticalAlignment = .center
-	var button1:BXButtonBuilder? = nil
-	var button2:BXButtonBuilder? = nil
-	var button3:BXButtonBuilder? = nil
-	var content:()->Content
-
 	public typealias BXButtonBuilder = ()->BXButton
 	
+	private var label:String = ""
+	private var width:Binding<CGFloat>? = nil
+	private var button1:BXButtonBuilder? = nil
+	private var button2:BXButtonBuilder? = nil
+	private var button3:BXButtonBuilder? = nil
+	private var content:()->Content
+
 	private var minWidth:CGFloat
 	{
 		width?.wrappedValue ?? 0.0
 	}
 	
-	public init(label:String = "", width:Binding<CGFloat>? = nil, alignment:VerticalAlignment = .center, button1:BXButtonBuilder? = nil, button2:BXButtonBuilder? = nil, button3:BXButtonBuilder? = nil, @ViewBuilder content:@escaping ()->Content)
+	public init(label:String = "", width:Binding<CGFloat>? = nil, button1:BXButtonBuilder? = nil, button2:BXButtonBuilder? = nil, button3:BXButtonBuilder? = nil, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.label = label
 		self.width = width
-		self.alignment = alignment
 		self.button1 = button1
 		self.button2 = button2
 		self.button3 = button3
@@ -48,9 +46,9 @@ public struct BXLabelView<Content> : View where Content:View
 	
 	public var body: some View
 	{
-		HStack(alignment:alignment)
+		HStack(alignment:.firstTextBaseline)
 		{
-			if self.label.count > 0
+			if self.label.count > 0 || self.button1 != nil || self.button2 != nil || self.button3 != nil
 			{
 				// The label consists of a Text item and optionally some buttons
 			
