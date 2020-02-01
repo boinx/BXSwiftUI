@@ -90,7 +90,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 		{
 			action = #selector(Coordinator.updateIntValue(with:))
 		}
-
+		
         let textfield = BXTextFieldNative(frame:.zero)
         textfield.delegate = context.coordinator
         textfield.controlSize = self.macControlSize

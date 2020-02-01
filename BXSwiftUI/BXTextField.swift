@@ -22,9 +22,10 @@ public struct  BXTextField<T> : View
 	private var formatter:Formatter? = nil
 	private var isActiveHandler:(BXTextFieldActiveHandler)? = nil
 
-	@Environment(\.controlSize) var controlSize:ControlSize
 	private var baseline:CGFloat = 15.0
-	
+	@Environment(\.controlSize) var controlSize
+
+
 	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, isActiveHandler:(BXTextFieldActiveHandler)? = nil)
 	{
 		self.value = value
@@ -41,19 +42,19 @@ public struct  BXTextField<T> : View
 			switch controlSize
 			{
 				case .regular:
-					self.height = 21.0
+//					self.height = 21.0
 					self.baseline = 15.0
-					
+
 				case .small:
-					self.height = 19.0
+//					self.height = 19.0
 					self.baseline = 14.0
 
 				case .mini:
-					self.height = 16.0
-					self.baseline = 12.0
+//					self.height = 16.0
+					self.baseline = 11.0
 
 				@unknown default:
-					self.height = 21.0
+//					self.height = 21.0
 					self.baseline = 15.0
 			}
 		}
