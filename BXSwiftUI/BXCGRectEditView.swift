@@ -68,19 +68,19 @@ public struct BXCGRectEditView : View
 			{
 				Text("x")
 				
-				BXTextField(value:self.x, height:21, formatter:self.formatter)
+				BXTextField(value:self.x, formatter:self.formatter)
 
 				Text("y")
 				
-				BXTextField(value:self.y, height:21, formatter:self.formatter)
+				BXTextField(value:self.y, formatter:self.formatter)
 
 				Text("width")
 				
-				BXTextField(value:self.w, height:21, formatter:self.formatter)
+				BXTextField(value:self.w, formatter:self.formatter)
 
 				Text("height")
 				
-				BXTextField(value:self.h, height:21, formatter:self.formatter)
+				BXTextField(value:self.h, formatter:self.formatter)
 			}
 		}
 	}

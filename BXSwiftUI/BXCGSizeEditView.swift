@@ -55,11 +55,11 @@ public struct BXCGSizeEditView : View
 			{
 				Text("width")
 				
-				BXTextField(value:self.w, height:21, formatter:self.formatter)
+				BXTextField(value:self.w, formatter:self.formatter)
 
 				Text("height")
 				
-				BXTextField(value:self.h, height:21, formatter:self.formatter)
+				BXTextField(value:self.h, formatter:self.formatter)
 			}
 		}
 	}

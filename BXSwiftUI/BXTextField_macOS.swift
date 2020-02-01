@@ -35,7 +35,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, isActiveHandler:(BXTextFieldActiveHandler)? = nil)
 	{
 		self.value = value
-		self.height = height
+		self.height = height ?? 21.0
 		self.alignment = alignment
 		self.formatter = formatter
 		self.isActiveHandler = isActiveHandler

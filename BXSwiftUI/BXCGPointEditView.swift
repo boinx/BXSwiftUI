@@ -55,11 +55,11 @@ public struct BXCGPointEditView : View
 			{
 				Text("x")
 				
-				BXTextField(value:self.x, height:21, formatter:self.formatter)
+				BXTextField(value:self.x, formatter:self.formatter)
 
 				Text("y")
 				
-				BXTextField(value:self.y, height:21, formatter:self.formatter)
+				BXTextField(value:self.y, formatter:self.formatter)
 			}
 		}
 	}

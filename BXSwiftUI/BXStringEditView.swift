@@ -32,7 +32,7 @@ public struct BXStringEditView : View
 	{
 		BXLabelView(label:label, width:width)
 		{
-			BXTextField(value:self.value, height:21)
+			BXTextField(value:self.value)
 		}
 	}
 }
