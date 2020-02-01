@@ -23,6 +23,7 @@ public extension Formatter
 		formatter.maximumFractionDigits = 2
 		formatter.positiveFormat = "#.##s"
 		formatter.negativeFormat = "-#.##s"
+		formatter.hasThousandSeparators = false
 		return formatter
 	}()
 
@@ -34,6 +35,7 @@ public extension Formatter
 		formatter.maximumFractionDigits = 1
 		formatter.positiveFormat = "#.#°"
 		formatter.negativeFormat = "-#.#°"
+		formatter.hasThousandSeparators = false
 		return formatter
 	}()
 	
@@ -45,6 +47,7 @@ public extension Formatter
 		formatter.maximumFractionDigits = 0
 		formatter.positiveFormat = "#px"
 		formatter.negativeFormat = "-#px"
+		formatter.hasThousandSeparators = false
 		return formatter
 	}()
 	
@@ -56,6 +59,7 @@ public extension Formatter
 		formatter.maximumFractionDigits = 0
 		formatter.positiveFormat = "#pt"
 		formatter.negativeFormat = "-#pt"
+		formatter.hasThousandSeparators = false
 		return formatter
 	}()
 	
@@ -67,6 +71,7 @@ public extension Formatter
 		formatter.maximumFractionDigits = 1
 		formatter.positiveFormat = "#x"
 		formatter.negativeFormat = "-#x"
+		formatter.hasThousandSeparators = false
 		return formatter
 	}()
 	
@@ -87,6 +92,17 @@ public extension Formatter
 		formatter.allowsFloats = true
 		formatter.numberStyle = .decimal
 		formatter.maximumFractionDigits = 6
+		formatter.hasThousandSeparators = false
+		return formatter
+	}()
+	
+	static var intFormatter: NumberFormatter =
+	{
+		let formatter = NumberFormatter()
+		formatter.allowsFloats = false
+		formatter.numberStyle = .decimal
+		formatter.maximumFractionDigits = 0
+		formatter.hasThousandSeparators = false
 		return formatter
 	}()
 }
