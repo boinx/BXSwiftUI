@@ -33,7 +33,7 @@ public struct BXMultiStringInspectorView : View
     {
 		BXLabelView(label:label, width:width)
 		{
-			BXMultiValueTextField(values:self.values, height:22.0, alignment:.leading)
+			BXMultiValueTextField(values:self.values, alignment:.leading)
 			{
 				nstextfield,_,_ in
 				nstextfield.isBordered = true
