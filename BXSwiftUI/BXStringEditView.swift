@@ -32,7 +32,8 @@ public struct BXStringEditView : View
 	{
 		BXLabelView(label:label, width:width)
 		{
-			BXTextField(value:self.value)
+			BXTextField(value:self.value, height:21)
+				.alignmentGuide(.firstTextBaseline, computeValue:{ _ in 15.0 })
 		}
 	}
 }

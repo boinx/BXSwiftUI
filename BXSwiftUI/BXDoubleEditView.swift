@@ -21,7 +21,7 @@ public struct BXDoubleEditView : View
 	private var formatter:Formatter? = nil
 
 
-	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<Double>, formatter:Formatter? = nil)
+	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<Double>, formatter:Formatter? = .doubleFormatter)
 	{
 		self.label = label
 		self.width = width
@@ -34,7 +34,8 @@ public struct BXDoubleEditView : View
 	{
 		BXLabelView(label:label, width:width)
 		{
-			BXTextField(value:self.value, formatter:self.formatter)
+			BXTextField(value:self.value, height:21, formatter:self.formatter)
+				.alignmentGuide(.firstTextBaseline, computeValue:{ _ in 15.0 })
 		}
 	}
 }

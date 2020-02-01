@@ -34,7 +34,8 @@ public struct BXCGFloatEditView : View
 	{
 		BXLabelView(label:label, width:width)
 		{
-			BXTextField(value:self.value, formatter:self.formatter)
+			BXTextField(value:self.value, height:21, formatter:self.formatter)
+				.alignmentGuide(.firstTextBaseline, computeValue:{ _ in 15.0 })
 		}
 	}
 }

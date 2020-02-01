@@ -67,16 +67,20 @@ public struct BXCGRectEditView : View
 			HStack
 			{
 				Text("x")
-				BXTextField(value:self.x, formatter:self.formatter)
-				
+				BXTextField(value:self.x, height:21, formatter:self.formatter)
+					.alignmentGuide(.firstTextBaseline, computeValue:{ _ in 15.0 })
+
 				Text("y")
-				BXTextField(value:self.y, formatter:self.formatter)
+				BXTextField(value:self.y, height:21, formatter:self.formatter)
+					.alignmentGuide(.firstTextBaseline, computeValue:{ _ in 15.0 })
 
 				Text("width")
-				BXTextField(value:self.w, formatter:self.formatter)
+				BXTextField(value:self.w, height:21, formatter:self.formatter)
+					.alignmentGuide(.firstTextBaseline, computeValue:{ _ in 15.0 })
 
 				Text("height")
-				BXTextField(value:self.h, formatter:self.formatter)
+				BXTextField(value:self.h, height:21, formatter:self.formatter)
+					.alignmentGuide(.firstTextBaseline, computeValue:{ _ in 15.0 })
 			}
 		}
 	}
