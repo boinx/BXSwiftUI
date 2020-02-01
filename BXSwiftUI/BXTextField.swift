@@ -16,15 +16,23 @@ import AppKit
 
 public struct  BXTextField<T> : View
 {
+	// Params
+	
 	private var value:Binding<T>
 	private var height:CGFloat? = nil
 	private var alignment:TextAlignment = .leading
 	private var formatter:Formatter? = nil
 	private var isActiveHandler:(BXTextFieldActiveHandler)? = nil
 
-	private var baseline:CGFloat = 15.0
-	@Environment(\.controlSize) var controlSize
+	// Environment
+	
+	@Environment(\.controlSize) private var controlSize
 
+	// Internal
+	
+	private var baseline:CGFloat = 15.0
+	
+	// Build view
 
 	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, isActiveHandler:(BXTextFieldActiveHandler)? = nil)
 	{
