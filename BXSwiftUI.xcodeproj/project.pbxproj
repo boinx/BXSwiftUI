@@ -51,6 +51,7 @@
 		D0C1249A23DAE4A600DB3592 /* BXCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C1249923DAE4A600DB3592 /* BXCircularSlider.swift */; };
 		D0D25BCC23DCB3B400A1B61D /* BXIndentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */; };
 		D0E2429623D8827D00145CEA /* BXDisclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2429523D8827D00145CEA /* BXDisclosureView.swift */; };
+		D0ED327723E557B700B37B3D /* BXTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED327623E557B700B37B3D /* BXTextField.swift */; };
 		D0FFC32F23E037B800BEA7A4 /* BXIntEnumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FFC32E23E037B800BEA7A4 /* BXIntEnumView.swift */; };
 		D0FFC33123E039F100BEA7A4 /* BXMenuItemSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FFC33023E039F100BEA7A4 /* BXMenuItemSpec.swift */; };
 /* End PBXBuildFile section */
@@ -103,6 +104,7 @@
 		D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIndentationView.swift; sourceTree = "<group>"; };
 		D0E2429523D8827D00145CEA /* BXDisclosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXDisclosureView.swift; sourceTree = "<group>"; };
 		D0EBA10923D9881D00E82E59 /* BXTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXTextView.swift; sourceTree = "<group>"; };
+		D0ED327623E557B700B37B3D /* BXTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXTextField.swift; sourceTree = "<group>"; };
 		D0FFC32E23E037B800BEA7A4 /* BXIntEnumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIntEnumView.swift; sourceTree = "<group>"; };
 		D0FFC33023E039F100BEA7A4 /* BXMenuItemSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMenuItemSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				D077D5CB23E3104400C1D20F /* BXButton.swift */,
+				D0ED327623E557B700B37B3D /* BXTextField.swift */,
 				D08FB76E23E4920A00C1A193 /* BXTextField_macOS.swift */,
 				D0EBA10923D9881D00E82E59 /* BXTextView.swift */,
 				D08FB76C23E48D2400C1A193 /* BXTextView_macOS.swift */,
@@ -360,6 +363,7 @@
 				D002FE8623D22EC5002CF0A1 /* Formatter+Custom.swift in Sources */,
 				D02BC5A023DC339D00676CF3 /* BXCGRectEditView.swift in Sources */,
 				D02BC59B23DC2C9F00676CF3 /* BXCGFloatEditView.swift in Sources */,
+				D0ED327723E557B700B37B3D /* BXTextField.swift in Sources */,
 				D077D5C723E2FB4900C1D20F /* View+enabled.swift in Sources */,
 				D002FE8023D22EC5002CF0A1 /* BXMultiValuePicker.swift in Sources */,
 				D02BC59E23DC329E00676CF3 /* BXCGSizeEditView.swift in Sources */,

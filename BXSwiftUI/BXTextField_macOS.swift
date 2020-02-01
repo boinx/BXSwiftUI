@@ -20,16 +20,17 @@ public typealias BXTextFieldActiveHandler = (NSTextField,Bool,Bool)->Void
 //----------------------------------------------------------------------------------------------------------------------
 
 
-/// BXTextField uses an underlying NSTextField to achieve behavior that isn't supported by SwiftUI
+/// BXTextFieldWrapper uses an underlying NSTextField to achieve behavior that isn't supported by SwiftUI
 /// as of 10.15 - that is why we drop down to AppKit and implement the desired behavior ourself.
 
-public struct BXTextField<T> : NSViewRepresentable
+public struct BXTextFieldWrapper<T> : NSViewRepresentable
 {
 	public var value:Binding<T>
 	public var height:CGFloat? = nil
 	public var alignment:TextAlignment = .leading
 	public var formatter:Formatter? = nil
 	public var isActiveHandler:(BXTextFieldActiveHandler)? = nil
+
 
 	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, isActiveHandler:(BXTextFieldActiveHandler)? = nil)
 	{
@@ -40,9 +41,10 @@ public struct BXTextField<T> : NSViewRepresentable
 		self.isActiveHandler = isActiveHandler
 	}
 	
+	
 	// Create the underlying NSCustomTextField
 	
-	public func makeNSView(context:Context) -> BXNativeTextField
+	public func makeNSView(context:Context) -> BXTextFieldNative
     {
 		var action = #selector(Coordinator.updateStringValue(with:))
 		
@@ -67,7 +69,7 @@ public struct BXTextField<T> : NSViewRepresentable
 			action = #selector(Coordinator.updateIntValue(with:))
 		}
 
-        let textfield = BXNativeTextField(frame:.zero)
+        let textfield = BXTextFieldNative(frame:.zero)
         textfield.delegate = context.coordinator
         textfield.alignment = alignment.nstextalignment
         textfield.formatter = formatter
@@ -81,9 +83,10 @@ public struct BXTextField<T> : NSViewRepresentable
 		return textfield
     }
 
+
 	// SwiftUI side has changed, so update the NSCustomTextField
 	
-	public func updateNSView(_ textfield:BXNativeTextField, context:Context)
+	public func updateNSView(_ textfield:BXTextFieldNative, context:Context)
     {
 		if let value = self.value.wrappedValue as? String
 		{
@@ -115,13 +118,14 @@ public struct BXTextField<T> : NSViewRepresentable
 		}
 	}
     
+    
     // The coordinator is responsible for notifying SwiftUI when editing occured in the NSCustomTextField
     
 	public class Coordinator : NSObject,NSTextFieldDelegate
     {
-        var textfield:BXTextField<T>
+        var textfield:BXTextFieldWrapper<T>
 
-        init(_ textfield:BXTextField<T>)
+        init(_ textfield:BXTextFieldWrapper<T>)
         {
             self.textfield = textfield
         }
@@ -167,7 +171,9 @@ public struct BXTextField<T> : NSViewRepresentable
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public class BXNativeTextField : NSTextField
+/// The BXTextFieldNative subclass provides the desired custom behavior that NSTextField doesn't provide out
+/// of the box. 
+public class BXTextFieldNative : NSTextField
 {
 	var isActiveHandler:(BXTextFieldActiveHandler)? = nil
 	var trackingArea:NSTrackingArea? = nil

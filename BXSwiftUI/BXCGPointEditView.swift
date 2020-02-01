@@ -54,12 +54,12 @@ public struct BXCGPointEditView : View
 			HStack
 			{
 				Text("x")
+				
 				BXTextField(value:self.x, height:21, formatter:self.formatter)
-					.alignmentGuide(.firstTextBaseline, computeValue:{ _ in 15.0 })
 
 				Text("y")
+				
 				BXTextField(value:self.y, height:21, formatter:self.formatter)
-					.alignmentGuide(.firstTextBaseline, computeValue:{ _ in 15.0 })
 			}
 		}
 	}
