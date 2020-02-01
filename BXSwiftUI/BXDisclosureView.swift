@@ -58,6 +58,7 @@ public struct BXDisclosureButton : View
 {
 	private var label:String
 	private var isExpanded:Binding<Bool>
+
 	@Environment(\.font) var font
 
 
