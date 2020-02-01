@@ -21,10 +21,14 @@ public struct BXMultiValueToggle : NSViewRepresentable
 {
 	// Params
 	
-    @Binding var values:Set<Bool>
-	var label:String = ""
+    @Binding public var values:Set<Bool>
+	public var label:String = ""
 	
+	// Environment
 	
+	@Environment(\.isEnabled) private var isEnabled
+
+
 	/// Creates a checkbox style NSButton that allows for mixed state
 	
     public func makeNSView(context:Context) -> NSButton
@@ -43,12 +47,12 @@ public struct BXMultiValueToggle : NSViewRepresentable
 		if values.count > 1
 		{
 			button.state = .mixed
-			button.isEnabled = true
+			button.isEnabled = self.isEnabled
 		}
 		else if let value = values.first
 		{
 			button.state = value ? .on : .off
-			button.isEnabled = true
+			button.isEnabled = self.isEnabled
 		}
 		else
 		{

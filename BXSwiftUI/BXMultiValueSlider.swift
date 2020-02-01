@@ -16,9 +16,11 @@ import AppKit
 
 struct BXMultiValueSlider : NSViewRepresentable
 {
-    @Binding var values:Set<Double>
+    @Binding public var values:Set<Double>
 	public var `in`:ClosedRange<Double>
 	
+	@Environment(\.isEnabled) private var isEnabled
+
 	
     func makeNSView(context:Context) -> NSSlider
     {
@@ -49,7 +51,7 @@ struct BXMultiValueSlider : NSViewRepresentable
 			slider.doubleValue = slider.minValue
 		}
 		
-		slider.isEnabled = self.values.count > 0
+		slider.isEnabled = self.isEnabled && self.values.count > 0
     }
     
     
@@ -105,7 +107,11 @@ class NSMultiValueSliderCell : NSSliderCell
 
 	override open func drawKnob(_ knobRect:NSRect)
 	{
-		let rect = knobRect.insetBy(dx:4.0, dy:4.0)
+		let x:CGFloat = knobRect.midX
+		let y:CGFloat = knobRect.midY
+		let w:CGFloat = 12.0
+		let h:CGFloat = 12.0
+		let rect = CGRect(x:x-0.5*w,y:y-0.5*h,width:w,height:h)
 		let path = NSBezierPath(ovalIn:rect)
 		path.lineWidth = 1.5
 		
@@ -113,10 +119,11 @@ class NSMultiValueSliderCell : NSSliderCell
 		NSGraphicsContext.current?.compositingOperation = .copy
 		NSColor.clear.set()
 		path.fill()
-		NSGraphicsContext.restoreGraphicsState()
 		
-		NSColor.white.set()
+		NSColor(white:1.0, alpha:isEnabled ? 1.0 : 0.33).set()
 		path.stroke()
+
+		NSGraphicsContext.restoreGraphicsState()
 	}
 }
 

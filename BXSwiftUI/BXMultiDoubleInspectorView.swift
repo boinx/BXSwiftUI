@@ -24,6 +24,8 @@ public struct BXMultiDoubleInspectorView: View
 	public var range:ClosedRange<Double> = 0.0...60.0
 	public var formatter:Formatter? = nil
 	
+	@Environment(\.isEnabled) private var isEnabled
+	
 	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Double>>, range:ClosedRange<Double>, formatter:Formatter? = nil)
 	{
 		self.label = label
@@ -45,24 +47,25 @@ public struct BXMultiDoubleInspectorView: View
 			HStack
 			{
 				Text(label)
+					.opacity(isEnabled ? 1.0 : 0.33)
 
 				Spacer()
 
-				BXMultiValueTextField(values:values, height:17, alignment:.trailing, formatter:formatter)
+				BXMultiValueTextField(values:values, alignment:.trailing, formatter:formatter)
 				{
-					(nstextfield,isFirstResponder,isHovering) in
+					(nsTextField,isFirstResponder,isHovering) in
 					let isActive = isFirstResponder || isHovering
-					nstextfield.isBordered = false
-					nstextfield.drawsBackground = isActive
-					nstextfield.layer?.borderWidth = isActive ? 1.0 : 0.0
-					nstextfield.layer?.borderColor = NSColor.lightGray.cgColor
+					nsTextField.isBordered = false
+					nsTextField.drawsBackground = isActive
+					nsTextField.layer?.borderWidth = isActive ? 1.0 : 0.0
+					nsTextField.layer?.borderColor = NSColor.lightGray.cgColor
 				}
 				.frame(width:60.0)
-				.offset(x:0,y:1)
 			}
 			
 			BXMultiValueSlider(values:values, in:range)
 				.zIndex(-1)
+				.offset(x:0,y:1)
 		}
 		.frame(maxHeight:24.0, alignment:.top)
 	}

@@ -18,11 +18,29 @@ struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheck
 {
 	// Params
 	
-    @Binding var values:Set<T>
-	var height:CGFloat? = nil
-	var alignment:TextAlignment = .leading
-	var formatter:Formatter? = nil
-	var isActiveHandler:(BXTextFieldActiveHandler)? = nil
+    @Binding public var values:Set<T>
+	public var height:CGFloat? = nil
+	public var alignment:TextAlignment = .leading
+	public var formatter:Formatter? = nil
+	public var isActiveHandler:(BXTextFieldActiveHandler)? = nil
+	
+	@Environment(\.isEnabled) private var isEnabled
+
+
+	// The control size is provided by the environment. Needs to be converted to NSControl datatype
+	
+	@Environment(\.controlSize) private var controlSize:ControlSize
+	
+	private var macControlSize:NSControl.ControlSize
+	{
+		switch controlSize
+		{
+			case .regular: 		return .regular
+			case .small: 		return .small
+			case .mini: 		return .mini
+			@unknown default: 	return .regular
+		}
+	}
 
 
 	/// Creates the underlying BXNativeTextField
@@ -44,6 +62,7 @@ struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheck
         textfield.delegate = context.coordinator
         textfield.alignment = alignment.nstextalignment
         textfield.formatter = formatter
+        textfield.controlSize = self.macControlSize
         textfield.fixedHeight = self.height
 		textfield.target = context.coordinator
 		textfield.action = action
@@ -79,13 +98,13 @@ struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheck
 			}
 
 			textfield.placeholderString = nil
-			textfield.isEnabled = true
+			textfield.isEnabled = self.isEnabled
 		}
 		else
 		{
 			textfield.stringValue = ""
 			textfield.placeholderString = "multiple"
-			textfield.isEnabled = true
+			textfield.isEnabled = self.isEnabled
 		}
     }
     

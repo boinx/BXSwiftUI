@@ -18,6 +18,8 @@ import SwiftUI
 
 public struct BXMultiIntInspectorView : View
 {
+	// Params
+	
 	private var label:String = ""
 	private var width:Binding<CGFloat>? = nil
 	private var values:Binding<Set<Int>>
@@ -56,7 +58,6 @@ public struct BXMultiIntInspectorView : View
 		BXLabelView(label:label, width:width)
 		{
 			BXMultiValuePicker(values:self.values, orderedItems:self.orderedItems)
-				.environment(\.isEnabled, self.values.wrappedValue.count>0)
 				.modifier(StrokedPopupStyle())
 		}
 	}

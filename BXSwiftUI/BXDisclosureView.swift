@@ -19,6 +19,8 @@ public struct BXDisclosureView<H,B> : View where H:View, B:View
 	private var headerBuilder:()->H
 	private var bodyBuilder:()->B
 
+	@Environment(\.isEnabled) private var isEnabled
+
 
 //	public init(label:String, isExpanded:Binding<Bool>, @ViewBuilder body bodyBuilder:@escaping ()->B)
 //	{
@@ -41,12 +43,14 @@ public struct BXDisclosureView<H,B> : View where H:View, B:View
 		VStack(alignment:.leading, spacing:12)
 		{
 			headerBuilder()
-			
+				.opacity(isEnabled ? 1.0 : 0.33)
+				
 			if isExpanded.wrappedValue
 			{
 				bodyBuilder()
 			}
 		}
+		
 	}
 }
 

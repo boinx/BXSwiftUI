@@ -19,24 +19,17 @@ public struct BXMultiValuePicker : NSViewRepresentable
 {
 	// Binding to a set of zero or more Int values
 	
-	@Binding var values:Set<Int>
+	@Binding public var values:Set<Int>
 	
 	// An ordered list of info for creating the popup menu items
 	
-	var orderedItems:[BXMenuItemSpec] = []
-	
+	public var orderedItems:[BXMenuItemSpec] = []
 
-	// Since we are dealing with multiple selection, a value can either be "none" (no selection), it can be
-	// "unique", or in case of multiple selected values that are different, it will be "multiple".
+	// Environment
 	
-	private enum Values : Int
-	{
-		case none = -2
-		case multiple = -1
-		case unique = 0
-	}
+	@Environment(\.isEnabled) private var isEnabled
 
-	
+
 	// Create an NSPopUpButton
 	
 	public func makeNSView(context:Context) -> NSPopUpButton
@@ -51,7 +44,7 @@ public struct BXMultiValuePicker : NSViewRepresentable
         popup.autoenablesItems = false
 		popup.target = context.coordinator
 		popup.action = #selector(Coordinator.updateValues(with:))
-
+		
 		// Add an invisible menu item for "none" (nothing is selected)
 		
         item = NSMenuItem(title:"none", action:nil, keyEquivalent:"")
@@ -111,19 +104,21 @@ public struct BXMultiValuePicker : NSViewRepresentable
     {
 		popup.menu?.item(withTag:Values.none.rawValue)?.isHidden = values.count > 0
 		popup.menu?.item(withTag:Values.multiple.rawValue)?.isHidden = values.count < 2
-		popup.isEnabled = values.count > 0
 
 		if values.count > 1
 		{
 			popup.selectItem(withTag:Values.multiple.rawValue)
+			popup.isEnabled = self.isEnabled
 		}
 		else if let value = values.first
 		{
 			popup.selectItem(withTag:value)
+			popup.isEnabled = self.isEnabled
 		}
 		else
 		{
 			popup.selectItem(withTag:Values.none.rawValue)
+			popup.isEnabled = false
 		}
     }
     
@@ -149,6 +144,20 @@ public struct BXMultiValuePicker : NSViewRepresentable
     {
         return Coordinator(self)
     }
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+// Since we are dealing with multiple selection, a value can either be "none" (no selection), it can be
+// "unique", or in case of multiple selected values that are different, it will be "multiple".
+
+fileprivate enum Values : Int
+{
+	case none = -2
+	case multiple = -1
+	case unique = 0
 }
 
 

@@ -29,6 +29,8 @@ public struct BXLabelView<Content> : View where Content:View
 	private var button3:BXButtonBuilder? = nil
 	private var content:()->Content
 
+	@Environment(\.isEnabled) private var isEnabled
+
 	private var minWidth:CGFloat
 	{
 		width?.wrappedValue ?? 0.0
@@ -71,6 +73,7 @@ public struct BXLabelView<Content> : View where Content:View
 						self.button3!()
 					}
 				}
+				.opacity(isEnabled ? 1.0 : 0.33)
 				
 				// Measure its size and attach a preference (with its width)
 				
