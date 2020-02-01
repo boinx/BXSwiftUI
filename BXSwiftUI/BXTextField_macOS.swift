@@ -14,6 +14,12 @@ import AppKit
 //----------------------------------------------------------------------------------------------------------------------
 
 
+/// This closure is called whenever editing begin or end, or when the mouse enters or exits the textfield. This
+/// information can be used to update the appearance of the textfield. The arguments are:
+/// - The NSTextField
+/// - A Bool indicating whether the field is currently firstResponder (i.e. being edited)
+/// - A Bool indicating whether the the mouse is currenty inside the field
+
 public typealias BXTextFieldActiveHandler = (NSTextField,Bool,Bool)->Void
 
 
@@ -31,11 +37,27 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 	public var formatter:Formatter? = nil
 	public var isActiveHandler:(BXTextFieldActiveHandler)? = nil
 
+	// The control size is provided by the environment. needs to be converted to NSControl datatype
+	
+	@Environment(\.controlSize) var controlSize:ControlSize
+	
+	private var macControlSize:NSControl.ControlSize
+	{
+		switch controlSize
+		{
+			case .regular: 		return .regular
+			case .small: 		return .small
+			case .mini: 		return .mini
+			@unknown default: 	return .regular
+		}
+	}
 
+	// Only needed to make init public
+	
 	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, isActiveHandler:(BXTextFieldActiveHandler)? = nil)
 	{
 		self.value = value
-		self.height = height ?? 21.0
+		self.height = height 
 		self.alignment = alignment
 		self.formatter = formatter
 		self.isActiveHandler = isActiveHandler
@@ -71,6 +93,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 
         let textfield = BXTextFieldNative(frame:.zero)
         textfield.delegate = context.coordinator
+        textfield.controlSize = self.macControlSize
         textfield.alignment = alignment.nstextalignment
         textfield.formatter = formatter
         textfield.fixedHeight = self.height
@@ -171,8 +194,10 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 //----------------------------------------------------------------------------------------------------------------------
 
 
-/// The BXTextFieldNative subclass provides the desired custom behavior that NSTextField doesn't provide out
-/// of the box. 
+// MARK: -
+
+/// The BXTextFieldNative subclass provides the desired custom behavior that NSTextField doesn't provide out of the box
+
 public class BXTextFieldNative : NSTextField
 {
 	var isActiveHandler:(BXTextFieldActiveHandler)? = nil
