@@ -61,6 +61,13 @@ public struct BXMultiValuePicker : NSViewRepresentable
 		item.isHidden = true
 		popup.menu?.addItem(item)
         
+        // Add an invisible initial divider
+        
+		item = NSMenuItem.separator()
+		item.tag = Values.initialDivider.rawValue
+		item.isEnabled = false
+		popup.menu?.addItem(item)
+
         for itemSpec in self.orderedItems
         {
 			switch itemSpec
@@ -102,8 +109,12 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	
 	public func updateNSView(_ popup:NSPopUpButton, context:Context)
     {
-		popup.menu?.item(withTag:Values.none.rawValue)?.isHidden = values.count > 0
-		popup.menu?.item(withTag:Values.multiple.rawValue)?.isHidden = values.count < 2
+		let isNone = values.wrappedValue.count == 0
+		let isMultiple = values.wrappedValue.count > 1
+		
+		popup.menu?.item(withTag:Values.none.rawValue)?.isHidden = !isNone
+		popup.menu?.item(withTag:Values.multiple.rawValue)?.isHidden = !isMultiple
+		popup.menu?.item(withTag:Values.initialDivider.rawValue)?.isHidden = !(isNone || isMultiple)
 
 		if values.count > 1
 		{
@@ -158,15 +169,18 @@ fileprivate enum Values : Int
 	case none = -2
 	case multiple = -1
 	case unique = 0
+	case initialDivider = -3
 }
 
 
 //----------------------------------------------------------------------------------------------------------------------
 
 
-struct StrokedPopupStyle : ViewModifier
+public struct StrokedPopupStyle : ViewModifier
 {
-    func body(content:Content) -> some View
+	public init() {}
+	
+	public func body(content:Content) -> some View
     {
         content
 			.background(
