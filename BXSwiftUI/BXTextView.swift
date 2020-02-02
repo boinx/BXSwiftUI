@@ -19,9 +19,17 @@ import AppKit
 
 public struct BXTextView : View
 {
+	// Params
+	
     private var value:Binding<NSAttributedString>
 	private var statusHandler:(BXTextViewStatusHandler)? = nil
 
+	// Environment
+	
+	@Environment(\.controlSize) private var controlSize
+
+	// Private State
+	
 	@State private var fittingSize:CGSize = CGSize(width:20, height:20)
 
 
@@ -38,7 +46,9 @@ public struct BXTextView : View
 		self.statusHandler = statusHandler
 	}
 	
-
+	
+	// Build the view
+	
 	public var body: some View
 	{
 		#if os(macOS)
@@ -46,9 +56,9 @@ public struct BXTextView : View
 		return BXTextView_macOS(value:self.value, fittingSize:self.$fittingSize, statusHandler:statusHandler)
 			
 			// Since we are dealing with rich text, we do not really know where the first baseline should be.
-			// So simply assume the first text baseline to be 15pt from the top.
+			// So simply use a hardcoded value that looks good relative to the view frame.
 			
-			.alignmentGuide(.firstTextBaseline) { _ in return 15.0 }
+			.alignmentGuide(.firstTextBaseline) { _ in return self.firstBaselineOffset }
 			
 			// Once the correct fitting size has been calculated and set, resize the view to the exact height.
 			
@@ -59,6 +69,18 @@ public struct BXTextView : View
 		#warning("TODO: implement")
 		
 		#endif
+	}
+	
+	private var firstBaselineOffset : CGFloat
+	{
+		switch controlSize
+		{
+			case .regular: 		return 15.0
+			case .small: 		return 11.0
+			case .mini: 		return 8.0
+			
+			@unknown default:	return 15.0
+		}
 	}
 }
 
