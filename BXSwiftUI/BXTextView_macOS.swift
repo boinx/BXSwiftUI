@@ -113,21 +113,17 @@ internal struct BXTextView_macOS : NSViewRepresentable
 		{
             textView.textContainer?.maximumNumberOfLines = lineLimit
         }
-         
-        // The first time we get here, we need to measure the size of the view (which depends
-        // on the text) and notify the SwiftUI layout system accordingly.
+
+        // Measure the size of the view (which depends on the text contents) and notify the
+        // SwiftUI layout system accordingly.
         
-        if context.coordinator.updateCount == 0
-        {
-			let size = textView.fittingSize()
-			
-			DispatchQueue.main.async
-			{
-				self.fittingSize = size
-			}
+		let size = textView.fittingSize()
+		
+		DispatchQueue.main.async
+		{
+			self.fittingSize = size
 		}
 		
-		context.coordinator.updateCount += 1
 		// Call statusHandler so that clients can update the appearance of the view accordingly
 		
 		textView.notify()
@@ -139,7 +135,6 @@ internal struct BXTextView_macOS : NSViewRepresentable
     class Coordinator : NSObject, NSTextViewDelegate
     {
         var swituiTextView:BXTextView_macOS
-		var updateCount = 0
 
         init(_ textView:BXTextView_macOS)
         {
