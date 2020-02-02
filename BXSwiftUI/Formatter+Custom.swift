@@ -78,11 +78,8 @@ public extension Formatter
 	static var percentFormatter: NumberFormatter =
 	{
 		let formatter = NumberFormatter()
-//		formatter.allowsFloats = false
 		formatter.numberStyle = .percent
-//		formatter.maximumFractionDigits = 0
-//		formatter.positiveFormat = "#%"
-//		formatter.negativeFormat = "-#%"
+		formatter.hasThousandSeparators = false
 		return formatter
 	}()
 	
