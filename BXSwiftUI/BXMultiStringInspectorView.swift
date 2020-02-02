@@ -18,27 +18,30 @@ import SwiftUI
 
 public struct BXMultiStringInspectorView : View
 {
-	public var label:String = ""
-	public var width:Binding<CGFloat>? = nil
-	public var values:Binding<Set<String>>
+	// Params
 	
-	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<String>>)
+	private var label:String = ""
+	private var width:Binding<CGFloat>? = nil
+	private var values:Binding<Set<String>>
+	private var statusHandler:BXTextFieldStatusHandler? = nil
+
+	// Init
+	
+	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<String>>, statusHandler:BXTextFieldStatusHandler? = nil)
 	{
 		self.label = label
 		self.width = width
 		self.values = values
+		self.statusHandler = statusHandler
 	}
+	
+	// Build View
 	
     public var body: some View
     {
 		BXLabelView(label:label, width:width)
 		{
-			BXMultiValueTextField(values:self.values, alignment:.leading)
-			{
-				nstextfield,_,_ in
-				nstextfield.isBordered = true
-				nstextfield.drawsBackground = true
-			}
+			BXMultiValueTextField(values:self.values, alignment:.leading, statusHandler:self.statusHandler)
 		}
 	}
 }

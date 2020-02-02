@@ -22,7 +22,9 @@ struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheck
 	public var height:CGFloat? = nil
 	public var alignment:TextAlignment = .leading
 	public var formatter:Formatter? = nil
-	public var isActiveHandler:(BXTextFieldActiveHandler)? = nil
+	public var statusHandler:(BXTextFieldStatusHandler)? = nil
+	
+	// Environment
 	
 	@Environment(\.isEnabled) private var isEnabled
 
@@ -66,8 +68,10 @@ struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheck
         textfield.fixedHeight = self.height
 		textfield.target = context.coordinator
 		textfield.action = action
-		textfield.isActiveHandler = { self.isActiveHandler?($0,$1,$2) }
-		self.isActiveHandler?(textfield,false,false)
+		textfield.statusHandler = self.statusHandler
+		
+		self.statusHandler?(textfield,true,false,false)
+		
 		return textfield
     }
 

@@ -20,7 +20,7 @@ import AppKit
 public struct BXTextView : View
 {
     private var value:Binding<NSAttributedString>
-	private var isActiveHandler:(BXTextViewActiveHandler)? = nil
+	private var statusHandler:(BXTextViewStatusHandler)? = nil
 
 	@State private var fittingSize:CGSize = CGSize(width:20, height:20)
 
@@ -32,10 +32,10 @@ public struct BXTextView : View
 	/// - parameter isActiveHandler: A closure that is called repeatedly as the mouse enters or exits the view,
 	/// or when editing starts or ends. Can be used to change the appearance of the view.
 
-	public init(value:Binding<NSAttributedString>, isActiveHandler:(BXTextViewActiveHandler)? = nil)
+	public init(value:Binding<NSAttributedString>, statusHandler:(BXTextViewStatusHandler)? = nil)
 	{
 		self.value = value
-		self.isActiveHandler = isActiveHandler
+		self.statusHandler = statusHandler
 	}
 	
 
@@ -43,7 +43,7 @@ public struct BXTextView : View
 	{
 		#if os(macOS)
 		
-		return BXTextView_macOS(value:self.value, fittingSize:self.$fittingSize, isActiveHandler:isActiveHandler)
+		return BXTextView_macOS(value:self.value, fittingSize:self.$fittingSize, statusHandler:statusHandler)
 			
 			// Since we are dealing with rich text, we do not really know where the first baseline should be.
 			// So simply assume the first text baseline to be 15pt from the top.

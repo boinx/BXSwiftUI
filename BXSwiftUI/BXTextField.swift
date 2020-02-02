@@ -22,7 +22,7 @@ public struct  BXTextField<T> : View
 	private var height:CGFloat? = nil
 	private var alignment:TextAlignment = .leading
 	private var formatter:Formatter? = nil
-	private var isActiveHandler:(BXTextFieldActiveHandler)? = nil
+	private var statusHandler:(BXTextFieldStatusHandler)? = nil
 
 	// Environment
 	
@@ -34,13 +34,13 @@ public struct  BXTextField<T> : View
 	
 	// Build view
 
-	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, isActiveHandler:(BXTextFieldActiveHandler)? = nil)
+	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, statusHandler:(BXTextFieldStatusHandler)? = nil)
 	{
 		self.value = value
 		self.height = height
 		self.alignment = alignment
 		self.formatter = formatter
-		self.isActiveHandler = isActiveHandler
+		self.statusHandler = statusHandler
 		
 		// If a fixed height was not provided, then choose the height and baseline depending on environment controlSize.
 		// Please note that these hardcoded values might possibly changes in future OS versions.
@@ -71,7 +71,7 @@ public struct  BXTextField<T> : View
 
 	public var body: some View
 	{
-		BXTextFieldWrapper(value:value, height:height, alignment:alignment, formatter:formatter, isActiveHandler:isActiveHandler)
+		BXTextFieldWrapper(value:value, height:height, alignment:alignment, formatter:formatter, statusHandler:statusHandler)
 
 			// Apply size specific alignment for the first baseline
 			

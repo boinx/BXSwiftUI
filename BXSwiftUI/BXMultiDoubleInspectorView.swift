@@ -18,27 +18,37 @@ import SwiftUI
 
 public struct BXMultiDoubleInspectorView: View
 {
-	public var label:String = ""
-	public var width:Binding<CGFloat>? = nil
-	public var values:Binding<Set<Double>>
-	public var range:ClosedRange<Double> = 0.0...60.0
-	public var formatter:Formatter? = nil
+	// Params
+	
+	private var label:String = ""
+	private var width:Binding<CGFloat>? = nil
+	private var values:Binding<Set<Double>>
+	private var range:ClosedRange<Double> = 0.0...60.0
+	private var formatter:Formatter? = nil
+	private var statusHandler:BXTextFieldStatusHandler? = nil
+
+	// Environment
 	
 	@Environment(\.isEnabled) private var isEnabled
 	
-	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Double>>, range:ClosedRange<Double>, formatter:Formatter? = nil)
+	// Init
+	
+	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Double>>, range:ClosedRange<Double>, formatter:Formatter? = nil, statusHandler:BXTextFieldStatusHandler? = nil)
 	{
 		self.label = label
 		self.width = width
 		self.values = values
 		self.range = range
 		self.formatter = formatter
+		self.statusHandler = statusHandler
 	}
 	
 	private var value:Double
 	{
 		return values.wrappedValue.first ?? 0.0
 	}
+	
+	// Build view
 	
     public var body: some View
     {
@@ -51,16 +61,8 @@ public struct BXMultiDoubleInspectorView: View
 
 				Spacer()
 
-				BXMultiValueTextField(values:values, alignment:.trailing, formatter:formatter)
-				{
-					(nsTextField,isFirstResponder,isHovering) in
-					let isActive = isFirstResponder || isHovering
-					nsTextField.isBordered = false
-					nsTextField.drawsBackground = isActive
-					nsTextField.layer?.borderWidth = isActive ? 1.0 : 0.0
-					nsTextField.layer?.borderColor = NSColor.lightGray.cgColor
-				}
-				.frame(width:60.0)
+				BXMultiValueTextField(values:values, alignment:.trailing, formatter:formatter, statusHandler:statusHandler)
+					.frame(width:60.0)
 			}
 			
 			BXMultiValueSlider(values:values, in:range)

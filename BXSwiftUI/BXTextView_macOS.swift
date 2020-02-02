@@ -16,19 +16,25 @@ import AppKit
 
 #if os(macOS)
 
-/// This handler is called repeately as text editing begin or ends, and when the mouse enters or exits the view.
-/// The arguments are the NSTextView, a Bool indicating whether it is firstResponder (currently editing), and
-/// a Bool indicating whether the mouse is currently inside the view. The appearance can be modified as desired.
+/// This closure is called whenever editing begins or ends, or when the mouse enters or exits the textview.
+/// This information can be used to update the appearance of the textview. The arguments are:
+/// - The NSTextView
+/// - A Bool indicating whether the field is currently enabled
+/// - A Bool indicating whether the field is currently firstResponder (i.e. being edited)
+/// - A Bool indicating whether the the mouse is currenty inside the field
 
-public typealias BXTextViewActiveHandler = (NSTextView,Bool,Bool)->Void
+public typealias BXTextViewStatusHandler = (NSTextView,Bool,Bool,Bool)->Void
 
 #elseif os(iOS)
 
-/// This handler is called repeately as text editing begin or ends. The argument are the UITextView and a Bool
-/// indicating whether the text is currently being edited. The appearance can be modified as desired.
+/// This closure is called whenever editing begins or ends.
+/// This information can be used to update the appearance of the textview. The arguments are:
+/// - The UITextView
+/// - A Bool indicating whether the field is currently enabled
+/// - A Bool indicating whether the field is currently firstResponder (i.e. being edited)
+/// - A Bool that is not used on iOS
 
-public typealias BXTextViewActiveHandler = (UITextView,Bool)->Void
-
+public typealias BXTextViewStatusHandler = (UITextView,Bool,Bool,Bool)->Void
 
 #endif
 
@@ -45,7 +51,7 @@ internal struct BXTextView_macOS : NSViewRepresentable
 {
     @Binding var value:NSAttributedString
 	@Binding var fittingSize:CGSize
-	var isActiveHandler:(BXTextViewActiveHandler)? = nil
+	var statusHandler:(BXTextViewStatusHandler)? = nil
 
 
 	// Create the underlying NSCustomTextView
@@ -59,7 +65,7 @@ internal struct BXTextView_macOS : NSViewRepresentable
 		textView.allowsUndo	= true
 		
         textView.delegate = context.coordinator
-        textView.isActiveHandler = self.isActiveHandler
+        textView.statusHandler = self.statusHandler
         
         textView.textContainerInset = NSMakeSize(0.0,3.0)
         textView.textContainer?.widthTracksTextView = true
@@ -152,7 +158,7 @@ internal struct BXTextView_macOS : NSViewRepresentable
 
 class BXNativeTextView : NSTextView
 {
-	var isActiveHandler:(BXTextViewActiveHandler)? = nil
+	var statusHandler:(BXTextViewStatusHandler)? = nil
 	var trackingArea:NSTrackingArea? = nil
 	var isFirstResponder = false { didSet { self.notify() } }
 	var isHovering = false { didSet { self.notify() } }
@@ -232,7 +238,7 @@ class BXNativeTextView : NSTextView
 	
 	@objc func notify()
 	{
-		self.isActiveHandler?(self,isFirstResponder,isHovering)
+		self.statusHandler?(self, self.isEditable, isFirstResponder, isHovering)
 	}
 	
 	// Calculate the fitting size for the text

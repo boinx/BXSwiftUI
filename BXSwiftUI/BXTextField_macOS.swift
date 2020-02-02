@@ -17,10 +17,11 @@ import AppKit
 /// This closure is called whenever editing begin or end, or when the mouse enters or exits the textfield. This
 /// information can be used to update the appearance of the textfield. The arguments are:
 /// - The NSTextField
+/// - A Bool indicating whether the field is currently enabled
 /// - A Bool indicating whether the field is currently firstResponder (i.e. being edited)
 /// - A Bool indicating whether the the mouse is currenty inside the field
 
-public typealias BXTextFieldActiveHandler = (NSTextField,Bool,Bool)->Void
+public typealias BXTextFieldStatusHandler = (NSTextField,Bool,Bool,Bool)->Void
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -31,15 +32,19 @@ public typealias BXTextFieldActiveHandler = (NSTextField,Bool,Bool)->Void
 
 public struct BXTextFieldWrapper<T> : NSViewRepresentable
 {
+	// Params
+	
 	public var value:Binding<T>
 	public var height:CGFloat? = nil
 	public var alignment:TextAlignment = .leading
 	public var formatter:Formatter? = nil
-	public var isActiveHandler:(BXTextFieldActiveHandler)? = nil
+	public var statusHandler:(BXTextFieldStatusHandler)? = nil
 
-	// The control size is provided by the environment. needs to be converted to NSControl datatype
+	// Environment
 	
 	@Environment(\.controlSize) var controlSize:ControlSize
+
+	// The control size is provided by the environment. needs to be converted to NSControl datatype
 	
 	private var macControlSize:NSControl.ControlSize
 	{
@@ -54,13 +59,13 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 
 	// Only needed to make init public
 	
-	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, isActiveHandler:(BXTextFieldActiveHandler)? = nil)
+	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, statusHandler:(BXTextFieldStatusHandler)? = nil)
 	{
 		self.value = value
 		self.height = height 
 		self.alignment = alignment
 		self.formatter = formatter
-		self.isActiveHandler = isActiveHandler
+		self.statusHandler = statusHandler
 	}
 	
 	
@@ -101,8 +106,10 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 		textfield.action = action
 		textfield.isBordered = true
 		textfield.drawsBackground = true
-		textfield.isActiveHandler = { self.isActiveHandler?($0,$1,$2) }
-		self.isActiveHandler?(textfield,false,false)
+		textfield.statusHandler = self.statusHandler
+		
+		self.statusHandler?(textfield,true,false,false)
+		
 		return textfield
     }
 
@@ -200,7 +207,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 
 public class BXTextFieldNative : NSTextField
 {
-	var isActiveHandler:(BXTextFieldActiveHandler)? = nil
+	var statusHandler:(BXTextFieldStatusHandler)? = nil
 	var trackingArea:NSTrackingArea? = nil
 	var isFirstResponder = false { didSet { self.notify() } }
 	var isHovering = false { didSet { self.notify() } }
@@ -293,7 +300,7 @@ public class BXTextFieldNative : NSTextField
 	
 	@objc func notify()
 	{
-		self.isActiveHandler?(self,isFirstResponder,isHovering)
+		self.statusHandler?(self, self.isEnabled, isFirstResponder, isHovering)
 	}
 }
 
