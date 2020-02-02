@@ -70,8 +70,8 @@ struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheck
 		textfield.action = action
 		textfield.statusHandler = self.statusHandler
 		
-		self.statusHandler?(textfield,true,false,false)
-		
+		textfield.notify()
+
 		return textfield
     }
 
@@ -110,6 +110,8 @@ struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheck
 			textfield.placeholderString = "multiple"
 			textfield.isEnabled = self.isEnabled
 		}
+
+		textfield.notify()
     }
     
     

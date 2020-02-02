@@ -73,6 +73,8 @@ internal struct BXTextView_macOS : NSViewRepresentable
 		textView.translatesAutoresizingMaskIntoConstraints = false
         textView.autoresizingMask = [.width, .height]
 	
+		textView.notify()
+		
 		return textView
     }
 
@@ -114,6 +116,7 @@ internal struct BXTextView_macOS : NSViewRepresentable
 		}
 		
 		context.coordinator.updateCount += 1
+		textView.notify()
 	}
     
 
