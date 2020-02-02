@@ -15,9 +15,11 @@ import SwiftUI
 
 public struct BXStrokedCheckboxStyle : ToggleStyle
 {
-	// The control size is provided by the environment. needs to be converted to NSControl datatype
+	// Environment
 	
-	@Environment(\.controlSize) private var controlSize:ControlSize
+	@Environment(\.isEnabled) private var isEnabled
+	@Environment(\.controlSize) private var controlSize
+	@Environment(\.hasMultipleValues) private var hasMultipleValues
 	
 	// Necessary to make init available outside this module
 	
@@ -32,6 +34,7 @@ public struct BXStrokedCheckboxStyle : ToggleStyle
 			case .regular: 		return 15.0
 			case .small: 		return 12.0
 			case .mini: 		return 9.0
+			
 			@unknown default:	return 15.0
 		}
 	}
@@ -43,6 +46,7 @@ public struct BXStrokedCheckboxStyle : ToggleStyle
 			case .regular: 		return 3.0
 			case .small: 		return 2.0
 			case .mini: 		return 2.0
+			
 			@unknown default:	return 3.0
 		}
 	}
@@ -51,29 +55,59 @@ public struct BXStrokedCheckboxStyle : ToggleStyle
 	
     public func makeBody(configuration: Self.Configuration) -> some View
     {
-        HStack
+		let fillColor = configuration.isOn || self.hasMultipleValues ?
+			Color.accentColor :
+			Color(white:1.0, opacity:0.07)
+		
+        return HStack
         {
             ZStack()
             {
+				// Fill
+				
                 RoundedRectangle(cornerRadius:radius)
-                    .foregroundColor(configuration.isOn ? Color.accentColor : Color(white:1.0, opacity:0.07))
+                    .foregroundColor(fillColor)
                     .frame(width:edge, height:edge)
 
+				// Stroke
+				
 				RoundedRectangle(cornerRadius:radius)
                     .stroke(Color.gray, lineWidth:0.5)
 					.frame(width:edge, height:edge)
-					
-				if configuration.isOn
+				
+				// Content
+				
+				if self.hasMultipleValues
+				{
+					Text("–").bold().offset(x:0.5, y:0)
+				}
+				else if configuration.isOn
 				{
 					Text("✓").bold().offset(x:0.5, y:0)
 				}
             }
 			
+			// Label
+			
 			configuration.label
         }
+        
+        // Dim when disabled
+        
+        .opacity(self.isEnabled ? 1.0 : 0.33)
+        
+        // Event handling
+        
 		.onTapGesture
 		{
-			configuration.$isOn.wrappedValue.toggle()
+			if self.hasMultipleValues
+			{
+				configuration.$isOn.wrappedValue = true
+			}
+			else
+			{
+				configuration.$isOn.wrappedValue.toggle()
+			}
 		}
     }
 }
