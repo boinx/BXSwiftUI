@@ -17,20 +17,24 @@ import AppKit
 
 public struct BXMultiValuePicker : NSViewRepresentable
 {
-	// Binding to a set of zero or more Int values
+	// Params
 	
-	@Binding public var values:Set<Int>
-	
-	// An ordered list of info for creating the popup menu items
-	
-	public var orderedItems:[BXMenuItemSpec] = []
+	private var values:Binding<Set<Int>>
+	private var orderedItems:[BXMenuItemSpec]
 
 	// Environment
 	
 	@Environment(\.isEnabled) private var isEnabled
 
-
-	// Create an NSPopUpButton
+	// Init
+	
+	public init(values:Binding<Set<Int>> , orderedItems:[BXMenuItemSpec])
+	{
+		self.values = values
+		self.orderedItems = orderedItems
+	}
+	
+	// Create the underlying NSPopUpButton
 	
 	public func makeNSView(context:Context) -> NSPopUpButton
     {
@@ -116,12 +120,12 @@ public struct BXMultiValuePicker : NSViewRepresentable
 		popup.menu?.item(withTag:Values.multiple.rawValue)?.isHidden = !isMultiple
 		popup.menu?.item(withTag:Values.initialDivider.rawValue)?.isHidden = !(isNone || isMultiple)
 
-		if values.count > 1
+		if values.wrappedValue.count > 1
 		{
 			popup.selectItem(withTag:Values.multiple.rawValue)
 			popup.isEnabled = self.isEnabled
 		}
-		else if let value = values.first
+		else if let value = values.wrappedValue.first
 		{
 			popup.selectItem(withTag:value)
 			popup.isEnabled = self.isEnabled
@@ -147,7 +151,7 @@ public struct BXMultiValuePicker : NSViewRepresentable
         @objc func updateValues(with sender:NSPopUpButton)
         {
 			let tag = sender.selectedTag()
-			picker.values = Set([tag])
+			picker.values.wrappedValue = Set([tag])
         }
     }
     
