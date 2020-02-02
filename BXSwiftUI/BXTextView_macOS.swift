@@ -55,6 +55,10 @@ internal struct BXTextView_macOS : NSViewRepresentable
 	@Binding var fittingSize:CGSize
 	var statusHandler:(BXTextViewStatusHandler)? = nil
 
+	// Environment
+	
+	@Environment(\.isEnabled) var isEnabled:Bool
+
 
 	// Create the underlying NSCustomTextView
 	
@@ -96,7 +100,15 @@ internal struct BXTextView_macOS : NSViewRepresentable
 		textView.textStorage?.replaceCharacters(in:range, with:self.value)
 		
 		// Also apply some external environment values
+         
+		if self.isEnabled == false
+		{
+			textView.setSelectedRange(NSMakeRange(0,0))
+		}
 		
+		textView.isEditable = self.isEnabled
+		textView.isSelectable = self.isEnabled
+
 		if let lineLimit = context.environment.lineLimit
 		{
             textView.textContainer?.maximumNumberOfLines = lineLimit
