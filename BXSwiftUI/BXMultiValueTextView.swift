@@ -49,6 +49,7 @@ struct BXMultiValueTextView : View
 				self.values.wrappedValue = Set([$0])
 			})
 	}
+	
 	// Init
 	
 	public init(values:Binding<Set<NSAttributedString>>, statusHandler:(BXTextViewStatusHandler)? = nil)

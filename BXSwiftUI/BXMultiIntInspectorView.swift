@@ -48,10 +48,7 @@ public struct BXMultiIntInspectorView : View
 		self.orderedItems = orderedItems
 	}
 
-	var isUnique:Bool
-	{
-		values.wrappedValue.count < 2
-	}
+	// Build the view
 	
     public var body: some View
     {
