@@ -49,6 +49,8 @@ public typealias BXTextViewStatusHandler = (UITextView,Bool,Bool,Bool)->Void
 
 internal struct BXTextView_macOS : NSViewRepresentable
 {
+	// Params
+	
     @Binding var value:NSAttributedString
 	@Binding var fittingSize:CGSize
 	var statusHandler:(BXTextViewStatusHandler)? = nil
@@ -72,8 +74,6 @@ internal struct BXTextView_macOS : NSViewRepresentable
         textView.textContainer?.heightTracksTextView = false
 		textView.translatesAutoresizingMaskIntoConstraints = false
         textView.autoresizingMask = [.width, .height]
-	
-		textView.notify()
 		
 		return textView
     }
@@ -116,6 +116,8 @@ internal struct BXTextView_macOS : NSViewRepresentable
 		}
 		
 		context.coordinator.updateCount += 1
+		// Call statusHandler so that clients can update the appearance of the view accordingly
+		
 		textView.notify()
 	}
     

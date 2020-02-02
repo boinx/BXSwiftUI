@@ -108,8 +108,6 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 		textfield.drawsBackground = true
 		textfield.statusHandler = self.statusHandler
 		
-		textfield.notify()
-		
 		return textfield
     }
 
@@ -148,6 +146,9 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 		}
 		
 		textfield.isEnabled = context.environment.isEnabled
+
+		// Call statusHandler so that clients can update the appearance of the view accordingly
+		
 		textfield.notify()
 	}
     
