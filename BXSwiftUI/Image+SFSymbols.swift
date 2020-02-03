@@ -27,13 +27,15 @@ public struct Image : View
 	
 	static let symbols =
 	[
+		"plus" :								"􀅼",
 		"plus.circle" :							"􀁌",
 		"plus.circle.fill" :					"􀁍",
-		"minus.circle" :						"􀁎",
-		"minus.circle.fill" :					"􀁏",
-
 		"plus.square" :							"􀃜",
 		"plus.square.fill" :					"􀃝",
+
+		"minus" :								"􀅽",
+		"minus.circle" :						"􀁎",
+		"minus.circle.fill" :					"􀁏",
 		"minus.square" :						"􀃞",
 		"minus.square.fill" :					"􀃟",
 
@@ -109,6 +111,9 @@ public struct Image : View
 		"repeat" :								"􀊞",
 		"goforward" :							"􀍿",
 		"gobackward" :							"􀎀",
+		
+		"checkmark" :							"􀆅",
+		"xmark" :								"􀆄",
 	]
 
 	let symbol:String
