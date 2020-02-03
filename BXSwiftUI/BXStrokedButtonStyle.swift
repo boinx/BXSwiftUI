@@ -13,54 +13,91 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public struct BXStrokedButtonStyle: ButtonStyle
+public struct BXStrokedButtonStyle : ButtonStyle
 {
-	private var enabled:Bool
+	public init() {}
+
+	// Unfortunately @Environment values cannot be accessed directly from a ButtonStyle, so
+	// we will create a private subview, which does have access to the @Environment values.
 	
+    public func makeBody(configuration:BXStrokedButtonStyle.Configuration) -> some View
+    {
+		_BXStrokedButton(configuration:configuration)
+    }
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+// Internal view type that does the actual rendering on behalf of the BXStrokedButtonStyle.
+// Since it is a View, it does have access to @Environment values!
+
+fileprivate struct _BXStrokedButton : View
+{
+	// Params
+	
+	let configuration:ButtonStyleConfiguration
+
+	// Environment
+	
+	@Environment(\.isEnabled) var isEnabled
 	@Environment(\.colorScheme) var colorScheme
+	@Environment(\.controlSize) var controlSize
 
-	public init(_ enabled:Bool = true)
-	{
-		self.enabled = enabled
-	}
-
+	// Exact appearance depends on environment values
+	
 	private func radius(for geometry:GeometryProxy) -> CGFloat
 	{
 		0.25 * geometry.size.height
 	}
 	
-	private var insets : EdgeInsets
+	private var padding : EdgeInsets
 	{
-		let spacing:CGFloat = enabled ? 12.0 : 0.0
-		return EdgeInsets(top:2, leading:spacing, bottom:3, trailing:spacing)
+		switch controlSize
+		{
+			case .regular: 	return EdgeInsets(top:2, leading:12, bottom:3, trailing:12)
+			case .small: 	return EdgeInsets(top:1, leading:12, bottom:1, trailing:12)
+			case .mini: 	return EdgeInsets(top:1, leading:12, bottom:1, trailing:12)
+			
+			@unknown default: return EdgeInsets(top:2, leading:12, bottom:3, trailing:12)
+		}
 	}
 	
-	private func fillColor(for isPressed:Bool) -> Color
+	private var fillColor : Color
 	{
-		let gray = colorScheme == .dark ? 1.0 : 1.0
-		let alpha = isPressed ? 0.15 : 0.07
+		let gray = self.colorScheme == .dark ? 1.0 : 0.0
+		var alpha = self.configuration.isPressed ? 0.15 : 0.07
+		if !isEnabled { alpha *= 0.33 }
 		return Color(white:gray, opacity:alpha)
 	}
 
-    public func makeBody(configuration:BXStrokedButtonStyle.Configuration) -> some View
+	private var strokeColor : Color
+	{
+		let gray = self.colorScheme == .dark ? 0.65 : 0.35
+		let alpha = self.isEnabled ? 1.0 : 0.33
+		return Color(white:gray, opacity:alpha)
+	}
+
+	// Build the view
+	
+    var body: some View
     {
-		configuration.label
-            .padding(self.insets)
+		self.configuration.label
+            .padding(padding)
             .background(
+            
 				GeometryReader
 				{
 					geometry in
-					
-					if self.enabled
+
+					ZStack
 					{
-						ZStack
-						{
-							RoundedRectangle(cornerRadius:self.radius(for:geometry))
-								.fill(self.fillColor(for:configuration.isPressed))
-							
-							RoundedRectangle(cornerRadius:self.radius(for:geometry))
-								.stroke(Color.gray,lineWidth:0.5)
-						}
+						RoundedRectangle(cornerRadius:self.radius(for:geometry))
+							.fill(self.fillColor)
+
+						RoundedRectangle(cornerRadius:self.radius(for:geometry))
+							.stroke(self.strokeColor, lineWidth:0.5)
 					}
 				}
 			)
