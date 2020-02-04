@@ -60,7 +60,7 @@ public struct BXIntEnumView : View
 		{
 			BXMultiValuePicker(values:self.multiValueBinding, orderedItems:self.orderedItems)
 				.environment(\.isEnabled, true)
-				.modifier(StrokedPopupStyle())
+				.modifier(BXStrokedModifier())
 		}
 	}
 }

@@ -178,27 +178,3 @@ fileprivate enum Values : Int
 
 
 //----------------------------------------------------------------------------------------------------------------------
-
-
-public struct StrokedPopupStyle : ViewModifier
-{
-	public init() {}
-	
-	public func body(content:Content) -> some View
-    {
-        content
-			.background(
-				RoundedRectangle(cornerRadius:4.0)
-					.inset(by:1.0)
-					.fill(Color.black)
-			)
-			.overlay(
-				RoundedRectangle(cornerRadius:4.0)
-					.inset(by:1.0)
-					.stroke(Color.gray, lineWidth:0.5)
-			)
-    }
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------

@@ -55,7 +55,7 @@ public struct BXMultiIntInspectorView : View
 		BXLabelView(label:label, width:width)
 		{
 			BXMultiValuePicker(values:self.values, orderedItems:self.orderedItems)
-				.modifier(StrokedPopupStyle())
+				.modifier(BXStrokedModifier())
 		}
 	}
 }
