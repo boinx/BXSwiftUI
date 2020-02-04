@@ -18,23 +18,42 @@ import SwiftUI
 
 public struct BXMultiBoolInspectorView : View
 {
-	public var label:String = ""
-	public var width:Binding<CGFloat>? = nil
-	public var values:Binding<Set<Bool>>
-
-	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Bool>>)
+	// Params
+	
+	public var label:String
+	private var width:Binding<CGFloat>?
+	private var values:Binding<Set<Bool>>
+	private var title:String
+	private var alignment:HorizontalAlignment
+	
+	// Init
+	
+	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Bool>>, title:String = "", alignment:HorizontalAlignment = .leading)
 	{
 		self.label = label
 		self.width = width
 		self.values = values
+		self.title = title
+		self.alignment = alignment
 	}
+	
+	// Build View
 	
 	public var body: some View
 	{
 		BXLabelView(label:label, width:width)
 		{
-			BXMultiValueToggle(values:self.values, label:"Enabled")
-			Spacer()
+			if self.alignment == .trailing
+			{
+				Spacer()
+			}
+			
+			BXMultiValueToggle(values:self.values, label:self.title)
+			
+			if self.alignment == .leading
+			{
+				Spacer()
+			}
 		}
 		.frame(maxHeight:24.0, alignment:.top)
 	}
