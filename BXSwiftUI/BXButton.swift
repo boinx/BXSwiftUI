@@ -23,6 +23,11 @@ public struct BXButton : View
 	private var isBordered:Bool
 	private var action:()->Void
 
+	// Environment
+	
+	@Environment(\.document) private var document
+	@Environment(\.undoName) private var undoName
+
 	// Init
 	
 	public init(systemName:String? = nil, title:String? = nil, isBordered:Bool = false, isEnabled:Bool = true, action:@escaping ()->Void)
@@ -44,7 +49,13 @@ public struct BXButton : View
 		
 		// Define the button with its contents
 		
-		let button = Button(action:self.action)
+		let closure =
+		{
+			self.action()
+			self.document?.undoManager?.setActionName(self.undoName)
+		}
+		
+		let button = Button(action:closure)
 		{
 			HStack(spacing:4)
 			{

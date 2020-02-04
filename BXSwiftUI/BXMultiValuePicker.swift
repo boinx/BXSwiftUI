@@ -25,6 +25,8 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	// Environment
 	
 	@Environment(\.isEnabled) private var isEnabled
+	@Environment(\.document) private var document
+	@Environment(\.undoName) private var undoName
 
 	// Init
 	
@@ -142,22 +144,27 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	public class Coordinator : NSObject
     {
         var picker:BXMultiValuePicker
+		var document:NSDocument?
+		var undoName:String
 
-        init(_ picker:BXMultiValuePicker)
+        init(_ picker:BXMultiValuePicker, _ document:NSDocument?, _ undoName:String)
         {
             self.picker = picker
+            self.document = document
+            self.undoName = undoName
         }
 
         @objc func updateValues(with sender:NSPopUpButton)
         {
 			let tag = sender.selectedTag()
 			picker.values.wrappedValue = Set([tag])
+			self.document?.undoManager?.setActionName(undoName)
         }
     }
     
 	public func makeCoordinator() -> Coordinator
     {
-        return Coordinator(self)
+        return Coordinator(self, document, undoName)
     }
 }
 

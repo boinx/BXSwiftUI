@@ -44,6 +44,8 @@ fileprivate struct _BXStrokedCheckbox : View
 	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.controlSize) private var controlSize
 	@Environment(\.hasMultipleValues) private var hasMultipleValues
+	@Environment(\.undoManager) private var undoManager
+	@Environment(\.undoName) private var undoName
 
 	// Sizing depends on environment controlSize
 	
@@ -135,10 +137,12 @@ fileprivate struct _BXStrokedCheckbox : View
 			if self.hasMultipleValues
 			{
 				self.configuration.$isOn.wrappedValue = true
+				self.undoManager?.setActionName(self.undoName)
 			}
 			else
 			{
 				self.configuration.$isOn.wrappedValue.toggle()
+				self.undoManager?.setActionName(self.undoName)
 			}
 		}
 	}

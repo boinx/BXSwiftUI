@@ -28,7 +28,9 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 	
 	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.controlSize) private var controlSize:ControlSize
-	
+	@Environment(\.document) private var document
+	@Environment(\.undoName) private var undoName
+
 
 	// Init
 	
@@ -131,31 +133,38 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 	public class Coordinator : NSObject,NSTextFieldDelegate
     {
         var textfield:BXMultiValueTextField<T>
+		var document:NSDocument?
+		var undoName:String
 
-        init(_ textfield:BXMultiValueTextField<T>)
+        init(_ textfield:BXMultiValueTextField<T>, _ document:NSDocument?, _ undoName:String)
         {
             self.textfield = textfield
+            self.document = document
+            self.undoName = undoName
         }
 
         @objc func updateStringValues(with sender:NSTextField)
         {
 			textfield.values.wrappedValue = Set([sender.stringValue as! T])
+			self.document?.undoManager?.setActionName(undoName)
         }
         
         @objc func updateDoubleValues(with sender:NSTextField)
         {
             textfield.values.wrappedValue = Set([sender.doubleValue as! T])
-        }
+			self.document?.undoManager?.setActionName(undoName)
+		}
         
         @objc func updateIntValues(with sender:NSTextField)
         {
             textfield.values.wrappedValue = Set([sender.integerValue as! T])
+			self.document?.undoManager?.setActionName(undoName)
         }
     }
     
 	public func makeCoordinator() -> Coordinator
     {
-        return Coordinator(self)
+        return Coordinator(self, document, undoName)
     }
  }
 

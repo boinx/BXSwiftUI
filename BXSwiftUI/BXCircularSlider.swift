@@ -25,6 +25,8 @@ public struct BXCircularSlider : View
 	
 	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.colorScheme) private var colorScheme
+	@Environment(\.document) private var document
+	@Environment(\.undoName) private var undoName
 
 	// Init
 	
@@ -53,10 +55,17 @@ public struct BXCircularSlider : View
 		}
 		.frame(width:2*radius, height:2*radius)
 		
-		.gesture( DragGesture(minimumDistance:0).onChanged(
-		{
-			self.value.wrappedValue = degrees(for:$0.location, in:self.radius)
-		}))
+		.gesture( DragGesture(minimumDistance:0)
+		
+			.onChanged()
+			{
+				self.value.wrappedValue = degrees(for:$0.location, in:self.radius)
+			}
+			.onEnded()
+			{
+				_ in self.document?.undoManager?.setActionName(self.undoName)
+			}
+		)
 	}
 }
 
@@ -76,6 +85,8 @@ public struct BXMultiValueCircularSlider : View
 	
 	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.colorScheme) private var colorScheme
+	@Environment(\.document) private var document
+	@Environment(\.undoName) private var undoName
 
 	// Init
 	
@@ -107,11 +118,18 @@ public struct BXMultiValueCircularSlider : View
 		}
 		.frame(width:2*radius, height:2*radius)
 
-		.gesture( DragGesture(minimumDistance:0).onChanged(
-		{
-			let value = degrees(for:$0.location, in:self.radius)
-			self.values.wrappedValue = Set([value])
-		}))
+		.gesture( DragGesture(minimumDistance:0)
+		
+			.onChanged()
+			{
+				let value = degrees(for:$0.location, in:self.radius)
+				self.values.wrappedValue = Set([value])
+			}
+			.onEnded()
+			{
+				_ in self.document?.undoManager?.setActionName(self.undoName)
+			}
+		)
 	}
 }
 

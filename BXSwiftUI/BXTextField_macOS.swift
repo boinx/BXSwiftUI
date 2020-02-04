@@ -43,6 +43,8 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 	// Environment
 	
 	@Environment(\.controlSize) var controlSize:ControlSize
+	@Environment(\.document) private var document
+	@Environment(\.undoName) private var undoName
 
 	// The control size is provided by the environment. needs to be converted to NSControl datatype
 	
@@ -158,46 +160,56 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 	public class Coordinator : NSObject,NSTextFieldDelegate
     {
         var textfield:BXTextFieldWrapper<T>
+		var document:NSDocument?
+		var undoName:String
 
-        init(_ textfield:BXTextFieldWrapper<T>)
+        init(_ textfield:BXTextFieldWrapper<T>, _ document:NSDocument?, _ undoName:String)
         {
             self.textfield = textfield
+            self.document = document
+            self.undoName = undoName
         }
 		
         @objc func updateStringValue(with sender:NSTextField)
         {
             textfield.value.wrappedValue = sender.stringValue as! T
+			self.document?.undoManager?.setActionName(undoName)
         }
  
 		 @objc func updateURLValue(with sender:NSTextField)
 		 {
 			 textfield.value.wrappedValue = URL(string:sender.stringValue) as! T
+			 self.document?.undoManager?.setActionName(undoName)
 		 }
 
         @objc func updateDoubleValue(with sender:NSTextField)
         {
             textfield.value.wrappedValue = sender.doubleValue as! T
+			self.document?.undoManager?.setActionName(undoName)
         }
         
         @objc func updateFloatValue(with sender:NSTextField)
         {
             textfield.value.wrappedValue = sender.floatValue as! T
-        }
+			self.document?.undoManager?.setActionName(undoName)
+		}
         
 		@objc func updateCGFloatValue(with sender:NSTextField)
 		 {
 			 textfield.value.wrappedValue = CGFloat(sender.doubleValue) as! T
+			 self.document?.undoManager?.setActionName(undoName)
 		 }
 		 
 		@objc func updateIntValue(with sender:NSTextField)
         {
             textfield.value.wrappedValue = sender.integerValue as! T
+			self.document?.undoManager?.setActionName(undoName)
         }
 	}
 	
 	public func makeCoordinator() -> Coordinator
     {
-        return Coordinator(self)
+        return Coordinator(self, document, undoName)
     }
 }
 

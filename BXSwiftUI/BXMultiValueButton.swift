@@ -21,13 +21,19 @@ public struct BXMultiValueButton : NSViewRepresentable
 {
 	// Params
 	
-	public var values:Binding<Set<Bool>>
+	private var values:Binding<Set<Bool>>
+    private var offStateImage:NSImage?
+    private var onStateImage:NSImage?
+    private var mixedStateImage:NSImage?
 
-    var offStateImage:NSImage?
-    var onStateImage:NSImage?
-    var mixedStateImage:NSImage?
+	// Environment
+	
+	@Environment(\.isEnabled) private var isEnabled
+	@Environment(\.document) private var document
+	@Environment(\.undoName) private var undoName
 
-
+	// Init
+	
 	public init(values:Binding<Set<Bool>>, label:String = "", offStateImage:NSImage?, onStateImage:NSImage?, mixedStateImage:NSImage?)
 	{
 		self.values = values
@@ -94,22 +100,27 @@ public struct BXMultiValueButton : NSViewRepresentable
 	public class Coordinator : NSObject
     {
         var button:BXMultiValueButton
+		var document:NSDocument?
+		var undoName:String
 
-        init(_ button:BXMultiValueButton)
+        init(_ button:BXMultiValueButton, _ document:NSDocument?, _ undoName:String)
         {
             self.button = button
+            self.document = document
+            self.undoName = undoName
         }
 
         @objc func updateValues(with sender:NSButton)
         {
 			let value = sender.state != .off
 			button.values.wrappedValue = Set([value])
+			self.document?.undoManager?.setActionName(self.undoName)
         }
     }
 
 	public func makeCoordinator() -> Coordinator
     {
-        return Coordinator(self)
+        return Coordinator(self, document, undoName)
     }
 }
 
