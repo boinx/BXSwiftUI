@@ -30,6 +30,7 @@
 		D02BC5A223DC37A500676CF3 /* BXURLEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC5A123DC37A500676CF3 /* BXURLEditView.swift */; };
 		D02BC5A423DC390500676CF3 /* BXArrayEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC5A323DC390400676CF3 /* BXArrayEditView.swift */; };
 		D02BC5AC23DC627900676CF3 /* BXBoolEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC5AB23DC627800676CF3 /* BXBoolEditView.swift */; };
+		D02ED7C323E96FB2000572FE /* BXUndoModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02ED7C223E96FB2000572FE /* BXUndoModifier.swift */; };
 		D03A287223D705CA00673CB1 /* BXMultiValueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */; };
 		D04B14DD23DB4773001203FD /* BXStrokedCheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B14DC23DB4773001203FD /* BXStrokedCheckboxStyle.swift */; };
 		D04C46AF23E15A7700A1CBAD /* BXAutomaticEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C46AE23E15A7700A1CBAD /* BXAutomaticEditView.swift */; };
@@ -88,6 +89,7 @@
 		D02BC5A123DC37A500676CF3 /* BXURLEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXURLEditView.swift; sourceTree = "<group>"; };
 		D02BC5A323DC390400676CF3 /* BXArrayEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXArrayEditView.swift; sourceTree = "<group>"; };
 		D02BC5AB23DC627800676CF3 /* BXBoolEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXBoolEditView.swift; sourceTree = "<group>"; };
+		D02ED7C223E96FB2000572FE /* BXUndoModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXUndoModifier.swift; sourceTree = "<group>"; };
 		D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueButton.swift; sourceTree = "<group>"; };
 		D04B14DC23DB4773001203FD /* BXStrokedCheckboxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXStrokedCheckboxStyle.swift; sourceTree = "<group>"; };
 		D04C46AE23E15A7700A1CBAD /* BXAutomaticEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXAutomaticEditView.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				D02BC59523DC2AB200676CF3 /* Controls */,
 				D077D5C823E2FB6D00C1D20F /* SF Symbols */,
 				D02BC58E23DC270F00676CF3 /* Styles */,
+				D02ED7C423E970D1000572FE /* Behaviors */,
 				D02BC59C23DC2D5500676CF3 /* Misc */,
 			);
 			path = BXSwiftUI;
@@ -255,14 +258,22 @@
 			children = (
 				D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */,
 				D077D5C223E2E14C00C1D20F /* Binding+Optional.swift */,
-				D077D5C623E2FB4900C1D20F /* View+enabled.swift */,
 				D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */,
 				D002FE7923D22EC5002CF0A1 /* TypeCheckable.swift */,
-				D077D5D323E348B400C1D20F /* NSOpenPanel+show.swift */,
-				D077D5CF23E32ED800C1D20F /* NSSavePanel+show.swift */,
 				D0D28EB723E748E30012F9E1 /* Bundle+BXSwiftUI.swift */,
 			);
 			name = Misc;
+			sourceTree = "<group>";
+		};
+		D02ED7C423E970D1000572FE /* Behaviors */ = {
+			isa = PBXGroup;
+			children = (
+				D02ED7C223E96FB2000572FE /* BXUndoModifier.swift */,
+				D077D5C623E2FB4900C1D20F /* View+enabled.swift */,
+				D077D5D323E348B400C1D20F /* NSOpenPanel+show.swift */,
+				D077D5CF23E32ED800C1D20F /* NSSavePanel+show.swift */,
+			);
+			name = Behaviors;
 			sourceTree = "<group>";
 		};
 		D077D5C823E2FB6D00C1D20F /* SF Symbols */ = {
@@ -398,6 +409,7 @@
 				D0FFC32F23E037B800BEA7A4 /* BXIntEnumView.swift in Sources */,
 				D077D5C323E2E14C00C1D20F /* Binding+Optional.swift in Sources */,
 				D002FE8423D22EC5002CF0A1 /* BXMultiValueTextField.swift in Sources */,
+				D02ED7C323E96FB2000572FE /* BXUndoModifier.swift in Sources */,
 				D0F9B3B023E8710000AF0929 /* BXStrokedModifier.swift in Sources */,
 				D04B14DD23DB4773001203FD /* BXStrokedCheckboxStyle.swift in Sources */,
 				D0793E8023D45D350069327F /* BXMultiDoubleInspectorView.swift in Sources */,
