@@ -16,8 +16,12 @@ import AppKit
 
 struct BXMultiValueSlider : NSViewRepresentable
 {
+	// Params
+	
     @Binding public var values:Set<Double>
 	public var `in`:ClosedRange<Double>
+	
+	// Environment
 	
 	@Environment(\.isEnabled) private var isEnabled
 
@@ -125,18 +129,6 @@ class NSMultiValueSliderCell : NSSliderCell
 
 		NSGraphicsContext.restoreGraphicsState()
 	}
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-struct MultiValueSlider_Previews: PreviewProvider
-{
-    static var previews: some View
-    {
-		BXMultiValueSlider(values:Binding.constant(Set([5.0,10.0,20.0])), in:0.0 ... 60.0)
-    }
 }
 
 

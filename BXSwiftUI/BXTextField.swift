@@ -32,7 +32,7 @@ public struct  BXTextField<T> : View
 	
 	private var baseline:CGFloat = 15.0
 	
-	// Build view
+	// Build View
 
 	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, statusHandler:(BXTextFieldStatusHandler)? = nil)
 	{

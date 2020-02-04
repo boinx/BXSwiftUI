@@ -15,13 +15,16 @@ import SwiftUI
 
 public struct BXButton : View
 {
+	// Params
+	
 	private var systemName:String?
 	private var title:String?
 	private var isEnabled:Bool
 	private var isBordered:Bool
 	private var action:()->Void
 
-
+	// Init
+	
 	public init(systemName:String? = nil, title:String? = nil, isBordered:Bool = false, isEnabled:Bool = true, action:@escaping ()->Void)
 	{
 		self.systemName = systemName
@@ -31,6 +34,7 @@ public struct BXButton : View
 		self.action = action
 	}
 	
+	// Build View
 	
 	public var body: some View
 	{
