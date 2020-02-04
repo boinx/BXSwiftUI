@@ -14,24 +14,35 @@ import AppKit
 //----------------------------------------------------------------------------------------------------------------------
 
 
-struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheckable
+public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheckable
 {
 	// Params
 	
-    @Binding public var values:Set<T>
-	public var height:CGFloat? = nil
-	public var alignment:TextAlignment = .leading
-	public var formatter:Formatter? = nil
-	public var statusHandler:(BXTextFieldStatusHandler)? = nil
+    private var values:Binding<Set<T>>
+	private var height:CGFloat? = nil
+	private var alignment:TextAlignment = .leading
+	private var formatter:Formatter? = nil
+	private var statusHandler:(BXTextFieldStatusHandler)? = nil
 	
 	// Environment
 	
 	@Environment(\.isEnabled) private var isEnabled
-
-
-	// The control size is provided by the environment. Needs to be converted to NSControl datatype
-	
 	@Environment(\.controlSize) private var controlSize:ControlSize
+	
+
+	// Init
+	
+	public init(values:Binding<Set<T>>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, statusHandler:(BXTextFieldStatusHandler)? = nil)
+	{
+		self.values = values
+		self.height = height
+		self.alignment = alignment
+		self.formatter = formatter
+		self.statusHandler = statusHandler
+	}
+
+	
+	// Appearance
 	
 	private var macControlSize:NSControl.ControlSize
 	{
@@ -47,7 +58,7 @@ struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheck
 
 	/// Creates the underlying BXNativeTextField
 	
-    func makeNSView(context:Context) -> BXTextFieldNative
+	public func makeNSView(context:Context) -> BXTextFieldNative
     {
 		var action = #selector(Coordinator.updateStringValues(with:))
 		
@@ -78,15 +89,15 @@ struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheck
 
 	/// Something on the SwiftUI side has changed, so update the NSCustomTextField
 	
-    func updateNSView(_ textfield:BXTextFieldNative, context:Context)
+	public func updateNSView(_ textfield:BXTextFieldNative, context:Context)
     {
-		if values.count == 0
+		if values.wrappedValue.count == 0
 		{
 			textfield.stringValue = ""
 			textfield.placeholderString = "none"
 			textfield.isEnabled = false
 		}
-		else if values.count == 1, let value = values.first
+		else if values.wrappedValue.count == 1, let value = values.wrappedValue.first
 		{
 			if let value = value as? String
 			{
@@ -117,7 +128,7 @@ struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheck
     
     /// Editing has finished in the NSTextField, so update the values on the SwiftUI side
     
-    class Coordinator : NSObject,NSTextFieldDelegate
+	public class Coordinator : NSObject,NSTextFieldDelegate
     {
         var textfield:BXMultiValueTextField<T>
 
@@ -128,21 +139,21 @@ struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:TypeCheck
 
         @objc func updateStringValues(with sender:NSTextField)
         {
-			textfield.values = Set([sender.stringValue as! T])
+			textfield.values.wrappedValue = Set([sender.stringValue as! T])
         }
         
         @objc func updateDoubleValues(with sender:NSTextField)
         {
-            textfield.values = Set([sender.doubleValue as! T])
+            textfield.values.wrappedValue = Set([sender.doubleValue as! T])
         }
         
         @objc func updateIntValues(with sender:NSTextField)
         {
-            textfield.values = Set([sender.integerValue as! T])
+            textfield.values.wrappedValue = Set([sender.integerValue as! T])
         }
     }
     
-    func makeCoordinator() -> Coordinator
+	public func makeCoordinator() -> Coordinator
     {
         return Coordinator(self)
     }
