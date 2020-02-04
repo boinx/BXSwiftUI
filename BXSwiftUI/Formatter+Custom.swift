@@ -27,6 +27,7 @@ public extension Formatter
 		return formatter
 	}()
 
+
 	static var degreesFormatter: NumberFormatter =
 	{
 		let formatter = NumberFormatter()
@@ -38,6 +39,7 @@ public extension Formatter
 		formatter.hasThousandSeparators = false
 		return formatter
 	}()
+	
 	
 	static var pixelsFormatter: NumberFormatter =
 	{
@@ -51,6 +53,7 @@ public extension Formatter
 		return formatter
 	}()
 	
+	
 	static var pointsFormatter: NumberFormatter =
 	{
 		let formatter = NumberFormatter()
@@ -62,6 +65,7 @@ public extension Formatter
 		formatter.hasThousandSeparators = false
 		return formatter
 	}()
+	
 	
 	static var factorFormatter: NumberFormatter =
 	{
@@ -75,6 +79,7 @@ public extension Formatter
 		return formatter
 	}()
 	
+	
 	static var percentFormatter: NumberFormatter =
 	{
 		let formatter = NumberFormatter()
@@ -82,6 +87,7 @@ public extension Formatter
 		formatter.hasThousandSeparators = false
 		return formatter
 	}()
+	
 	
 	static var doubleFormatter: NumberFormatter =
 	{
@@ -92,6 +98,7 @@ public extension Formatter
 		formatter.hasThousandSeparators = false
 		return formatter
 	}()
+	
 	
 	static var intFormatter: NumberFormatter =
 	{
