@@ -58,8 +58,8 @@ internal struct BXTextView_macOS : NSViewRepresentable
 	// Environment
 	
 	@Environment(\.isEnabled) var isEnabled:Bool
-	@Environment(\.document) private var document
-	@Environment(\.undoName) private var undoName
+	@Environment(\.bxUndoManager) private var undoManager
+	@Environment(\.bxUndoName) private var undoName
 
 
 	// Create the underlying NSCustomTextView
@@ -137,13 +137,13 @@ internal struct BXTextView_macOS : NSViewRepresentable
     class Coordinator : NSObject, NSTextViewDelegate
     {
         var swituiTextView:BXTextView_macOS
-		var document:NSDocument?
+		var undoManager:UndoManager?
 		var undoName:String
 
-        init(_ textView:BXTextView_macOS, _ document:NSDocument?, _ undoName:String)
+        init(_ textView:BXTextView_macOS, _ undoManager:UndoManager?, _ undoName:String)
         {
             self.swituiTextView = textView
-            self.document = document
+            self.undoManager = undoManager
             self.undoName = undoName
         }
 		
@@ -165,13 +165,13 @@ internal struct BXTextView_macOS : NSViewRepresentable
 		{
 			// Once editing end set the undoName
 			
-			self.document?.undoManager?.setActionName(undoName)
+			self.undoManager?.setActionName(undoName)
 		}
 	}
 	
     func makeCoordinator() -> Coordinator
     {
-        return Coordinator(self, document, undoName)
+        return Coordinator(self, undoManager, undoName)
     }
 }
 

@@ -18,16 +18,16 @@ extension View
 {
 	// Injects the document into the environment. Controls in the view hierarchy may access it access its UndoManager.
 	
-	public func setDocument(_ document:NSDocument?) -> some View
+	public func setUndoManager(_ undoManager:UndoManager?) -> some View
 	{
-		self.environment(\.document, document)
+		self.environment(\.bxUndoManager, undoManager)
 	}
 
 	// Injects the undo name into the environment. Controls in the view hierarchy may access it to set an undo name when necessary.
 	
 	public func setUndoName(_ name:String) -> some View
 	{
-        self.environment(\.undoName, name)
+        self.environment(\.bxUndoName, name)
 	}
 }
 
@@ -35,25 +35,25 @@ extension View
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public struct BXDocumentKey : EnvironmentKey
+public struct BXUndoManagerKey : EnvironmentKey
 {
-    static public let defaultValue:NSDocument? = nil
+    static public let defaultValue:UndoManager? = nil
 }
 
 public extension EnvironmentValues
 {
 	/// The document that provides access to the UndoManager
 	
-    var document:NSDocument?
+    var bxUndoManager:UndoManager?
     {
         set
         {
-            self[BXDocumentKey.self] = newValue
+            self[BXUndoManagerKey.self] = newValue
         }
 
         get
         {
-            return self[BXDocumentKey.self]
+            return self[BXUndoManagerKey.self]
         }
     }
 }
@@ -71,7 +71,7 @@ public extension EnvironmentValues
 {
 	/// The undo name for actions
 	
-    var undoName:String
+    var bxUndoName:String
     {
         set
         {

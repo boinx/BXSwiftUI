@@ -24,14 +24,14 @@ struct BXMultiValueSlider : NSViewRepresentable
 	// Environment
 	
 	@Environment(\.isEnabled) private var isEnabled
-	@Environment(\.document) private var document
-	@Environment(\.undoName) private var undoName
+	@Environment(\.bxUndoManager) private var undoManager
+	@Environment(\.bxUndoName) private var undoName
 
 	
     func makeNSView(context:Context) -> NSSlider
     {
 		let cell = NSMultiValueSliderCell()
-		cell.document = document
+		cell.undoManager = undoManager
 		cell.undoName = undoName
 		
         let slider = NSSlider(frame:.zero)
@@ -93,7 +93,7 @@ struct BXMultiValueSlider : NSViewRepresentable
 class NSMultiValueSliderCell : NSSliderCell
 {
 	public var values = Set<Double>()
-	public var document:NSDocument?
+	public var undoManager:UndoManager?
 	public var undoName:String = ""
 
     override open func drawBar(inside rect:NSRect, flipped:Bool)
@@ -141,7 +141,7 @@ class NSMultiValueSliderCell : NSSliderCell
 	override open func stopTracking(last:NSPoint, current:NSPoint, in view:NSView, mouseIsUp:Bool)
 	{
 		super.stopTracking(last:last, current:current, in:view, mouseIsUp:mouseIsUp)
-		self.document?.undoManager?.setActionName(undoName)
+		self.undoManager?.setActionName(undoName)
 	}
 
 }

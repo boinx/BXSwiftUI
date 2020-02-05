@@ -44,8 +44,8 @@ fileprivate struct _BXStrokedCheckbox : View
 	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.controlSize) private var controlSize
 	@Environment(\.hasMultipleValues) private var hasMultipleValues
-	@Environment(\.undoManager) private var undoManager
-	@Environment(\.undoName) private var undoName
+	@Environment(\.bxUndoManager) private var undoManager
+	@Environment(\.bxUndoName) private var undoName
 
 	// Sizing depends on environment controlSize
 	

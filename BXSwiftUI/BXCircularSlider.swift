@@ -25,8 +25,8 @@ public struct BXCircularSlider : View
 	
 	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.colorScheme) private var colorScheme
-	@Environment(\.document) private var document
-	@Environment(\.undoName) private var undoName
+	@Environment(\.bxUndoManager) private var undoManager
+	@Environment(\.bxUndoName) private var undoName
 
 	// Init
 	
@@ -63,7 +63,7 @@ public struct BXCircularSlider : View
 			}
 			.onEnded()
 			{
-				_ in self.document?.undoManager?.setActionName(self.undoName)
+				_ in self.undoManager?.setActionName(self.undoName)
 			}
 		)
 	}
@@ -85,8 +85,8 @@ public struct BXMultiValueCircularSlider : View
 	
 	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.colorScheme) private var colorScheme
-	@Environment(\.document) private var document
-	@Environment(\.undoName) private var undoName
+	@Environment(\.bxUndoManager) private var undoManager
+	@Environment(\.bxUndoName) private var undoName
 
 	// Init
 	
@@ -127,7 +127,7 @@ public struct BXMultiValueCircularSlider : View
 			}
 			.onEnded()
 			{
-				_ in self.document?.undoManager?.setActionName(self.undoName)
+				_ in self.undoManager?.setActionName(self.undoName)
 			}
 		)
 	}

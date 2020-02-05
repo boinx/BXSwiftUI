@@ -28,8 +28,8 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 	
 	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.controlSize) private var controlSize:ControlSize
-	@Environment(\.document) private var document
-	@Environment(\.undoName) private var undoName
+	@Environment(\.bxUndoManager) private var undoManager
+	@Environment(\.bxUndoName) private var undoName
 
 
 	// Init
@@ -133,38 +133,38 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 	public class Coordinator : NSObject,NSTextFieldDelegate
     {
         var textfield:BXMultiValueTextField<T>
-		var document:NSDocument?
+		var undoManager:UndoManager?
 		var undoName:String
 
-        init(_ textfield:BXMultiValueTextField<T>, _ document:NSDocument?, _ undoName:String)
+        init(_ textfield:BXMultiValueTextField<T>, _ undoManager:UndoManager?, _ undoName:String)
         {
             self.textfield = textfield
-            self.document = document
+            self.undoManager = undoManager
             self.undoName = undoName
         }
 
         @objc func updateStringValues(with sender:NSTextField)
         {
 			textfield.values.wrappedValue = Set([sender.stringValue as! T])
-			self.document?.undoManager?.setActionName(undoName)
+			self.undoManager?.setActionName(undoName)
         }
         
         @objc func updateDoubleValues(with sender:NSTextField)
         {
             textfield.values.wrappedValue = Set([sender.doubleValue as! T])
-			self.document?.undoManager?.setActionName(undoName)
+			self.undoManager?.setActionName(undoName)
 		}
         
         @objc func updateIntValues(with sender:NSTextField)
         {
             textfield.values.wrappedValue = Set([sender.integerValue as! T])
-			self.document?.undoManager?.setActionName(undoName)
+			self.undoManager?.setActionName(undoName)
         }
     }
     
 	public func makeCoordinator() -> Coordinator
     {
-        return Coordinator(self, document, undoName)
+        return Coordinator(self, undoManager, undoName)
     }
  }
 

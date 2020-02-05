@@ -25,8 +25,8 @@ public struct BXButton : View
 
 	// Environment
 	
-	@Environment(\.document) private var document
-	@Environment(\.undoName) private var undoName
+	@Environment(\.bxUndoManager) private var undoManager
+	@Environment(\.bxUndoName) private var undoName
 
 	// Init
 	
@@ -52,7 +52,7 @@ public struct BXButton : View
 		let closure =
 		{
 			self.action()
-			self.document?.undoManager?.setActionName(self.undoName)
+			self.undoManager?.setActionName(self.undoName)
 		}
 		
 		let button = Button(action:closure)

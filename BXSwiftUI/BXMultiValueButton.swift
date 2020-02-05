@@ -29,8 +29,8 @@ public struct BXMultiValueButton : NSViewRepresentable
 	// Environment
 	
 	@Environment(\.isEnabled) private var isEnabled
-	@Environment(\.document) private var document
-	@Environment(\.undoName) private var undoName
+	@Environment(\.bxUndoManager) private var document
+	@Environment(\.bxUndoName) private var undoName
 
 	// Init
 	
@@ -100,13 +100,13 @@ public struct BXMultiValueButton : NSViewRepresentable
 	public class Coordinator : NSObject
     {
         var button:BXMultiValueButton
-		var document:NSDocument?
+		var undoManager:UndoManager?
 		var undoName:String
 
-        init(_ button:BXMultiValueButton, _ document:NSDocument?, _ undoName:String)
+        init(_ button:BXMultiValueButton, _ undoManager:UndoManager?, _ undoName:String)
         {
             self.button = button
-            self.document = document
+            self.undoManager = undoManager
             self.undoName = undoName
         }
 
@@ -114,7 +114,7 @@ public struct BXMultiValueButton : NSViewRepresentable
         {
 			let value = sender.state != .off
 			button.values.wrappedValue = Set([value])
-			self.document?.undoManager?.setActionName(self.undoName)
+			self.undoManager?.setActionName(self.undoName)
         }
     }
 
