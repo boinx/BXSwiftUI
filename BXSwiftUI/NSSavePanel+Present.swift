@@ -1,7 +1,7 @@
 //**********************************************************************************************************************
 //
-//  NSOpenPanel+show.swift
-//	Convenience function to show an NSOpenPanel
+//  NSSavePanel+show.swift
+//	Convenience function to show an NSSavePanel
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
@@ -14,17 +14,14 @@ import AppKit
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public extension NSOpenPanel
+public extension NSSavePanel
 {
-	class func show(title:String? = nil, message:String? = nil, buttonLabel:String? = nil, allowedFileTypes:[String]? = nil, canChooseFiles:Bool = true, canChooseDirectories:Bool = false, allowsMultipleSelection:Bool = false, handler:([URL])->Void)
+	class func presentModal(title:String? = nil, message:String? = nil, buttonLabel:String? = nil, defaultFilename:String? = nil, handler:(URL?)->Void)
 	{
-		let panel = NSOpenPanel()
+		let panel = NSSavePanel()
 		
 		panel.canCreateDirectories = true
-		panel.canChooseFiles = canChooseFiles
-		panel.canChooseDirectories = canChooseDirectories
-		panel.allowsMultipleSelection = allowsMultipleSelection
-
+		
 		if let title = title
 		{
 			panel.title = title
@@ -39,21 +36,21 @@ public extension NSOpenPanel
 		{
 			panel.prompt = buttonLabel
 		}
-
-		if let allowedFileTypes = allowedFileTypes
+		
+		if let defaultFilename = defaultFilename
 		{
-			panel.allowedFileTypes = allowedFileTypes
+			panel.nameFieldStringValue = defaultFilename
 		}
-
+		
 		let button = panel.runModal()
 		
 		if button == NSApplication.ModalResponse.OK
 		{
-			handler(panel.urls)
+			handler(panel.url)
 		}
 		else
 		{
-			handler([])
+			handler(nil)
 		}
 	}
 }
