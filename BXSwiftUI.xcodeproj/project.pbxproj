@@ -36,7 +36,7 @@
 		D04C46AF23E15A7700A1CBAD /* BXAutomaticEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C46AE23E15A7700A1CBAD /* BXAutomaticEditView.swift */; };
 		D077D5C323E2E14C00C1D20F /* Binding+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077D5C223E2E14C00C1D20F /* Binding+Optional.swift */; };
 		D077D5C523E2F05D00C1D20F /* Image+SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077D5C423E2F05D00C1D20F /* Image+SFSymbols.swift */; };
-		D077D5C723E2FB4900C1D20F /* View+enabled.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077D5C623E2FB4900C1D20F /* View+enabled.swift */; };
+		D077D5C723E2FB4900C1D20F /* View+Enabled.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077D5C623E2FB4900C1D20F /* View+Enabled.swift */; };
 		D077D5CC23E3104400C1D20F /* BXButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077D5CB23E3104400C1D20F /* BXButton.swift */; };
 		D077D5D023E32ED800C1D20F /* NSSavePanel+show.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077D5CF23E32ED800C1D20F /* NSSavePanel+show.swift */; };
 		D077D5D423E348B400C1D20F /* NSOpenPanel+show.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077D5D323E348B400C1D20F /* NSOpenPanel+show.swift */; };
@@ -95,7 +95,7 @@
 		D04C46AE23E15A7700A1CBAD /* BXAutomaticEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXAutomaticEditView.swift; sourceTree = "<group>"; };
 		D077D5C223E2E14C00C1D20F /* Binding+Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Optional.swift"; sourceTree = "<group>"; };
 		D077D5C423E2F05D00C1D20F /* Image+SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+SFSymbols.swift"; sourceTree = "<group>"; };
-		D077D5C623E2FB4900C1D20F /* View+enabled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+enabled.swift"; sourceTree = "<group>"; };
+		D077D5C623E2FB4900C1D20F /* View+Enabled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Enabled.swift"; sourceTree = "<group>"; };
 		D077D5CB23E3104400C1D20F /* BXButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXButton.swift; sourceTree = "<group>"; };
 		D077D5CF23E32ED800C1D20F /* NSSavePanel+show.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSavePanel+show.swift"; sourceTree = "<group>"; };
 		D077D5D323E348B400C1D20F /* NSOpenPanel+show.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSOpenPanel+show.swift"; sourceTree = "<group>"; };
@@ -269,9 +269,9 @@
 			isa = PBXGroup;
 			children = (
 				D02ED7C223E96FB2000572FE /* View+Undo.swift */,
-				D077D5C623E2FB4900C1D20F /* View+enabled.swift */,
 				D077D5D323E348B400C1D20F /* NSOpenPanel+show.swift */,
 				D077D5CF23E32ED800C1D20F /* NSSavePanel+show.swift */,
+				D077D5C623E2FB4900C1D20F /* View+Enabled.swift */,
 			);
 			name = Behaviors;
 			sourceTree = "<group>";
@@ -392,7 +392,7 @@
 				D02BC59B23DC2C9F00676CF3 /* BXCGFloatEditView.swift in Sources */,
 				D0ED327723E557B700B37B3D /* BXTextField.swift in Sources */,
 				D0B64EB823E6CB360089A33F /* BXMultiValueTextView.swift in Sources */,
-				D077D5C723E2FB4900C1D20F /* View+enabled.swift in Sources */,
+				D077D5C723E2FB4900C1D20F /* View+Enabled.swift in Sources */,
 				D0D28EB823E748E30012F9E1 /* Bundle+BXSwiftUI.swift in Sources */,
 				D002FE8023D22EC5002CF0A1 /* BXMultiValuePicker.swift in Sources */,
 				D02BC59E23DC329E00676CF3 /* BXCGSizeEditView.swift in Sources */,
