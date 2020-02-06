@@ -52,6 +52,8 @@ public struct Image : View
 		"square.and.arrow.down" :				"􀈄",
 		"square.and.arrow.down.fill" :			"􀈅",
 
+		"folder" :								"􀈕",
+		"folder.fill" :							"􀈖",
 		"doc" :									"􀈷",
 		"doc.fill" :							"􀈸",
 		"arrow.up.doc" :						"􀈻",
@@ -114,6 +116,8 @@ public struct Image : View
 		
 		"checkmark" :							"􀆅",
 		"xmark" :								"􀆄",
+		"gear" :								"􀍟",
+		"chevron.down.square" :					"􀄀",
 	]
 
 	let symbol:String
