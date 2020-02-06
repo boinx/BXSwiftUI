@@ -17,6 +17,7 @@ import AppKit
 
 public enum BXMenuItemSpec
 {
+	case action(icon:NSImage?, title:String, action:()->Void)
 	case regular(icon:NSImage?, title:String, value:Int)
 	case section(title:String)
 	case divider

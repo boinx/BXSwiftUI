@@ -103,6 +103,8 @@ public struct BXMultiValuePicker : NSViewRepresentable
 					item = NSMenuItem.separator()
 					item.tag = -666
 					item.isEnabled = false
+					
+				default: break
 			}
 						
 			popup.menu?.addItem(item)
