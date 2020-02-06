@@ -47,16 +47,22 @@ public struct BXRangeSlider : View
 
 	// MARK: - Appearance
 	
+	private var usedTrackColor : Color
+	{
+		let alpha = isEnabled ? 1.0 : 0.33
+		return Color.accentColor.opacity(alpha)
+	}
+	
 	private var unusedTrackColor : Color
 	{
 		let alpha = isEnabled ? 1.0 : 0.33
-		return colorScheme == .dark ? Color(white:1.0,opacity:0.15*alpha) : Color(white:0.0,opacity:0.15*alpha)
+		return colorScheme == .dark ? Color(white:1.0,opacity:0.15*alpha) : Color(white:0.0,opacity:0.25*alpha)
 	}
 	
 	private var knobColor : Color
 	{
 		let alpha = isEnabled ? 1.0 : 0.33
-		return colorScheme == .dark ? Color(white:1.0,opacity:alpha) : Color(white:0.1,opacity:alpha)
+		return colorScheme == .dark ? Color(white:1.0,opacity:alpha) : Color(white:0.35,opacity:alpha)
 	}
 
 
@@ -160,7 +166,7 @@ public struct BXRangeSlider : View
 						.frame(width:self.knobSize, height:self.trackWidth)
 
 					Rectangle()
-						.fill(Color.accentColor)
+						.fill(self.usedTrackColor)
 						.frame(width:self.middleBarWidth(for:geometry.size.width), height:self.trackWidth)
 
 					Spacer()
