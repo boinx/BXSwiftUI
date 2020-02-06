@@ -140,7 +140,10 @@ class NSMultiValueSliderCell : NSSliderCell
 		NSColor.clear.set()
 		path.fill()
 		
-		NSColor(white:1.0, alpha:isEnabled ? 1.0 : 0.33).set()
+		let appearance = self.controlView?.appearance?.name ?? NSAppearance.Name.aqua
+		let gray:CGFloat = appearance == NSAppearance.Name.aqua ? 0.35 : 1.0
+		let alpha:CGFloat = isEnabled ? 1.0 : 0.33
+		NSColor(white:gray, alpha:alpha).set()
 		path.stroke()
 
 		NSGraphicsContext.restoreGraphicsState()
