@@ -85,6 +85,18 @@ fileprivate struct _BXStrokedCheckbox : View
 		}
 	}
 
+	private var spacing:CGFloat
+	{
+		switch controlSize
+		{
+			case .regular: 		return 8
+			case .small: 		return 6
+			case .mini: 		return 4
+			
+			@unknown default:	return 8
+		}
+	}
+
 	// Build the view
 	
 	var body: some View
@@ -93,7 +105,7 @@ fileprivate struct _BXStrokedCheckbox : View
 			Color.accentColor :
 			Color(white:1.0, opacity:0.07)
 		
-		return HStack
+		return HStack(spacing:spacing)
 		{
 			ZStack()
 			{
