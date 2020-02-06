@@ -170,7 +170,8 @@ public struct BXRangeSlider : View
 						.fill(self.unusedTrackColor)
 						.frame(width:self.upperBarWidth(for:geometry.size.width), height:self.trackWidth)
 				}
-
+				.clipShape(RoundedRectangle(cornerRadius:1.5))
+				
 				// Lower knob
 
 				Circle()
