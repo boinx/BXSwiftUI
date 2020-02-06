@@ -35,6 +35,7 @@
 		D04B14DD23DB4773001203FD /* BXStrokedCheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B14DC23DB4773001203FD /* BXStrokedCheckboxStyle.swift */; };
 		D04C46AF23E15A7700A1CBAD /* BXAutomaticEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C46AE23E15A7700A1CBAD /* BXAutomaticEditView.swift */; };
 		D075AA4623EB14A6009EF839 /* View+Tooltip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075AA4523EB14A6009EF839 /* View+Tooltip.swift */; };
+		D075AA4823EB33AE009EF839 /* BXRangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075AA4723EB33AD009EF839 /* BXRangeSlider.swift */; };
 		D077D5C323E2E14C00C1D20F /* Binding+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077D5C223E2E14C00C1D20F /* Binding+Optional.swift */; };
 		D077D5C523E2F05D00C1D20F /* Image+SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077D5C423E2F05D00C1D20F /* Image+SFSymbols.swift */; };
 		D077D5C723E2FB4900C1D20F /* View+Enabled.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077D5C623E2FB4900C1D20F /* View+Enabled.swift */; };
@@ -95,6 +96,7 @@
 		D04B14DC23DB4773001203FD /* BXStrokedCheckboxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXStrokedCheckboxStyle.swift; sourceTree = "<group>"; };
 		D04C46AE23E15A7700A1CBAD /* BXAutomaticEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXAutomaticEditView.swift; sourceTree = "<group>"; };
 		D075AA4523EB14A6009EF839 /* View+Tooltip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Tooltip.swift"; sourceTree = "<group>"; };
+		D075AA4723EB33AD009EF839 /* BXRangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXRangeSlider.swift; sourceTree = "<group>"; };
 		D077D5C223E2E14C00C1D20F /* Binding+Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Optional.swift"; sourceTree = "<group>"; };
 		D077D5C423E2F05D00C1D20F /* Image+SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+SFSymbols.swift"; sourceTree = "<group>"; };
 		D077D5C623E2FB4900C1D20F /* View+Enabled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Enabled.swift"; sourceTree = "<group>"; };
@@ -161,9 +163,9 @@
 				D02BC58D23DC26FB00676CF3 /* Editor Views */,
 				D02BC59723DC2B1B00676CF3 /* Inspector Views */,
 				D02BC59523DC2AB200676CF3 /* Controls */,
-				D077D5C823E2FB6D00C1D20F /* SF Symbols */,
 				D02BC58E23DC270F00676CF3 /* Styles */,
 				D02ED7C423E970D1000572FE /* Behaviors */,
+				D077D5C823E2FB6D00C1D20F /* SF Symbols */,
 				D02BC59C23DC2D5500676CF3 /* Misc */,
 			);
 			path = BXSwiftUI;
@@ -221,6 +223,7 @@
 				D0EBA10923D9881D00E82E59 /* BXTextView.swift */,
 				D08FB76C23E48D2400C1A193 /* BXTextView_macOS.swift */,
 				D0C1249923DAE4A600DB3592 /* BXCircularSlider.swift */,
+				D075AA4723EB33AD009EF839 /* BXRangeSlider.swift */,
 				D002FE7723D22EC5002CF0A1 /* BXMultiValueSlider.swift */,
 				D002FE7A23D22EC5002CF0A1 /* BXMultiValueTextField.swift */,
 				D0B64EB723E6CB360089A33F /* BXMultiValueTextView.swift */,
@@ -399,6 +402,7 @@
 				D0D28EB823E748E30012F9E1 /* Bundle+BXSwiftUI.swift in Sources */,
 				D002FE8023D22EC5002CF0A1 /* BXMultiValuePicker.swift in Sources */,
 				D02BC59E23DC329E00676CF3 /* BXCGSizeEditView.swift in Sources */,
+				D075AA4823EB33AE009EF839 /* BXRangeSlider.swift in Sources */,
 				D0C1249A23DAE4A600DB3592 /* BXCircularSlider.swift in Sources */,
 				D077D5D023E32ED800C1D20F /* NSSavePanel+Present.swift in Sources */,
 				D0A2400423DF5716004E9F31 /* BXOptionalView.swift in Sources */,
