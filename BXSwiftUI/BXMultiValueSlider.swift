@@ -14,12 +14,12 @@ import AppKit
 //----------------------------------------------------------------------------------------------------------------------
 
 
-struct BXMultiValueSlider : NSViewRepresentable
+public struct BXMultiValueSlider : NSViewRepresentable
 {
 	// Params
 	
-    @Binding public var values:Set<Double>
-	public var `in`:ClosedRange<Double>
+	private var values:Binding<Set<Double>>
+	private var range:ClosedRange<Double> = 0.0...1.0
 	
 	// Environment
 	
@@ -27,8 +27,16 @@ struct BXMultiValueSlider : NSViewRepresentable
 	@Environment(\.bxUndoManager) private var undoManager
 	@Environment(\.bxUndoName) private var undoName
 
+	// Init
 	
-    func makeNSView(context:Context) -> NSSlider
+	public init(values:Binding<Set<Double>>, in range:ClosedRange<Double> = 0.0...1.0)
+	{
+		self.values = values
+		self.range = range
+	}
+	
+
+	public func makeNSView(context:Context) -> NSSlider
     {
 		let cell = NSMultiValueSliderCell()
 		cell.undoManager = undoManager
@@ -38,19 +46,19 @@ struct BXMultiValueSlider : NSViewRepresentable
         slider.cell = cell
 		slider.target = context.coordinator
 		slider.action = #selector(Coordinator.updateValues(with:))
-		slider.doubleValue = `in`.lowerBound
-		slider.minValue = `in`.lowerBound
-		slider.maxValue = `in`.upperBound
+		slider.doubleValue = range.lowerBound
+		slider.minValue = range.lowerBound
+		slider.maxValue = range.upperBound
 		
 		return slider
     }
 
 
-    func updateNSView(_ slider:NSSlider, context:Context)
+	public func updateNSView(_ slider:NSSlider, context:Context)
     {
-		(slider.cell as? NSMultiValueSliderCell)?.values = self.values
+		(slider.cell as? NSMultiValueSliderCell)?.values = self.values.wrappedValue
 		
-		if let value = values.first
+		if let value = values.wrappedValue.first
 		{
 			slider.doubleValue = slider.minValue - 1.0
 			slider.doubleValue = value
@@ -61,11 +69,11 @@ struct BXMultiValueSlider : NSViewRepresentable
 			slider.doubleValue = slider.minValue
 		}
 		
-		slider.isEnabled = self.isEnabled && self.values.count > 0
+		slider.isEnabled = self.isEnabled && self.values.wrappedValue.count > 0
     }
     
     
-    class Coordinator : NSObject
+	public class Coordinator : NSObject
     {
         var slider:BXMultiValueSlider
 
@@ -76,11 +84,11 @@ struct BXMultiValueSlider : NSViewRepresentable
 
         @objc func updateValues(with sender:NSSlider)
         {
-			slider.values = Set([sender.doubleValue])
+			slider.values.wrappedValue = Set([sender.doubleValue])
         }
     }
     
-    func makeCoordinator() -> Coordinator
+	public func makeCoordinator() -> Coordinator
     {
         return Coordinator(self)
     }
