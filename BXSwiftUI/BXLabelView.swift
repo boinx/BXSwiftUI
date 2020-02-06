@@ -77,12 +77,7 @@ public struct BXLabelView<Content> : View where Content:View
 				
 				// Measure its size and attach a preference (with its width)
 				
-				.background( GeometryReader
-				{
-					Color.clear.preference(
-						key:BXLabelViewKey.self,
-						value:[BXLabelViewData(width:$0.size.width)])
-				})
+				.measureLabelWidth()
 				
 				// Resize the Text to the desired width - which will be the maximum width of all BXLabelViews
 				
@@ -100,6 +95,18 @@ public struct BXLabelView<Content> : View where Content:View
 
 public extension View
 {
+	// Measures the size of the view and attach a preference (with its width)
+	
+	func measureLabelWidth() -> some View
+	{
+		self.background( GeometryReader
+		{
+			Color.clear.preference(
+				key:BXLabelViewKey.self,
+				value:[BXLabelViewData(width:$0.size.width)])
+		})
+	}
+
 	// Stores the width of the widest BXPropertyLabel in the maxLabelWidth Binding - which is important when
 	// localizing for languages with longer strings. The controls will be left aligned at this width.
 
