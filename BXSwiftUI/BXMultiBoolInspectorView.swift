@@ -26,6 +26,21 @@ public struct BXMultiBoolInspectorView : View
 	private var title:String
 	private var alignment:HorizontalAlignment
 	
+	// Environment
+	
+	@Environment(\.controlSize) private var controlSize
+
+	private var idealHeight:CGFloat
+	{
+		switch controlSize
+		{
+			case .regular: 		return 14
+			case .small: 		return 14
+			case .mini: 		return 14
+			@unknown default: 	return 14
+		}
+	}
+	
 	// Init
 	
 	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Bool>>, title:String = "", alignment:HorizontalAlignment = .leading)
@@ -55,7 +70,12 @@ public struct BXMultiBoolInspectorView : View
 				Spacer()
 			}
 		}
-		.frame(maxHeight:24.0, alignment:.top)
+
+		// Provide fixed height to avoid layout glitches if BXDisclosureViews follow below
+		
+//		.border(Color.green)
+		.frame(idealHeight:idealHeight)
+		.fixedSize(horizontal:false, vertical:true)
 	}
 }
 

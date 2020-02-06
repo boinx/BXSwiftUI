@@ -30,7 +30,20 @@ public struct BXMultiDoubleInspectorView: View
 	// Environment
 	
 	@Environment(\.isEnabled) private var isEnabled
+	@Environment(\.controlSize) private var controlSize
+
+	private var idealHeight:CGFloat
+	{
+		switch controlSize
+		{
+			case .regular: 		return 25
+			case .small: 		return 25
+			case .mini: 		return 25
+			@unknown default: 	return 25
+		}
+	}
 	
+
 	// Init
 	
 	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Double>>, range:ClosedRange<Double>, formatter:Formatter? = nil, statusHandler:BXTextFieldStatusHandler? = nil)
@@ -69,7 +82,12 @@ public struct BXMultiDoubleInspectorView: View
 				.zIndex(-1)
 				.offset(x:0,y:1)
 		}
-		.frame(maxHeight:24.0, alignment:.top)
+
+		// Provide fixed height to avoid layout glitches if BXDisclosureViews follow below
+		
+//		.border(Color.green)
+		.frame(idealHeight:idealHeight)
+		.fixedSize(horizontal:false, vertical:true)
 	}
 }
 

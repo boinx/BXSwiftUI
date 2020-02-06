@@ -25,6 +25,20 @@ public struct BXMultiStringInspectorView : View
 	private var values:Binding<Set<String>>
 	private var statusHandler:BXTextFieldStatusHandler? = nil
 
+	// Environment
+	
+	@Environment(\.controlSize) private var controlSize
+
+	private var idealHeight:CGFloat
+	{
+		switch controlSize
+		{
+			case .regular: 		return 14
+			case .small: 		return 14
+			case .mini: 		return 14
+			@unknown default: 	return 14
+		}
+	}
 	// Init
 	
 	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<String>>, statusHandler:BXTextFieldStatusHandler? = nil)
@@ -43,6 +57,12 @@ public struct BXMultiStringInspectorView : View
 		{
 			BXMultiValueTextField(values:self.values, alignment:.leading, statusHandler:self.statusHandler)
 		}
+
+		// Provide fixed height to avoid layout glitches if BXDisclosureViews follow below
+		
+//		.border(Color.green)
+		.frame(idealHeight:idealHeight)
+		.fixedSize(horizontal:false, vertical:true)
 	}
 }
 

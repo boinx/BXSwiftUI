@@ -25,6 +25,21 @@ public struct BXMultiIntInspectorView : View
 	private var values:Binding<Set<Int>>
 	private var orderedItems:[BXMenuItemSpec] = []
 
+	// Environment
+	
+	@Environment(\.controlSize) private var controlSize
+
+	private var idealHeight:CGFloat
+	{
+		switch controlSize
+		{
+			case .regular: 		return 18
+			case .small: 		return 18
+			case .mini: 		return 18
+			@unknown default: 	return 18
+		}
+	}
+	
 	/// Creates a MultiIntPropertyView with a simple array of enum cases. Menu item names and tags are generated automatically from this enum array.
 	
 	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Int>>, orderedItems:[LocalizableIntEnum])
@@ -57,6 +72,12 @@ public struct BXMultiIntInspectorView : View
 			BXMultiValuePicker(values:self.values, orderedItems:self.orderedItems)
 				.modifier(BXStrokedModifier())
 		}
+
+		// Provide fixed height to avoid layout glitches if BXDisclosureViews follow below
+		
+//		.border(Color.green)
+		.frame(idealHeight:idealHeight)
+		.fixedSize(horizontal:false, vertical:true)
 	}
 }
 
