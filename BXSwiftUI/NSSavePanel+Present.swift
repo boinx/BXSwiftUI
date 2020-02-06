@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  NSSavePanel+show.swift
+//  NSSavePanel+Present.swift
 //	Convenience function to show an NSSavePanel
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //

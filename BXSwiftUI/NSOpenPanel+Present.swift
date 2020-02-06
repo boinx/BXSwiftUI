@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  NSOpenPanel+show.swift
+//  NSOpenPanel+Present.swift
 //	Convenience function to show an NSOpenPanel
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
