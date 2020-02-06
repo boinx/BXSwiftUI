@@ -53,6 +53,14 @@ extension View
 		let isDisabled = disabled.reduce(true) { $0 && $1 }
 		return self.disabled(isDisabled)
 	}
+	
+	/// Reduces opacity when the view hierarchy is disabled
+	
+	public func reduceOpacityWhenDisabled() -> some View
+	{
+		return self.modifier(BXEnabledModifier())
+	}
+
 }
 
 
