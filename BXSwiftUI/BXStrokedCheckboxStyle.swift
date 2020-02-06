@@ -42,12 +42,13 @@ fileprivate struct _BXStrokedCheckbox : View
 	// Environment
 	
 	@Environment(\.isEnabled) private var isEnabled
+	@Environment(\.colorScheme) private var colorScheme
 	@Environment(\.controlSize) private var controlSize
 	@Environment(\.hasMultipleValues) private var hasMultipleValues
 	@Environment(\.bxUndoManager) private var undoManager
 	@Environment(\.bxUndoName) private var undoName
 
-	// Sizing depends on environment controlSize
+	// Layout
 	
 	private var edge:CGFloat
 	{
@@ -97,13 +98,34 @@ fileprivate struct _BXStrokedCheckbox : View
 		}
 	}
 
+	// Appearance
+	
+	private var strokeColor : Color
+	{
+		let gray = colorScheme == .dark ? 0.65 : 0.35
+		let alpha = isEnabled ? 1.0 : 0.33
+		return Color(white:gray,opacity:alpha)
+	}
+
+	private var offFillColor : Color
+	{
+		let gray = colorScheme == .dark ? 1.0 : 1.0
+		var alpha = colorScheme == .dark ? 0.07 : 1.0
+		if !isEnabled { alpha *= 0.33 }
+		return Color(white:gray,opacity:alpha)
+	}
+
+	private var onFillColor : Color
+	{
+		let alpha = isEnabled ? 1.0 : 0.33
+		return Color.accentColor.opacity(alpha)
+	}
+
 	// Build the view
 	
 	var body: some View
 	{
-		let fillColor = configuration.isOn || self.hasMultipleValues ?
-			Color.accentColor :
-			Color(white:1.0, opacity:0.07)
+		let fillColor = configuration.isOn || self.hasMultipleValues ? onFillColor : offFillColor
 		
 		return HStack(spacing:spacing)
 		{
@@ -118,7 +140,7 @@ fileprivate struct _BXStrokedCheckbox : View
 				// Stroke
 				
 				RoundedRectangle(cornerRadius:radius)
-					.stroke(Color.gray, lineWidth:0.5)
+					.stroke(self.strokeColor, lineWidth:0.5)
 					.frame(width:edge, height:edge)
 				
 				// Content
@@ -129,7 +151,7 @@ fileprivate struct _BXStrokedCheckbox : View
 				}
 				else if configuration.isOn
 				{
-					Text("✓").bold().offset(x:offset, y:0)
+					Text("✓").foregroundColor(.white).bold().offset(x:offset, y:0)
 				}
 			}
 			
