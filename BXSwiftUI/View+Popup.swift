@@ -22,7 +22,7 @@ public extension View
 	
     func popupMenu(_ itemSpecs:@autoclosure ()->[BXMenuItemSpec]) -> some View
     {
-		self.overlay( BXPopupView(itemSpecs:itemSpecs()) )
+		self.overlay(BXPopupView(itemSpecs:itemSpecs()))
     }
 }
   
@@ -49,12 +49,12 @@ public struct BXPopupView : NSViewRepresentable
 	
 	public func makeNSView(context:Context) -> NSPopUpButton
 	{
-        let popup = NSPopUpButton(frame:.zero)
+        let popup = _NSPopUpButton(frame:.zero)
         popup.autoenablesItems = true
 		popup.isBordered = false
 		popup.pullsDown = true
 		popup.alphaValue = 0.01
-
+		
 		// Fill with NSMenuItems
 		
 		for itemSpec in itemSpecs
@@ -87,7 +87,7 @@ public struct BXPopupView : NSViewRepresentable
 			}
 		}
 
-		// WORKAROUND: There is a strage bug (as of macOS Catalina 10.15.2) where the first menu item to be add is
+		// WORKAROUND: There is a strange bug (as of macOS Catalina 10.15.2) where the first menu item to be add is
 		// hidden when the popup is shown. In order to fix this problem, we will listen to the willPopUpNotification
 		// and then walk through all item to force them to be visisble. Note that this has to be deferred to the
 		// next runloop cycle because we are note allowed to change @State while building a View.
@@ -136,6 +136,20 @@ public struct BXPopupView : NSViewRepresentable
 			menuItem.state = .off
         }
     }
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+// Custom subclass that forces the size of the popup to 16x16 pt, regardless of length of menu items
+
+fileprivate class _NSPopUpButton : NSPopUpButton
+{
+	override open var intrinsicContentSize: NSSize
+	{
+		return NSMakeSize(16,16)
+	}
 }
 
 
