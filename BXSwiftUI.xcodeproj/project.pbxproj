@@ -61,6 +61,7 @@
 		D0D28EB823E748E30012F9E1 /* Bundle+BXSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D28EB723E748E30012F9E1 /* Bundle+BXSwiftUI.swift */; };
 		D0E2429623D8827D00145CEA /* BXDisclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2429523D8827D00145CEA /* BXDisclosureView.swift */; };
 		D0ED327723E557B700B37B3D /* BXTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED327623E557B700B37B3D /* BXTextField.swift */; };
+		D0EED8FE23EEA13200E4243D /* BXColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0083BE623EDC8490097C7A1 /* BXColorTheme.swift */; };
 		D0F9B3AE23E86F7C00AF0929 /* BXEnabledModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9B3AD23E86F7B00AF0929 /* BXEnabledModifier.swift */; };
 		D0F9B3B023E8710000AF0929 /* BXStrokedModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9B3AF23E8710000AF0929 /* BXStrokedModifier.swift */; };
 		D0FFC32F23E037B800BEA7A4 /* BXIntEnumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FFC32E23E037B800BEA7A4 /* BXIntEnumView.swift */; };
@@ -81,6 +82,7 @@
 		D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextAlignment+AppKit.swift"; sourceTree = "<group>"; };
 		D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+Custom.swift"; sourceTree = "<group>"; };
 		D002FE7E23D22EC5002CF0A1 /* BXMultiValueToggle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXMultiValueToggle.swift; sourceTree = "<group>"; };
+		D0083BE623EDC8490097C7A1 /* BXColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXColorTheme.swift; sourceTree = "<group>"; };
 		D011B1CA23E1C73D00643F20 /* BXStrokedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXStrokedButtonStyle.swift; sourceTree = "<group>"; };
 		D029B91A23EC4FE80095DE37 /* View+Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Popup.swift"; sourceTree = "<group>"; };
 		D02BC58B23DC26E400676CF3 /* BXStringEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXStringEditView.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				D0F9B3AD23E86F7B00AF0929 /* BXEnabledModifier.swift */,
 				D0F9B3AF23E8710000AF0929 /* BXStrokedModifier.swift */,
 				D0B64EB923E6F31F0089A33F /* BXHasMultipleValuesKey.swift */,
+				D0083BE623EDC8490097C7A1 /* BXColorTheme.swift */,
 			);
 			name = Styles;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				D0C1249A23DAE4A600DB3592 /* BXCircularSlider.swift in Sources */,
 				D077D5D023E32ED800C1D20F /* NSSavePanel+Present.swift in Sources */,
 				D0A2400423DF5716004E9F31 /* BXOptionalView.swift in Sources */,
+				D0EED8FE23EEA13200E4243D /* BXColorTheme.swift in Sources */,
 				D0793E7E23D45D170069327F /* BXMultiBoolInspectorView.swift in Sources */,
 				D002FE8523D22EC5002CF0A1 /* TextAlignment+AppKit.swift in Sources */,
 				D077D5D423E348B400C1D20F /* NSOpenPanel+Present.swift in Sources */,
