@@ -50,7 +50,7 @@ public struct BXPopupView : NSViewRepresentable
 	public func makeNSView(context:Context) -> NSPopUpButton
 	{
         let popup = _NSPopUpButton(frame:.zero)
-        popup.autoenablesItems = true
+        popup.autoenablesItems = false
 		popup.isBordered = false
 		popup.pullsDown = true
 		popup.alphaValue = 0.01
