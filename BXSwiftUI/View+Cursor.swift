@@ -103,7 +103,7 @@ public class _BXCursorView : NSView
 			self.removeTrackingArea(trackingArea)
 		}
 		
-		let trackingArea = NSTrackingArea(rect:self.bounds, options:[.mouseEnteredAndExited,.assumeInside,.activeInKeyWindow], owner:self, userInfo:nil)
+		let trackingArea = NSTrackingArea(rect:self.bounds, options:[.mouseEnteredAndExited,.mouseMoved,.assumeInside,.activeInKeyWindow], owner:self, userInfo:nil)
 		self.addTrackingArea(trackingArea)
 		self.trackingArea = trackingArea
 	}
@@ -111,6 +111,11 @@ public class _BXCursorView : NSView
 	override public func mouseEntered(with event:NSEvent)
 	{
 		BXCursorViewTracker.shared.enter(self)
+	}
+
+	override public func mouseMoved(with event:NSEvent)
+	{
+		BXCursorViewTracker.shared.moved(self)
 	}
 
 	override public func mouseExited(with event:NSEvent)
@@ -146,6 +151,12 @@ class BXCursorViewTracker
 	/// Returns the view that the mouse is currently over
 	
 	private var currentView:_BXCursorView? = nil
+	{
+		didSet
+		{
+			if currentView != oldValue { self.updateCursor() }
+		}
+	}
 	
 	// Subscribe to modifier key presses
 	
@@ -153,10 +164,9 @@ class BXCursorViewTracker
 	{
 		self.modifierKeySubscriber = BXModifierKeys.shared.objectWillChange.sink
 		{
-			self.currentCursor?.set()
+			self.updateCursor()
 		}
 	}
-
 
 	// Track the view that the mouse is currently over. Handle an unexpected
 	// order of calls tomouseEntered and mouseExited gracefully.
@@ -164,28 +174,29 @@ class BXCursorViewTracker
 	func enter(_ view:_BXCursorView)
 	{
 		self.currentView = view
-		self.updateCursor()
+	}
+	
+	func moved(_ view:_BXCursorView)
+	{
+		self.currentView = view
 	}
 	
 	func exit(_ view:_BXCursorView)
 	{
-		if currentView == view { self.currentView = nil }
-		self.updateCursor()
+		if currentView == view
+		{
+			self.currentView = nil
+		}
 	}
 	
 	// Update the cursor for the current view and modifier keys
 	
 	func updateCursor()
 	{
-		self.cursors = currentView?.cursors ?? [:]
-		self.currentCursor?.set()
-	}
-
-	var currentCursor:NSCursor?
-	{
 		let key = BXModifierKeys.shared.flags.deviceIndependent
-		let cursor = self.cursors[key] ?? NSCursor.arrow
-		return cursor
+		self.cursors = currentView?.cursors ?? [:]
+		let currentCursor = self.cursors[key] ?? NSCursor.arrow
+		currentCursor.set()
 	}
 }
 
