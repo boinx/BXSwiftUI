@@ -61,11 +61,11 @@ public struct BXPopupView : NSViewRepresentable
 		{
 			switch itemSpec
 			{
-				case .action(let icon, let name, let action):
+				case .action(let icon, let name, let isEnabled, let action):
 				
 					let item = NSMenuItem(title:name, action:nil, keyEquivalent:"")
 					item.image = icon
-					item.representedObject = action
+					item.representedObject = BXAutoEnablingAction(action:action, isEnabled:isEnabled)
 					item.target = context.coordinator
 					item.action = #selector(Coordinator.execute(_:))
 					item.isEnabled = true
@@ -100,7 +100,16 @@ public struct BXPopupView : NSViewRepresentable
 				
 				for menuItem in popup.menu?.items ?? []
 				{
+					// Force menu item to be visible
+					
 					menuItem.isHidden = false
+					
+					// Also update its isEnabled state
+					
+					if let action = menuItem.representedObject as? BXAutoEnablingAction
+					{
+						menuItem.isEnabled = action.isEnabled
+					}
 				}
 			}
 		}
@@ -131,8 +140,8 @@ public struct BXPopupView : NSViewRepresentable
 
         @objc func execute(_ menuItem:NSMenuItem)
         {
-			guard let action = menuItem.representedObject as? ()->Void else { return }
-			action()
+			guard let action = menuItem.representedObject as? BXAutoEnablingAction else { return }
+			action.execute()
 			menuItem.state = .off
         }
     }
