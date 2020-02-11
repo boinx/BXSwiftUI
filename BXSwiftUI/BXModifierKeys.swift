@@ -29,8 +29,8 @@ public final class BXModifierKeys : NSObject, ObservableObject
 	
     public func flagsChanged(with event:NSEvent)
     {
-		self.objectWillChange.send()
 		self.flags = event.modifierFlags
+		self.objectWillChange.send()
     }
 }
 
