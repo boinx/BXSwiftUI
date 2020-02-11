@@ -16,14 +16,14 @@ import Foundation
 
 extension View
 {
-	// Injects the document into the environment. Controls in the view hierarchy may access it access its UndoManager.
+	/// Injects the document into the environment. Controls in the view hierarchy may access it access its UndoManager.
 	
 	public func setUndoManager(_ undoManager:UndoManager?) -> some View
 	{
 		self.environment(\.bxUndoManager, undoManager)
 	}
 
-	// Injects the undo name into the environment. Controls in the view hierarchy may access it to set an undo name when necessary.
+	/// Injects the undo name into the environment. Controls in the view hierarchy may access it to set an undo name when necessary.
 	
 	public func setUndoName(_ name:String) -> some View
 	{
