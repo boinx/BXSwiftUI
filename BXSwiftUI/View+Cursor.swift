@@ -23,7 +23,6 @@ public extension View
 	
     func cursor(_ cursor:NSCursor, for flags:NSEvent.ModifierFlags) -> some View
     {
-//		let key = flags.deviceIndependent
 		return self.background(BXCursorView([flags:cursor]))
     }
 
@@ -169,7 +168,7 @@ class BXCursorViewTracker
 	}
 
 	// Track the view that the mouse is currently over. Handle an unexpected
-	// order of calls tomouseEntered and mouseExited gracefully.
+	// order of calls to mouseEntered and mouseExited gracefully.
 	
 	func enter(_ view:_BXCursorView)
 	{
@@ -193,9 +192,9 @@ class BXCursorViewTracker
 	
 	func updateCursor()
 	{
-		let key = BXModifierKeys.shared.flags.deviceIndependent
+		let keys = BXModifierKeys.shared.flags.deviceIndependent
 		self.cursors = currentView?.cursors ?? [:]
-		let currentCursor = self.cursors[key] ?? NSCursor.arrow
+		let currentCursor = self.cursors[keys] ?? NSCursor.arrow
 		currentCursor.set()
 	}
 }
