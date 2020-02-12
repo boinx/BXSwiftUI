@@ -81,9 +81,11 @@ public struct BXDisclosureButton : View
 				.font(font)
 				.scaleEffect(0.85)
 				.rotationEffect(.degrees(isExpanded.wrappedValue ? 90 : 0))
-				
-			Text(label)
-				.font(font)
+			
+			if label.count > 0
+			{
+				Text(label).font(font)
+			}
 		}
 		
 		.onTapGesture
