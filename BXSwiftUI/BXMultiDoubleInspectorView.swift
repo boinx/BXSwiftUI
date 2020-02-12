@@ -24,6 +24,7 @@ public struct BXMultiDoubleInspectorView: View
 	private var width:Binding<CGFloat>? = nil
 	private var values:Binding<Set<Double>>
 	private var range:ClosedRange<Double> = 0.0...60.0
+	private var response:BXSliderResponse = .linear
 	private var formatter:Formatter? = nil
 	private var statusHandler:BXTextFieldStatusHandler? = nil
 
@@ -46,12 +47,13 @@ public struct BXMultiDoubleInspectorView: View
 
 	// Init
 	
-	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Double>>, range:ClosedRange<Double>, formatter:Formatter? = nil, statusHandler:BXTextFieldStatusHandler? = nil)
+	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Double>>, range:ClosedRange<Double>, response:BXSliderResponse = .linear, formatter:Formatter? = nil, statusHandler:BXTextFieldStatusHandler? = nil)
 	{
 		self.label = label
 		self.width = width
 		self.values = values
 		self.range = range
+		self.response = response
 		self.formatter = formatter
 		self.statusHandler = statusHandler
 	}
@@ -78,7 +80,7 @@ public struct BXMultiDoubleInspectorView: View
 					.frame(width:60.0)
 			}
 			
-			BXMultiValueSlider(values:values, in:range)
+			BXMultiValueSlider(values:values, in:range, response:response)
 				.zIndex(-1)
 				.offset(x:0,y:1)
 		}

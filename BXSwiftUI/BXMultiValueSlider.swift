@@ -14,12 +14,66 @@ import AppKit
 //----------------------------------------------------------------------------------------------------------------------
 
 
+/// This type contains two closures that transform value between model and view (slider)
+
+public struct BXSliderResponse
+{
+	/// Transforms a value from model to view space
+	
+	let modelToView:(Double)->Double
+
+	/// Transforms a value from view to model space
+	
+	let viewToModel:(Double)->Double
+	
+	/// Indicates whether lowerBound and upperBound of range should be swapped when setting slider minValue and maxValue
+	
+	let reversed:Bool
+}
+
+
+extension BXSliderResponse
+{
+	/// Linear slide response
+	
+	public static let linear = BXSliderResponse(
+		modelToView:{ $0 },
+		viewToModel:{ $0 },
+		reversed:false)
+	
+	/// Squared slide response (slow at first and speeding up)
+	
+	public static let squared = BXSliderResponse(
+		modelToView:{ pow($0,0.5) },
+		viewToModel:{ pow($0,2.0) },
+		reversed:false)
+
+	/// Exponential slider response
+	
+	public static let exponential = BXSliderResponse(
+		modelToView:{ log($0) },
+		viewToModel:{ exp($0) },
+		reversed:false)
+	
+	/// Exponential slider response that is reversed
+	
+	public static let reversedExponential = BXSliderResponse(
+		modelToView:{ -log($0) },
+		viewToModel:{ exp(-$0) },
+		reversed:true)
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
 public struct BXMultiValueSlider : NSViewRepresentable
 {
 	// Params
 	
 	private var values:Binding<Set<Double>>
 	private var range:ClosedRange<Double> = 0.0...1.0
+	private var response:BXSliderResponse = .linear
 	
 	// Environment
 	
@@ -29,10 +83,11 @@ public struct BXMultiValueSlider : NSViewRepresentable
 
 	// Init
 	
-	public init(values:Binding<Set<Double>>, in range:ClosedRange<Double> = 0.0...1.0)
+	public init(values:Binding<Set<Double>>, in range:ClosedRange<Double> = 0.0...1.0, response:BXSliderResponse = .linear)
 	{
 		self.values = values
 		self.range = range
+		self.response = response
 	}
 	
 
@@ -41,15 +96,26 @@ public struct BXMultiValueSlider : NSViewRepresentable
 		let cell = NSMultiValueSliderCell()
 		cell.undoManager = undoManager
 		cell.undoName = undoName
+		cell.response = self.response
 		
         let slider = NSSlider(frame:.zero)
         slider.cell = cell
 		slider.target = context.coordinator
 		slider.action = #selector(Coordinator.updateValues(with:))
-		slider.doubleValue = range.lowerBound
-		slider.minValue = range.lowerBound
-		slider.maxValue = range.upperBound
 		
+		if self.response.reversed
+		{
+			slider.minValue = self.response.modelToView(range.upperBound)
+			slider.maxValue = self.response.modelToView(range.lowerBound)
+		}
+		else
+		{
+			slider.minValue = self.response.modelToView(range.lowerBound)
+			slider.maxValue = self.response.modelToView(range.upperBound)
+		}
+		
+		slider.doubleValue = slider.minValue
+
 		return slider
     }
 
@@ -61,7 +127,7 @@ public struct BXMultiValueSlider : NSViewRepresentable
 		if let value = values.wrappedValue.first
 		{
 			slider.doubleValue = slider.minValue - 1.0
-			slider.doubleValue = value
+			slider.doubleValue = self.response.modelToView(value)
 		}
 		else
 		{
@@ -76,21 +142,25 @@ public struct BXMultiValueSlider : NSViewRepresentable
 	public class Coordinator : NSObject
     {
         var slider:BXMultiValueSlider
-
-        init(_ slider:BXMultiValueSlider)
+		var response:BXSliderResponse
+		
+        init(_ slider:BXMultiValueSlider,_ response:BXSliderResponse)
         {
             self.slider = slider
+            self.response = response
         }
 
         @objc func updateValues(with sender:NSSlider)
         {
-			slider.values.wrappedValue = Set([sender.doubleValue])
+			let viewValue = sender.doubleValue
+			let modelValue = self.response.viewToModel(viewValue)
+			slider.values.wrappedValue = Set([modelValue])
         }
     }
     
 	public func makeCoordinator() -> Coordinator
     {
-        return Coordinator(self)
+        return Coordinator(self, self.response)
     }
 }
 
@@ -101,6 +171,7 @@ public struct BXMultiValueSlider : NSViewRepresentable
 class NSMultiValueSliderCell : NSSliderCell
 {
 	public var values = Set<Double>()
+	public var response:BXSliderResponse = .linear
 	public var undoManager:UndoManager?
 	public var undoName:String = ""
 
@@ -109,7 +180,8 @@ class NSMultiValueSliderCell : NSSliderCell
 		let savedValue = self.doubleValue
 		defer { self.doubleValue = savedValue }
 		
-		self.doubleValue = self.values.max() ?? self.minValue
+		let value = self.values.max() ?? self.minValue
+		self.doubleValue = self.response.modelToView(value)
 		super.drawBar(inside:rect, flipped:flipped)
 	}
 
@@ -120,7 +192,7 @@ class NSMultiValueSliderCell : NSSliderCell
 		
 		for value in self.values.sorted()
 		{
-			self.doubleValue = value
+			self.doubleValue = self.response.modelToView(value)
 			super.drawKnob()
 		}
 	}
