@@ -77,7 +77,7 @@ public struct BXLabelView<Content> : View where Content:View
 				
 				// Measure its size and attach a preference (with its width)
 				
-				.measureLabelWidth()
+				.measureLabelWidth(isIncluded: self.width != nil)
 				
 				// Resize the Text to the desired width - which will be the maximum width of all BXLabelViews
 				
@@ -97,13 +97,13 @@ public extension View
 {
 	// Measures the size of the view and attach a preference (with its width)
 	
-	func measureLabelWidth() -> some View
+	func measureLabelWidth(isIncluded:Bool = true) -> some View
 	{
 		self.background( GeometryReader
 		{
 			Color.clear.preference(
 				key:BXLabelViewKey.self,
-				value:[BXLabelViewData(width:$0.size.width)])
+				value:[BXLabelViewData(width: isIncluded ? $0.size.width : 0.0)])
 		})
 	}
 
