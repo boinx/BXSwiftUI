@@ -73,9 +73,7 @@ public struct BXMultiBoolInspectorView : View
 
 		// Provide fixed height to avoid layout glitches if BXDisclosureViews follow below
 		
-//		.border(Color.green)
-		.frame(idealHeight:idealHeight)
-		.fixedSize(horizontal:false, vertical:true)
+		.intrinsicContentSize(height:idealHeight)
 	}
 }
 

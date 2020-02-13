@@ -49,6 +49,7 @@
 		D0793E8023D45D350069327F /* BXMultiDoubleInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E7F23D45D350069327F /* BXMultiDoubleInspectorView.swift */; };
 		D0793E8223D45D5A0069327F /* BXMultiIntInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E8123D45D5A0069327F /* BXMultiIntInspectorView.swift */; };
 		D0793E8A23D469870069327F /* BXSwiftUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0793E8923D469870069327F /* BXSwiftUtils.framework */; };
+		D07F541723F52F5B001AFD5D /* View+IntrinsicContentSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07F541623F52F5B001AFD5D /* View+IntrinsicContentSize.swift */; };
 		D082496723E40ABB006142CE /* BXTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EBA10923D9881D00E82E59 /* BXTextView.swift */; };
 		D082496923E4141C006142CE /* BXAttributedStringEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D082496823E4141C006142CE /* BXAttributedStringEditView.swift */; };
 		D08FB76D23E48D2400C1A193 /* BXTextView_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FB76C23E48D2400C1A193 /* BXTextView_macOS.swift */; };
@@ -116,6 +117,7 @@
 		D0793E7F23D45D350069327F /* BXMultiDoubleInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiDoubleInspectorView.swift; sourceTree = "<group>"; };
 		D0793E8123D45D5A0069327F /* BXMultiIntInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiIntInspectorView.swift; sourceTree = "<group>"; };
 		D0793E8923D469870069327F /* BXSwiftUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BXSwiftUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D07F541623F52F5B001AFD5D /* View+IntrinsicContentSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+IntrinsicContentSize.swift"; sourceTree = "<group>"; };
 		D082496823E4141C006142CE /* BXAttributedStringEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXAttributedStringEditView.swift; sourceTree = "<group>"; };
 		D08FB76C23E48D2400C1A193 /* BXTextView_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXTextView_macOS.swift; sourceTree = "<group>"; };
 		D08FB76E23E4920A00C1A193 /* BXTextField_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXTextField_macOS.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				D075AA4523EB14A6009EF839 /* View+Tooltip.swift */,
 				D029B91A23EC4FE80095DE37 /* View+Popup.swift */,
 				D05ED7BA23F1AAEC0019FE46 /* View+Cursor.swift */,
+				D07F541623F52F5B001AFD5D /* View+IntrinsicContentSize.swift */,
 				D077D5D323E348B400C1D20F /* NSOpenPanel+Present.swift */,
 				D077D5CF23E32ED800C1D20F /* NSSavePanel+Present.swift */,
 				D05ED7B823F143C90019FE46 /* BXModifierKeys.swift */,
@@ -434,6 +437,7 @@
 				D077D5C323E2E14C00C1D20F /* Binding+Optional.swift in Sources */,
 				D002FE8423D22EC5002CF0A1 /* BXMultiValueTextField.swift in Sources */,
 				D075AA4623EB14A6009EF839 /* View+Tooltip.swift in Sources */,
+				D07F541723F52F5B001AFD5D /* View+IntrinsicContentSize.swift in Sources */,
 				D02ED7C323E96FB2000572FE /* View+Undo.swift in Sources */,
 				D0F9B3B023E8710000AF0929 /* BXStrokedModifier.swift in Sources */,
 				D04B14DD23DB4773001203FD /* BXStrokedCheckboxStyle.swift in Sources */,
