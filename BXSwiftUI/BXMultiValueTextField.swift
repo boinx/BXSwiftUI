@@ -96,7 +96,7 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 		if values.wrappedValue.count == 0
 		{
 			textfield.stringValue = ""
-			textfield.placeholderString = "none"
+			textfield.placeholderString = "None"
 			textfield.isEnabled = false
 		}
 		else if values.wrappedValue.count == 1, let value = values.wrappedValue.first
@@ -120,7 +120,7 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 		else
 		{
 			textfield.stringValue = ""
-			textfield.placeholderString = "multiple"
+			textfield.placeholderString = "Multiple"
 			textfield.isEnabled = self.isEnabled
 		}
 

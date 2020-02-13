@@ -53,15 +53,15 @@ public struct BXMultiValuePicker : NSViewRepresentable
 		
 		// Add an invisible menu item for "none" (nothing is selected)
 		
-        item = NSMenuItem(title:"none", action:nil, keyEquivalent:"")
+        item = NSMenuItem(title:"None", action:nil, keyEquivalent:"")
 		item.tag = Values.none.rawValue
 		item.isEnabled = false
 		item.isHidden = true
 		popup.menu?.addItem(item)
         
-		// Add an invisible menu item for "multiple" (multiple different values are selected)
+		// Add an invisible menu item for "Multiple" (multiple different values are selected)
 		
-		item = NSMenuItem(title:"multiple", action:nil, keyEquivalent:"")
+		item = NSMenuItem(title:"Multiple", action:nil, keyEquivalent:"")
 		item.tag = Values.multiple.rawValue
 		item.isEnabled = false
 		item.isHidden = true
@@ -175,7 +175,7 @@ public struct BXMultiValuePicker : NSViewRepresentable
 
 
 // Since we are dealing with multiple selection, a value can either be "none" (no selection), it can be
-// "unique", or in case of multiple selected values that are different, it will be "multiple".
+// "unique", or in case of multiple selected values that are different, it will be "Multiple".
 
 fileprivate enum Values : Int
 {

@@ -34,14 +34,14 @@ struct BXMultiValueTextView : View
 			{
 				if self.values.wrappedValue.count > 1
 				{
-					return NSAttributedString(string:"multiple")
+					return NSAttributedString(string:"Multiple")
 				}
 				else if let value = self.values.wrappedValue.first
 				{
 					return value
 				}
 				
-				return NSAttributedString(string:"none")
+				return NSAttributedString(string:"None")
 			},
 			
 			set:
