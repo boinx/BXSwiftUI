@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  BXMultiDoubleInspectorView.swift
+//  BXMultiValueDoubleInspectorView.swift
 //	Compound views for inspector style user interfaces
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
@@ -16,7 +16,7 @@ import SwiftUI
 
 /// Inspector view for multiple values of Double
 
-public struct BXMultiDoubleInspectorView: View
+public struct BXMultiValueDoubleInspectorView: View
 {
 	// Params
 	

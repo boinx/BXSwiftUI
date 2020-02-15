@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  BXIntPropertyView.swift
+//  BXMultiValueIntPropertyView.swift
 //	Compound views for inspector style user interfaces
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
@@ -16,7 +16,7 @@ import SwiftUI
 
 /// Inspector view for multiple values of Int
 
-public struct BXMultiIntInspectorView : View
+public struct BXMultiValueIntInspectorView : View
 {
 	// Params
 	

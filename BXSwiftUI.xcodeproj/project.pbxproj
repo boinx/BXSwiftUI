@@ -12,7 +12,7 @@
 		D002FE7F23D22EC5002CF0A1 /* BXLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7523D22EC5002CF0A1 /* BXLabelView.swift */; };
 		D002FE8023D22EC5002CF0A1 /* BXMultiValuePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7623D22EC5002CF0A1 /* BXMultiValuePicker.swift */; };
 		D002FE8123D22EC5002CF0A1 /* BXMultiValueSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7723D22EC5002CF0A1 /* BXMultiValueSlider.swift */; };
-		D002FE8223D22EC5002CF0A1 /* BXMultiStringInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7823D22EC5002CF0A1 /* BXMultiStringInspectorView.swift */; };
+		D002FE8223D22EC5002CF0A1 /* BXMultiValueStringInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7823D22EC5002CF0A1 /* BXMultiValueStringInspectorView.swift */; };
 		D002FE8323D22EC5002CF0A1 /* TypeCheckable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7923D22EC5002CF0A1 /* TypeCheckable.swift */; };
 		D002FE8423D22EC5002CF0A1 /* BXMultiValueTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7A23D22EC5002CF0A1 /* BXMultiValueTextField.swift */; };
 		D002FE8523D22EC5002CF0A1 /* TextAlignment+AppKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */; };
@@ -45,9 +45,9 @@
 		D077D5CC23E3104400C1D20F /* BXButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077D5CB23E3104400C1D20F /* BXButton.swift */; };
 		D077D5D023E32ED800C1D20F /* NSSavePanel+Present.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077D5CF23E32ED800C1D20F /* NSSavePanel+Present.swift */; };
 		D077D5D423E348B400C1D20F /* NSOpenPanel+Present.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077D5D323E348B400C1D20F /* NSOpenPanel+Present.swift */; };
-		D0793E7E23D45D170069327F /* BXMultiBoolInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E7D23D45D170069327F /* BXMultiBoolInspectorView.swift */; };
-		D0793E8023D45D350069327F /* BXMultiDoubleInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E7F23D45D350069327F /* BXMultiDoubleInspectorView.swift */; };
-		D0793E8223D45D5A0069327F /* BXMultiIntInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E8123D45D5A0069327F /* BXMultiIntInspectorView.swift */; };
+		D0793E7E23D45D170069327F /* BXMultiValueBoolInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E7D23D45D170069327F /* BXMultiValueBoolInspectorView.swift */; };
+		D0793E8023D45D350069327F /* BXMultiValueDoubleInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E7F23D45D350069327F /* BXMultiValueDoubleInspectorView.swift */; };
+		D0793E8223D45D5A0069327F /* BXMultiValueIntInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0793E8123D45D5A0069327F /* BXMultiValueIntInspectorView.swift */; };
 		D0793E8A23D469870069327F /* BXSwiftUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0793E8923D469870069327F /* BXSwiftUtils.framework */; };
 		D07F541723F52F5B001AFD5D /* View+IntrinsicContentSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07F541623F52F5B001AFD5D /* View+IntrinsicContentSize.swift */; };
 		D082496723E40ABB006142CE /* BXTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EBA10923D9881D00E82E59 /* BXTextView.swift */; };
@@ -56,7 +56,7 @@
 		D08FB76F23E4920A00C1A193 /* BXTextField_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FB76E23E4920A00C1A193 /* BXTextField_macOS.swift */; };
 		D0A2400423DF5716004E9F31 /* BXOptionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A2400323DF5716004E9F31 /* BXOptionalView.swift */; };
 		D0B5475423EC091A00046F96 /* BXJogwheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B5475323EC091A00046F96 /* BXJogwheel.swift */; };
-		D0B64EB623E6C92A0089A33F /* BXMultiAttributedStringInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B64EB523E6C92A0089A33F /* BXMultiAttributedStringInspectorView.swift */; };
+		D0B64EB623E6C92A0089A33F /* BXMultiValueAttributedStringInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B64EB523E6C92A0089A33F /* BXMultiValueAttributedStringInspectorView.swift */; };
 		D0B64EB823E6CB360089A33F /* BXMultiValueTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B64EB723E6CB360089A33F /* BXMultiValueTextView.swift */; };
 		D0B64EBA23E6F31F0089A33F /* BXHasMultipleValuesKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B64EB923E6F31F0089A33F /* BXHasMultipleValuesKey.swift */; };
 		D0C1249A23DAE4A600DB3592 /* BXCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C1249923DAE4A600DB3592 /* BXCircularSlider.swift */; };
@@ -79,7 +79,7 @@
 		D002FE7523D22EC5002CF0A1 /* BXLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXLabelView.swift; sourceTree = "<group>"; };
 		D002FE7623D22EC5002CF0A1 /* BXMultiValuePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXMultiValuePicker.swift; sourceTree = "<group>"; };
 		D002FE7723D22EC5002CF0A1 /* BXMultiValueSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXMultiValueSlider.swift; sourceTree = "<group>"; };
-		D002FE7823D22EC5002CF0A1 /* BXMultiStringInspectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXMultiStringInspectorView.swift; sourceTree = "<group>"; };
+		D002FE7823D22EC5002CF0A1 /* BXMultiValueStringInspectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXMultiValueStringInspectorView.swift; sourceTree = "<group>"; };
 		D002FE7923D22EC5002CF0A1 /* TypeCheckable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeCheckable.swift; sourceTree = "<group>"; };
 		D002FE7A23D22EC5002CF0A1 /* BXMultiValueTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXMultiValueTextField.swift; sourceTree = "<group>"; };
 		D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextAlignment+AppKit.swift"; sourceTree = "<group>"; };
@@ -113,9 +113,9 @@
 		D077D5CB23E3104400C1D20F /* BXButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXButton.swift; sourceTree = "<group>"; };
 		D077D5CF23E32ED800C1D20F /* NSSavePanel+Present.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSavePanel+Present.swift"; sourceTree = "<group>"; };
 		D077D5D323E348B400C1D20F /* NSOpenPanel+Present.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSOpenPanel+Present.swift"; sourceTree = "<group>"; };
-		D0793E7D23D45D170069327F /* BXMultiBoolInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiBoolInspectorView.swift; sourceTree = "<group>"; };
-		D0793E7F23D45D350069327F /* BXMultiDoubleInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiDoubleInspectorView.swift; sourceTree = "<group>"; };
-		D0793E8123D45D5A0069327F /* BXMultiIntInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiIntInspectorView.swift; sourceTree = "<group>"; };
+		D0793E7D23D45D170069327F /* BXMultiValueBoolInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueBoolInspectorView.swift; sourceTree = "<group>"; };
+		D0793E7F23D45D350069327F /* BXMultiValueDoubleInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueDoubleInspectorView.swift; sourceTree = "<group>"; };
+		D0793E8123D45D5A0069327F /* BXMultiValueIntInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueIntInspectorView.swift; sourceTree = "<group>"; };
 		D0793E8923D469870069327F /* BXSwiftUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BXSwiftUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D07F541623F52F5B001AFD5D /* View+IntrinsicContentSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+IntrinsicContentSize.swift"; sourceTree = "<group>"; };
 		D082496823E4141C006142CE /* BXAttributedStringEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXAttributedStringEditView.swift; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 		D08FB76E23E4920A00C1A193 /* BXTextField_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXTextField_macOS.swift; sourceTree = "<group>"; };
 		D0A2400323DF5716004E9F31 /* BXOptionalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXOptionalView.swift; sourceTree = "<group>"; };
 		D0B5475323EC091A00046F96 /* BXJogwheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXJogwheel.swift; sourceTree = "<group>"; };
-		D0B64EB523E6C92A0089A33F /* BXMultiAttributedStringInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiAttributedStringInspectorView.swift; sourceTree = "<group>"; };
+		D0B64EB523E6C92A0089A33F /* BXMultiValueAttributedStringInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueAttributedStringInspectorView.swift; sourceTree = "<group>"; };
 		D0B64EB723E6CB360089A33F /* BXMultiValueTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueTextView.swift; sourceTree = "<group>"; };
 		D0B64EB923E6F31F0089A33F /* BXHasMultipleValuesKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXHasMultipleValuesKey.swift; sourceTree = "<group>"; };
 		D0C1249923DAE4A600DB3592 /* BXCircularSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXCircularSlider.swift; sourceTree = "<group>"; };
@@ -263,11 +263,11 @@
 		D02BC59723DC2B1B00676CF3 /* Inspector Views */ = {
 			isa = PBXGroup;
 			children = (
-				D0793E7D23D45D170069327F /* BXMultiBoolInspectorView.swift */,
-				D0793E8123D45D5A0069327F /* BXMultiIntInspectorView.swift */,
-				D0793E7F23D45D350069327F /* BXMultiDoubleInspectorView.swift */,
-				D002FE7823D22EC5002CF0A1 /* BXMultiStringInspectorView.swift */,
-				D0B64EB523E6C92A0089A33F /* BXMultiAttributedStringInspectorView.swift */,
+				D0793E7D23D45D170069327F /* BXMultiValueBoolInspectorView.swift */,
+				D0793E8123D45D5A0069327F /* BXMultiValueIntInspectorView.swift */,
+				D0793E7F23D45D350069327F /* BXMultiValueDoubleInspectorView.swift */,
+				D002FE7823D22EC5002CF0A1 /* BXMultiValueStringInspectorView.swift */,
+				D0B64EB523E6C92A0089A33F /* BXMultiValueAttributedStringInspectorView.swift */,
 			);
 			name = "Inspector Views";
 			sourceTree = "<group>";
@@ -408,7 +408,7 @@
 				D002FE7F23D22EC5002CF0A1 /* BXLabelView.swift in Sources */,
 				D08FB76D23E48D2400C1A193 /* BXTextView_macOS.swift in Sources */,
 				D02BC59923DC2C6400676CF3 /* BXFloatEditView.swift in Sources */,
-				D002FE8223D22EC5002CF0A1 /* BXMultiStringInspectorView.swift in Sources */,
+				D002FE8223D22EC5002CF0A1 /* BXMultiValueStringInspectorView.swift in Sources */,
 				D02BC59423DC29ED00676CF3 /* BXCGPointEditView.swift in Sources */,
 				D08FB76F23E4920A00C1A193 /* BXTextField_macOS.swift in Sources */,
 				D002FE8623D22EC5002CF0A1 /* Formatter+Custom.swift in Sources */,
@@ -425,11 +425,11 @@
 				D077D5D023E32ED800C1D20F /* NSSavePanel+Present.swift in Sources */,
 				D0A2400423DF5716004E9F31 /* BXOptionalView.swift in Sources */,
 				D0EED8FE23EEA13200E4243D /* BXColorTheme.swift in Sources */,
-				D0793E7E23D45D170069327F /* BXMultiBoolInspectorView.swift in Sources */,
+				D0793E7E23D45D170069327F /* BXMultiValueBoolInspectorView.swift in Sources */,
 				D002FE8523D22EC5002CF0A1 /* TextAlignment+AppKit.swift in Sources */,
 				D077D5D423E348B400C1D20F /* NSOpenPanel+Present.swift in Sources */,
 				D0FFC33123E039F100BEA7A4 /* BXMenuItemSpec.swift in Sources */,
-				D0B64EB623E6C92A0089A33F /* BXMultiAttributedStringInspectorView.swift in Sources */,
+				D0B64EB623E6C92A0089A33F /* BXMultiValueAttributedStringInspectorView.swift in Sources */,
 				D02BC58C23DC26E500676CF3 /* BXStringEditView.swift in Sources */,
 				D05ED7BB23F1AAEC0019FE46 /* View+Cursor.swift in Sources */,
 				D002FE8123D22EC5002CF0A1 /* BXMultiValueSlider.swift in Sources */,
@@ -441,9 +441,9 @@
 				D02ED7C323E96FB2000572FE /* View+Undo.swift in Sources */,
 				D0F9B3B023E8710000AF0929 /* BXStrokedModifier.swift in Sources */,
 				D04B14DD23DB4773001203FD /* BXStrokedCheckboxStyle.swift in Sources */,
-				D0793E8023D45D350069327F /* BXMultiDoubleInspectorView.swift in Sources */,
+				D0793E8023D45D350069327F /* BXMultiValueDoubleInspectorView.swift in Sources */,
 				D0B5475423EC091A00046F96 /* BXJogwheel.swift in Sources */,
-				D0793E8223D45D5A0069327F /* BXMultiIntInspectorView.swift in Sources */,
+				D0793E8223D45D5A0069327F /* BXMultiValueIntInspectorView.swift in Sources */,
 				D03A287223D705CA00673CB1 /* BXMultiValueButton.swift in Sources */,
 				D0B64EBA23E6F31F0089A33F /* BXHasMultipleValuesKey.swift in Sources */,
 				D02BC5A423DC390500676CF3 /* BXArrayEditView.swift in Sources */,

@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  BXMultiBoolInspectorView.swift
+//  BXMultiValueStringInspectorView.swift
 //	Compound views for inspector style user interfaces
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
@@ -14,18 +14,17 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
-/// Inspector view for multiple values of Bool
+/// Inspector view for multiple values of String
 
-public struct BXMultiBoolInspectorView : View
+public struct BXMultiValueStringInspectorView : View
 {
 	// Params
 	
-	public var label:String
-	private var width:Binding<CGFloat>?
-	private var values:Binding<Set<Bool>>
-	private var title:String
-	private var alignment:HorizontalAlignment
-	
+	private var label:String = ""
+	private var width:Binding<CGFloat>? = nil
+	private var values:Binding<Set<String>>
+	private var statusHandler:BXTextFieldStatusHandler? = nil
+
 	// Environment
 	
 	@Environment(\.controlSize) private var controlSize
@@ -40,39 +39,28 @@ public struct BXMultiBoolInspectorView : View
 			@unknown default: 	return 14
 		}
 	}
-	
 	// Init
 	
-	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Bool>>, title:String = "", alignment:HorizontalAlignment = .leading)
+	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<String>>, statusHandler:BXTextFieldStatusHandler? = nil)
 	{
 		self.label = label
 		self.width = width
 		self.values = values
-		self.title = title
-		self.alignment = alignment
+		self.statusHandler = statusHandler
 	}
 	
 	// Build View
 	
-	public var body: some View
-	{
+    public var body: some View
+    {
 		BXLabelView(label:label, width:width)
 		{
-			if self.alignment == .trailing
-			{
-				Spacer()
-			}
-			
-			BXMultiValueToggle(values:self.values, label:self.title)
-			
-			if self.alignment == .leading
-			{
-				Spacer()
-			}
+			BXMultiValueTextField(values:self.values, alignment:.leading, statusHandler:self.statusHandler)
 		}
 
 		// Provide fixed height to avoid layout glitches if BXDisclosureViews follow below
 		
+//		.border(Color.green)
 		.intrinsicContentSize(height:idealHeight)
 	}
 }
