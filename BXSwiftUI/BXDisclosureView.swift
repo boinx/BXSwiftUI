@@ -77,16 +77,35 @@ public struct BXDisclosureButton : View
 	{
 		HStack(spacing:2.0)
 		{
+			// Disclosure triangle
+			
 			Text("▶︎")
 				.font(font)
 				.scaleEffect(0.85)
 				.rotationEffect(.degrees(isExpanded.wrappedValue ? 90 : 0))
+				
+				// Provide a bigger hit target for clicking the triangle
+				
+				.overlay(
+					GeometryReader
+					{
+						Rectangle()
+							.fill(Color(white:0.0, opacity:0.01))
+							.offset(x:-5, y:-5)
+							.frame(width:$0.size.width+10, height:$0.size.height+14)
+
+					}
+				)
+
+			// Label
 			
 			if label.count > 0
 			{
 				Text(label).font(font)
 			}
 		}
+		
+		// On tap toggle the disclosure state
 		
 		.onTapGesture
 		{
