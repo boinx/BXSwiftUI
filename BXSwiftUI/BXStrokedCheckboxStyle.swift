@@ -1,7 +1,7 @@
 //**********************************************************************************************************************
 //
-//  BXCircularSlider.swift
-//	A circular slider for SwiftUI
+//  BXStrokedCheckboxStyle.swift
+//	A custom look for checkboxes
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
