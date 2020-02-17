@@ -19,6 +19,7 @@
 		D002FE8623D22EC5002CF0A1 /* Formatter+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */; };
 		D002FE8823D22EC5002CF0A1 /* BXMultiValueToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7E23D22EC5002CF0A1 /* BXMultiValueToggle.swift */; };
 		D011B1CB23E1C73D00643F20 /* BXStrokedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011B1CA23E1C73D00643F20 /* BXStrokedButtonStyle.swift */; };
+		D0257F9D23FA7A15000E1816 /* BXCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0257F9C23FA7A15000E1816 /* BXCircularSlider.swift */; };
 		D029B91B23EC4FE80095DE37 /* View+Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D029B91A23EC4FE80095DE37 /* View+Popup.swift */; };
 		D02BC58C23DC26E500676CF3 /* BXStringEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC58B23DC26E400676CF3 /* BXStringEditView.swift */; };
 		D02BC59023DC297400676CF3 /* BXIntEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC58F23DC297400676CF3 /* BXIntEditView.swift */; };
@@ -60,7 +61,7 @@
 		D0B64EB623E6C92A0089A33F /* BXMultiValueAttributedStringInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B64EB523E6C92A0089A33F /* BXMultiValueAttributedStringInspectorView.swift */; };
 		D0B64EB823E6CB360089A33F /* BXMultiValueTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B64EB723E6CB360089A33F /* BXMultiValueTextView.swift */; };
 		D0B64EBA23E6F31F0089A33F /* BXHasMultipleValuesKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B64EB923E6F31F0089A33F /* BXHasMultipleValuesKey.swift */; };
-		D0C1249A23DAE4A600DB3592 /* BXCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C1249923DAE4A600DB3592 /* BXCircularSlider.swift */; };
+		D0C1249A23DAE4A600DB3592 /* BXMultiValueColorSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C1249923DAE4A600DB3592 /* BXMultiValueColorSlider.swift */; };
 		D0D25BCC23DCB3B400A1B61D /* BXIndentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */; };
 		D0D28EB823E748E30012F9E1 /* Bundle+BXSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D28EB723E748E30012F9E1 /* Bundle+BXSwiftUI.swift */; };
 		D0E2429623D8827D00145CEA /* BXDisclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2429523D8827D00145CEA /* BXDisclosureView.swift */; };
@@ -88,6 +89,8 @@
 		D002FE7E23D22EC5002CF0A1 /* BXMultiValueToggle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXMultiValueToggle.swift; sourceTree = "<group>"; };
 		D0083BE623EDC8490097C7A1 /* BXColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXColorTheme.swift; sourceTree = "<group>"; };
 		D011B1CA23E1C73D00643F20 /* BXStrokedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXStrokedButtonStyle.swift; sourceTree = "<group>"; };
+		D0257F9A23FA7541000E1816 /* BXSliderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSliderStyle.swift; sourceTree = "<group>"; };
+		D0257F9C23FA7A15000E1816 /* BXCircularSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXCircularSlider.swift; sourceTree = "<group>"; };
 		D029B91A23EC4FE80095DE37 /* View+Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Popup.swift"; sourceTree = "<group>"; };
 		D02BC58B23DC26E400676CF3 /* BXStringEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXStringEditView.swift; sourceTree = "<group>"; };
 		D02BC58F23DC297400676CF3 /* BXIntEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIntEditView.swift; sourceTree = "<group>"; };
@@ -128,7 +131,7 @@
 		D0B64EB523E6C92A0089A33F /* BXMultiValueAttributedStringInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueAttributedStringInspectorView.swift; sourceTree = "<group>"; };
 		D0B64EB723E6CB360089A33F /* BXMultiValueTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueTextView.swift; sourceTree = "<group>"; };
 		D0B64EB923E6F31F0089A33F /* BXHasMultipleValuesKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXHasMultipleValuesKey.swift; sourceTree = "<group>"; };
-		D0C1249923DAE4A600DB3592 /* BXCircularSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXCircularSlider.swift; sourceTree = "<group>"; };
+		D0C1249923DAE4A600DB3592 /* BXMultiValueColorSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueColorSlider.swift; sourceTree = "<group>"; };
 		D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIndentationView.swift; sourceTree = "<group>"; };
 		D0D28EB723E748E30012F9E1 /* Bundle+BXSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+BXSwiftUI.swift"; sourceTree = "<group>"; };
 		D0E2429523D8827D00145CEA /* BXDisclosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXDisclosureView.swift; sourceTree = "<group>"; };
@@ -174,12 +177,11 @@
 			isa = PBXGroup;
 			children = (
 				D02BC59623DC2ACE00676CF3 /* View Hierarchy */,
-				D02BC58D23DC26FB00676CF3 /* Editor Views */,
-				D02BC59723DC2B1B00676CF3 /* Inspector Views */,
 				D02BC59523DC2AB200676CF3 /* Controls */,
 				D02BC58E23DC270F00676CF3 /* Styles */,
 				D02ED7C423E970D1000572FE /* Behaviors */,
-				D077D5C823E2FB6D00C1D20F /* SF Symbols */,
+				D02BC58D23DC26FB00676CF3 /* Editor Views */,
+				D02BC59723DC2B1B00676CF3 /* Inspector Views */,
 				D02BC59C23DC2D5500676CF3 /* Misc */,
 			);
 			path = BXSwiftUI;
@@ -221,6 +223,7 @@
 			children = (
 				D011B1CA23E1C73D00643F20 /* BXStrokedButtonStyle.swift */,
 				D04B14DC23DB4773001203FD /* BXStrokedCheckboxStyle.swift */,
+				D0257F9A23FA7541000E1816 /* BXSliderStyle.swift */,
 				D0F9B3AD23E86F7B00AF0929 /* BXEnabledModifier.swift */,
 				D0F9B3AF23E8710000AF0929 /* BXStrokedModifier.swift */,
 				D0B64EB923E6F31F0089A33F /* BXHasMultipleValuesKey.swift */,
@@ -237,8 +240,9 @@
 				D08FB76E23E4920A00C1A193 /* BXTextField_macOS.swift */,
 				D0EBA10923D9881D00E82E59 /* BXTextView.swift */,
 				D08FB76C23E48D2400C1A193 /* BXTextView_macOS.swift */,
-				D0C1249923DAE4A600DB3592 /* BXCircularSlider.swift */,
+				D0257F9C23FA7A15000E1816 /* BXCircularSlider.swift */,
 				D075AA4723EB33AD009EF839 /* BXRangeSlider.swift */,
+				D0C1249923DAE4A600DB3592 /* BXMultiValueColorSlider.swift */,
 				D0B5475323EC091A00046F96 /* BXJogwheel.swift */,
 				D002FE7723D22EC5002CF0A1 /* BXMultiValueSlider.swift */,
 				D002FE7A23D22EC5002CF0A1 /* BXMultiValueTextField.swift */,
@@ -256,8 +260,8 @@
 			children = (
 				D0E2429523D8827D00145CEA /* BXDisclosureView.swift */,
 				D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */,
-				D0A2400323DF5716004E9F31 /* BXOptionalView.swift */,
 				D002FE7523D22EC5002CF0A1 /* BXLabelView.swift */,
+				D0A2400323DF5716004E9F31 /* BXOptionalView.swift */,
 			);
 			name = "View Hierarchy";
 			sourceTree = "<group>";
@@ -277,11 +281,12 @@
 		D02BC59C23DC2D5500676CF3 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				D0D28EB723E748E30012F9E1 /* Bundle+BXSwiftUI.swift */,
+				D077D5C423E2F05D00C1D20F /* Image+SFSymbols.swift */,
 				D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */,
 				D077D5C223E2E14C00C1D20F /* Binding+Optional.swift */,
 				D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */,
 				D002FE7923D22EC5002CF0A1 /* TypeCheckable.swift */,
-				D0D28EB723E748E30012F9E1 /* Bundle+BXSwiftUI.swift */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -301,14 +306,6 @@
 				D09C93F223F86D18008BA68F /* BXSliderResponse.swift */,
 			);
 			name = Behaviors;
-			sourceTree = "<group>";
-		};
-		D077D5C823E2FB6D00C1D20F /* SF Symbols */ = {
-			isa = PBXGroup;
-			children = (
-				D077D5C423E2F05D00C1D20F /* Image+SFSymbols.swift */,
-			);
-			name = "SF Symbols";
 			sourceTree = "<group>";
 		};
 		D0793E8823D469870069327F /* Frameworks */ = {
@@ -425,7 +422,7 @@
 				D002FE8023D22EC5002CF0A1 /* BXMultiValuePicker.swift in Sources */,
 				D02BC59E23DC329E00676CF3 /* BXCGSizeEditView.swift in Sources */,
 				D075AA4823EB33AE009EF839 /* BXRangeSlider.swift in Sources */,
-				D0C1249A23DAE4A600DB3592 /* BXCircularSlider.swift in Sources */,
+				D0C1249A23DAE4A600DB3592 /* BXMultiValueColorSlider.swift in Sources */,
 				D077D5D023E32ED800C1D20F /* NSSavePanel+Present.swift in Sources */,
 				D0A2400423DF5716004E9F31 /* BXOptionalView.swift in Sources */,
 				D0EED8FE23EEA13200E4243D /* BXColorTheme.swift in Sources */,
@@ -442,6 +439,7 @@
 				D002FE8423D22EC5002CF0A1 /* BXMultiValueTextField.swift in Sources */,
 				D075AA4623EB14A6009EF839 /* View+Tooltip.swift in Sources */,
 				D07F541723F52F5B001AFD5D /* View+IntrinsicContentSize.swift in Sources */,
+				D0257F9D23FA7A15000E1816 /* BXCircularSlider.swift in Sources */,
 				D02ED7C323E96FB2000572FE /* View+Undo.swift in Sources */,
 				D0F9B3B023E8710000AF0929 /* BXStrokedModifier.swift in Sources */,
 				D04B14DD23DB4773001203FD /* BXStrokedCheckboxStyle.swift in Sources */,
