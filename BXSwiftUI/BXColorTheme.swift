@@ -15,9 +15,10 @@ import SwiftUI
 
 public struct BXColorTheme
 {
-	internal let fillColor:		(ColorScheme,Bool,Double) -> Color
-	internal let strokeColor:	(ColorScheme,Bool,Double) -> Color
-	internal let contentColor:	(ColorScheme,Bool,Double) -> Color
+	internal let backgroundColor:	(ColorScheme) -> Color
+	internal let fillColor:			(ColorScheme,Bool,Double) -> Color
+	internal let strokeColor:		(ColorScheme,Bool,Double) -> Color
+	internal let contentColor:		(ColorScheme,Bool,Double) -> Color
 }
 
 
@@ -26,6 +27,11 @@ public struct BXColorTheme
 
 extension BXColorTheme
 {
+	public func backgroundColor(for colorScheme:ColorScheme = .dark) -> Color
+	{
+		return self.backgroundColor(colorScheme)
+	}
+	
 	public func fillColor(for colorScheme:ColorScheme = .dark, isEnabled:Bool = true, enhanceBy factor:Double = 1.0) -> Color
 	{
 		return self.fillColor(colorScheme,isEnabled,factor)
@@ -51,12 +57,19 @@ extension BXColorTheme
 	public static var `default` : BXColorTheme
 	{
 		BXColorTheme(
+			backgroundColor:	self.defaultBackgroundColor,
 			fillColor:			self.defaultFillColor,
 			strokeColor:		self.defaultStrokeColor,
 			contentColor:		self.defaultContentColor
 		)
 	}
 	
+	internal static func defaultBackgroundColor(for colorScheme:ColorScheme) -> Color
+	{
+		let gray = colorScheme == .dark ? 0.19 : 0.85
+		return Color(white:gray, opacity:1.0)
+	}
+
 	internal static func defaultFillColor(for colorScheme:ColorScheme, isEnabled:Bool, enhanceBy factor:Double = 1.0) -> Color
 	{
 		let gray = colorScheme == .dark ? 1.0 : 0.0
