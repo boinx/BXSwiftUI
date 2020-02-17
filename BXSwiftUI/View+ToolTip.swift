@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  View+Tooltip.swift
+//  View+ToolTip.swift
 //	An extension that attaches macOS tooltips to views
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
@@ -17,7 +17,7 @@ public extension View
 {
 	/// Attaches a tooltip to a view hierarchy
 	
-    func setToolTip(_ toolTip:String?) -> some View
+    func toolTip(_ toolTip:String?) -> some View
     {
 		Group
 		{
