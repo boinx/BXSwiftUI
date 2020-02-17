@@ -25,7 +25,7 @@ extension View
 
 	/// Injects the undo name into the environment. Controls in the view hierarchy may access it to set an undo name when necessary.
 	
-	public func setUndoName(_ name:String) -> some View
+	public func undoName(_ name:String) -> some View
 	{
         self.environment(\.bxUndoName, name)
 	}
