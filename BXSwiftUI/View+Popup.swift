@@ -20,9 +20,9 @@ public extension View
 	/// Attaches a popup menu to a view hierarchy. The items are defined by an array of BXMenuItemSpec.
 	/// Please note that you need to use BXMenuItemSpec.action or there will be nothing to execute!
 	
-    func popupMenu(_ itemSpecs:@autoclosure ()->[BXMenuItemSpec]) -> some View
+    func popupMenu(value:Binding<Int>? = nil, _ itemSpecs:@autoclosure ()->[BXMenuItemSpec]) -> some View
     {
-		self.overlay(BXPopupView(itemSpecs:itemSpecs()))
+		self.overlay(BXPopupView(itemSpecs:itemSpecs(), value:value))
     }
 }
   
@@ -35,14 +35,18 @@ public struct BXPopupView : NSViewRepresentable
 	// Params
 	
 	private let itemSpecs:[BXMenuItemSpec]
-
+	private let value:Binding<Int>?
+	
+	// State
+	
 	@State private var observers:[Any] = []
 	
 	// Init
 	
-    init(itemSpecs:[BXMenuItemSpec])
+    init(itemSpecs:[BXMenuItemSpec], value:Binding<Int>? = nil)
     {
          self.itemSpecs = itemSpecs
+         self.value = value
     }
   
 	// Create underlying NSPopUpButton
@@ -70,20 +74,32 @@ public struct BXPopupView : NSViewRepresentable
 					item.action = #selector(Coordinator.execute(_:))
 					item.isEnabled = true
 					item.isHidden = false
+					item.tag = -1
 					popup.menu?.addItem(item)
 
+				case .regular(let icon, let name, let value):
+					
+					let item = NSMenuItem(title:name, action:nil, keyEquivalent:"")
+					item.image = icon
+					item.target = context.coordinator
+					item.action = #selector(Coordinator.setValue(_:))
+					item.isEnabled = true
+					item.isHidden = false
+					item.tag = value
+					popup.menu?.addItem(item)
+				
 				case .section(let name):
 				
 					let item = NSMenuItem(title:name, action:nil, keyEquivalent:"")
 					item.isEnabled = false
+					item.tag = -1
 					popup.menu?.addItem(item)
 					
 				case .divider:
 				
 					let item = NSMenuItem.separator()
+					item.tag = -1
 					popup.menu?.addItem(item)
-					
-				default: break
 			}
 		}
 
@@ -98,6 +114,8 @@ public struct BXPopupView : NSViewRepresentable
 			{
 				_ in
 				
+				let selectedTag = self.value?.wrappedValue
+
 				for menuItem in popup.menu?.items ?? []
 				{
 					// Force menu item to be visible
@@ -110,6 +128,13 @@ public struct BXPopupView : NSViewRepresentable
 					{
 						menuItem.isEnabled = action.isEnabled
 					}
+					
+					// Display a checkmark for the selected item
+					
+					if let selectedTag = selectedTag
+					{
+						menuItem.state = menuItem.tag == selectedTag ? .on : .off
+					}
 				}
 			}
 		}
@@ -119,23 +144,28 @@ public struct BXPopupView : NSViewRepresentable
   
 	public func updateNSView(_ popup:NSPopUpButton, context:Context)
     {
-		// NOP
+		if let value = self.value?.wrappedValue
+		{
+			popup.selectItem(withTag:value)
+		}
     }
     
 	// The Coordinator takes care of executing the action that is attached to the NSMenuItem
 	
 	public func makeCoordinator() -> Coordinator
     {
-        return Coordinator(self)
+        return Coordinator(popup:self, value:value)
     }
     
 	public class Coordinator : NSObject
     {
         var popup:BXPopupView
-
-        init(_ popup:BXPopupView)
+		var value:Binding<Int>?
+		
+        init(popup:BXPopupView, value:Binding<Int>?)
         {
 			self.popup = popup
+			self.value = value
         }
 
         @objc func execute(_ menuItem:NSMenuItem)
@@ -144,7 +174,13 @@ public struct BXPopupView : NSViewRepresentable
 			action.execute()
 			menuItem.state = .off
         }
-    }
+ 
+        @objc func setValue(_ menuItem:NSMenuItem)
+        {
+			self.value?.wrappedValue = menuItem.tag
+			menuItem.state = .on
+        }
+   }
 }
 
 
