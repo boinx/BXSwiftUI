@@ -27,6 +27,7 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 	// Environment
 	
 	@Environment(\.isEnabled) private var isEnabled
+	@Environment(\.hasReducedOpacityAncestor) private var hasReducedOpacityAncestor
 	@Environment(\.controlSize) private var controlSize:ControlSize
 	@Environment(\.bxUndoManager) private var undoManager
 	@Environment(\.bxUndoName) private var undoName
@@ -97,7 +98,7 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 		{
 			textfield.stringValue = ""
 			textfield.placeholderString = "None"
-			textfield.isEnabled = false
+			textfield.isEnabled = self.hasReducedOpacityAncestor
 		}
 		else if values.wrappedValue.count == 1, let value = values.wrappedValue.first
 		{
@@ -115,13 +116,13 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 			}
 
 			textfield.placeholderString = nil
-			textfield.isEnabled = self.isEnabled
+			textfield.isEnabled = self.isEnabled || self.hasReducedOpacityAncestor
 		}
 		else
 		{
 			textfield.stringValue = ""
 			textfield.placeholderString = "Multiple"
-			textfield.isEnabled = self.isEnabled
+			textfield.isEnabled = self.isEnabled || self.hasReducedOpacityAncestor
 		}
 
 		textfield.notify()

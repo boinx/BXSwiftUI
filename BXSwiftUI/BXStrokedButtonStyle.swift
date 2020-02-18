@@ -42,8 +42,10 @@ fileprivate struct _BXStrokedButton : View
 	// Environment
 	
 	@Environment(\.isEnabled) var isEnabled
-	@Environment(\.colorScheme) var colorScheme
+	@Environment(\.hasReducedOpacityAncestor) var hasReducedOpacityAncestor
 	@Environment(\.controlSize) var controlSize
+	@Environment(\.colorScheme) var colorScheme
+	@Environment(\.bxColorTheme) var bxColorTheme
 
 	// Exact appearance depends on environment values
 	
@@ -66,17 +68,12 @@ fileprivate struct _BXStrokedButton : View
 	
 	private var fillColor : Color
 	{
-		let gray = self.colorScheme == .dark ? 1.0 : 0.0
-		var alpha = self.configuration.isPressed ? 0.15 : 0.07
-		if !isEnabled { alpha *= 0.33 }
-		return Color(white:gray, opacity:alpha)
+		return bxColorTheme.fillColor(for:colorScheme, isEnabled:isEnabled || hasReducedOpacityAncestor, enhanceBy:1.5)
 	}
 
 	private var strokeColor : Color
 	{
-		let gray = self.colorScheme == .dark ? 0.65 : 0.35
-		let alpha = self.isEnabled ? 1.0 : 0.33
-		return Color(white:gray, opacity:alpha)
+		return bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled || hasReducedOpacityAncestor)
 	}
 
 	// Build the view

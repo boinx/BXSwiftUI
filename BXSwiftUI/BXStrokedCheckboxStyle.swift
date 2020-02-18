@@ -43,6 +43,8 @@ fileprivate struct _BXStrokedCheckbox : View
 	
 	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.colorScheme) private var colorScheme
+	@Environment(\.bxColorTheme) private var bxColorTheme
+	@Environment(\.hasReducedOpacityAncestor) var hasReducedOpacityAncestor
 	@Environment(\.controlSize) private var controlSize
 	@Environment(\.hasMultipleValues) private var hasMultipleValues
 	@Environment(\.bxUndoManager) private var undoManager
@@ -102,25 +104,28 @@ fileprivate struct _BXStrokedCheckbox : View
 	
 	private var strokeColor : Color
 	{
-		let gray = colorScheme == .dark ? 0.65 : 0.35
-		let alpha = isEnabled ? 1.0 : 0.33
-		return Color(white:gray,opacity:alpha)
+		return bxColorTheme.strokeColor(for:colorScheme, isEnabled:useFullAlpha)
 	}
 
 	private var offFillColor : Color
 	{
-		let gray = colorScheme == .dark ? 1.0 : 1.0
+		let gray = 1.0
 		var alpha = colorScheme == .dark ? 0.07 : 1.0
-		if !isEnabled { alpha *= 0.33 }
+		if !useFullAlpha { alpha *= 0.33 }
 		return Color(white:gray,opacity:alpha)
 	}
 
 	private var onFillColor : Color
 	{
-		let alpha = isEnabled ? 1.0 : 0.33
+		let alpha = useFullAlpha ? 1.0 : 0.33
 		return Color.accentColor.opacity(alpha)
 	}
 
+	private var useFullAlpha : Bool
+	{
+		isEnabled || hasReducedOpacityAncestor
+	}
+	
 	// Build the view
 	
 	var body: some View
@@ -162,7 +167,7 @@ fileprivate struct _BXStrokedCheckbox : View
 		
 		// Dim when disabled
 		
-		.opacity(self.isEnabled ? 1.0 : 0.33)
+		.reduceOpacityWhenDisabled()
 		
 		// Event handling
 		

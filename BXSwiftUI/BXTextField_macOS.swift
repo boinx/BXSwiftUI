@@ -147,7 +147,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 			textfield.stringValue = ""
 		}
 		
-		textfield.isEnabled = context.environment.isEnabled
+		textfield.isEnabled = context.environment.isEnabled || context.environment.hasReducedOpacityAncestor
 
 		// Call statusHandler so that clients can update the appearance of the view accordingly
 		

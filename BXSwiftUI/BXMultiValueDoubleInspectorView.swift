@@ -72,8 +72,8 @@ public struct BXMultiValueDoubleInspectorView: View
 			HStack
 			{
 				Text(label)
-					.opacity(isEnabled ? 1.0 : 0.33)
-
+					.reduceOpacityWhenDisabled()
+					
 				Spacer()
 
 				BXMultiValueTextField(values:values, alignment:.trailing, formatter:formatter, statusHandler:statusHandler)

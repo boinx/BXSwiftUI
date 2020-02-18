@@ -43,11 +43,12 @@ public struct BXDisclosureView<H,B> : View where H:View, B:View
 		VStack(alignment:.leading, spacing:12)
 		{
 			headerBuilder()
-				.opacity(isEnabled ? 1.0 : 0.33)
+				.modifier(BXEnabledModifier())
 				
 			if isExpanded.wrappedValue
 			{
 				bodyBuilder()
+					.modifier(BXEnabledModifier())
 			}
 		}
 		

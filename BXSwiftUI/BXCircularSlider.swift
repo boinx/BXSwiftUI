@@ -24,7 +24,9 @@ public struct BXCircularSlider : View
 	// Environment
 	
 	@Environment(\.isEnabled) private var isEnabled
+	@Environment(\.hasReducedOpacityAncestor) private var hasReducedOpacityAncestor
 	@Environment(\.colorScheme) private var colorScheme
+	@Environment(\.bxColorTheme) private var bxColorTheme
 	@Environment(\.bxUndoManager) private var undoManager
 	@Environment(\.bxUndoName) private var undoName
 
@@ -44,13 +46,13 @@ public struct BXCircularSlider : View
 		ZStack
 		{
 			Circle()
-				.fill(fillColor(for:colorScheme,isEnabled))
+				.fill(bxColorTheme.fillColor(for:colorScheme, isEnabled:isEnabled || hasReducedOpacityAncestor))
 				
 			Circle()
-				.stroke(strokeColor(for:colorScheme,isEnabled))
+				.stroke(bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled || hasReducedOpacityAncestor))
 
 			_Arrow()
-				.fill(arrowColor(for:colorScheme,isEnabled))
+				.fill(bxColorTheme.contentColor(for:colorScheme, isEnabled:isEnabled || hasReducedOpacityAncestor))
 				.rotationEffect(.degrees(degrees(for:self.value.wrappedValue, in:self.range)))
 		}
 		.frame(width:2*radius, height:2*radius)
@@ -84,7 +86,9 @@ public struct BXMultiValueCircularSlider : View
 	// Environment
 	
 	@Environment(\.isEnabled) private var isEnabled
+	@Environment(\.hasReducedOpacityAncestor) private var hasReducedOpacityAncestor
 	@Environment(\.colorScheme) private var colorScheme
+	@Environment(\.bxColorTheme) private var bxColorTheme
 	@Environment(\.bxUndoManager) private var undoManager
 	@Environment(\.bxUndoName) private var undoName
 
@@ -104,15 +108,15 @@ public struct BXMultiValueCircularSlider : View
 		ZStack
 		{
 			Circle()
-				.fill( fillColor(for:colorScheme,isEnabled) )
+				.fill(bxColorTheme.fillColor(for:colorScheme, isEnabled:isEnabled || hasReducedOpacityAncestor))
 
 			Circle()
-				.stroke(strokeColor(for:colorScheme,isEnabled))
+				.stroke(bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled || hasReducedOpacityAncestor))
 
 			ForEach(Array(self.values.wrappedValue), id:\.self)
 			{
 				_Arrow()
-					.fill(arrowColor(for:self.colorScheme,self.isEnabled))
+					.fill(self.bxColorTheme.contentColor(for:self.colorScheme, isEnabled:self.isEnabled || self.hasReducedOpacityAncestor))
 					.rotationEffect(.degrees(degrees(for:$0, in:self.range)))
 			}
 		}
@@ -199,30 +203,6 @@ fileprivate func degrees(for location:CGPoint, in radius:CGFloat) -> Double
 	while degrees > 360.0 { degrees -= 360.0 }
 	
 	return degrees
-}
-
-
-// Appearance
-
-fileprivate func fillColor(for colorScheme:ColorScheme, _ isEnabled:Bool) -> Color
-{
-	let gray = colorScheme == .dark ? 1.0 : 0.0
-	let alpha = isEnabled ? 0.1 : 0.03
-	return Color(white:gray, opacity:alpha)
-}
-
-fileprivate func strokeColor(for colorScheme:ColorScheme, _ isEnabled:Bool) -> Color
-{
-	let gray = colorScheme == .dark ? 0.65 : 0.35
-	let alpha = isEnabled ? 1.0 : 0.33
-	return Color(white:gray, opacity:alpha)
-}
-
-fileprivate func arrowColor(for colorScheme:ColorScheme, _ isEnabled:Bool) -> Color
-{
-	let gray = colorScheme == .dark ? 1.0 : 0.0
-	let alpha = isEnabled ? 1.0 : 0.33
-	return Color(white:gray, opacity:alpha)
 }
 
 
