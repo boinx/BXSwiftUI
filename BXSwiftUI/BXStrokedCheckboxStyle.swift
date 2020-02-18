@@ -41,12 +41,10 @@ fileprivate struct _BXStrokedCheckbox : View
 	
 	// Environment
 	
-	@Environment(\.isEnabled) private var isEnabled
-	@Environment(\.colorScheme) private var colorScheme
-	@Environment(\.bxColorTheme) private var bxColorTheme
-	@Environment(\.hasReducedOpacityAncestor) var hasReducedOpacityAncestor
 	@Environment(\.controlSize) private var controlSize
 	@Environment(\.hasMultipleValues) private var hasMultipleValues
+	@Environment(\.colorScheme) private var colorScheme
+	@Environment(\.bxColorTheme) private var bxColorTheme
 	@Environment(\.bxUndoManager) private var undoManager
 	@Environment(\.bxUndoName) private var undoName
 
@@ -104,26 +102,19 @@ fileprivate struct _BXStrokedCheckbox : View
 	
 	private var strokeColor : Color
 	{
-		return bxColorTheme.strokeColor(for:colorScheme, isEnabled:useFullAlpha)
+		return bxColorTheme.strokeColor(for:colorScheme)
 	}
 
 	private var offFillColor : Color
 	{
 		let gray = 1.0
-		var alpha = colorScheme == .dark ? 0.07 : 1.0
-		if !useFullAlpha { alpha *= 0.33 }
+		let alpha = colorScheme == .dark ? 0.07 : 1.0
 		return Color(white:gray,opacity:alpha)
 	}
 
 	private var onFillColor : Color
 	{
-		let alpha = useFullAlpha ? 1.0 : 0.33
-		return Color.accentColor.opacity(alpha)
-	}
-
-	private var useFullAlpha : Bool
-	{
-		isEnabled || hasReducedOpacityAncestor
+		return Color.accentColor
 	}
 	
 	// Build the view
