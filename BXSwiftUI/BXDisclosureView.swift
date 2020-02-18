@@ -15,21 +15,18 @@ import SwiftUI
 
 public struct BXDisclosureView<H,B> : View where H:View, B:View
 {
+	// Params
+	
 	private var isExpanded:Binding<Bool>
 	private var headerBuilder:()->H
 	private var bodyBuilder:()->B
 
+	// Environment
+	
 	@Environment(\.isEnabled) private var isEnabled
 
-
-//	public init(label:String, isExpanded:Binding<Bool>, @ViewBuilder body bodyBuilder:@escaping ()->B)
-//	{
-//		self.isExpanded = isExpanded
-//		self.headerBuilder = { BXDisclosureButton(label, isExpanded:isExpanded) }
-//		self.bodyBuilder = bodyBuilder
-//	}
-
-
+	// Init
+	
 	public init(isExpanded:Binding<Bool>, @ViewBuilder header headerBuilder:@escaping ()->H, @ViewBuilder body bodyBuilder:@escaping ()->B)
 	{
 		self.isExpanded = isExpanded
@@ -37,7 +34,8 @@ public struct BXDisclosureView<H,B> : View where H:View, B:View
 		self.bodyBuilder = bodyBuilder
 	}
 
-
+	// Build View
+	
 	public var body: some View
 	{
 		VStack(alignment:.leading, spacing:12)
@@ -61,18 +59,24 @@ public struct BXDisclosureView<H,B> : View where H:View, B:View
 
 public struct BXDisclosureButton : View
 {
+	// Params
+	
 	private var label:String
 	private var isExpanded:Binding<Bool>
 
+	// Environment
+	
 	@Environment(\.font) var font
 
-
+	// Init
+	
 	public init(_ label:String, isExpanded:Binding<Bool>)
 	{
 		self.label = label
 		self.isExpanded = isExpanded
 	}
 	
+	// Build View
 	
 	public var body: some View
 	{
@@ -94,7 +98,6 @@ public struct BXDisclosureButton : View
 							.fill(Color(white:0.0, opacity:0.01))
 							.offset(x:-5, y:-5)
 							.frame(width:$0.size.width+10, height:$0.size.height+14)
-
 					}
 				)
 

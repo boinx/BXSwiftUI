@@ -221,6 +221,8 @@ public struct BXRangeSlider : View
 							self.dragKnobIndex = 1
 						}
 					}
+					
+					self.dragIteration += 1
 
 					// Update the current value of the chosen knob
 
@@ -232,8 +234,6 @@ public struct BXRangeSlider : View
 					{
 						self.upperValue.wrappedValue = value
 					}
-
-					self.dragIteration += 1
 				}
 
 				// When the drag ends, close the undo group and reset state
@@ -244,7 +244,6 @@ public struct BXRangeSlider : View
 
 					self.undoManager?.setActionName(self.undoName)
 					self.undoManager?.endUndoGrouping()
-
 					self.dragIteration = 0
 				}
 			)
