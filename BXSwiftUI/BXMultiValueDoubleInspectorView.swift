@@ -80,13 +80,13 @@ public struct BXMultiValueDoubleInspectorView: View
 
 				BXMultiValueTextField(values:values, alignment:.trailing, formatter:formatter, statusHandler:statusHandler)
 					.frame(width:60.0)
-//					.reducedOpacityWhenDisabled()	// Not needed because AppKit already dim the control
+					//.reducedOpacityWhenDisabled()	// Not needed because AppKit already dimmed the control
 			}
 			
-			BXMultiValueSlider(values:values, in:range, response:response)
+			BXMultiValueSlider(values:values, in:range, response:response, initialAction:initialAction)
 				.zIndex(-1)
 				.offset(x:0,y:1)
-//				.reducedOpacityWhenDisabled()		// Not needed because AppKit already dim the control
+				//.reducedOpacityWhenDisabled()		// Not needed because AppKit already dimmed the control
 		}
 		
 		// Provide fixed height to avoid layout glitches if BXDisclosureViews follow below

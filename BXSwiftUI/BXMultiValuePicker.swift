@@ -148,14 +148,10 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	public class Coordinator : NSObject
     {
         var picker:BXMultiValuePicker
-		var undoManager:UndoManager?
-		var undoName:String
 
-        init(_ picker:BXMultiValuePicker, _ undoManager:UndoManager?, _ undoName:String)
+        init(_ picker:BXMultiValuePicker)
         {
             self.picker = picker
-            self.undoManager = undoManager
-            self.undoName = undoName
         }
 
         @objc func updateValues(with sender:NSPopUpButton)
@@ -163,13 +159,13 @@ public struct BXMultiValuePicker : NSViewRepresentable
 			let tag = sender.selectedTag()
 			picker.initialAction?()
 			picker.values.wrappedValue = Set([tag])
-			self.undoManager?.setActionName(undoName)
+			picker.undoManager?.setActionName(picker.undoName)
         }
     }
     
 	public func makeCoordinator() -> Coordinator
     {
-        return Coordinator(self, undoManager, undoName)
+        return Coordinator(self)
     }
 }
 
