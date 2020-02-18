@@ -27,7 +27,11 @@ public struct BXReducedOpacityWhenDisabledModifier : ViewModifier
 
 	// Init
 	
-	public init(enabledOpactiy:Double = 1.0,disabledOpactiy:Double = 0.33) {}
+	public init(enabledOpactiy:Double = 1.0, disabledOpactiy:Double = 0.33)
+	{
+		self.enabledOpactiy = enabledOpactiy
+		self.disabledOpactiy = disabledOpactiy
+	}
 	
 	// Modify View
 	
@@ -62,7 +66,6 @@ extension View
 	{
 		return self.modifier(BXReducedOpacityWhenDisabledModifier(disabledOpactiy:opactiy))
 	}
-
 }
 
 
