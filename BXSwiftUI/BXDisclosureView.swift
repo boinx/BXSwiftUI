@@ -41,12 +41,10 @@ public struct BXDisclosureView<H,B> : View where H:View, B:View
 		VStack(alignment:.leading, spacing:12)
 		{
 			headerBuilder()
-				.modifier(BXEnabledModifier())
 				
 			if isExpanded.wrappedValue
 			{
 				bodyBuilder()
-					.modifier(BXEnabledModifier())
 			}
 		}
 		
@@ -108,6 +106,10 @@ public struct BXDisclosureButton : View
 				Text(label).font(font)
 			}
 		}
+		
+		// Dim when disabled
+		
+		.reducedOpacityWhenDisabled()
 		
 		// On tap toggle the disclosure state
 		

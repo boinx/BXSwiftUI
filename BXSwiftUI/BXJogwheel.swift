@@ -103,6 +103,10 @@ public struct BXJogwheel : View
 				.fill(self.tickmarkColor)
 		}
 		
+		// Dim when disabled
+		
+		.reducedOpacityWhenDisabled()
+		
 		// Event handling
 
 		.gesture( DragGesture(minimumDistance:0.0)

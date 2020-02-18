@@ -197,7 +197,11 @@ public struct BXRangeSlider : View
 			// can receive mouse click events outside the track (i.e. background). That makes the UX much nicer.
 			
 			.background(Color(white:0.0, opacity:0.01))
-
+		
+			// Dim when disabled
+			
+			.reducedOpacityWhenDisabled()
+			
 			// Add a drag handler for event handling
 
 			.gesture( DragGesture(minimumDistance:0.0)

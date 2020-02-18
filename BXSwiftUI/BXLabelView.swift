@@ -73,7 +73,7 @@ public struct BXLabelView<Content> : View where Content:View
 						self.button3!()
 					}
 				}
-				.reduceOpacityWhenDisabled()
+				.reducedOpacityWhenDisabled()
 				
 				// Measure its size and attach a preference (with its width)
 				

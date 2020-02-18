@@ -42,7 +42,6 @@ fileprivate struct _BXStrokedButton : View
 	// Environment
 	
 	@Environment(\.isEnabled) var isEnabled
-	@Environment(\.hasReducedOpacityAncestor) var hasReducedOpacityAncestor
 	@Environment(\.controlSize) var controlSize
 	@Environment(\.colorScheme) var colorScheme
 	@Environment(\.bxColorTheme) var bxColorTheme
@@ -68,12 +67,12 @@ fileprivate struct _BXStrokedButton : View
 	
 	private var fillColor : Color
 	{
-		return bxColorTheme.fillColor(for:colorScheme, isEnabled:isEnabled || hasReducedOpacityAncestor, enhanceBy:1.5)
+		return bxColorTheme.fillColor(for:colorScheme, enhanceBy:1.5)
 	}
 
 	private var strokeColor : Color
 	{
-		return bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled || hasReducedOpacityAncestor)
+		return bxColorTheme.strokeColor(for:colorScheme)
 	}
 
 	// Build the view
@@ -96,6 +95,7 @@ fileprivate struct _BXStrokedButton : View
 						RoundedRectangle(cornerRadius:self.radius(for:geometry))
 							.stroke(self.strokeColor, lineWidth:0.5)
 					}
+					.reducedOpacityWhenDisabled()
 				}
 			)
     }

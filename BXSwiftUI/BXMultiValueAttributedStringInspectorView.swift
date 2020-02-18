@@ -42,6 +42,7 @@ public struct BXMultiValueAttributedStringInspectorView : View
 		BXLabelView(label:label, width:width)
 		{
 			BXMultiValueTextView(values:self.values, statusHandler:self.statusHandler)
+//				.reducedOpacityWhenDisabled()	// Not needed because AppKit already dim the control
 		}
 	}
 }

@@ -158,7 +158,7 @@ fileprivate struct _BXStrokedCheckbox : View
 		
 		// Dim when disabled
 		
-		.reduceOpacityWhenDisabled()
+		.reducedOpacityWhenDisabled()
 		
 		// Event handling
 		

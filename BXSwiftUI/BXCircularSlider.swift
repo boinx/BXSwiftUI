@@ -24,7 +24,6 @@ public struct BXCircularSlider : View
 	// Environment
 	
 	@Environment(\.isEnabled) private var isEnabled
-	@Environment(\.hasReducedOpacityAncestor) private var hasReducedOpacityAncestor
 	@Environment(\.colorScheme) private var colorScheme
 	@Environment(\.bxColorTheme) private var bxColorTheme
 	@Environment(\.bxUndoManager) private var undoManager
@@ -50,16 +49,17 @@ public struct BXCircularSlider : View
 		ZStack
 		{
 			Circle()
-				.fill(bxColorTheme.fillColor(for:colorScheme, isEnabled:isEnabled || hasReducedOpacityAncestor))
+				.fill(bxColorTheme.fillColor(for:colorScheme))
 				
 			Circle()
-				.stroke(bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled || hasReducedOpacityAncestor))
+				.stroke(bxColorTheme.strokeColor(for:colorScheme))
 
 			_Arrow()
-				.fill(bxColorTheme.contentColor(for:colorScheme, isEnabled:isEnabled || hasReducedOpacityAncestor))
+				.fill(bxColorTheme.contentColor(for:colorScheme))
 				.rotationEffect(.degrees(degrees(for:self.value.wrappedValue, in:self.range)))
 		}
 		.frame(width:2*radius, height:2*radius)
+		.reducedOpacityWhenDisabled()
 		
 		.gesture( DragGesture(minimumDistance:0)
 		
@@ -107,7 +107,6 @@ public struct BXMultiValueCircularSlider : View
 	// Environment
 	
 	@Environment(\.isEnabled) private var isEnabled
-	@Environment(\.hasReducedOpacityAncestor) private var hasReducedOpacityAncestor
 	@Environment(\.colorScheme) private var colorScheme
 	@Environment(\.bxColorTheme) private var bxColorTheme
 	@Environment(\.bxUndoManager) private var undoManager
@@ -133,20 +132,21 @@ public struct BXMultiValueCircularSlider : View
 		ZStack
 		{
 			Circle()
-				.fill(bxColorTheme.fillColor(for:colorScheme, isEnabled:isEnabled || hasReducedOpacityAncestor))
+				.fill(bxColorTheme.fillColor(for:colorScheme))
 
 			Circle()
-				.stroke(bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled || hasReducedOpacityAncestor))
+				.stroke(bxColorTheme.strokeColor(for:colorScheme))
 
 			ForEach(Array(self.values.wrappedValue), id:\.self)
 			{
 				_Arrow()
-					.fill(self.bxColorTheme.contentColor(for:self.colorScheme, isEnabled:self.isEnabled || self.hasReducedOpacityAncestor))
+					.fill(self.bxColorTheme.contentColor(for:self.colorScheme))
 					.rotationEffect(.degrees(degrees(for:$0, in:self.range)))
 			}
 		}
 		.frame(width:2*radius, height:2*radius)
-
+		.reducedOpacityWhenDisabled()
+		
 		.gesture( DragGesture(minimumDistance:0)
 		
 			.onChanged()

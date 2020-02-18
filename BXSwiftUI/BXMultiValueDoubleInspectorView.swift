@@ -72,22 +72,23 @@ public struct BXMultiValueDoubleInspectorView: View
 			HStack
 			{
 				Text(label)
-					.reduceOpacityWhenDisabled()
+					.reducedOpacityWhenDisabled()
 					
 				Spacer()
 
 				BXMultiValueTextField(values:values, alignment:.trailing, formatter:formatter, statusHandler:statusHandler)
 					.frame(width:60.0)
+//					.reducedOpacityWhenDisabled()	// Not needed because AppKit already dim the control
 			}
 			
 			BXMultiValueSlider(values:values, in:range, response:response)
 				.zIndex(-1)
 				.offset(x:0,y:1)
+//				.reducedOpacityWhenDisabled()		// Not needed because AppKit already dim the control
 		}
-
+		
 		// Provide fixed height to avoid layout glitches if BXDisclosureViews follow below
 		
-//		.border(Color.green)
 		.intrinsicContentSize(height:idealHeight)
 	}
 }

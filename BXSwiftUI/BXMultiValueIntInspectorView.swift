@@ -71,11 +71,11 @@ public struct BXMultiValueIntInspectorView : View
 		{
 			BXMultiValuePicker(values:self.values, orderedItems:self.orderedItems)
 				.modifier(BXStrokedModifier())
+//				.reducedOpacityWhenDisabled()	// Not needed because AppKit already dim the control
 		}
-
+		
 		// Provide fixed height to avoid layout glitches if BXDisclosureViews follow below
 		
-//		.border(Color.green)
 		.intrinsicContentSize(height:idealHeight)
 	}
 }

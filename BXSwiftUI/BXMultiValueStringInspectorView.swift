@@ -56,11 +56,11 @@ public struct BXMultiValueStringInspectorView : View
 		BXLabelView(label:label, width:width)
 		{
 			BXMultiValueTextField(values:self.values, alignment:.leading, statusHandler:self.statusHandler)
+//				.reducedOpacityWhenDisabled()	// Not needed because AppKit already dim the control
 		}
 
 		// Provide fixed height to avoid layout glitches if BXDisclosureViews follow below
 		
-//		.border(Color.green)
 		.intrinsicContentSize(height:idealHeight)
 	}
 }
