@@ -30,6 +30,10 @@ public struct BXCircularSlider : View
 	@Environment(\.bxUndoManager) private var undoManager
 	@Environment(\.bxUndoName) private var undoName
 
+	// State
+	
+	@State private var dragIteration = 0
+
 	// Init
 	
 	public init(value:Binding<Double>, range:ClosedRange<Double> = 0.0...360.0, radius:CGFloat = 15.0)
@@ -61,11 +65,28 @@ public struct BXCircularSlider : View
 		
 			.onChanged()
 			{
+				// On mouse down begin an undo group
+				
+				if self.dragIteration == 0
+				{
+					self.undoManager?.beginUndoGrouping()
+				}
+				
+				self.dragIteration += 1
+				
+				// On drag set new value
+
 				self.value.wrappedValue = degrees(for:$0.location, in:self.radius)
 			}
 			.onEnded()
 			{
-				_ in self.undoManager?.setActionName(self.undoName)
+				_ in
+				
+				// On mouse up close undo group
+				
+				self.undoManager?.setActionName(self.undoName)
+				self.undoManager?.endUndoGrouping()
+				self.dragIteration = 0
 			}
 		)
 	}
@@ -91,6 +112,10 @@ public struct BXMultiValueCircularSlider : View
 	@Environment(\.bxColorTheme) private var bxColorTheme
 	@Environment(\.bxUndoManager) private var undoManager
 	@Environment(\.bxUndoName) private var undoName
+
+	// State
+	
+	@State private var dragIteration = 0
 
 	// Init
 	
@@ -126,12 +151,29 @@ public struct BXMultiValueCircularSlider : View
 		
 			.onChanged()
 			{
+				// On mouse down begin an undo group
+				
+				if self.dragIteration == 0
+				{
+					self.undoManager?.beginUndoGrouping()
+				}
+				
+				self.dragIteration += 1
+				
+				// On drag set new value
+				
 				let value = degrees(for:$0.location, in:self.radius)
 				self.values.wrappedValue = Set([value])
 			}
 			.onEnded()
 			{
-				_ in self.undoManager?.setActionName(self.undoName)
+				_ in
+				
+				// On mouse up close undo group
+				
+				self.undoManager?.setActionName(self.undoName)
+				self.undoManager?.endUndoGrouping()
+				self.dragIteration = 0
 			}
 		)
 	}
