@@ -27,6 +27,7 @@ public struct BXMultiValueDoubleInspectorView: View
 	private var response:BXSliderResponse = .linear
 	private var formatter:Formatter? = nil
 	private var statusHandler:BXTextFieldStatusHandler? = nil
+	private var initialAction:(()->Void)? = nil
 
 	// Environment
 	
@@ -47,7 +48,7 @@ public struct BXMultiValueDoubleInspectorView: View
 
 	// Init
 	
-	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Double>>, range:ClosedRange<Double>, response:BXSliderResponse = .linear, formatter:Formatter? = nil, statusHandler:BXTextFieldStatusHandler? = nil)
+	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Double>>, range:ClosedRange<Double>, response:BXSliderResponse = .linear, formatter:Formatter? = nil, statusHandler:BXTextFieldStatusHandler? = nil, initialAction:(()->Void)? = nil)
 	{
 		self.label = label
 		self.width = width
@@ -56,6 +57,7 @@ public struct BXMultiValueDoubleInspectorView: View
 		self.response = response
 		self.formatter = formatter
 		self.statusHandler = statusHandler
+		self.initialAction = initialAction
 	}
 	
 	private var value:Double

@@ -20,6 +20,7 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	// Params
 	
 	private var values:Binding<Set<Int>>
+	private var initialAction:(()->Void)? = nil
 	private var orderedItems:[BXMenuItemSpec]
 
 	// Environment
@@ -30,9 +31,10 @@ public struct BXMultiValuePicker : NSViewRepresentable
 
 	// Init
 	
-	public init(values:Binding<Set<Int>> , orderedItems:[BXMenuItemSpec])
+	public init(values:Binding<Set<Int>> , initialAction:(()->Void)? = nil, orderedItems:[BXMenuItemSpec])
 	{
 		self.values = values
+		self.initialAction = initialAction
 		self.orderedItems = orderedItems
 	}
 	
@@ -159,6 +161,7 @@ public struct BXMultiValuePicker : NSViewRepresentable
         @objc func updateValues(with sender:NSPopUpButton)
         {
 			let tag = sender.selectedTag()
+			picker.initialAction?()
 			picker.values.wrappedValue = Set([tag])
 			self.undoManager?.setActionName(undoName)
         }

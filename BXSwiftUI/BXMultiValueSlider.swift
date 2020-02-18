@@ -21,6 +21,7 @@ public struct BXMultiValueSlider : NSViewRepresentable
 	private var values:Binding<Set<Double>>
 	private var range:ClosedRange<Double> = 0.0...1.0
 	private var response:BXSliderResponse = .linear
+	private var initialAction:(()->Void)? = nil
 	
 	// Environment
 	
@@ -30,11 +31,12 @@ public struct BXMultiValueSlider : NSViewRepresentable
 
 	// Init
 	
-	public init(values:Binding<Set<Double>>, in range:ClosedRange<Double> = 0.0...1.0, response:BXSliderResponse = .linear)
+	public init(values:Binding<Set<Double>>, in range:ClosedRange<Double> = 0.0...1.0, response:BXSliderResponse = .linear, initialAction:(()->Void)? = nil)
 	{
 		self.values = values
 		self.range = range
 		self.response = response
+		self.initialAction = initialAction
 	}
 	
 
@@ -95,13 +97,15 @@ public struct BXMultiValueSlider : NSViewRepresentable
         {
             self.slider = slider
             self.response = response
-        }
+         }
 
         @objc func updateValues(with sender:NSSlider)
         {
 			let viewValue = sender.doubleValue
 			let modelValue = self.response.viewToModel(viewValue)
-			slider.values.wrappedValue = Set([modelValue])
+			
+			self.slider.initialAction?()
+			self.slider.values.wrappedValue = Set([modelValue])
         }
     }
     
