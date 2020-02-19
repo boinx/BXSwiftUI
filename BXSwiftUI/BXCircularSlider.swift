@@ -218,7 +218,7 @@ fileprivate func degrees(for value:Double, in range:ClosedRange<Double>) -> Doub
 	let v1 = range.lowerBound
 	let v2 = range.upperBound
 	let fraction = (value-v1) / (v2 - v1)
-	
+
 	return fraction * 360.0
 }
 
@@ -243,6 +243,11 @@ fileprivate func degrees(for location:CGPoint, in radius:CGFloat) -> Double
 	var degrees = radians * 180.0 / Double.pi + 90.0
 	while degrees < 0.0 { degrees += 360.0 }
 	while degrees > 360.0 { degrees -= 360.0 }
+	
+	if BXModifierKeys.shared.flags.contains(.shift)
+	{
+		degrees = round(degrees / 45.0) * 45.0
+	}
 	
 	return degrees
 }
