@@ -287,6 +287,7 @@
 				D077D5C423E2F05D00C1D20F /* Image+SFSymbols.swift */,
 				D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */,
 				D077D5C223E2E14C00C1D20F /* Binding+Optional.swift */,
+				D058543323FD2342004BDCCC /* UserDefault.swift */,
 				D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */,
 				D002FE7923D22EC5002CF0A1 /* TypeCheckable.swift */,
 			);
@@ -306,7 +307,6 @@
 				D077D5CF23E32ED800C1D20F /* NSSavePanel+Present.swift */,
 				D05ED7B823F143C90019FE46 /* BXModifierKeys.swift */,
 				D09C93F223F86D18008BA68F /* BXSliderResponse.swift */,
-				D058543323FD2342004BDCCC /* UserDefault.swift */,
 			);
 			name = Behaviors;
 			sourceTree = "<group>";
