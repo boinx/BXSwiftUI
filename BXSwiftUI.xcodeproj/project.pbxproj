@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -36,6 +36,7 @@
 		D03A287223D705CA00673CB1 /* BXMultiValueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */; };
 		D04B14DD23DB4773001203FD /* BXStrokedCheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B14DC23DB4773001203FD /* BXStrokedCheckboxStyle.swift */; };
 		D04C46AF23E15A7700A1CBAD /* BXAutomaticEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C46AE23E15A7700A1CBAD /* BXAutomaticEditView.swift */; };
+		D058543423FD2342004BDCCC /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = D058543323FD2342004BDCCC /* UserDefault.swift */; };
 		D05ED7B923F143C90019FE46 /* BXModifierKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05ED7B823F143C90019FE46 /* BXModifierKeys.swift */; };
 		D05ED7BB23F1AAEC0019FE46 /* View+Cursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05ED7BA23F1AAEC0019FE46 /* View+Cursor.swift */; };
 		D075AA4623EB14A6009EF839 /* View+ToolTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075AA4523EB14A6009EF839 /* View+ToolTip.swift */; };
@@ -107,6 +108,7 @@
 		D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueButton.swift; sourceTree = "<group>"; };
 		D04B14DC23DB4773001203FD /* BXStrokedCheckboxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXStrokedCheckboxStyle.swift; sourceTree = "<group>"; };
 		D04C46AE23E15A7700A1CBAD /* BXAutomaticEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXAutomaticEditView.swift; sourceTree = "<group>"; };
+		D058543323FD2342004BDCCC /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		D05ED7B823F143C90019FE46 /* BXModifierKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXModifierKeys.swift; sourceTree = "<group>"; };
 		D05ED7BA23F1AAEC0019FE46 /* View+Cursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Cursor.swift"; sourceTree = "<group>"; };
 		D075AA4523EB14A6009EF839 /* View+ToolTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ToolTip.swift"; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				D077D5CF23E32ED800C1D20F /* NSSavePanel+Present.swift */,
 				D05ED7B823F143C90019FE46 /* BXModifierKeys.swift */,
 				D09C93F223F86D18008BA68F /* BXSliderResponse.swift */,
+				D058543323FD2342004BDCCC /* UserDefault.swift */,
 			);
 			name = Behaviors;
 			sourceTree = "<group>";
@@ -364,7 +367,7 @@
 				};
 			};
 			buildConfigurationList = D002FE6123D22945002CF0A1 /* Build configuration list for PBXProject "BXSwiftUI" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -446,6 +449,7 @@
 				D0793E8023D45D350069327F /* BXMultiValueDoubleInspectorView.swift in Sources */,
 				D0B5475423EC091A00046F96 /* BXJogwheel.swift in Sources */,
 				D0793E8223D45D5A0069327F /* BXMultiValueIntInspectorView.swift in Sources */,
+				D058543423FD2342004BDCCC /* UserDefault.swift in Sources */,
 				D03A287223D705CA00673CB1 /* BXMultiValueButton.swift in Sources */,
 				D0B64EBA23E6F31F0089A33F /* BXHasMultipleValuesKey.swift in Sources */,
 				D02BC5A423DC390500676CF3 /* BXArrayEditView.swift in Sources */,
