@@ -22,6 +22,7 @@ public struct BXRangeSlider : View
 	private var range:ClosedRange<Double>
 	private var knobSize:CGFloat = 12
 	private var trackWidth:CGFloat = 3
+	private var isUniqueValue:Bool = true
 	
 	// Environment
 	
@@ -32,13 +33,14 @@ public struct BXRangeSlider : View
 
 	// Init
 	
-	public init(lowerValue:Binding<Double>, upperValue:Binding<Double>, range:ClosedRange<Double> = 0.0...360.0, knobSize:CGFloat = 12, trackWidth:CGFloat = 3)
+	public init(lowerValue:Binding<Double>, upperValue:Binding<Double>, range:ClosedRange<Double> = 0.0...360.0, knobSize:CGFloat = 12, trackWidth:CGFloat = 3, isUniqueValue:Bool = true)
 	{
 		self.lowerValue = lowerValue
 		self.upperValue = upperValue
 		self.range = range
 		self.knobSize = knobSize
 		self.trackWidth = trackWidth
+		self.isUniqueValue = isUniqueValue
 	}
 	
 	
@@ -180,17 +182,23 @@ public struct BXRangeSlider : View
 				
 				// Lower knob
 
-				Circle()
-					.stroke(self.knobColor ,lineWidth:1.5)
-					.frame(width:self.knobSize, height:self.knobSize)
-					.offset(x:self.lowerKnobOffset(for:geometry.size.width), y:0)
-
+				if self.isUniqueValue
+				{
+					Circle()
+						.stroke(self.knobColor ,lineWidth:1.5)
+						.frame(width:self.knobSize, height:self.knobSize)
+						.offset(x:self.lowerKnobOffset(for:geometry.size.width), y:0)
+				}
+				
 				// Upper knob
 
-				Circle()
-					.stroke(self.knobColor ,lineWidth:1.5)
-					.frame(width:self.knobSize, height:self.knobSize)
-					.offset(x:self.upperKnobOffset(for:geometry.size.width), y:0)
+				if self.isUniqueValue
+				{
+					Circle()
+						.stroke(self.knobColor ,lineWidth:1.5)
+						.frame(width:self.knobSize, height:self.knobSize)
+						.offset(x:self.upperKnobOffset(for:geometry.size.width), y:0)
+				}
 			}
 			
 			// Hack: Apply a non-transparent (but non-visible) background color to the whole slide so that we
