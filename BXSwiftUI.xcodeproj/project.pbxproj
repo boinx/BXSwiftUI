@@ -21,6 +21,7 @@
 		D011B1CB23E1C73D00643F20 /* BXStrokedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011B1CA23E1C73D00643F20 /* BXStrokedButtonStyle.swift */; };
 		D0257F9D23FA7A15000E1816 /* BXCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0257F9C23FA7A15000E1816 /* BXCircularSlider.swift */; };
 		D029B91B23EC4FE80095DE37 /* View+Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D029B91A23EC4FE80095DE37 /* View+Popup.swift */; };
+		D02A6361240276EA00C55416 /* BXRoundButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02A6360240276EA00C55416 /* BXRoundButtonStyle.swift */; };
 		D02BC58C23DC26E500676CF3 /* BXStringEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC58B23DC26E400676CF3 /* BXStringEditView.swift */; };
 		D02BC59023DC297400676CF3 /* BXIntEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC58F23DC297400676CF3 /* BXIntEditView.swift */; };
 		D02BC59223DC29CB00676CF3 /* BXDoubleEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC59123DC29CB00676CF3 /* BXDoubleEditView.swift */; };
@@ -93,6 +94,7 @@
 		D0257F9A23FA7541000E1816 /* BXSliderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSliderStyle.swift; sourceTree = "<group>"; };
 		D0257F9C23FA7A15000E1816 /* BXCircularSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXCircularSlider.swift; sourceTree = "<group>"; };
 		D029B91A23EC4FE80095DE37 /* View+Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Popup.swift"; sourceTree = "<group>"; };
+		D02A6360240276EA00C55416 /* BXRoundButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXRoundButtonStyle.swift; sourceTree = "<group>"; };
 		D02BC58B23DC26E400676CF3 /* BXStringEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXStringEditView.swift; sourceTree = "<group>"; };
 		D02BC58F23DC297400676CF3 /* BXIntEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIntEditView.swift; sourceTree = "<group>"; };
 		D02BC59123DC29CB00676CF3 /* BXDoubleEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXDoubleEditView.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			children = (
 				D011B1CA23E1C73D00643F20 /* BXStrokedButtonStyle.swift */,
 				D04B14DC23DB4773001203FD /* BXStrokedCheckboxStyle.swift */,
+				D02A6360240276EA00C55416 /* BXRoundButtonStyle.swift */,
 				D0257F9A23FA7541000E1816 /* BXSliderStyle.swift */,
 				D0F9B3AF23E8710000AF0929 /* BXStrokedModifier.swift */,
 				D0B64EB923E6F31F0089A33F /* BXHasMultipleValuesKey.swift */,
@@ -405,6 +408,7 @@
 				D09C93F323F86D18008BA68F /* BXSliderResponse.swift in Sources */,
 				D0D25BCC23DCB3B400A1B61D /* BXIndentationView.swift in Sources */,
 				D04C46AF23E15A7700A1CBAD /* BXAutomaticEditView.swift in Sources */,
+				D02A6361240276EA00C55416 /* BXRoundButtonStyle.swift in Sources */,
 				D077D5C523E2F05D00C1D20F /* Image+SFSymbols.swift in Sources */,
 				D02BC5AC23DC627900676CF3 /* BXBoolEditView.swift in Sources */,
 				D002FE8323D22EC5002CF0A1 /* TypeCheckable.swift in Sources */,
