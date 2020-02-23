@@ -137,7 +137,8 @@ public class BXTimeCodeFormatter : NumberFormatter
 	{
 		guard let number = objectValue as? NSNumber else { return nil}
 		
-		let value = number.doubleValue
+		var value = number.doubleValue
+		if value.isNaN { value = 0.0 }
 		let secs = Int(value)
 		
 		let HH = secs / 3600
@@ -145,7 +146,14 @@ public class BXTimeCodeFormatter : NumberFormatter
 		let SS = secs % 60
 		let fff = Int((value-Double(secs)) * 1000.0)
 		
-		return String(format:timecodeFormat,HH,MM,SS,fff)
+		if allowsFloats
+		{
+			return String(format:timecodeFormat,HH,MM,SS,fff)
+		}
+		else
+		{
+			return String(format:timecodeFormat,HH,MM,SS)
+		}
 	}
 	
 	
