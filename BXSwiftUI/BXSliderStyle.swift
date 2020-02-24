@@ -13,21 +13,19 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public protocol BXSliderStyle
+public enum BXSliderStyle
 {
-    associatedtype Body : View
-    
-    typealias Configuration = BXSliderStyleConfiguration
+	/// Uses BXMultiValueNativeSlider
+	
+	case native
+	
+	/// Uses BXMultiValueColorSlider
+	
+	case color(_ color:Color)
 
-    func makeBody(configuration: Self.Configuration) -> Self.Body
-}
-
-
-public struct BXSliderStyleConfiguration
-{
-	public var values:Binding<Set<Double>>
-	private var range:ClosedRange<Double> = 0.0 ... 1.0
-	public var response:BXSliderResponse = .linear
+	/// Uses BXMultiValueGradientSlider
+		
+	case gradient(_ gradient:Gradient)
 }
 
 
@@ -36,12 +34,13 @@ public struct BXSliderStyleConfiguration
 
 public struct BXSliderStyleKey : EnvironmentKey
 {
-    static public let defaultValue = BXDefaultSliderStyle()
+    static public let defaultValue = BXSliderStyle.native
 }
+
 
 public extension EnvironmentValues
 {
-    var bxSliderStyle : some BXSliderStyle
+    var bxSliderStyle : BXSliderStyle
     {
         set
         {
@@ -55,27 +54,16 @@ public extension EnvironmentValues
     }
 }
 
-public extension View
-{
-	func bxSliderStyle<S:BXSliderStyle>(_ style:S) -> some View
-    {
-        self.environment(\.bxSliderStyle, style)
-    }
-}
-
 
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public struct BXDefaultSliderStyle : BXSliderStyle
+public extension View
 {
-	// Environment
-	
-	@Environment(\.isEnabled) private var isEnabled
-	@Environment(\.colorScheme) private var colorScheme
-	@Environment(\.bxColorTheme) private var bxColorTheme
-	@Environment(\.bxUndoManager) private var undoManager
-	@Environment(\.bxUndoName) private var undoName
+	func bxSliderStyle(_ style:BXSliderStyle) -> some View
+    {
+        return self.environment(\.bxSliderStyle, style)
+    }
 }
 
 

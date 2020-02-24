@@ -1,7 +1,7 @@
 //**********************************************************************************************************************
 //
-//  BXMultiValueColorSlider.swift
-//	A slider that lets you define a lower and an upper value
+//  BXCustomSlider.swift
+//	A custom implementation for a slider
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
@@ -13,21 +13,21 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public struct BXMultiValueColorSlider : View
+public struct BXCustomSlider : View
 {
 	// Params
 	
-	private var values:Binding<Set<Double>>
+	private var value:Binding<Double>
 	private var range:ClosedRange<Double>
 	private var response:BXSliderResponse = .linear
 	private var color:Color = .accentColor
 	private var trackWidth:CGFloat = 3
 	private var knobRadius:CGFloat = 6
 	private var knobStrokeWidth:CGFloat = 1.5
-	private var initialAction:(()->Void)? = nil
-
+	
 	// Environment
 	
+	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.colorScheme) private var colorScheme
 	@Environment(\.bxColorTheme) private var bxColorTheme
 	@Environment(\.bxUndoManager) private var undoManager
@@ -35,16 +35,15 @@ public struct BXMultiValueColorSlider : View
 
 	// Init
 	
-	public init(values:Binding<Set<Double>>, range:ClosedRange<Double> = 0.0...1.0, response:BXSliderResponse = .linear, color:Color = .accentColor, trackWidth:CGFloat = 3, knobRadius:CGFloat = 6, knobStrokeWidth:CGFloat = 1.5, initialAction:(()->Void)? = nil)
+	public init(value:Binding<Double>, range:ClosedRange<Double> = 0.0...1.0, response:BXSliderResponse = .linear, color:Color = .accentColor, trackWidth:CGFloat = 3, knobRadius:CGFloat = 6, knobStrokeWidth:CGFloat = 1.5)
 	{
-		self.values = values
+		self.value = value
 		self.range = range
 		self.response = response
 		self.color = color
 		self.trackWidth = trackWidth
 		self.knobRadius = knobRadius
 		self.knobStrokeWidth = knobStrokeWidth
-		self.initialAction = initialAction
 	}
 	
 	
@@ -101,13 +100,12 @@ public struct BXMultiValueColorSlider : View
 
 	private func barWidth(for width:CGFloat) -> CGFloat
 	{
-		let maxVal = self.values.wrappedValue.max() ?? range.lowerBound
-		return x(for:maxVal, width:width)
+		return x(for:self.value.wrappedValue, width:width)
 	}
 	
-	private func knobOffset(for value:Double, width:CGFloat) -> CGFloat
+	private func knobOffset(width:CGFloat) -> CGFloat
 	{
-		return x(for:value, width:width) - knobRadius
+		return x(for:self.value.wrappedValue, width:width) - knobRadius
 	}
 	
 
@@ -150,22 +148,17 @@ public struct BXMultiValueColorSlider : View
 				}
 				.clipShape(RoundedRectangle(cornerRadius:1.5))
 				
-				ForEach(Array(self.values.wrappedValue), id:\.self)
+				ZStack
 				{
-					value in
-					
-					ZStack
-					{
-						Circle()
-							.fill(self.knobFillColor)
-							.frame(width:2*self.knobRadius, height:2*self.knobRadius)
-							.offset(x:self.knobOffset(for:value, width:geometry.size.width), y:0)
+					Circle()
+						.fill(self.knobFillColor)
+						.frame(width:2*self.knobRadius, height:2*self.knobRadius)
+						.offset(x:self.knobOffset(width:geometry.size.width), y:0)
 
-						Circle()
-							.stroke(self.knobStrokeColor, lineWidth:self.knobStrokeWidth)
-							.frame(width:2*self.knobRadius, height:2*self.knobRadius)
-							.offset(x:self.knobOffset(for:value, width:geometry.size.width), y:0)
-					}
+					Circle()
+						.stroke(self.knobStrokeColor, lineWidth:self.knobStrokeWidth)
+						.frame(width:2*self.knobRadius, height:2*self.knobRadius)
+						.offset(x:self.knobOffset(width:geometry.size.width), y:0)
 				}
 			}
 			
@@ -173,8 +166,7 @@ public struct BXMultiValueColorSlider : View
 			// can receive mouse click events outside the track (i.e. background). That makes the UX much nicer.
 			
 			.background(Color(white:0.0, opacity:0.01))
-//			.compositingGroup()
-			
+
 			// Add a drag handler for event handling
 
 			.gesture( DragGesture(minimumDistance:0.0)
@@ -186,16 +178,14 @@ public struct BXMultiValueColorSlider : View
 					if self.dragIteration == 0
 					{
 						self.undoManager?.beginUndoGrouping()
-						self.initialAction?()
 					}
 					
 					self.dragIteration += 1
 
 					// Update the current value of the chosen knob
 	
-					let value = self.value(for:$0.location.x, width:geometry.size.width).clipped(to:self.range)
-					self.values.wrappedValue = Set([value])
-print("BXMultiValueColorSlider.onChanged")
+					let value = self.value(for:$0.location.x, width:geometry.size.width)
+					self.value.wrappedValue = value
 				}
 
 				// When the drag ends, close the undo group and reset state
@@ -209,7 +199,7 @@ print("BXMultiValueColorSlider.onChanged")
 
 					self.dragIteration = 0
 				}
-			, including:.gesture)
+			)
 		}
 	}
 }
