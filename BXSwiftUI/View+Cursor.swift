@@ -21,16 +21,36 @@ public extension View
 {
 	/// Sets a cursor for a specific modifier key combination
 	
-    func cursor(_ cursor:NSCursor, for flags:NSEvent.ModifierFlags) -> some View
+    func cursor(_ cursor:NSCursor, for flags:NSEvent.ModifierFlags, when condition:Bool = true) -> some View
     {
-		return self.background(BXCursorView([flags:cursor]))
+		Group
+		{
+			if condition
+			{
+				self.background(BXCursorView([flags:cursor]))
+			}
+			else
+			{
+				self
+			}
+		}
     }
 
 	/// Set cursors for multiple modifier key combinations
 	
-    func cursors(_ cursors:[NSEvent.ModifierFlags:NSCursor]) -> some View
+    func cursors(_ cursors:[NSEvent.ModifierFlags:NSCursor], when condition:Bool = true) -> some View
     {
-		return self.background(BXCursorView(cursors))
+		Group
+		{
+			if condition
+			{
+				self.background(BXCursorView(cursors))
+			}
+			else
+			{
+				self
+			}
+		}
     }
 }
   
