@@ -43,6 +43,7 @@
 		D058543423FD2342004BDCCC /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = D058543323FD2342004BDCCC /* UserDefault.swift */; };
 		D05ED7B923F143C90019FE46 /* BXModifierKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05ED7B823F143C90019FE46 /* BXModifierKeys.swift */; };
 		D05ED7BB23F1AAEC0019FE46 /* View+Cursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05ED7BA23F1AAEC0019FE46 /* View+Cursor.swift */; };
+		D0708F2724052DC70013AFBD /* BXGradientFillStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0708F2624052DC70013AFBD /* BXGradientFillStyle.swift */; };
 		D075AA4623EB14A6009EF839 /* View+ToolTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075AA4523EB14A6009EF839 /* View+ToolTip.swift */; };
 		D075AA4823EB33AE009EF839 /* BXRangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075AA4723EB33AD009EF839 /* BXRangeSlider.swift */; };
 		D077D5C323E2E14C00C1D20F /* Binding+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077D5C223E2E14C00C1D20F /* Binding+Optional.swift */; };
@@ -118,6 +119,7 @@
 		D058543323FD2342004BDCCC /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		D05ED7B823F143C90019FE46 /* BXModifierKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXModifierKeys.swift; sourceTree = "<group>"; };
 		D05ED7BA23F1AAEC0019FE46 /* View+Cursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Cursor.swift"; sourceTree = "<group>"; };
+		D0708F2624052DC70013AFBD /* BXGradientFillStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXGradientFillStyle.swift; sourceTree = "<group>"; };
 		D075AA4523EB14A6009EF839 /* View+ToolTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ToolTip.swift"; sourceTree = "<group>"; };
 		D075AA4723EB33AD009EF839 /* BXRangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXRangeSlider.swift; sourceTree = "<group>"; };
 		D077D5C223E2E14C00C1D20F /* Binding+Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Optional.swift"; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				D011B1CA23E1C73D00643F20 /* BXStrokedButtonStyle.swift */,
 				D04B14DC23DB4773001203FD /* BXStrokedCheckboxStyle.swift */,
 				D02A6360240276EA00C55416 /* BXRoundButtonStyle.swift */,
+				D0708F2624052DC70013AFBD /* BXGradientFillStyle.swift */,
 				D0257F9A23FA7541000E1816 /* BXSliderStyle.swift */,
 				D0F9B3AF23E8710000AF0929 /* BXStrokedModifier.swift */,
 				D0B64EB923E6F31F0089A33F /* BXHasMultipleValuesKey.swift */,
@@ -433,6 +436,7 @@
 				D02A63692402DEEF00C55416 /* BXSliderStyle.swift in Sources */,
 				D02BC59B23DC2C9F00676CF3 /* BXCGFloatEditView.swift in Sources */,
 				D0ED327723E557B700B37B3D /* BXTextField.swift in Sources */,
+				D0708F2724052DC70013AFBD /* BXGradientFillStyle.swift in Sources */,
 				D0B64EB823E6CB360089A33F /* BXMultiValueTextView.swift in Sources */,
 				D077D5C723E2FB4900C1D20F /* View+Enabled.swift in Sources */,
 				D0D28EB823E748E30012F9E1 /* Bundle+BXSwiftUI.swift in Sources */,
