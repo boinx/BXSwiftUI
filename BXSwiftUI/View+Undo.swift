@@ -18,7 +18,7 @@ extension View
 {
 	/// Injects the document into the environment. Controls in the view hierarchy may access it access its UndoManager.
 	
-	public func setUndoManager(_ undoManager:UndoManager?) -> some View
+	public func undoManager(_ undoManager:UndoManager?) -> some View
 	{
 		self.environment(\.bxUndoManager, undoManager)
 	}
