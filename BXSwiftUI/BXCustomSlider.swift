@@ -83,7 +83,7 @@ public struct BXCustomSlider : View
 		let v0 = range.lowerBound
 		let v1 = range.upperBound
 		let fraction = (value - Double(v0)) / (v1-v0)
-		let x = knobRadius + CGFloat(fraction) * (width-knobRadius)
+		let x = knobRadius + CGFloat(fraction) * (width-2*knobRadius)
 		return x
 	}
 
@@ -92,7 +92,7 @@ public struct BXCustomSlider : View
 		let v0 = range.lowerBound
 		let v1 = range.upperBound
 		let x0 = knobRadius
-		let x1 = width - 0.5*knobRadius
+		let x1 = width - knobRadius
 		
 		var fraction = (x - x0) / (x1-x0)
 		fraction = fraction.clipped(to:0.0...1.0)
