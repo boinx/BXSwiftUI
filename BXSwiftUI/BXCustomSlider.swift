@@ -94,7 +94,8 @@ public struct BXCustomSlider : View
 		let x0 = knobRadius
 		let x1 = width - 0.5*knobRadius
 		
-		let fraction = (x - x0) / (x1-x0)
+		var fraction = (x - x0) / (x1-x0)
+		fraction = fraction.clipped(to:0.0...1.0)
 		return v0 + Double(fraction) * (v1-v0)
 	}
 
