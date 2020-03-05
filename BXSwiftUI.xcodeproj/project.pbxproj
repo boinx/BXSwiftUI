@@ -25,6 +25,7 @@
 		D02A63682402D88200C55416 /* BXCustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02A63672402D88200C55416 /* BXCustomSlider.swift */; };
 		D02A63692402DEEF00C55416 /* BXSliderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0257F9A23FA7541000E1816 /* BXSliderStyle.swift */; };
 		D02A636B2402E25600C55416 /* BXMultiValueSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02A636A2402E25500C55416 /* BXMultiValueSlider.swift */; };
+		D02B47A724115CAE0026BE35 /* View+DragWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02B47A624115CAD0026BE35 /* View+DragWindow.swift */; };
 		D02BC58C23DC26E500676CF3 /* BXStringEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC58B23DC26E400676CF3 /* BXStringEditView.swift */; };
 		D02BC59023DC297400676CF3 /* BXIntEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC58F23DC297400676CF3 /* BXIntEditView.swift */; };
 		D02BC59223DC29CB00676CF3 /* BXDoubleEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC59123DC29CB00676CF3 /* BXDoubleEditView.swift */; };
@@ -103,6 +104,7 @@
 		D02A6360240276EA00C55416 /* BXRoundButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXRoundButtonStyle.swift; sourceTree = "<group>"; };
 		D02A63672402D88200C55416 /* BXCustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXCustomSlider.swift; sourceTree = "<group>"; };
 		D02A636A2402E25500C55416 /* BXMultiValueSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueSlider.swift; sourceTree = "<group>"; };
+		D02B47A624115CAD0026BE35 /* View+DragWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+DragWindow.swift"; sourceTree = "<group>"; };
 		D02BC58B23DC26E400676CF3 /* BXStringEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXStringEditView.swift; sourceTree = "<group>"; };
 		D02BC58F23DC297400676CF3 /* BXIntEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIntEditView.swift; sourceTree = "<group>"; };
 		D02BC59123DC29CB00676CF3 /* BXDoubleEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXDoubleEditView.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				D075AA4523EB14A6009EF839 /* View+ToolTip.swift */,
 				D029B91A23EC4FE80095DE37 /* View+Popup.swift */,
 				D05ED7BA23F1AAEC0019FE46 /* View+Cursor.swift */,
+				D02B47A624115CAD0026BE35 /* View+DragWindow.swift */,
 				D07F541623F52F5B001AFD5D /* View+IntrinsicContentSize.swift */,
 				D077D5D323E348B400C1D20F /* NSOpenPanel+Present.swift */,
 				D077D5CF23E32ED800C1D20F /* NSSavePanel+Present.swift */,
@@ -439,6 +442,7 @@
 				D08FB76F23E4920A00C1A193 /* BXTextField_macOS.swift in Sources */,
 				D002FE8623D22EC5002CF0A1 /* Formatter+Custom.swift in Sources */,
 				D02BC5A023DC339D00676CF3 /* BXCGRectEditView.swift in Sources */,
+				D02B47A724115CAE0026BE35 /* View+DragWindow.swift in Sources */,
 				D02A63692402DEEF00C55416 /* BXSliderStyle.swift in Sources */,
 				D02BC59B23DC2C9F00676CF3 /* BXCGFloatEditView.swift in Sources */,
 				D0ED327723E557B700B37B3D /* BXTextField.swift in Sources */,
