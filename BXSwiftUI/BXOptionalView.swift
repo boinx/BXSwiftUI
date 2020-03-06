@@ -23,10 +23,12 @@ public struct BXOptionalView<M,V> : View where V:View
 {
 	private var value:M?
 	private var content:(M)->V
-
-	public init(value:M?, @ViewBuilder content:@escaping (M)->V)
+	private var displaysNil = true
+	
+	public init(value:M?, displaysNil:Bool = true, @ViewBuilder content:@escaping (M)->V)
 	{
 		self.value = value
+		self.displaysNil = displaysNil
 		self.content = content
 	}
 	
@@ -43,7 +45,7 @@ public struct BXOptionalView<M,V> : View where V:View
 			
 			// Otherwise just display "nil"
 			
-			else
+			else if displaysNil
 			{
 				Text("nil")
 			}
