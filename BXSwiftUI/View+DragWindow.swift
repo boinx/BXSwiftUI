@@ -61,7 +61,7 @@ public class _DragWindowView : NSView
 	
 	override public var mouseDownCanMoveWindow: Bool
 	{
-		return false
+		return isDraggable
 	}
 }
 
