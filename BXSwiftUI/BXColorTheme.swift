@@ -86,7 +86,7 @@ extension BXColorTheme
 	
 	internal static func defaultContentColor(for colorScheme:ColorScheme, isEnabled:Bool, enhanceBy factor:Double = 1.0) -> Color
 	{
-		let gray = colorScheme == .dark ? 1.0*factor : 1.0-1.0*factor
+		let gray = colorScheme == .dark ? 1.0*factor : 0.1/factor
 		let alpha = isEnabled ? 1.0 : 0.33
 		return Color(white:gray, opacity:alpha)
 	}
