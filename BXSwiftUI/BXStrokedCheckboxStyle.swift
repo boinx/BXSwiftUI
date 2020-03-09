@@ -41,6 +41,7 @@ fileprivate struct _BXStrokedCheckbox : View
 	
 	// Environment
 	
+	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.controlSize) private var controlSize
 	@Environment(\.hasMultipleValues) private var hasMultipleValues
 	@Environment(\.colorScheme) private var colorScheme
@@ -114,9 +115,15 @@ fileprivate struct _BXStrokedCheckbox : View
 
 	private var onFillColor : Color
 	{
-		return Color.accentColor
+		return isEnabled ? Color.accentColor : offFillColor
 	}
-	
+
+	private var checkmarkColor : Color
+	{
+		if isEnabled { return Color.white }
+		return bxColorTheme.contentColor(for:colorScheme)
+	}
+
 	// Build the view
 	
 	var body: some View
@@ -147,7 +154,7 @@ fileprivate struct _BXStrokedCheckbox : View
 				}
 				else if configuration.isOn
 				{
-					Text("✓").foregroundColor(.white).bold().offset(x:offset, y:0)
+					Text("✓").foregroundColor(self.checkmarkColor).bold().offset(x:offset, y:0)
 				}
 			}
 			
