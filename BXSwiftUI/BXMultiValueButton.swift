@@ -25,6 +25,7 @@ public struct BXMultiValueButton : NSViewRepresentable
     private var offStateImage:NSImage?
     private var onStateImage:NSImage?
     private var mixedStateImage:NSImage?
+    private var tintColor:NSColor = NSColor.white
 
 	// Environment
 	
@@ -34,12 +35,13 @@ public struct BXMultiValueButton : NSViewRepresentable
 
 	// Init
 	
-	public init(values:Binding<Set<Bool>>, label:String = "", offStateImage:NSImage?, onStateImage:NSImage?, mixedStateImage:NSImage?)
+	public init(values:Binding<Set<Bool>>, label:String = "", offStateImage:NSImage?, onStateImage:NSImage?, mixedStateImage:NSImage?, tintColor:NSColor = NSColor.white)
 	{
 		self.values = values
 		self.offStateImage = offStateImage
 		self.onStateImage = onStateImage
 		self.mixedStateImage = mixedStateImage
+		self.tintColor = tintColor
 	}
 	
 	
@@ -51,6 +53,7 @@ public struct BXMultiValueButton : NSViewRepresentable
 		button.title = ""
         button.setButtonType(.toggle)
         button.bezelStyle = .shadowlessSquare
+        button.contentTintColor = tintColor
         button.allowsMixedState = true
         button.imageScaling = .scaleProportionallyDown
         button.isBordered = false
@@ -92,6 +95,8 @@ public struct BXMultiValueButton : NSViewRepresentable
 			button.image = offStateImage
 			button.isEnabled = false
 		}
+		
+		button.contentTintColor = tintColor
     }
     
     
