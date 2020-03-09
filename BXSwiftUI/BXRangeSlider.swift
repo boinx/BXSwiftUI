@@ -52,7 +52,7 @@ public struct BXRangeSlider : View
 	
 	private var usedTrackColor : Color
 	{
-		return Color.accentColor
+		return isEnabled ? Color.accentColor : self.unusedTrackColor
 	}
 	
 	private var unusedTrackColor : Color
@@ -172,21 +172,16 @@ public struct BXRangeSlider : View
 						.fill(self.unusedTrackColor)
 						.frame(width:self.lowerBarWidth(for:geometry.size.width), height:self.trackWidth)
 
-					Spacer()
-						.frame(width:self.knobSize, height:self.trackWidth)
-
 					Rectangle()
 						.fill(self.usedTrackColor)
-						.frame(width:self.middleBarWidth(for:geometry.size.width), height:self.trackWidth)
-
-					Spacer()
-						.frame(width:self.knobSize, height:self.trackWidth)
+						.frame(height:self.trackWidth)
 
 					Rectangle()
 						.fill(self.unusedTrackColor)
 						.frame(width:self.upperBarWidth(for:geometry.size.width), height:self.trackWidth)
 				}
 				.clipShape(RoundedRectangle(cornerRadius:1.5))
+				.frame(height:self.knobSize)
 				
 				// Lower knob
 
@@ -213,17 +208,15 @@ public struct BXRangeSlider : View
 				}
 			}
 			
-			// Hack: Apply a non-transparent (but non-visible) background color to the whole slide so that we
-			// can receive mouse click events outside the track (i.e. background). That makes the UX much nicer.
-			
-			.background(Color(white:0.0, opacity:0.01))
-		
 			// Dim when disabled
 			
+			.compositingGroup()
 			.reducedOpacityWhenDisabled()
 			
 			// Add a drag handler for event handling
 
+			.contentShape(Rectangle())
+			
 			.gesture( DragGesture(minimumDistance:0.0)
 
 				.onChanged()
