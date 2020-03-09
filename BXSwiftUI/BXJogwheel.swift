@@ -43,7 +43,7 @@ public struct BXJogwheel : View
 	
 	private var fillGradient : LinearGradient
 	{
-		let alpha = isEnabled ? 0.15 : 0.05
+		let alpha = 0.15
 		
 		let colors:[Color] =
 		[
@@ -59,16 +59,14 @@ public struct BXJogwheel : View
 
 	private var strokeColor : Color
 	{
-		let gray = colorScheme == .dark ? 0.65 : 0.35
-		let alpha = isEnabled ? 1.0 : 0.33
-		return Color(white:gray,opacity:alpha)
+		let gray = colorScheme == .dark ? 0.65 : 0.20
+		return Color(white:gray, opacity:1.0)
 	}
 
 	private var tickmarkColor : Color
 	{
-		let gray = colorScheme == .dark ? 0.65 : 0.35
-		let alpha = isEnabled ? 0.4 : 0.12
-		return Color(white:gray,opacity:alpha)
+		let gray = colorScheme == .dark ? 0.55 : 0.35
+		return Color(white:gray, opacity:0.8)
 	}
 
 

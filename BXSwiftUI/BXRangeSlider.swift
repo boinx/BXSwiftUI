@@ -28,6 +28,7 @@ public struct BXRangeSlider : View
 	
 	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.colorScheme) private var colorScheme
+	@Environment(\.bxColorTheme) private var bxColorTheme
 	@Environment(\.bxUndoManager) private var undoManager
 	@Environment(\.bxUndoName) private var undoName
 
@@ -51,20 +52,27 @@ public struct BXRangeSlider : View
 	
 	private var usedTrackColor : Color
 	{
-		let alpha = isEnabled ? 1.0 : 0.33
-		return Color.accentColor.opacity(alpha)
+		return Color.accentColor
 	}
 	
 	private var unusedTrackColor : Color
 	{
-		let alpha = isEnabled ? 1.0 : 0.33
-		return colorScheme == .dark ? Color(white:1.0,opacity:0.15*alpha) : Color(white:0.0,opacity:0.25*alpha)
+		return colorScheme == .dark ? Color(white:1.0,opacity:0.15) : Color(white:0.0,opacity:0.25)
 	}
 	
-	private var knobColor : Color
+	private var knobFillColor : Color
 	{
-		let alpha = isEnabled ? 1.0 : 0.33
-		return colorScheme == .dark ? Color(white:1.0,opacity:alpha) : Color(white:0.35,opacity:alpha)
+		return colorScheme == .dark ? bxColorTheme.backgroundColor(for:colorScheme) : Color.white
+	}
+
+	private var knobStrokeColor : Color
+	{
+		return colorScheme == .dark ? bxColorTheme.contentColor(for:colorScheme) : Color(white:0.35,opacity:1.0)
+	}
+
+	private var knobStrokeWidth : CGFloat
+	{
+		return colorScheme == .dark ? 1.5 : 0.5
 	}
 
 
@@ -184,20 +192,24 @@ public struct BXRangeSlider : View
 
 				if self.isUniqueValue
 				{
-					Circle()
-						.stroke(self.knobColor ,lineWidth:1.5)
-						.frame(width:self.knobSize, height:self.knobSize)
-						.offset(x:self.lowerKnobOffset(for:geometry.size.width), y:0)
+					BXRangeSliderKnob(
+						fillColor:self.knobFillColor,
+						strokeColor:self.knobStrokeColor,
+						strokeWidth:self.knobStrokeWidth)
+							.frame(width:self.knobSize, height:self.knobSize)
+							.offset(x:self.lowerKnobOffset(for:geometry.size.width), y:0)
 				}
 				
 				// Upper knob
 
 				if self.isUniqueValue
 				{
-					Circle()
-						.stroke(self.knobColor ,lineWidth:1.5)
-						.frame(width:self.knobSize, height:self.knobSize)
-						.offset(x:self.upperKnobOffset(for:geometry.size.width), y:0)
+					BXRangeSliderKnob(
+						fillColor:self.knobFillColor,
+						strokeColor:self.knobStrokeColor,
+						strokeWidth:self.knobStrokeWidth)
+							.frame(width:self.knobSize, height:self.knobSize)
+							.offset(x:self.upperKnobOffset(for:geometry.size.width), y:0)
 				}
 			}
 			
@@ -259,6 +271,29 @@ public struct BXRangeSlider : View
 					self.dragIteration = 0
 				}
 			)
+		}
+	}
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+public struct BXRangeSliderKnob : View
+{
+	var fillColor:Color
+	var strokeColor:Color
+	var strokeWidth:CGFloat
+	
+	public var body: some View
+	{
+		ZStack
+		{
+			Circle()
+				.fill(self.fillColor)
+				
+			Circle()
+				.stroke(self.strokeColor ,lineWidth:strokeWidth)
 		}
 	}
 }

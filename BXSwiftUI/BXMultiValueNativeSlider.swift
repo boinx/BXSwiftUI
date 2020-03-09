@@ -150,23 +150,26 @@ class NSMultiValueSliderCell : NSSliderCell
 
 	override open func drawKnob(_ knobRect:NSRect)
 	{
+		let appearance = self.controlView?.effectiveAppearance.name ?? .darkAqua
+		let isDarkMode = appearance == NSAppearance.Name.darkAqua
+		let alpha:CGFloat = isEnabled ? 1.0 : 0.33
+
 		let x:CGFloat = knobRect.midX
 		let y:CGFloat = knobRect.midY
-		let w:CGFloat = 12.0
-		let h:CGFloat = 12.0
+		let w:CGFloat = isDarkMode ? 12.0 : 13.25
+		let h:CGFloat = isDarkMode ? 12.0 : 13.25
 		let rect = CGRect(x:x-0.5*w,y:y-0.5*h,width:w,height:h)
 		let path = NSBezierPath(ovalIn:rect)
-		path.lineWidth = 1.5
-		
+		path.lineWidth = isDarkMode ? 1.5 : 0.5
+
 		NSGraphicsContext.saveGraphicsState()
 		NSGraphicsContext.current?.compositingOperation = .copy
-		NSColor.clear.set()
+		let fillColor = isDarkMode ? NSColor.clear : NSColor(white:1.0,alpha:alpha)
+		fillColor.set()
 		path.fill()
 		
-		let appearance = self.controlView?.appearance?.name ?? NSAppearance.Name.darkAqua
-		let gray:CGFloat = appearance == NSAppearance.Name.darkAqua ? 1.0 : 0.35
-		let alpha:CGFloat = isEnabled ? 1.0 : 0.33
-		NSColor(white:gray, alpha:alpha).set()
+		let strokeColor = isDarkMode ? NSColor(white:1.0,alpha:alpha) : NSColor(white:0.3,alpha:alpha)
+		strokeColor.set()
 		path.stroke()
 
 		NSGraphicsContext.restoreGraphicsState()
@@ -177,7 +180,6 @@ class NSMultiValueSliderCell : NSSliderCell
 		super.stopTracking(last:last, current:current, in:view, mouseIsUp:mouseIsUp)
 		self.undoManager?.setActionName(undoName)
 	}
-
 }
 
 

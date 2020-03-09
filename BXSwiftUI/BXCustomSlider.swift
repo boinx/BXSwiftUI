@@ -69,7 +69,9 @@ public struct BXCustomSlider : View
 
 	private var knobFillColor : Color
 	{
-		return bxColorTheme.backgroundColor(for:colorScheme)
+		colorScheme == .dark ?
+			bxColorTheme.backgroundColor(for:colorScheme) :
+			Color.white
 	}
 
 
