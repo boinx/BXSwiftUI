@@ -45,6 +45,7 @@
 		D05ED7B923F143C90019FE46 /* BXModifierKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05ED7B823F143C90019FE46 /* BXModifierKeys.swift */; };
 		D05ED7BB23F1AAEC0019FE46 /* View+Cursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05ED7BA23F1AAEC0019FE46 /* View+Cursor.swift */; };
 		D061C946240F885400A9C9B2 /* NSView+Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D061C945240F885400A9C9B2 /* NSView+Publishers.swift */; };
+		D062F3D9241B83CE00837850 /* View+description.swift in Sources */ = {isa = PBXBuildFile; fileRef = D062F3D8241B83CE00837850 /* View+description.swift */; };
 		D0708F2724052DC70013AFBD /* BXGradientFillStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0708F2624052DC70013AFBD /* BXGradientFillStyle.swift */; };
 		D075AA4623EB14A6009EF839 /* View+ToolTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075AA4523EB14A6009EF839 /* View+ToolTip.swift */; };
 		D075AA4823EB33AE009EF839 /* BXRangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075AA4723EB33AD009EF839 /* BXRangeSlider.swift */; };
@@ -124,6 +125,7 @@
 		D05ED7B823F143C90019FE46 /* BXModifierKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXModifierKeys.swift; sourceTree = "<group>"; };
 		D05ED7BA23F1AAEC0019FE46 /* View+Cursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Cursor.swift"; sourceTree = "<group>"; };
 		D061C945240F885400A9C9B2 /* NSView+Publishers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+Publishers.swift"; sourceTree = "<group>"; };
+		D062F3D8241B83CE00837850 /* View+description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+description.swift"; sourceTree = "<group>"; };
 		D0708F2624052DC70013AFBD /* BXGradientFillStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXGradientFillStyle.swift; sourceTree = "<group>"; };
 		D075AA4523EB14A6009EF839 /* View+ToolTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ToolTip.swift"; sourceTree = "<group>"; };
 		D075AA4723EB33AD009EF839 /* BXRangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXRangeSlider.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */,
 				D002FE7523D22EC5002CF0A1 /* BXLabelView.swift */,
 				D0A2400323DF5716004E9F31 /* BXOptionalView.swift */,
+				D062F3D8241B83CE00837850 /* View+description.swift */,
 			);
 			name = "View Hierarchy";
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				D02A636B2402E25600C55416 /* BXMultiValueSlider.swift in Sources */,
 				D0E2429623D8827D00145CEA /* BXDisclosureView.swift in Sources */,
 				D002FE7F23D22EC5002CF0A1 /* BXLabelView.swift in Sources */,
+				D062F3D9241B83CE00837850 /* View+description.swift in Sources */,
 				D08FB76D23E48D2400C1A193 /* BXTextView_macOS.swift in Sources */,
 				D02BC59923DC2C6400676CF3 /* BXFloatEditView.swift in Sources */,
 				D002FE8223D22EC5002CF0A1 /* BXMultiValueStringInspectorView.swift in Sources */,
