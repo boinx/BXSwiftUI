@@ -47,6 +47,7 @@
 		D061C946240F885400A9C9B2 /* NSView+Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D061C945240F885400A9C9B2 /* NSView+Publishers.swift */; };
 		D062F3D7241B747C00837850 /* Binding+rawValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D062F3D6241B747C00837850 /* Binding+rawValue.swift */; };
 		D062F3D9241B83CE00837850 /* View+description.swift in Sources */ = {isa = PBXBuildFile; fileRef = D062F3D8241B83CE00837850 /* View+description.swift */; };
+		D062F3DB241B847D00837850 /* BXLabelGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D062F3DA241B847D00837850 /* BXLabelGroup.swift */; };
 		D0708F2724052DC70013AFBD /* BXGradientFillStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0708F2624052DC70013AFBD /* BXGradientFillStyle.swift */; };
 		D075AA4623EB14A6009EF839 /* View+ToolTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075AA4523EB14A6009EF839 /* View+ToolTip.swift */; };
 		D075AA4823EB33AE009EF839 /* BXRangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075AA4723EB33AD009EF839 /* BXRangeSlider.swift */; };
@@ -128,6 +129,7 @@
 		D061C945240F885400A9C9B2 /* NSView+Publishers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+Publishers.swift"; sourceTree = "<group>"; };
 		D062F3D6241B747C00837850 /* Binding+rawValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+rawValue.swift"; sourceTree = "<group>"; };
 		D062F3D8241B83CE00837850 /* View+description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+description.swift"; sourceTree = "<group>"; };
+		D062F3DA241B847D00837850 /* BXLabelGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXLabelGroup.swift; sourceTree = "<group>"; };
 		D0708F2624052DC70013AFBD /* BXGradientFillStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXGradientFillStyle.swift; sourceTree = "<group>"; };
 		D075AA4523EB14A6009EF839 /* View+ToolTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ToolTip.swift"; sourceTree = "<group>"; };
 		D075AA4723EB33AD009EF839 /* BXRangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXRangeSlider.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 			children = (
 				D0E2429523D8827D00145CEA /* BXDisclosureView.swift */,
 				D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */,
+				D062F3DA241B847D00837850 /* BXLabelGroup.swift */,
 				D002FE7523D22EC5002CF0A1 /* BXLabelView.swift */,
 				D0A2400323DF5716004E9F31 /* BXOptionalView.swift */,
 				D062F3D8241B83CE00837850 /* View+description.swift */,
@@ -444,6 +447,7 @@
 				D08FB76D23E48D2400C1A193 /* BXTextView_macOS.swift in Sources */,
 				D02BC59923DC2C6400676CF3 /* BXFloatEditView.swift in Sources */,
 				D002FE8223D22EC5002CF0A1 /* BXMultiValueStringInspectorView.swift in Sources */,
+				D062F3DB241B847D00837850 /* BXLabelGroup.swift in Sources */,
 				D02A63682402D88200C55416 /* BXCustomSlider.swift in Sources */,
 				D02BC59423DC29ED00676CF3 /* BXCGPointEditView.swift in Sources */,
 				D08FB76F23E4920A00C1A193 /* BXTextField_macOS.swift in Sources */,
