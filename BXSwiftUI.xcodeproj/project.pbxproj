@@ -48,6 +48,7 @@
 		D062F3D7241B747C00837850 /* Binding+rawValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D062F3D6241B747C00837850 /* Binding+rawValue.swift */; };
 		D062F3D9241B83CE00837850 /* View+descriptionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D062F3D8241B83CE00837850 /* View+descriptionLabel.swift */; };
 		D062F3DB241B847D00837850 /* BXLabelGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D062F3DA241B847D00837850 /* BXLabelGroup.swift */; };
+		D062F3DD241BC16800837850 /* View+aligned.swift in Sources */ = {isa = PBXBuildFile; fileRef = D062F3DC241BC16800837850 /* View+aligned.swift */; };
 		D0708F2724052DC70013AFBD /* BXGradientFillStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0708F2624052DC70013AFBD /* BXGradientFillStyle.swift */; };
 		D075AA4623EB14A6009EF839 /* View+ToolTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075AA4523EB14A6009EF839 /* View+ToolTip.swift */; };
 		D075AA4823EB33AE009EF839 /* BXRangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075AA4723EB33AD009EF839 /* BXRangeSlider.swift */; };
@@ -130,6 +131,7 @@
 		D062F3D6241B747C00837850 /* Binding+rawValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+rawValue.swift"; sourceTree = "<group>"; };
 		D062F3D8241B83CE00837850 /* View+descriptionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+descriptionLabel.swift"; sourceTree = "<group>"; };
 		D062F3DA241B847D00837850 /* BXLabelGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXLabelGroup.swift; sourceTree = "<group>"; };
+		D062F3DC241BC16800837850 /* View+aligned.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+aligned.swift"; sourceTree = "<group>"; };
 		D0708F2624052DC70013AFBD /* BXGradientFillStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXGradientFillStyle.swift; sourceTree = "<group>"; };
 		D075AA4523EB14A6009EF839 /* View+ToolTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ToolTip.swift"; sourceTree = "<group>"; };
 		D075AA4723EB33AD009EF839 /* BXRangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXRangeSlider.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				D062F3DA241B847D00837850 /* BXLabelGroup.swift */,
 				D002FE7523D22EC5002CF0A1 /* BXLabelView.swift */,
 				D0A2400323DF5716004E9F31 /* BXOptionalView.swift */,
+				D062F3DC241BC16800837850 /* View+aligned.swift */,
 				D062F3D8241B83CE00837850 /* View+descriptionLabel.swift */,
 			);
 			name = "View Hierarchy";
@@ -453,6 +456,7 @@
 				D08FB76F23E4920A00C1A193 /* BXTextField_macOS.swift in Sources */,
 				D002FE8623D22EC5002CF0A1 /* Formatter+Custom.swift in Sources */,
 				D02BC5A023DC339D00676CF3 /* BXCGRectEditView.swift in Sources */,
+				D062F3DD241BC16800837850 /* View+aligned.swift in Sources */,
 				D02B47A724115CAE0026BE35 /* View+DragWindow.swift in Sources */,
 				D02A63692402DEEF00C55416 /* BXSliderStyle.swift in Sources */,
 				D02BC59B23DC2C9F00676CF3 /* BXCGFloatEditView.swift in Sources */,
