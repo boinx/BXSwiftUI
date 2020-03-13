@@ -51,7 +51,7 @@ public struct  BXTextField<T> : View
 			{
 				case .regular:
 //					self.height = 21.0
-					self.baseline = 15.0
+					self.baseline = 16.0
 
 				case .small:
 //					self.height = 19.0
