@@ -1,7 +1,7 @@
 //**********************************************************************************************************************
 //
-//  Formatter+Custom.swift
-//	Various custom formatters
+//  Binding+Optional.swift
+//	Creates a non-optional Binding to an optional property
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
