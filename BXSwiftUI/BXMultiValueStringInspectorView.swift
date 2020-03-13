@@ -21,7 +21,6 @@ public struct BXMultiValueStringInspectorView : View
 	// Params
 	
 	private var label:String = ""
-	private var width:Binding<CGFloat>? = nil
 	private var values:Binding<Set<String>>
 	private var statusHandler:BXTextFieldStatusHandler? = nil
 
@@ -41,10 +40,9 @@ public struct BXMultiValueStringInspectorView : View
 	}
 	// Init
 	
-	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<String>>, statusHandler:BXTextFieldStatusHandler? = nil)
+	public init(label:String = "", values:Binding<Set<String>>, statusHandler:BXTextFieldStatusHandler? = nil)
 	{
 		self.label = label
-		self.width = width
 		self.values = values
 		self.statusHandler = statusHandler
 	}
@@ -53,10 +51,13 @@ public struct BXMultiValueStringInspectorView : View
 	
     public var body: some View
     {
-		BXLabelView(label:label, width:width)
+		BXLabelView(label:label, alignment:.leading)
 		{
-			BXMultiValueTextField(values:self.values, alignment:.leading, statusHandler:self.statusHandler)
-//				.reducedOpacityWhenDisabled()	// Not needed because AppKit already dim the control
+			BXMultiValueTextField(
+				values:self.values,
+				alignment:.leading,
+				statusHandler:self.statusHandler)
+//					.reducedOpacityWhenDisabled()	// Not needed because AppKit already dimmed the control
 		}
 
 		// Provide fixed height to avoid layout glitches if BXDisclosureViews follow below

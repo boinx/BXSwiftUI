@@ -21,16 +21,14 @@ public struct BXMultiValueAttributedStringInspectorView : View
 	// Params
 	
 	private var label:String = ""
-	private var width:Binding<CGFloat>? = nil
 	private var values:Binding<Set<NSAttributedString>>
 	private var statusHandler:BXTextViewStatusHandler? = nil
 
 	// Init
 	
-	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<NSAttributedString>>, statusHandler:BXTextViewStatusHandler? = nil)
+	public init(label:String = "", values:Binding<Set<NSAttributedString>>, statusHandler:BXTextViewStatusHandler? = nil)
 	{
 		self.label = label
-		self.width = width
 		self.values = values
 		self.statusHandler = statusHandler
 	}
@@ -39,10 +37,12 @@ public struct BXMultiValueAttributedStringInspectorView : View
 	
     public var body: some View
     {
-		BXLabelView(label:label, width:width)
+		BXLabelView(label:label, alignment:.leading)
 		{
-			BXMultiValueTextView(values:self.values, statusHandler:self.statusHandler)
-//				.reducedOpacityWhenDisabled()	// Not needed because AppKit already dim the control
+			BXMultiValueTextView(
+				values:self.values,
+				statusHandler:self.statusHandler)
+//					.reducedOpacityWhenDisabled()	// Not needed because AppKit already dim the control
 		}
 	}
 }

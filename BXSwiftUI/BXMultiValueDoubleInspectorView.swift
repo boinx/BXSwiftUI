@@ -21,7 +21,6 @@ public struct BXMultiValueDoubleInspectorView: View
 	// Params
 	
 	private var label:String = ""
-	private var width:Binding<CGFloat>? = nil
 	private var values:Binding<Set<Double>>
 	private var range:ClosedRange<Double> = 0.0...60.0
 	private var response:BXSliderResponse = .linear
@@ -48,10 +47,9 @@ public struct BXMultiValueDoubleInspectorView: View
 
 	// Init
 	
-	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Double>>, range:ClosedRange<Double>, response:BXSliderResponse = .linear, formatter:Formatter? = nil, statusHandler:BXTextFieldStatusHandler? = nil, initialAction:(()->Void)? = nil)
+	public init(label:String = "", values:Binding<Set<Double>>, range:ClosedRange<Double>, response:BXSliderResponse = .linear, formatter:Formatter? = nil, statusHandler:BXTextFieldStatusHandler? = nil, initialAction:(()->Void)? = nil)
 	{
 		self.label = label
-		self.width = width
 		self.values = values
 		self.range = range
 		self.response = response

@@ -15,20 +15,24 @@ import SwiftUI
 
 public struct BXAttributedStringEditView : View
 {
+	// Params
+	
 	private var label:String = ""
-	private var width:Binding<CGFloat>? = nil
 	private var value:Binding<NSAttributedString>
 
-	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<NSAttributedString>)
+	// Init
+	
+	public init(label:String = "", value:Binding<NSAttributedString>)
 	{
 		self.label = label
-		self.width = width
 		self.value = value
 	}
 	
+	// Build View
+	
 	public var body: some View
 	{
-		BXLabelView(label:label, width:width)
+		BXLabelView(label:label, alignment:.leading)
 		{
 			BXTextView(value:self.value)
 		}

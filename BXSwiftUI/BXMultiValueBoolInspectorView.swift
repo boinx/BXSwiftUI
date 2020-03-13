@@ -21,7 +21,6 @@ public struct BXMultiValueBoolInspectorView : View
 	// Params
 	
 	public var label:String
-	private var width:Binding<CGFloat>?
 	private var values:Binding<Set<Bool>>
 	private var title:String
 	private var alignment:HorizontalAlignment
@@ -43,10 +42,9 @@ public struct BXMultiValueBoolInspectorView : View
 	
 	// Init
 	
-	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Bool>>, title:String = "", alignment:HorizontalAlignment = .leading)
+	public init(label:String = "", values:Binding<Set<Bool>>, title:String = "", alignment:HorizontalAlignment = .leading)
 	{
 		self.label = label
-		self.width = width
 		self.values = values
 		self.title = title
 		self.alignment = alignment
@@ -56,7 +54,7 @@ public struct BXMultiValueBoolInspectorView : View
 	
 	public var body: some View
 	{
-		BXLabelView(label:label, width:width)
+		BXLabelView(label:label, alignment:.leading)
 		{
 			if self.alignment == .trailing
 			{
@@ -70,7 +68,7 @@ public struct BXMultiValueBoolInspectorView : View
 				Spacer()
 			}
 		}
-
+		
 		// Provide fixed height to avoid layout glitches if BXDisclosureViews follow below
 		
 		.intrinsicContentSize(height:idealHeight)

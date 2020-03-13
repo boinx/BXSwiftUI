@@ -15,20 +15,26 @@ import SwiftUI
 
 public struct BXArrayEditView<M,V> : View where M:Identifiable, V:View
 {
+	// Params
+	
 	private var label:String
-	private var width:Binding<CGFloat>? = nil
 	private var values:Binding<Array<M>>
 	private var rowView:(M)->V
 	
+	// State
+	
 	@State private var isExpanded = false
 	
-	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Array<M>>, @ViewBuilder rowView:@escaping (M)->V)
+	// Init
+	
+	public init(label:String = "", values:Binding<Array<M>>, @ViewBuilder rowView:@escaping (M)->V)
 	{
 		self.label = label
-		self.width = width
 		self.values = values
 		self.rowView = rowView
 	}
+	
+	// Build View
 	
 	public var body: some View
 	{

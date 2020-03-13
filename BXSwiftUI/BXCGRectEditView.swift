@@ -15,8 +15,9 @@ import SwiftUI
 
 public struct BXCGRectEditView : View
 {
+	// Params
+	
 	private var label:String
-	private var width:Binding<CGFloat>? = nil
 	private var value:Binding<CGRect>
 	private var formatter:Formatter? = nil
 
@@ -25,17 +26,15 @@ public struct BXCGRectEditView : View
 	private var w:Binding<CGFloat>
 	private var h:Binding<CGFloat>
 
-	@State private var isExpanded = false
-
-
-	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<CGRect>, formatter:Formatter? = .pointsFormatter)
+	// Init
+	
+	public init(label:String = "", value:Binding<CGRect>, formatter:Formatter? = .pointsFormatter)
 	{
 		self.label = label
-		self.width = width
 		self.value = value
 		self.formatter = formatter
-		self.x = Binding.constant(0.0)			// init with dummy values
-		self.y = Binding.constant(0.0)			// init with dummy values
+		self.x = Binding.constant(0.0)		// init with dummy values
+		self.y = Binding.constant(0.0)		// init with dummy values
 		self.w = Binding.constant(0.0)		// init with dummy values
 		self.h = Binding.constant(0.0)		// init with dummy values
 
@@ -59,10 +58,11 @@ public struct BXCGRectEditView : View
 			set: { value.wrappedValue.size.height = $0 })
 	}
 	
+	// Build View
 	
 	public var body: some View
 	{
-		BXLabelView(label:label, width:width)
+		BXLabelView(label:label, alignment:.leading)
 		{
 			HStack
 			{

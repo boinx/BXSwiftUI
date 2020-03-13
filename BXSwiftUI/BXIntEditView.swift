@@ -15,24 +15,26 @@ import SwiftUI
 
 public struct BXIntEditView : View
 {
+	// Params
+	
 	private var label:String
-	private var width:Binding<CGFloat>? = nil
 	private var value:Binding<Int>
 	private var formatter:Formatter? = nil
 
-
-	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<Int>, formatter:Formatter? = .intFormatter)
+	// Init
+	
+	public init(label:String = "", value:Binding<Int>, formatter:Formatter? = .intFormatter)
 	{
 		self.label = label
-		self.width = width
 		self.value = value
 		self.formatter = formatter
 	}
 	
+	// Build View
 	
 	public var body: some View
 	{
-		BXLabelView(label:label, width:width)
+		BXLabelView(label:label, alignment:.leading)
 		{
 			BXTextField(value:self.value, formatter:self.formatter)
 		}

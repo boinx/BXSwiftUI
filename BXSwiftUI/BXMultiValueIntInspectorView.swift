@@ -21,7 +21,6 @@ public struct BXMultiValueIntInspectorView : View
 	// Params
 	
 	private var label:String = ""
-	private var width:Binding<CGFloat>? = nil
 	private var values:Binding<Set<Int>>
 	private var orderedItems:[BXMenuItemSpec] = []
 	private var initialAction:(()->Void)? = nil
@@ -43,10 +42,9 @@ public struct BXMultiValueIntInspectorView : View
 	
 	/// Creates a MultiIntPropertyView with a simple array of enum cases. Menu item names and tags are generated automatically from this enum array.
 	
-	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Int>>, initialAction:(()->Void)? = nil, orderedItems:[LocalizableIntEnum])
+	public init(label:String = "", values:Binding<Set<Int>>, initialAction:(()->Void)? = nil, orderedItems:[LocalizableIntEnum])
 	{
 		self.label = label
-		self.width = width
 		self.values = values
 		self.initialAction = initialAction
 		self.orderedItems = orderedItems.map
@@ -57,10 +55,9 @@ public struct BXMultiValueIntInspectorView : View
 
 	/// Creates a MultiIntPropertyView with an array of BXMenuItemSpecs. This provides more flexibility regarding ordering and inserting separators or disabled section names.
 	
-	public init(label:String = "", width:Binding<CGFloat>? = nil, values:Binding<Set<Int>>, initialAction:(()->Void)? = nil, orderedItems:[BXMenuItemSpec])
+	public init(label:String = "", values:Binding<Set<Int>>, initialAction:(()->Void)? = nil, orderedItems:[BXMenuItemSpec])
 	{
 		self.label = label
-		self.width = width
 		self.values = values
 		self.initialAction = initialAction
 		self.orderedItems = orderedItems
@@ -70,14 +67,14 @@ public struct BXMultiValueIntInspectorView : View
 	
     public var body: some View
     {
-		BXLabelView(label:label, width:width)
+		BXLabelView(label:label, alignment:.leading)
 		{
 			BXMultiValuePicker(
 				values:self.values,
 				initialAction:self.initialAction,
 				orderedItems:self.orderedItems)
 					.modifier(BXStrokedModifier())
-					//.reducedOpacityWhenDisabled()	// Not needed because AppKit already dimed the control
+					//.reducedOpacityWhenDisabled()	// Not needed because AppKit already dimmed the control
 		}
 		
 		// Provide fixed height to avoid layout glitches if BXDisclosureViews follow below

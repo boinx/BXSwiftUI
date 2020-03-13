@@ -15,22 +15,24 @@ import SwiftUI
 
 public struct BXURLEditView : View
 {
+	// Params
+	
 	private var label:String
-	private var width:Binding<CGFloat>? = nil
 	private var value:Binding<URL>
 
-
-	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<URL>)
+	// Init
+	
+	public init(label:String = "", value:Binding<URL>)
 	{
 		self.label = label
-		self.width = width
 		self.value = value
 	}
 	
+	// Build View
 	
 	public var body: some View
 	{
-		BXLabelView(label:label, width:width)
+		BXLabelView(label:label, alignment:.leading)
 		{
 			BXTextField(value:self.value, height:21)
 		}

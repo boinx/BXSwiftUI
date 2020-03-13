@@ -15,20 +15,20 @@ import SwiftUI
 
 public struct BXCGPointEditView : View
 {
+	// Params
+	
 	private var label:String
-	private var width:Binding<CGFloat>? = nil
 	private var value:Binding<CGPoint>
 	private var formatter:Formatter? = nil
 
 	private var x:Binding<CGFloat>
 	private var y:Binding<CGFloat>
-	@State private var isExpanded = false
 
-
-	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<CGPoint>, formatter:Formatter? = .pointsFormatter)
+	// Init
+	
+	public init(label:String = "", value:Binding<CGPoint>, formatter:Formatter? = .pointsFormatter)
 	{
 		self.label = label
-		self.width = width
 		self.value = value
 		self.formatter = formatter
 		self.x = Binding.constant(0.0)		// init with dummy values
@@ -46,10 +46,11 @@ public struct BXCGPointEditView : View
 			set: { value.wrappedValue.y = $0 })
 	}
 	
+	// Build View
 	
 	public var body: some View
 	{
-		BXLabelView(label:label, width:width)
+		BXLabelView(label:label, alignment:.leading)
 		{
 			HStack
 			{

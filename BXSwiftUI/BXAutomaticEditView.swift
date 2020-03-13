@@ -52,7 +52,7 @@ public struct BXAutomaticEditView<T> : View where T:ObservableObject
 		{
 			ForEach(self.properties)
 			{
-				BXLabelView(label:$0.name, width:self.labelWidth)
+				BXLabelView(label:$0.name)
 				{
 					Text("Placeholder")
 				}

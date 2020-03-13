@@ -15,22 +15,24 @@ import SwiftUI
 
 public struct BXBoolEditView : View
 {
+	// Params
+	
 	private var label:String
-	private var width:Binding<CGFloat>? = nil
 	private var value:Binding<Bool>
 
+	// Init
 
-	public init(label:String = "", width:Binding<CGFloat>? = nil, value:Binding<Bool>)
+	public init(label:String = "", value:Binding<Bool>)
 	{
 		self.label = label
-		self.width = width
 		self.value = value
 	}
 	
+	// Build View
 	
 	public var body: some View
 	{
-		BXLabelView(label:label, width:width)
+		BXLabelView(label:label, alignment:.leading)
 		{
 			Toggle("", isOn:self.value).labelsHidden()
 		}
