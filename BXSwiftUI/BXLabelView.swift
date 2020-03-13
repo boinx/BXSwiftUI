@@ -84,11 +84,9 @@ public struct BXLabelView<Content> : View where Content:View
 				// Dimmed when disabled
 				
 				.reducedOpacityWhenDisabled()
-				.border(Color.red)
 			}
 			
 			self.content()
-				.border(Color.green)
 		}
 	}
 }
