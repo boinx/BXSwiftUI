@@ -14,7 +14,7 @@ import SwiftUI
 
 
 /// All BXLabelViews within a BXLabelGroup get a common width assigned to them. This helps with localization,
-/// as the widest string determines how wide all labels will be. That way nothing gets clipped.
+/// as the widest label string determines how wide all BXLabelViews will be. That way nothing gets clipped.
 
 public struct BXLabelGroup<Content> : View where Content:View
 {
@@ -124,51 +124,6 @@ public extension EnvironmentValues
 struct BXLabelWidthKey : EnvironmentKey
 {
     static let defaultValue:Binding<CGFloat> = Binding.constant(60.0)
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-// MARK: -
-
-
-public extension View
-{
-	// Measures the size of a View and attaches a preference (with its size)
-	
-	func measureViewSize(forGroupID groupID:String) -> some View
-	{
-		self.background( GeometryReader
-		{
-			Color.clear.preference(
-				key: BXViewSizeKey.self,
-				value: [BXViewSizeData(groupID:groupID, size:$0.size)])
-		})
-	}
-}
-
-
-/// The key needed to attach size data to a View
-
-struct BXViewSizeKey : PreferenceKey
-{
-	typealias Value = [BXViewSizeData]
-
-	static var defaultValue:[BXViewSizeData] = []
-
-    static func reduce(value:inout [BXViewSizeData], nextValue:()->[BXViewSizeData])
-    {
-		value.append(contentsOf: nextValue())
-    }
-}
-
-/// The attached data contains the size and a groupID to filter out unwanted candidates when deciding on a common label width
-
-struct BXViewSizeData : Equatable
-{
-	let groupID:String
-    let size:CGSize
 }
 
 
