@@ -45,6 +45,7 @@
 		D05ED7B923F143C90019FE46 /* BXModifierKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05ED7B823F143C90019FE46 /* BXModifierKeys.swift */; };
 		D05ED7BB23F1AAEC0019FE46 /* View+Cursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05ED7BA23F1AAEC0019FE46 /* View+Cursor.swift */; };
 		D061C946240F885400A9C9B2 /* NSView+Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D061C945240F885400A9C9B2 /* NSView+Publishers.swift */; };
+		D062F3D7241B747C00837850 /* Binding+rawValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D062F3D6241B747C00837850 /* Binding+rawValue.swift */; };
 		D062F3D9241B83CE00837850 /* View+description.swift in Sources */ = {isa = PBXBuildFile; fileRef = D062F3D8241B83CE00837850 /* View+description.swift */; };
 		D0708F2724052DC70013AFBD /* BXGradientFillStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0708F2624052DC70013AFBD /* BXGradientFillStyle.swift */; };
 		D075AA4623EB14A6009EF839 /* View+ToolTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075AA4523EB14A6009EF839 /* View+ToolTip.swift */; };
@@ -125,6 +126,7 @@
 		D05ED7B823F143C90019FE46 /* BXModifierKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXModifierKeys.swift; sourceTree = "<group>"; };
 		D05ED7BA23F1AAEC0019FE46 /* View+Cursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Cursor.swift"; sourceTree = "<group>"; };
 		D061C945240F885400A9C9B2 /* NSView+Publishers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+Publishers.swift"; sourceTree = "<group>"; };
+		D062F3D6241B747C00837850 /* Binding+rawValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+rawValue.swift"; sourceTree = "<group>"; };
 		D062F3D8241B83CE00837850 /* View+description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+description.swift"; sourceTree = "<group>"; };
 		D0708F2624052DC70013AFBD /* BXGradientFillStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXGradientFillStyle.swift; sourceTree = "<group>"; };
 		D075AA4523EB14A6009EF839 /* View+ToolTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ToolTip.swift"; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				D077D5C423E2F05D00C1D20F /* Image+SFSymbols.swift */,
 				D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */,
 				D077D5C223E2E14C00C1D20F /* Binding+Optional.swift */,
+				D062F3D6241B747C00837850 /* Binding+rawValue.swift */,
 				D058543323FD2342004BDCCC /* UserDefault.swift */,
 				D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */,
 				D002FE7923D22EC5002CF0A1 /* TypeCheckable.swift */,
@@ -483,6 +486,7 @@
 				D0B5475423EC091A00046F96 /* BXJogwheel.swift in Sources */,
 				D0818FEA240AC66E002BDA9B /* NSViewController+Embed.swift in Sources */,
 				D0793E8223D45D5A0069327F /* BXMultiValueIntInspectorView.swift in Sources */,
+				D062F3D7241B747C00837850 /* Binding+rawValue.swift in Sources */,
 				D058543423FD2342004BDCCC /* UserDefault.swift in Sources */,
 				D03A287223D705CA00673CB1 /* BXMultiValueButton.swift in Sources */,
 				D0B64EBA23E6F31F0089A33F /* BXHasMultipleValuesKey.swift in Sources */,
