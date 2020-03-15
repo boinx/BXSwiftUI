@@ -20,8 +20,9 @@ public struct BXLabelGroup<Content> : View where Content:View
 {
 	// Params
 	
-	private var content:()->Content
 	private var labelGroupID:String
+	private var minWidth:CGFloat = 0.0
+	private var content:()->Content
 
 	// State
 	
@@ -29,10 +30,11 @@ public struct BXLabelGroup<Content> : View where Content:View
 	
 	// Init
 	
-	public init(@ViewBuilder content:@escaping ()->Content)
+	public init(minWidth:CGFloat = 0.0, @ViewBuilder content:@escaping ()->Content)
 	{
-		self.content = content
 		self.labelGroupID = UUID().uuidString
+		self.minWidth = minWidth
+		self.content = content
 	}
 	
 	// Build View
@@ -55,7 +57,7 @@ public struct BXLabelGroup<Content> : View where Content:View
 			{
 				preferences in
 				
-				var maxSize = CGSize.zero
+				var maxSize = CGSize(self.minWidth,0.0)
 				
 				for metadata in preferences
 				{
