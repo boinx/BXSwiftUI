@@ -67,7 +67,9 @@ fileprivate struct _BXStrokedButton : View
 	
 	private var fillColor : Color
 	{
-		return bxColorTheme.fillColor(for:colorScheme, enhanceBy:1.5)
+		if colorScheme == .light { return configuration.isPressed ? .accentColor : .white }
+		let factor = configuration.isPressed ? 2.0 : 1.0
+		return bxColorTheme.fillColor(for:colorScheme, enhanceBy:factor)
 	}
 
 	private var strokeColor : Color
