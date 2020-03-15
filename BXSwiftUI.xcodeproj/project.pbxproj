@@ -39,6 +39,8 @@
 		D02BC5AC23DC627900676CF3 /* BXBoolEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC5AB23DC627800676CF3 /* BXBoolEditView.swift */; };
 		D02ED7C323E96FB2000572FE /* View+Undo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02ED7C223E96FB2000572FE /* View+Undo.swift */; };
 		D03A287223D705CA00673CB1 /* BXMultiValueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */; };
+		D0499C35241CC97A007463F0 /* Binding+multiValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0499C34241CC97A007463F0 /* Binding+multiValue.swift */; };
+		D0499C37241CDC82007463F0 /* Binding+attributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0499C36241CDC82007463F0 /* Binding+attributedString.swift */; };
 		D04B14DD23DB4773001203FD /* BXStrokedCheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B14DC23DB4773001203FD /* BXStrokedCheckboxStyle.swift */; };
 		D04C46AF23E15A7700A1CBAD /* BXAutomaticEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C46AE23E15A7700A1CBAD /* BXAutomaticEditView.swift */; };
 		D058543423FD2342004BDCCC /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = D058543323FD2342004BDCCC /* UserDefault.swift */; };
@@ -122,6 +124,8 @@
 		D02BC5AB23DC627800676CF3 /* BXBoolEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXBoolEditView.swift; sourceTree = "<group>"; };
 		D02ED7C223E96FB2000572FE /* View+Undo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Undo.swift"; sourceTree = "<group>"; };
 		D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueButton.swift; sourceTree = "<group>"; };
+		D0499C34241CC97A007463F0 /* Binding+multiValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+multiValue.swift"; sourceTree = "<group>"; };
+		D0499C36241CDC82007463F0 /* Binding+attributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+attributedString.swift"; sourceTree = "<group>"; };
 		D04B14DC23DB4773001203FD /* BXStrokedCheckboxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXStrokedCheckboxStyle.swift; sourceTree = "<group>"; };
 		D04C46AE23E15A7700A1CBAD /* BXAutomaticEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXAutomaticEditView.swift; sourceTree = "<group>"; };
 		D058543323FD2342004BDCCC /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
@@ -317,12 +321,16 @@
 				D077D5C423E2F05D00C1D20F /* Image+SFSymbols.swift */,
 				D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */,
 				D077D5C223E2E14C00C1D20F /* Binding+Optional.swift */,
+				D0499C34241CC97A007463F0 /* Binding+multiValue.swift */,
 				D062F3D6241B747C00837850 /* Binding+rawValue.swift */,
+				D0499C36241CDC82007463F0 /* Binding+attributedString.swift */,
 				D058543323FD2342004BDCCC /* UserDefault.swift */,
 				D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */,
 				D002FE7923D22EC5002CF0A1 /* TypeCheckable.swift */,
 				D0818FE9240AC66E002BDA9B /* NSViewController+Embed.swift */,
 				D061C945240F885400A9C9B2 /* NSView+Publishers.swift */,
+				D077D5D323E348B400C1D20F /* NSOpenPanel+Present.swift */,
+				D077D5CF23E32ED800C1D20F /* NSSavePanel+Present.swift */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -337,8 +345,6 @@
 				D05ED7BA23F1AAEC0019FE46 /* View+Cursor.swift */,
 				D02B47A624115CAD0026BE35 /* View+DragWindow.swift */,
 				D07F541623F52F5B001AFD5D /* View+IntrinsicContentSize.swift */,
-				D077D5D323E348B400C1D20F /* NSOpenPanel+Present.swift */,
-				D077D5CF23E32ED800C1D20F /* NSSavePanel+Present.swift */,
 				D05ED7B823F143C90019FE46 /* BXModifierKeys.swift */,
 				D09C93F223F86D18008BA68F /* BXSliderResponse.swift */,
 			);
@@ -439,6 +445,7 @@
 				D09C93F323F86D18008BA68F /* BXSliderResponse.swift in Sources */,
 				D0D25BCC23DCB3B400A1B61D /* BXIndentationView.swift in Sources */,
 				D04C46AF23E15A7700A1CBAD /* BXAutomaticEditView.swift in Sources */,
+				D0499C35241CC97A007463F0 /* Binding+multiValue.swift in Sources */,
 				D02A6361240276EA00C55416 /* BXRoundButtonStyle.swift in Sources */,
 				D077D5C523E2F05D00C1D20F /* Image+SFSymbols.swift in Sources */,
 				D02BC5AC23DC627900676CF3 /* BXBoolEditView.swift in Sources */,
@@ -489,6 +496,7 @@
 				D0257F9D23FA7A15000E1816 /* BXCircularSlider.swift in Sources */,
 				D02ED7C323E96FB2000572FE /* View+Undo.swift in Sources */,
 				D0F9B3B023E8710000AF0929 /* BXStrokedModifier.swift in Sources */,
+				D0499C37241CDC82007463F0 /* Binding+attributedString.swift in Sources */,
 				D04B14DD23DB4773001203FD /* BXStrokedCheckboxStyle.swift in Sources */,
 				D0793E8023D45D350069327F /* BXMultiValueDoubleInspectorView.swift in Sources */,
 				D0B5475423EC091A00046F96 /* BXJogwheel.swift in Sources */,
