@@ -22,14 +22,16 @@ public final class BXModifierKeys : NSObject, ObservableObject
 	
 	/// The current set of pressed modifier keys
 	
-	public var flags:NSEvent.ModifierFlags = []
+	public var flags:NSEvent.ModifierFlags
+	{
+		return NSApp.currentEvent?.modifierFlags ?? []
+	}
 	
 	/// Call this function from a flagsChanged() somewhere in your responder chain. The best place would be near the
 	/// root (e.g. in the AppDelegate). Make sure to call super so that the responder chain doesn't get broken.
 	
     public func flagsChanged(with event:NSEvent)
     {
-		self.flags = event.modifierFlags
 		self.objectWillChange.send()
     }
 }
