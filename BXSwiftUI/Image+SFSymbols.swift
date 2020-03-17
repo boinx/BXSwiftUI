@@ -39,6 +39,18 @@ public struct Image : View
 		"minus.square" :						"􀃞",
 		"minus.square.fill" :					"􀃟",
 
+		"xmark" :								"􀆄",
+		"xmark.circle" :						"􀁠",
+		"xmark.circle.fill" :					"􀁡",
+		"xmark.square" :						"􀃰",
+		"xmark.square.fill" :					"􀃱",
+		
+		"checkmark" :							"􀆅",
+		"checkmark.circle" :					"􀁢",
+		"checkmark.circle.fill" :				"􀁣",
+		"checkmark.square" :					"􀃲",
+		"checkmark.square.fill" :				"􀃳",
+
 		"arrow.clockwise" : 					"􀅈",
 		"arrow.clockwise.circle" : 				"􀚁",
 		"arrow.clockwise.circle.fill" : 		"􀚂",
@@ -114,8 +126,6 @@ public struct Image : View
 		"goforward" :							"􀍿",
 		"gobackward" :							"􀎀",
 		
-		"checkmark" :							"􀆅",
-		"xmark" :								"􀆄",
 		"gear" :								"􀍟",
 		"chevron.down.square" :					"􀄀",
 	]
