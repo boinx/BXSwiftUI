@@ -19,20 +19,21 @@ public struct BXJogwheel : View
 	
 	private var value:Binding<Double>
 	private var speed:Double
+	private var deltaAction:((Double)->Void)? = nil
 	
 	// Environment
 	
-	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.colorScheme) private var colorScheme
 	@Environment(\.bxUndoManager) private var undoManager
 	@Environment(\.bxUndoName) private var undoName
 
 	// Init
 	
-	public init(value:Binding<Double>, speed:Double = 1.0)
+	public init(value:Binding<Double>, speed:Double = 1.0, deltaAction:((Double)->Void)? = nil)
 	{
 		self.value = value
 		self.speed = speed
+		self.deltaAction = deltaAction
 	}
 	
 	
@@ -78,8 +79,8 @@ public struct BXJogwheel : View
 	// Counts up each time we go through the onChanged handler of the DragGesture
 	
 	@State private var dragIteration = 0
-	@State private var dragInitialPosition:CGFloat = 0.0
 	@State private var dragInitialValue:Double = 0.0
+	@State private var prevX:CGFloat = 0.0
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -116,16 +117,21 @@ public struct BXJogwheel : View
 				if self.dragIteration == 0
 				{
 					self.undoManager?.beginUndoGrouping()
-
-					self.dragInitialPosition = $0.location.x
 					self.dragInitialValue = self.value.wrappedValue
 				}
 
 				// Update the current value
 
-				let dx = $0.location.x - self.dragInitialPosition
-				let delta = self.speed * Double(dx)
-				self.value.wrappedValue = self.dragInitialValue + delta
+				let dx = $0.translation.width 
+				self.value.wrappedValue = self.dragInitialValue + self.speed * Double(dx)
+				
+				// Call the delta action
+				
+				let x = $0.location.x
+				let delta = self.speed * Double(x - self.prevX)
+				self.prevX = x
+				self.deltaAction?(delta)
+				
 				self.dragIteration += 1
 			}
 
@@ -137,7 +143,6 @@ public struct BXJogwheel : View
 
 				self.undoManager?.setActionName(self.undoName)
 				self.undoManager?.endUndoGrouping()
-
 				self.dragIteration = 0
 			}
 		)
