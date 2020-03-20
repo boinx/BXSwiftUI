@@ -128,6 +128,11 @@ public struct Image : View
 		
 		"gear" :								"􀍟",
 		"chevron.down.square" :					"􀄀",
+
+		"text.alignleft" :						"􀌀",
+		"text.aligncenter" :					"􀌁",
+		"text.alignright" :						"􀌂",
+		"text.justify" :						"􀌃",
 	]
 
 	let symbol:String
