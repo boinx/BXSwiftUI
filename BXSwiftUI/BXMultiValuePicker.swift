@@ -42,75 +42,12 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	
 	public func makeNSView(context:Context) -> NSPopUpButton
     {
-		var item:NSMenuItem
-		let smallFont = NSFont.systemFont(ofSize:NSFont.smallSystemFontSize)
-		let smallFontAttrs = [NSAttributedString.Key.font:smallFont]
-
-		// Create the popup menu
-		
         let popup = NSPopUpButton(frame:.zero)
         popup.autoenablesItems = false
 		popup.target = context.coordinator
 		popup.action = #selector(Coordinator.updateValues(with:))
 		
-		// Add an invisible menu item for "none" (nothing is selected)
-		
-        item = NSMenuItem(title:"None", action:nil, keyEquivalent:"")
-		item.tag = Values.none.rawValue
-		item.isEnabled = false
-		item.isHidden = true
-		popup.menu?.addItem(item)
-        
-		// Add an invisible menu item for "Multiple" (multiple different values are selected)
-		
-		item = NSMenuItem(title:"Multiple", action:nil, keyEquivalent:"")
-		item.tag = Values.multiple.rawValue
-		item.isEnabled = false
-		item.isHidden = true
-		popup.menu?.addItem(item)
-        
-        // Add an invisible initial divider
-        
-		item = NSMenuItem.separator()
-		item.tag = Values.initialDivider.rawValue
-		item.isEnabled = false
-		popup.menu?.addItem(item)
-
-        for itemSpec in self.orderedItems
-        {
-			switch itemSpec
-			{
-				// Add a regular menu item
-					
-				case .regular(let icon,let title,let value):
-				
-					item = NSMenuItem(title:title, action:nil, keyEquivalent:"")
-					item.image = icon
-					item.tag = value
-					item.isEnabled = true
-
-				// Add a section name (disabled)
-				
-				case .section(let title):
-
-					item = NSMenuItem(title:title.uppercased(), action:nil, keyEquivalent:"")
-					item.attributedTitle = NSAttributedString(string:title.uppercased(),attributes:smallFontAttrs)
-					item.tag = -666
-					item.isEnabled = false
-
-				// Add a separator line
-
-				case .divider:
-				
-					item = NSMenuItem.separator()
-					item.tag = -666
-					item.isEnabled = false
-					
-				default: break
-			}
-						
-			popup.menu?.addItem(item)
-        }
+		self.rebuildMenuItems(in:popup)
         
 		return popup
     }
@@ -119,6 +56,8 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	
 	public func updateNSView(_ popup:NSPopUpButton, context:Context)
     {
+		self.rebuildMenuItems(in:popup)
+
 		let isNone = values.wrappedValue.count == 0
 		let isMultiple = values.wrappedValue.count > 1
 		
@@ -142,6 +81,76 @@ public struct BXMultiValuePicker : NSViewRepresentable
 			popup.isEnabled = false
 		}
     }
+    
+    // Rebuilds the menu items of the popup according to the orderedItems property
+    
+    private func rebuildMenuItems(in popup:NSPopUpButton)
+    {
+		var item:NSMenuItem
+		let smallFont = NSFont.systemFont(ofSize:NSFont.smallSystemFontSize)
+		let smallFontAttrs = [NSAttributedString.Key.font:smallFont]
+
+		popup.menu?.removeAllItems()
+		
+		// Add an invisible menu item for "none" (nothing is selected)
+		
+		item = NSMenuItem(title:"None", action:nil, keyEquivalent:"")
+		item.tag = Values.none.rawValue
+		item.isEnabled = false
+		item.isHidden = true
+		popup.menu?.addItem(item)
+		
+		// Add an invisible menu item for "Multiple" (multiple different values are selected)
+		
+		item = NSMenuItem(title:"Multiple", action:nil, keyEquivalent:"")
+		item.tag = Values.multiple.rawValue
+		item.isEnabled = false
+		item.isHidden = true
+		popup.menu?.addItem(item)
+		
+		// Add an invisible initial divider
+		
+		item = NSMenuItem.separator()
+		item.tag = Values.initialDivider.rawValue
+		item.isEnabled = false
+		popup.menu?.addItem(item)
+
+		for itemSpec in self.orderedItems
+		{
+			switch itemSpec
+			{
+				// Add a regular menu item
+					
+				case .regular(let icon,let title,let value):
+				
+					item = NSMenuItem(title:title, action:nil, keyEquivalent:"")
+					item.image = icon
+					item.tag = value
+					item.isEnabled = true
+
+				// Add a section name (disabled)
+				
+				case .section(let title):
+
+					item = NSMenuItem(title:title.uppercased(), action:nil, keyEquivalent:"")
+					item.attributedTitle = NSAttributedString(string:title.uppercased(), attributes:smallFontAttrs)
+					item.tag = -666
+					item.isEnabled = false
+
+				// Add a separator line
+
+				case .divider:
+				
+					item = NSMenuItem.separator()
+					item.tag = -666
+					item.isEnabled = false
+					
+				default: break
+			}
+						
+			popup.menu?.addItem(item)
+		}
+	}
     
 	// The NSPopUpButton side has changed, so update the SwiftUI state
 	
