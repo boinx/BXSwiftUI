@@ -52,7 +52,7 @@ public struct BXCircularSlider : View
 				.fill(bxColorTheme.fillColor(for:colorScheme))
 				
 			Circle()
-				.stroke(bxColorTheme.strokeColor(for:colorScheme))
+				.stroke(bxColorTheme.strokeColor(for:colorScheme), lineWidth:0.6)
 
 			_Arrow()
 				.fill(bxColorTheme.contentColor(for:colorScheme))
@@ -135,7 +135,7 @@ public struct BXMultiValueCircularSlider : View
 				.fill(bxColorTheme.fillColor(for:colorScheme))
 
 			Circle()
-				.stroke(bxColorTheme.strokeColor(for:colorScheme))
+				.stroke(bxColorTheme.strokeColor(for:colorScheme), lineWidth:0.6)
 
 			ForEach(Array(self.values.wrappedValue), id:\.self)
 			{

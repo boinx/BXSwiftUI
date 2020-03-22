@@ -60,7 +60,9 @@ public struct BXMultiValueColorSlider : View
 	
 	private var unusedTrackColor : Color
 	{
-		return bxColorTheme.fillColor(for:colorScheme)
+		let gray = colorScheme == .dark ? 1.0 : 0.0
+		let alpha = colorScheme == .dark ? 0.1 : 0.2
+		return Color(white:gray, opacity:alpha)
 	}
 	
 	private var knobStrokeColor : Color
