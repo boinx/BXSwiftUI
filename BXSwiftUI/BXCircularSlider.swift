@@ -61,6 +61,8 @@ public struct BXCircularSlider : View
 		.frame(width:2*radius, height:2*radius)
 		.reducedOpacityWhenDisabled()
 		
+		.contentShape(Circle())
+
 		.gesture( DragGesture(minimumDistance:0)
 		
 			.onChanged()
@@ -146,6 +148,8 @@ public struct BXMultiValueCircularSlider : View
 		}
 		.frame(width:2*radius, height:2*radius)
 		.reducedOpacityWhenDisabled()
+		
+		.contentShape(Circle())
 		
 		.gesture( DragGesture(minimumDistance:0)
 		
