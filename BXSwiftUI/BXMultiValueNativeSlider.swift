@@ -106,6 +106,8 @@ public struct BXMultiValueNativeSlider : NSViewRepresentable
 			
 			self.slider.initialAction?()
 			self.slider.values.wrappedValue = Set([modelValue])
+			
+			DispatchQueue.main.executeScheduledBlocks()
         }
     }
     

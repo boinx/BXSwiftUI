@@ -168,6 +168,10 @@ public struct BXMultiValueCircularSlider : View
 				
 				let value = degrees(for:$0.location, in:self.radius)
 				self.values.wrappedValue = Set([value])
+				
+				// Make sure that async work gets executed
+				
+				DispatchQueue.main.executeScheduledBlocks()
 			}
 			.onEnded()
 			{
