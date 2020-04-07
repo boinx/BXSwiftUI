@@ -57,40 +57,41 @@ public struct BXCircularSlider : View
 			_Arrow()
 				.fill(bxColorTheme.contentColor(for:colorScheme))
 				.rotationEffect(.degrees(degrees(for:self.value.wrappedValue, in:self.range)))
+
+			Circle()
+				.fill(Color(white:0.0, opacity:0.01))
+				.gesture( DragGesture(minimumDistance:0)
+				
+					.onChanged()
+					{
+						// On mouse down begin an undo group
+						
+						if self.dragIteration == 0
+						{
+							self.undoManager?.beginUndoGrouping()
+						}
+						
+						self.dragIteration += 1
+						
+						// On drag set new value
+
+						self.value.wrappedValue = degrees(for:$0.location, in:self.radius)
+					}
+					.onEnded()
+					{
+						_ in
+						
+						// On mouse up close undo group
+						
+						self.undoManager?.setActionName(self.undoName)
+						self.undoManager?.endUndoGrouping()
+						self.dragIteration = 0
+					}
+				)
 		}
 		.frame(width:2*radius, height:2*radius)
+		.compositingGroup()
 		.reducedOpacityWhenDisabled()
-		
-		.contentShape(Circle())
-
-		.gesture( DragGesture(minimumDistance:0)
-		
-			.onChanged()
-			{
-				// On mouse down begin an undo group
-				
-				if self.dragIteration == 0
-				{
-					self.undoManager?.beginUndoGrouping()
-				}
-				
-				self.dragIteration += 1
-				
-				// On drag set new value
-
-				self.value.wrappedValue = degrees(for:$0.location, in:self.radius)
-			}
-			.onEnded()
-			{
-				_ in
-				
-				// On mouse up close undo group
-				
-				self.undoManager?.setActionName(self.undoName)
-				self.undoManager?.endUndoGrouping()
-				self.dragIteration = 0
-			}
-		)
 	}
 }
 
@@ -138,52 +139,53 @@ public struct BXMultiValueCircularSlider : View
 
 			Circle()
 				.stroke(bxColorTheme.strokeColor(for:colorScheme), lineWidth:0.6)
-
+				
 			ForEach(Array(self.values.wrappedValue), id:\.self)
 			{
 				_Arrow()
 					.fill(self.bxColorTheme.contentColor(for:self.colorScheme))
 					.rotationEffect(.degrees(degrees(for:$0, in:self.range)))
 			}
+
+			Circle()
+				.fill(Color(white:0.0, opacity:0.01))
+				.gesture( DragGesture(minimumDistance:0)
+				
+					.onChanged()
+					{
+						// On mouse down begin an undo group
+						
+						if self.dragIteration == 0
+						{
+							self.undoManager?.beginUndoGrouping()
+						}
+						
+						self.dragIteration += 1
+						
+						// On drag set new value
+						
+						let value = degrees(for:$0.location, in:self.radius)
+						self.values.wrappedValue = Set([value])
+						
+						// Make sure that async work gets executed
+						
+						DispatchQueue.main.executeScheduledBlocks()
+					}
+					.onEnded()
+					{
+						_ in
+						
+						// On mouse up close undo group
+						
+						self.undoManager?.setActionName(self.undoName)
+						self.undoManager?.endUndoGrouping()
+						self.dragIteration = 0
+					}
+				)
 		}
 		.frame(width:2*radius, height:2*radius)
+		.compositingGroup()
 		.reducedOpacityWhenDisabled()
-		
-		.contentShape(Circle())
-		
-		.gesture( DragGesture(minimumDistance:0)
-		
-			.onChanged()
-			{
-				// On mouse down begin an undo group
-				
-				if self.dragIteration == 0
-				{
-					self.undoManager?.beginUndoGrouping()
-				}
-				
-				self.dragIteration += 1
-				
-				// On drag set new value
-				
-				let value = degrees(for:$0.location, in:self.radius)
-				self.values.wrappedValue = Set([value])
-				
-				// Make sure that async work gets executed
-				
-				DispatchQueue.main.executeScheduledBlocks()
-			}
-			.onEnded()
-			{
-				_ in
-				
-				// On mouse up close undo group
-				
-				self.undoManager?.setActionName(self.undoName)
-				self.undoManager?.endUndoGrouping()
-				self.dragIteration = 0
-			}
-		)
 	}
 }
 
