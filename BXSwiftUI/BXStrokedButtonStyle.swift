@@ -83,6 +83,8 @@ fileprivate struct _BXStrokedButton : View
     {
 		self.configuration.label
             .padding(padding)
+			.reducedOpacityWhenDisabled()
+
             .background(
             
 				GeometryReader
