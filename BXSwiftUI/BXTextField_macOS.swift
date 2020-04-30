@@ -157,7 +157,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
     
     // The coordinator is responsible for notifying SwiftUI when editing occured in the NSCustomTextField
     
-	public class Coordinator : NSObject,NSTextFieldDelegate
+	public class Coordinator : NSObject, NSTextFieldDelegate
     {
         var textfield:BXTextFieldWrapper<T>
 		var undoManager:UndoManager?
@@ -170,6 +170,13 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
             self.undoName = undoName
         }
 		
+		public func controlTextDidEndEditing(_ notification:Notification)
+		{
+			guard let textfield = notification.object as? BXTextFieldNative else { return }
+			let action = textfield.action
+			self.perform(action, with:textfield)
+		}
+
         @objc func updateStringValue(with sender:NSTextField)
         {
             textfield.value.wrappedValue = sender.stringValue as! T

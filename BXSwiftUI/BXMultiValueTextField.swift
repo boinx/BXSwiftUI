@@ -130,7 +130,7 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
     
     /// Editing has finished in the NSTextField, so update the values on the SwiftUI side
     
-	public class Coordinator : NSObject,NSTextFieldDelegate
+	public class Coordinator : NSObject, NSTextFieldDelegate
     {
         var textfield:BXMultiValueTextField<T>
 		var undoManager:UndoManager?
@@ -142,6 +142,13 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
             self.undoManager = undoManager
             self.undoName = undoName
         }
+
+		public func controlTextDidEndEditing(_ notification:Notification)
+		{
+			guard let textfield = notification.object as? BXTextFieldNative else { return }
+			let action = textfield.action
+			self.perform(action, with:textfield)
+		}
 
         @objc func updateStringValues(with sender:NSTextField)
         {
