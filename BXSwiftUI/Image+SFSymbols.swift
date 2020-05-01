@@ -78,8 +78,8 @@ public struct Image : View
 		"trash.circle" :      					"􀈓",
 		"trash.circle.fill" :					"􀈔",
 
-		"star" :         						"􀋂",
-		"star.fill" :    						"􀋃",
+		"star" :         						"☆",
+		"star.fill" :    						"★",
 
 		"speaker" :      						"􀊠",
 		"speaker.fill" :						"􀊡",
