@@ -27,22 +27,22 @@ public struct Image : View
 	
 	static let symbols =
 	[
-		"plus" :								"􀅼",
-		"plus.circle" :							"􀁌",
+		"plus" :								"+",
+		"plus.circle" :							"⊕",
 		"plus.circle.fill" :					"􀁍",
-		"plus.square" :							"􀃜",
+		"plus.square" :							"⊞",
 		"plus.square.fill" :					"􀃝",
 
-		"minus" :								"􀅽",
-		"minus.circle" :						"􀁎",
+		"minus" :								"-",
+		"minus.circle" :						"⊖",
 		"minus.circle.fill" :					"􀁏",
-		"minus.square" :						"􀃞",
+		"minus.square" :						"⊟",
 		"minus.square.fill" :					"􀃟",
 
-		"xmark" :								"􀆄",
-		"xmark.circle" :						"􀁠",
+		"xmark" :								"✕",
+		"xmark.circle" :						"⊗",
 		"xmark.circle.fill" :					"􀁡",
-		"xmark.square" :						"􀃰",
+		"xmark.square" :						"⊠",
 		"xmark.square.fill" :					"􀃱",
 		
 		"checkmark" :							"􀆅",
@@ -51,15 +51,15 @@ public struct Image : View
 		"checkmark.square" :					"􀃲",
 		"checkmark.square.fill" :				"􀃳",
 
-		"arrow.clockwise" : 					"􀅈",
+		"arrow.clockwise" : 					"↻",
 		"arrow.clockwise.circle" : 				"􀚁",
 		"arrow.clockwise.circle.fill" : 		"􀚂",
-		"arrow.counterclockwise" : 				"􀅉",
+		"arrow.counterclockwise" : 				"↺",
 		"arrow.counterclockwise.circle" :		"􀚃",
 		"arrow.counterclockwise.circle.fill" : 	"􀚄",
 
 		"square.and.pencil" :					"􀈎",
-		"square.and.arrow.up" :					"􀈂",
+		"square.and.arrow.up" :					"↑⃞",
 		"square.and.arrow.up.fill" :			"􀈃",
 		"square.and.arrow.down" :				"􀈄",
 		"square.and.arrow.down.fill" :			"􀈅",
