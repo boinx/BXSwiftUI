@@ -18,19 +18,35 @@ public extension NSViewController
 {
 	/// Embeds a SwiftUI view in a NSView hierarchy.
 	/// - parameter view: The SwiftUI view to embed
-	/// - parameter rootView: If will be embedded below this view
+	/// - parameter containerView: If will be embedded below this view
 	
-	func embedSwiftUI<V:View>(_ view:V, at rootView:NSView)
+	func embedSwiftUI<V:View>(_ view:V, in containerView:NSView)
 	{
 		let hostingView = NSHostingView(rootView:view)
-		self.view.addSubview(hostingView)
+		containerView.addSubview(hostingView)
 
 		hostingView.translatesAutoresizingMaskIntoConstraints = false
 		
-		hostingView.topAnchor.constraint(equalTo:rootView.topAnchor).isActive = true
-		hostingView.bottomAnchor.constraint(equalTo:rootView.bottomAnchor).isActive = true
-		hostingView.leadingAnchor.constraint(equalTo:rootView.leadingAnchor).isActive = true
-		hostingView.trailingAnchor.constraint(equalTo:rootView.trailingAnchor).isActive = true
+		hostingView.topAnchor.constraint(equalTo:containerView.topAnchor).isActive = true
+		hostingView.bottomAnchor.constraint(equalTo:containerView.bottomAnchor).isActive = true
+		hostingView.leadingAnchor.constraint(equalTo:containerView.leadingAnchor).isActive = true
+		hostingView.trailingAnchor.constraint(equalTo:containerView.trailingAnchor).isActive = true
+	}
+	
+	/// Removes the specified SwiftUI view from the view hierarchy. This breaks possible retain cycles, if the SwiftUI view was
+	/// referencing its owner via @ObservedObject or @Binding.
+	/// - parameter view: The SwiftUI view to remove from the view hierarchy
+	/// - parameter containerView: It will be removed from this view
+	
+	func removeSwiftUI<V:View>(_ view:V?, from containerView:NSView)
+	{
+		for subview in containerView.subviews
+		{
+			if subview is NSHostingView<V>
+			{
+				subview.removeFromSuperview()
+			}
+		}
 	}
 }
 
