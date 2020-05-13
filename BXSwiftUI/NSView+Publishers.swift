@@ -18,7 +18,7 @@ public extension NSView
 {
 	/// Returns a publisher for frame changes of a NSView
 	
-	var frameDidChangePublisher : AnyPublisher<NSRect,Never>
+	var frameDidChange : AnyPublisher<NSRect,Never>
 	{
 		self.postsFrameChangedNotifications = true
 		
@@ -30,7 +30,7 @@ public extension NSView
 
 	/// Returns a publisher for bounds changes of a NSView
 	
-	var boundsDidChangePublisher : AnyPublisher<NSRect,Never>
+	var boundsDidChange : AnyPublisher<NSRect,Never>
 	{
 		self.postsBoundsChangedNotifications = true
 		
