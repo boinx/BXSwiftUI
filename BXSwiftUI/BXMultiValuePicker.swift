@@ -10,6 +10,7 @@
 import BXSwiftUtils
 import SwiftUI
 import AppKit
+import Combine
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -28,7 +29,7 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.bxUndoManager) private var undoManager
 	@Environment(\.bxUndoName) private var undoName
-
+	
 	// Init
 	
 	public init(values:Binding<Set<Int>> , initialAction:(()->Void)? = nil, orderedItems:[BXMenuItemSpec])
@@ -48,7 +49,7 @@ public struct BXMultiValuePicker : NSViewRepresentable
 		popup.action = #selector(Coordinator.updateValues(with:))
 		
 		self.rebuildMenuItems(in:popup)
-        
+		
 		return popup
     }
 
@@ -56,21 +57,31 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	
 	public func updateNSView(_ popup:NSPopUpButton, context:Context)
     {
-		self.rebuildMenuItems(in:popup)
-
-		let isNone = values.wrappedValue.count == 0
-		let isMultiple = values.wrappedValue.count > 1
+		let values = self.values.wrappedValue
+		
+		DispatchQueue.main.async
+		{
+			self.selectItem(for:self.values.wrappedValue, in:popup)
+		}
+    }
+    
+    /// Selects the correct menu item for the current value. If we have multiple values then the special menu item will be shown and selected.
+    
+    private func selectItem(for values:Set<Int>,in popup:NSPopUpButton)
+    {
+		let isNone = values.count == 0
+		let isMultiple = values.count > 1
 		
 		popup.menu?.item(withTag:Values.none.rawValue)?.isHidden = !isNone
 		popup.menu?.item(withTag:Values.multiple.rawValue)?.isHidden = !isMultiple
 		popup.menu?.item(withTag:Values.initialDivider.rawValue)?.isHidden = !(isNone || isMultiple)
 
-		if values.wrappedValue.count > 1
+		if values.count > 1
 		{
 			popup.selectItem(withTag:Values.multiple.rawValue)
 			popup.isEnabled = self.isEnabled
 		}
-		else if let value = values.wrappedValue.first
+		else if let value = values.first
 		{
 			popup.selectItem(withTag:value)
 			popup.isEnabled = self.isEnabled
@@ -81,6 +92,7 @@ public struct BXMultiValuePicker : NSViewRepresentable
 			popup.isEnabled = false
 		}
     }
+    
     
     // Rebuilds the menu items of the popup according to the orderedItems property
     
