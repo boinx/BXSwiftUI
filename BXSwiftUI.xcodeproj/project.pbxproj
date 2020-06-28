@@ -78,6 +78,7 @@
 		D0B64EB823E6CB360089A33F /* BXMultiValueTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B64EB723E6CB360089A33F /* BXMultiValueTextView.swift */; };
 		D0B64EBA23E6F31F0089A33F /* BXHasMultipleValuesKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B64EB923E6F31F0089A33F /* BXHasMultipleValuesKey.swift */; };
 		D0C1249A23DAE4A600DB3592 /* BXMultiValueColorSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C1249923DAE4A600DB3592 /* BXMultiValueColorSlider.swift */; };
+		D0C9841424A87102009E4D8F /* Binding+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9841324A87102009E4D8F /* Binding+Convert.swift */; };
 		D0D25BCC23DCB3B400A1B61D /* BXIndentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */; };
 		D0D28EB823E748E30012F9E1 /* Bundle+BXSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D28EB723E748E30012F9E1 /* Bundle+BXSwiftUI.swift */; };
 		D0E2429623D8827D00145CEA /* BXDisclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2429523D8827D00145CEA /* BXDisclosureView.swift */; };
@@ -163,6 +164,7 @@
 		D0B64EB723E6CB360089A33F /* BXMultiValueTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueTextView.swift; sourceTree = "<group>"; };
 		D0B64EB923E6F31F0089A33F /* BXHasMultipleValuesKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXHasMultipleValuesKey.swift; sourceTree = "<group>"; };
 		D0C1249923DAE4A600DB3592 /* BXMultiValueColorSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueColorSlider.swift; sourceTree = "<group>"; };
+		D0C9841324A87102009E4D8F /* Binding+Convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Convert.swift"; sourceTree = "<group>"; };
 		D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIndentationView.swift; sourceTree = "<group>"; };
 		D0D28EB723E748E30012F9E1 /* Bundle+BXSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+BXSwiftUI.swift"; sourceTree = "<group>"; };
 		D0E2429523D8827D00145CEA /* BXDisclosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXDisclosureView.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				D0499C34241CC97A007463F0 /* Binding+multiValue.swift */,
 				D062F3D6241B747C00837850 /* Binding+rawValue.swift */,
 				D0499C36241CDC82007463F0 /* Binding+attributedString.swift */,
+				D0C9841324A87102009E4D8F /* Binding+Convert.swift */,
 				D058543323FD2342004BDCCC /* UserDefault.swift */,
 				D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */,
 				D002FE7923D22EC5002CF0A1 /* TypeCheckable.swift */,
@@ -512,6 +515,7 @@
 				D0B64EBA23E6F31F0089A33F /* BXHasMultipleValuesKey.swift in Sources */,
 				D02BC5A423DC390500676CF3 /* BXArrayEditView.swift in Sources */,
 				D011B1CB23E1C73D00643F20 /* BXStrokedButtonStyle.swift in Sources */,
+				D0C9841424A87102009E4D8F /* Binding+Convert.swift in Sources */,
 				D0F9B3AE23E86F7C00AF0929 /* BXReducedOpacityWhenDisabledModifier.swift in Sources */,
 				D02BC59223DC29CB00676CF3 /* BXDoubleEditView.swift in Sources */,
 				D029B91B23EC4FE80095DE37 /* View+Popup.swift in Sources */,
