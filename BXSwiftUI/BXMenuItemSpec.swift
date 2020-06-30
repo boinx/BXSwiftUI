@@ -64,3 +64,54 @@ public struct BXAutoEnablingAction
 
 
 //----------------------------------------------------------------------------------------------------------------------
+
+
+public extension NSMenu
+{
+	static func addItems(_ itemSpecs:[BXMenuItemSpec], to menu:NSMenu)
+	{
+		var item:NSMenuItem
+		let smallFont = NSFont.systemFont(ofSize:NSFont.smallSystemFontSize)
+		let smallFontAttrs = [NSAttributedString.Key.font:smallFont]
+		
+		for itemSpec in itemSpecs
+		{
+			switch itemSpec
+			{
+				// Add a regular menu item
+					
+				case .regular(let icon,let title,let value):
+				
+					item = NSMenuItem(title:title, action:nil, keyEquivalent:"")
+					item.image = icon
+					item.tag = value
+					item.isEnabled = true
+					menu.addItem(item)
+					
+				// Add a section name (disabled)
+				
+				case .section(let title):
+
+					item = NSMenuItem(title:title.uppercased(), action:nil, keyEquivalent:"")
+					item.attributedTitle = NSAttributedString(string:title.uppercased(), attributes:smallFontAttrs)
+					item.tag = -666
+					item.isEnabled = false
+					menu.addItem(item)
+					
+				// Add a separator line
+
+				case .divider:
+				
+					item = NSMenuItem.separator()
+					item.tag = -666
+					item.isEnabled = false
+					menu.addItem(item)
+					
+				default: break
+			}
+		}
+	}
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------

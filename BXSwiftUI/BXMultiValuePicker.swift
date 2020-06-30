@@ -99,9 +99,6 @@ public struct BXMultiValuePicker : NSViewRepresentable
     private func rebuildMenuItems(in popup:NSPopUpButton)
     {
 		var item:NSMenuItem
-		let smallFont = NSFont.systemFont(ofSize:NSFont.smallSystemFontSize)
-		let smallFontAttrs = [NSAttributedString.Key.font:smallFont]
-
 		popup.menu?.removeAllItems()
 		
 		// Add an invisible menu item for "none" (nothing is selected)
@@ -127,40 +124,11 @@ public struct BXMultiValuePicker : NSViewRepresentable
 		item.isEnabled = false
 		popup.menu?.addItem(item)
 
-		for itemSpec in self.orderedItems
+		// Add menu items for transitions
+		
+		if let menu = popup.menu
 		{
-			switch itemSpec
-			{
-				// Add a regular menu item
-					
-				case .regular(let icon,let title,let value):
-				
-					item = NSMenuItem(title:title, action:nil, keyEquivalent:"")
-					item.image = icon
-					item.tag = value
-					item.isEnabled = true
-
-				// Add a section name (disabled)
-				
-				case .section(let title):
-
-					item = NSMenuItem(title:title.uppercased(), action:nil, keyEquivalent:"")
-					item.attributedTitle = NSAttributedString(string:title.uppercased(), attributes:smallFontAttrs)
-					item.tag = -666
-					item.isEnabled = false
-
-				// Add a separator line
-
-				case .divider:
-				
-					item = NSMenuItem.separator()
-					item.tag = -666
-					item.isEnabled = false
-					
-				default: break
-			}
-						
-			popup.menu?.addItem(item)
+			NSMenu.addItems(self.orderedItems, to:menu)
 		}
 	}
     
