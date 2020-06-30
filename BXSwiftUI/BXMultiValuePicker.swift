@@ -57,8 +57,6 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	
 	public func updateNSView(_ popup:NSPopUpButton, context:Context)
     {
-		let values = self.values.wrappedValue
-		
 		DispatchQueue.main.async
 		{
 			self.selectItem(for:self.values.wrappedValue, in:popup)
