@@ -105,8 +105,8 @@ public struct BXPopupView : NSViewRepresentable
 
 		// WORKAROUND: There is a strange bug (as of macOS Catalina 10.15.2) where the first menu item to be add is
 		// hidden when the popup is shown. In order to fix this problem, we will listen to the willPopUpNotification
-		// and then walk through all item to force them to be visible. Note that this has to be deferred to the
-		// next runloop cycle because we are note allowed to change @State while building a View.
+		// and then walk through all items to force them to be visible. Note that this has to be deferred to the
+		// next runloop cycle because we are not allowed to change @State while building a View.
 		
 		DispatchQueue.main.async
 		{
@@ -191,7 +191,7 @@ public struct BXPopupView : NSViewRepresentable
 
 fileprivate class _NSPopUpButton : NSPopUpButton
 {
-	override open var intrinsicContentSize: NSSize
+	override open var intrinsicContentSize:NSSize
 	{
 		return NSMakeSize(16,16)
 	}
