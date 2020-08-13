@@ -74,6 +74,7 @@
 		D09C93F323F86D18008BA68F /* BXSliderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09C93F223F86D18008BA68F /* BXSliderResponse.swift */; };
 		D0A2400423DF5716004E9F31 /* BXOptionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A2400323DF5716004E9F31 /* BXOptionalView.swift */; };
 		D0B5475423EC091A00046F96 /* BXJogwheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B5475323EC091A00046F96 /* BXJogwheel.swift */; };
+		D0B62E6824E5281E00A14620 /* BXPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B62E6724E5281D00A14620 /* BXPopover.swift */; };
 		D0B64EB623E6C92A0089A33F /* BXMultiValueAttributedStringInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B64EB523E6C92A0089A33F /* BXMultiValueAttributedStringInspectorView.swift */; };
 		D0B64EB823E6CB360089A33F /* BXMultiValueTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B64EB723E6CB360089A33F /* BXMultiValueTextView.swift */; };
 		D0B64EBA23E6F31F0089A33F /* BXHasMultipleValuesKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B64EB923E6F31F0089A33F /* BXHasMultipleValuesKey.swift */; };
@@ -160,6 +161,7 @@
 		D09C93F223F86D18008BA68F /* BXSliderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSliderResponse.swift; sourceTree = "<group>"; };
 		D0A2400323DF5716004E9F31 /* BXOptionalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXOptionalView.swift; sourceTree = "<group>"; };
 		D0B5475323EC091A00046F96 /* BXJogwheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXJogwheel.swift; sourceTree = "<group>"; };
+		D0B62E6724E5281D00A14620 /* BXPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXPopover.swift; sourceTree = "<group>"; };
 		D0B64EB523E6C92A0089A33F /* BXMultiValueAttributedStringInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueAttributedStringInspectorView.swift; sourceTree = "<group>"; };
 		D0B64EB723E6CB360089A33F /* BXMultiValueTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueTextView.swift; sourceTree = "<group>"; };
 		D0B64EB923E6F31F0089A33F /* BXHasMultipleValuesKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXHasMultipleValuesKey.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				D0A2400323DF5716004E9F31 /* BXOptionalView.swift */,
 				D062F3DC241BC16800837850 /* View+aligned.swift */,
 				D062F3D8241B83CE00837850 /* View+descriptionLabel.swift */,
+				D0B62E6724E5281D00A14620 /* BXPopover.swift */,
 			);
 			name = "View Hierarchy";
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				D002FE8223D22EC5002CF0A1 /* BXMultiValueStringInspectorView.swift in Sources */,
 				D062F3DB241B847D00837850 /* BXLabelGroup.swift in Sources */,
 				D02A63682402D88200C55416 /* BXCustomSlider.swift in Sources */,
+				D0B62E6824E5281E00A14620 /* BXPopover.swift in Sources */,
 				D02BC59423DC29ED00676CF3 /* BXCGPointEditView.swift in Sources */,
 				D08FB76F23E4920A00C1A193 /* BXTextField_macOS.swift in Sources */,
 				D002FE8623D22EC5002CF0A1 /* Formatter+Custom.swift in Sources */,
