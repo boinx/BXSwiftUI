@@ -16,9 +16,8 @@ import SwiftUI
 
 public class BXPopover : NSPopover, NSPopoverDelegate
 {
-	/// Set this to true if you want the popover to automatically close, when the view it is attached to was
-	/// scrolled out of sight. Please note that this will have no effect, if the popover is currently pinned.
-	/// Since pinning has a higher priority, the popover will stay open in this case.
+	/// Set this to true if you want the popover to automatically close, when the view it is attached to was scrolled out of sight. Please note that
+	/// this will have no effect, if the popover is currently pinned. Since pinning has a higher priority, the popover will stay open in this case.
 	
 	public var autoClosesOnScrollingOutOfSight = true
 	
@@ -38,8 +37,7 @@ public class BXPopover : NSPopover, NSPopoverDelegate
 //----------------------------------------------------------------------------------------------------------------------
 
 
-    /// Creates an NSPopover with the the contents of the supplied NSViewController. The controller is automatically
-    /// set as the delegate of the popover.
+	/// Creates an NSPopover with the specified SwiftUI view as contents
     
     public init<V:View>(with view:V)
     {
