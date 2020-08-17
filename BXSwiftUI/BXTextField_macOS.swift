@@ -162,13 +162,26 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
         var textfield:BXTextFieldWrapper<T>
 		var undoManager:UndoManager?
 		var undoName:String
-
+		var currentString = ""
+		
         init(_ textfield:BXTextFieldWrapper<T>, _ undoManager:UndoManager?, _ undoName:String)
         {
             self.textfield = textfield
             self.undoManager = undoManager
             self.undoName = undoName
         }
+		
+		public func controlTextDidBeginEditing(_ notification:Notification)
+		{
+			guard let textfield = notification.object as? BXTextFieldNative else { return }
+			self.currentString = textfield.stringValue
+		}
+
+		public func controlTextDidChange(_ notification:Notification)
+		{
+			guard let textfield = notification.object as? BXTextFieldNative else { return }
+			self.currentString = textfield.stringValue // Save the currentString as textfield.stringValue gets wiped out before controlTextDidEndEditing is called
+		}
 		
 		public func controlTextDidEndEditing(_ notification:Notification)
 		{
@@ -179,7 +192,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 
         @objc func updateStringValue(with sender:NSTextField)
         {
-            textfield.value.wrappedValue = sender.stringValue as! T
+            textfield.value.wrappedValue = self.currentString as! T
 			self.undoManager?.setActionName(undoName)
         }
  
