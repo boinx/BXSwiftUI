@@ -56,8 +56,6 @@ public struct BXGrid<Content> : View where Content:View
 			{
 				preferences in
 				
-				print("\nFind new column widths")
-				
 				var widths = [CGFloat](repeating:0.0, count:self.columnCount)
 				
 				for metadata in preferences
@@ -67,11 +65,9 @@ public struct BXGrid<Content> : View where Content:View
 						let i = metadata.column
 						let w = max(widths[i], metadata.width)
 						widths[i] = w
-						print("column \(i) width = \(w)")
 					}
 				}
 				
-				print("Column widths = \(widths)\n")
 				self.columnWidths = widths
 			}
 	}
@@ -117,7 +113,7 @@ public struct BXGridColumn<Content> : View where Content:View
 			{
 				Color.clear.preference(
 					key: BXGridColumnWidthKey.self,
-					value: [BXGridColumnData(gridID:self.bxGridID, column:self.column, width:self.requiredWidth(for:$0))])
+					value: [BXGridColumnData(gridID:self.bxGridID, column:self.column, width:$0.size.width)])
 			})
 
 			// Resize to common column width
@@ -125,17 +121,12 @@ public struct BXGridColumn<Content> : View where Content:View
 			.frame(width:self.columnWidth, alignment:self.alignment)
 	}
 	
-	private func requiredWidth(for geometry:GeometryProxy) -> CGFloat
-	{
-		let width = geometry.size.width
-		print("Measure column content width = \(width)")
-		return width
-	}
+	// Returns the width for the current column
 	
 	private var columnWidth:CGFloat
 	{
 		let i = self.column
-		guard i < bxGridColumnWidths.wrappedValue.count else { return 1000.0 }
+		guard i < bxGridColumnWidths.wrappedValue.count else { return 10000.0 }
 		return bxGridColumnWidths.wrappedValue[i]
 	}
 }
