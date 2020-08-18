@@ -86,6 +86,7 @@
 		D0E5EBA424E6D2C9009E1385 /* BXPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E5EBA324E6D2C9009E1385 /* BXPanel.swift */; };
 		D0ED327723E557B700B37B3D /* BXTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED327623E557B700B37B3D /* BXTextField.swift */; };
 		D0EED8FE23EEA13200E4243D /* BXColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0083BE623EDC8490097C7A1 /* BXColorTheme.swift */; };
+		D0F3D30C24EC146300551A16 /* BXGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F3D30B24EC146200551A16 /* BXGrid.swift */; };
 		D0F9B3AE23E86F7C00AF0929 /* BXReducedOpacityWhenDisabledModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9B3AD23E86F7B00AF0929 /* BXReducedOpacityWhenDisabledModifier.swift */; };
 		D0F9B3B023E8710000AF0929 /* BXStrokedModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9B3AF23E8710000AF0929 /* BXStrokedModifier.swift */; };
 		D0FFC32F23E037B800BEA7A4 /* BXIntEnumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FFC32E23E037B800BEA7A4 /* BXIntEnumView.swift */; };
@@ -174,6 +175,7 @@
 		D0E5EBA324E6D2C9009E1385 /* BXPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXPanel.swift; sourceTree = "<group>"; };
 		D0EBA10923D9881D00E82E59 /* BXTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXTextView.swift; sourceTree = "<group>"; };
 		D0ED327623E557B700B37B3D /* BXTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXTextField.swift; sourceTree = "<group>"; };
+		D0F3D30B24EC146200551A16 /* BXGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXGrid.swift; sourceTree = "<group>"; };
 		D0F9B3AD23E86F7B00AF0929 /* BXReducedOpacityWhenDisabledModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXReducedOpacityWhenDisabledModifier.swift; sourceTree = "<group>"; };
 		D0F9B3AF23E8710000AF0929 /* BXStrokedModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXStrokedModifier.swift; sourceTree = "<group>"; };
 		D0FFC32E23E037B800BEA7A4 /* BXIntEnumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIntEnumView.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */,
 				D062F3DA241B847D00837850 /* BXLabelGroup.swift */,
 				D002FE7523D22EC5002CF0A1 /* BXLabelView.swift */,
+				D0F3D30B24EC146200551A16 /* BXGrid.swift */,
 				D0A2400323DF5716004E9F31 /* BXOptionalView.swift */,
 				D062F3DC241BC16800837850 /* View+aligned.swift */,
 				D062F3D8241B83CE00837850 /* View+descriptionLabel.swift */,
@@ -529,6 +532,7 @@
 				D029B91B23EC4FE80095DE37 /* View+Popup.swift in Sources */,
 				D082496923E4141C006142CE /* BXAttributedStringEditView.swift in Sources */,
 				D077D5CC23E3104400C1D20F /* BXButton.swift in Sources */,
+				D0F3D30C24EC146300551A16 /* BXGrid.swift in Sources */,
 				D02BC5A223DC37A500676CF3 /* BXURLEditView.swift in Sources */,
 				D05ED7B923F143C90019FE46 /* BXModifierKeys.swift in Sources */,
 				D082496723E40ABB006142CE /* BXTextView.swift in Sources */,
