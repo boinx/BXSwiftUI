@@ -61,7 +61,12 @@ public struct BXGrid<Content> : View where Content:View
 	
 	private var gridID:String
 	private var columnCount:Int = 1
+	private var spacing:CGSize
 	private var content:()->Content
+
+	// Environment
+
+	@Environment(\.bxGridSpacing) private var bxGridSpacing
 
 	// State
 	
@@ -69,10 +74,11 @@ public struct BXGrid<Content> : View where Content:View
 	
 	// Init
 	
-	public init(columnCount:Int, defaultColumnWidth:CGFloat = 120, @ViewBuilder content:@escaping ()->Content)
+	public init(columnCount:Int, spacing:CGSize = CGSize(8,8), defaultColumnWidth:CGFloat = 120, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.gridID = UUID().uuidString
 		self.columnCount = columnCount
+		self.spacing = spacing
 		self.content = content
 		
 		self.columnWidths = [CGFloat](repeating:defaultColumnWidth, count:columnCount)
@@ -82,7 +88,7 @@ public struct BXGrid<Content> : View where Content:View
 	
 	public var body : some View
 	{
-		VStack(alignment:.leading)
+		VStack(alignment:.leading, spacing:spacing.height)
 		{
 			content()
 		}
@@ -90,6 +96,7 @@ public struct BXGrid<Content> : View where Content:View
 		// Inject grid ID and column widths
 		
 		.environment(\.bxGridID, self.gridID)
+		.environment(\.bxGridSpacing, self.spacing)
 		.environment(\.bxGridColumnWidths, self.$columnWidths)
 		
 		// Determine columnWidths as attached preferences change
@@ -119,16 +126,45 @@ public struct BXGrid<Content> : View where Content:View
 //----------------------------------------------------------------------------------------------------------------------
 
 
-/// BXGridRow is the same as HStack and thus has all of its features and capabilities.
+// MARK: -
 
-public typealias BXGridRow = HStack
+/// A BXGridRow defines a single row in the BXGrid and should contain multiple BXGridColumns
+
+public struct BXGridRow<Content> : View where Content:View
+{
+	// Params
+	
+	private var alignment:VerticalAlignment
+	private var content:()->Content
+	
+	// Environment
+
+	@Environment(\.bxGridSpacing) private var bxGridSpacing
+
+	// Init
+	
+	public init(alignment:VerticalAlignment = .firstTextBaseline, @ViewBuilder content:@escaping ()->Content)
+	{
+		self.alignment = alignment
+		self.content = content
+	}
+	
+	// Build View
+	
+	public var body: some View
+	{
+		HStack(alignment:self.alignment, spacing: bxGridSpacing.width)
+		{
+			self.content()
+		}
+	}
+}
 
 
 //----------------------------------------------------------------------------------------------------------------------
 
 
 // MARK: -
-
 
 /// BXGridColumn defines the content of a single cell in the BXGrid. BXGridColumn comunicates its size to the enclosing BXGrid so that it can decide
 /// how wide each columns needs to be so that no cell content get clipped.
@@ -139,29 +175,27 @@ public struct BXGridColumn<Content> : View where Content:View
 	
 	private var columns:[Int]
 	private var alignment:Alignment
-	private var spacing:CGFloat
 	private var content:()->Content
 
 	// Environment
 	
 	@Environment(\.bxGridID) private var bxGridID
 	@Environment(\.bxGridColumnWidths) private var bxGridColumnWidths
+	@Environment(\.bxGridSpacing) private var bxGridSpacing
 
 	// Init
 	
-	public init(_ column:Int, alignment:Alignment = .leading, spacing:CGFloat = 8, @ViewBuilder content:@escaping ()->Content)
+	public init(_ column:Int, alignment:Alignment = .leading, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.columns = [column]
 		self.alignment = alignment
-		self.spacing = spacing
 		self.content = content
 	}
 	
-	public init(_ columns:[Int], alignment:Alignment = .leading, spacing:CGFloat = 8, @ViewBuilder content:@escaping ()->Content)
+	public init(_ columns:[Int], alignment:Alignment = .leading, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.columns = columns
 		self.alignment = alignment
-		self.spacing = spacing
 		self.content = content
 	}
 	
@@ -201,7 +235,7 @@ public struct BXGridColumn<Content> : View where Content:View
 		
 		if n > 1
 		{
-			width += CGFloat(n-1) * spacing
+			width += CGFloat(n-1) * bxGridSpacing.width
 		}
 
 		return width
@@ -286,6 +320,33 @@ public extension EnvironmentValues
 struct BXGridIDKey : EnvironmentKey
 {
     static let defaultValue:String = "defaultGrid"
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+/// Injects the grid spacing of a BXGrid into the environment
+
+public extension EnvironmentValues
+{
+    var bxGridSpacing:CGSize
+    {
+        set
+        {
+            self[BXGridSpacingKey.self] = newValue
+        }
+
+        get
+        {
+            return self[BXGridSpacingKey.self]
+        }
+    }
+}
+
+struct BXGridSpacingKey : EnvironmentKey
+{
+    static let defaultValue:CGSize = CGSize(8,8)
 }
 
 
