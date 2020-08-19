@@ -83,8 +83,9 @@ public struct BXGridColumn<Content> : View where Content:View
 {
 	// Params
 	
-	private var column:Int
+	private var columns:[Int]
 	private var alignment:Alignment
+	private var spacing:CGFloat
 	private var content:()->Content
 
 	// Environment
@@ -94,10 +95,19 @@ public struct BXGridColumn<Content> : View where Content:View
 
 	// Init
 	
-	public init(_ column:Int, alignment:Alignment = .leading, @ViewBuilder content:@escaping ()->Content)
+	public init(_ column:Int, alignment:Alignment = .leading, spacing:CGFloat = 8, @ViewBuilder content:@escaping ()->Content)
 	{
-		self.column = column
+		self.columns = [column]
 		self.alignment = alignment
+		self.spacing = spacing
+		self.content = content
+	}
+	
+	public init(_ columns:[Int], alignment:Alignment = .leading, spacing:CGFloat = 8, @ViewBuilder content:@escaping ()->Content)
+	{
+		self.columns = columns
+		self.alignment = alignment
+		self.spacing = spacing
 		self.content = content
 	}
 	
@@ -109,12 +119,7 @@ public struct BXGridColumn<Content> : View where Content:View
 		
 			// Measure the required width for this column content
 			
-			.background( GeometryReader
-			{
-				Color.clear.preference(
-					key: BXGridColumnWidthKey.self,
-					value: [BXGridColumnData(gridID:self.bxGridID, column:self.column, width:$0.size.width)])
-			})
+			.measure(gridID:self.bxGridID, columns:self.columns)
 
 			// Resize to common column width
 			
@@ -125,9 +130,51 @@ public struct BXGridColumn<Content> : View where Content:View
 	
 	private var columnWidth:CGFloat
 	{
-		let i = self.column
-		guard i < bxGridColumnWidths.wrappedValue.count else { return 10000.0 }
-		return bxGridColumnWidths.wrappedValue[i]
+		var width:CGFloat = 0.0
+		let n = self.columns.count
+		
+		for i in self.columns
+		{
+			if i < bxGridColumnWidths.wrappedValue.count
+			{
+				width += bxGridColumnWidths.wrappedValue[i]
+			}
+			else
+			{
+				width += 10000
+			}
+		}
+		
+		if n > 1
+		{
+			width += CGFloat(n-1) * spacing
+		}
+
+		return width
+	}
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+// MARK: -
+
+extension View
+{
+	/// Measures the required width of the receiving view and attaches a preference with the corresponding data, so that the enclosing BXGrid can
+	/// determine the column widths.
+	
+	func measure(gridID:String, columns:[Int]) -> some View
+	{
+		guard columns.count == 1 else { return AnyView(self) }
+		
+		return AnyView( self.background( GeometryReader
+		{
+			Color.clear.preference(
+				key: BXGridColumnWidthKey.self,
+				value: [BXGridColumnData(gridID:gridID, column:columns[0], width:$0.size.width)])
+		}))
 	}
 }
 
