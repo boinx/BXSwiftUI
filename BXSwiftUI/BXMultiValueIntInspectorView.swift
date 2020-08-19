@@ -27,7 +27,8 @@ public struct BXMultiValueIntInspectorView : View
 
 	// Environment
 	
-	@Environment(\.controlSize) private var controlSize
+	@Environment(\.controlSize) private var controlSize:ControlSize
+	@Environment(\.isEnabled) private var isEnabled:Bool
 
 	private var idealHeight:CGFloat
 	{
@@ -73,7 +74,7 @@ public struct BXMultiValueIntInspectorView : View
 				values:self.values,
 				initialAction:self.initialAction,
 				orderedItems:self.orderedItems)
-					.modifier(BXStrokedModifier())
+					.modifier(BXStrokedModifier(isEnabled:self.isEnabled))
 					//.reducedOpacityWhenDisabled()	// Not needed because AppKit already dimmed the control
 		}
 		

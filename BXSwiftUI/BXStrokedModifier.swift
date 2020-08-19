@@ -15,14 +15,23 @@ import SwiftUI
 
 public struct BXStrokedModifier : ViewModifier
 {
+	// Params
+	
+	public var cornerRadius:CGFloat = 4.0
+	public var isEnabled:Bool = true
+	
 	// Environment
 	
-	@Environment(\.isEnabled) var isEnabled
-	@Environment(\.colorScheme) var colorScheme
+//	@Environment(\.isEnabled) var isEnabled:Bool
+	@Environment(\.colorScheme) var colorScheme:ColorScheme
 
 	// Init
 	
-	public init() {}
+	public init(cornerRadius:CGFloat = 4.0, isEnabled:Bool = true)
+	{
+		self.cornerRadius = cornerRadius
+		self.isEnabled = isEnabled
+	}
 	
 	// Appearance
 	
@@ -40,7 +49,7 @@ public struct BXStrokedModifier : ViewModifier
 	{
 		if colorScheme == .dark
 		{
-			return Color(white:0.65, opacity:isEnabled ? 1.0 : 0.33)
+			return Color(white:0.65, opacity:isEnabled ? 1.0 : 0.5)
 		}
 		
 		return Color.clear
@@ -52,12 +61,12 @@ public struct BXStrokedModifier : ViewModifier
     {
         content
 			.background(
-				RoundedRectangle(cornerRadius:4.0)
+				RoundedRectangle(cornerRadius:self.cornerRadius)
 					.inset(by:1.0)
 					.fill(fillColor)
 			)
 			.overlay(
-				RoundedRectangle(cornerRadius:4.0)
+				RoundedRectangle(cornerRadius:self.cornerRadius)
 					.inset(by:1.0)
 					.stroke(strokeColor, lineWidth:0.5)
 			)
