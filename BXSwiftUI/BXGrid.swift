@@ -1,7 +1,7 @@
 //**********************************************************************************************************************
 //
 //  BXGrid.swift
-//	BXGrid provides a 2D grid with automatic column sizing
+//	BXGrid provides a 2D grid layout with automatic column sizing
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
@@ -13,8 +13,47 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
-/// All BXLabelViews within a BXLabelGroup get a common width assigned to them. This helps with localization,
-/// as the widest label string determines how wide all BXLabelViews will be. That way nothing gets clipped.
+/// BXGrid generates a tableview-like layout with aligned columns. Columns are automatically resized to make sure that no content gets clipped,
+/// which helps with localization.
+///
+///     BXGrid(columnCount:3)
+///		{
+///			BXGridRow
+///			{
+///				BXGridColumn(0)
+///				{
+///					...
+///				}
+///
+///				BXGridColumn(1)
+///				{
+///					...
+///				}
+///
+///				BXGridColumn(2)
+///				{
+///					...
+///				}
+///			}
+///
+///			BXGridRow
+///			{
+///				BXGridColumn(0)
+///				{
+///					...
+///				}
+///
+///				BXGridColumn(1)
+///				{
+///					...
+///				}
+///
+///				BXGridColumn(2)
+///				{
+///					...
+///				}
+///			}
+///		}
 
 public struct BXGrid<Content> : View where Content:View
 {
@@ -80,7 +119,19 @@ public struct BXGrid<Content> : View where Content:View
 //----------------------------------------------------------------------------------------------------------------------
 
 
+/// BXGridRow is the same as HStack and thus has all of its features and capabilities.
+
+public typealias BXGridRow = HStack
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
 // MARK: -
+
+
+/// BXGridColumn defines the content of a single cell in the BXGrid. BXGridColumn comunicates its size to the enclosing BXGrid so that it can decide
+/// how wide each columns needs to be so that no cell content get clipped.
 
 public struct BXGridColumn<Content> : View where Content:View
 {
@@ -187,6 +238,35 @@ extension View
 
 // MARK: -
 
+/// The key needed to attach size data to a View
+
+struct BXGridColumnWidthKey : PreferenceKey
+{
+	typealias Value = [BXGridColumnData]
+
+	static var defaultValue:[BXGridColumnData] = []
+
+    static func reduce(value:inout [BXGridColumnData], nextValue:()->[BXGridColumnData])
+    {
+		value.append(contentsOf: nextValue())
+    }
+}
+
+/// The attached data contains the size and a groupID to filter out unwanted candidates when deciding on a common label width
+
+struct BXGridColumnData : Equatable
+{
+	let gridID:String
+	let column:Int
+    let width:CGFloat
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+/// Injects the ID of a BXGrid into the environment
+
 public extension EnvironmentValues
 {
     var bxGridID:String
@@ -212,6 +292,8 @@ struct BXGridIDKey : EnvironmentKey
 //----------------------------------------------------------------------------------------------------------------------
 
 
+/// Injects the column widths of a BXGrid into the environment
+
 public extension EnvironmentValues
 {
     var bxGridColumnWidths:Binding<[CGFloat]>
@@ -230,34 +312,7 @@ public extension EnvironmentValues
 
 struct BXGridColumnWidthsKey : EnvironmentKey
 {
-    static let defaultValue:Binding<[CGFloat]> = Binding.constant([100,100,100,100,100,100,100,100,100,100,100])
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-/// The key needed to attach size data to a View
-
-struct BXGridColumnWidthKey : PreferenceKey
-{
-	typealias Value = [BXGridColumnData]
-
-	static var defaultValue:[BXGridColumnData] = []
-
-    static func reduce(value:inout [BXGridColumnData], nextValue:()->[BXGridColumnData])
-    {
-		value.append(contentsOf: nextValue())
-    }
-}
-
-/// The attached data contains the size and a groupID to filter out unwanted candidates when deciding on a common label width
-
-struct BXGridColumnData : Equatable
-{
-	let gridID:String
-	let column:Int
-    let width:CGFloat
+    static let defaultValue:Binding<[CGFloat]> = Binding.constant([120,120,120,120,120,120,120,120,120,120,120])
 }
 
 
