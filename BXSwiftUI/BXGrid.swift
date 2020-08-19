@@ -97,7 +97,7 @@ public struct BXGrid<Content> : View where Content:View
 		
 		.environment(\.bxGridID, self.gridID)
 		.environment(\.bxGridSpacing, self.spacing)
-		.environment(\.bxGridColumnWidths, self.$columnWidths)
+		.environment(\.bxGridColumnWidths, self.columnWidths)
 		
 		// Determine columnWidths as attached preferences change
 		
@@ -223,9 +223,9 @@ public struct BXGridColumn<Content> : View where Content:View
 		
 		for i in self.columns
 		{
-			if i < bxGridColumnWidths.wrappedValue.count
+			if i < bxGridColumnWidths.count
 			{
-				width += bxGridColumnWidths.wrappedValue[i]
+				width += bxGridColumnWidths[i]
 			}
 			else
 			{
@@ -357,7 +357,7 @@ struct BXGridSpacingKey : EnvironmentKey
 
 public extension EnvironmentValues
 {
-    var bxGridColumnWidths:Binding<[CGFloat]>
+    var bxGridColumnWidths:[CGFloat]
     {
         set
         {
@@ -373,7 +373,7 @@ public extension EnvironmentValues
 
 struct BXGridColumnWidthsKey : EnvironmentKey
 {
-    static let defaultValue:Binding<[CGFloat]> = Binding.constant([120,120,120,120,120,120,120,120,120,120,120])
+    static let defaultValue:[CGFloat] = []
 }
 
 
