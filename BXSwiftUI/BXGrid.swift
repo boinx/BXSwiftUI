@@ -43,33 +43,36 @@ public struct BXGrid<Content> : View where Content:View
 	
 	public var body : some View
 	{
-		content()
+		VStack(alignment:.leading)
+		{
+			content()
+		}
+				
+		// Inject grid ID and column widths
+		
+		.environment(\.bxGridID, self.gridID)
+		.environment(\.bxGridColumnWidths, self.$columnWidths)
+		
+		// Determine columnWidths as attached preferences change
+		
+		.onPreferenceChange(BXGridColumnWidthKey.self)
+		{
+			preferences in
 			
-			// Inject grid ID and column widths
+			var widths = [CGFloat](repeating:0.0, count:self.columnCount)
 			
-			.environment(\.bxGridID, self.gridID)
-			.environment(\.bxGridColumnWidths, self.$columnWidths)
-			
-			// Determine columnWidths as attached preferences change
-			
-			.onPreferenceChange(BXGridColumnWidthKey.self)
+			for metadata in preferences
 			{
-				preferences in
-				
-				var widths = [CGFloat](repeating:0.0, count:self.columnCount)
-				
-				for metadata in preferences
+				if metadata.gridID == self.gridID
 				{
-					if metadata.gridID == self.gridID
-					{
-						let i = metadata.column
-						let w = max(widths[i], metadata.width)
-						widths[i] = w
-					}
+					let i = metadata.column
+					let w = max(widths[i], metadata.width)
+					widths[i] = w
 				}
-				
-				self.columnWidths = widths
 			}
+			
+			self.columnWidths = widths
+		}
 	}
 }
 
@@ -119,9 +122,9 @@ public struct BXGridColumn<Content> : View where Content:View
 		
 			// Measure the required width for this column content
 			
-			.measure(gridID:self.bxGridID, columns:self.columns)
+			.measureRequiredWidth(gridID:self.bxGridID, columns:self.columns)
 
-			// Resize to common column width
+			// Resize to column width that was calculated by the enclosing BXGrid
 			
 			.frame(width:self.columnWidth, alignment:self.alignment)
 	}
@@ -165,7 +168,7 @@ extension View
 	/// Measures the required width of the receiving view and attaches a preference with the corresponding data, so that the enclosing BXGrid can
 	/// determine the column widths.
 	
-	func measure(gridID:String, columns:[Int]) -> some View
+	func measureRequiredWidth(gridID:String, columns:[Int]) -> some View
 	{
 		guard columns.count == 1 else { return AnyView(self) }
 		
