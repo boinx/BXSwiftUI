@@ -14,7 +14,7 @@ import SwiftUI
 
 
 /// BXGrid generates a tableview-like layout with aligned columns. Columns are automatically resized to make sure that no content gets clipped,
-/// which helps with localization.
+/// which helps with localization. Defining a BXGrid looks similar to a HTML table.
 ///
 ///     BXGrid(columnCount:3)
 ///		{
