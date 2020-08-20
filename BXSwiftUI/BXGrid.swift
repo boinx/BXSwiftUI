@@ -20,17 +20,17 @@ import SwiftUI
 ///		{
 ///			BXGridRow
 ///			{
-///				BXGridColumn(0)
+///				BXGridCell(0)
 ///				{
 ///					...
 ///				}
 ///
-///				BXGridColumn(1)
+///				BXGridCell(1)
 ///				{
 ///					...
 ///				}
 ///
-///				BXGridColumn(2)
+///				BXGridCell(2)
 ///				{
 ///					...
 ///				}
@@ -38,17 +38,17 @@ import SwiftUI
 ///
 ///			BXGridRow
 ///			{
-///				BXGridColumn(0)
+///				BXGridCell(0)
 ///				{
 ///					...
 ///				}
 ///
-///				BXGridColumn(1)
+///				BXGridCell(1)
 ///				{
 ///					...
 ///				}
 ///
-///				BXGridColumn(2)
+///				BXGridCell(2)
 ///				{
 ///					...
 ///				}
@@ -166,10 +166,10 @@ public struct BXGridRow<Content> : View where Content:View
 
 // MARK: -
 
-/// BXGridColumn defines the content of a single cell in the BXGrid. BXGridColumn comunicates its size to the enclosing BXGrid so that it can decide
+/// BXGridCell defines the content of a single cell in the BXGrid. BXGridCell communicates its size to the enclosing BXGrid so that it can decide
 /// how wide each columns needs to be so that no cell content get clipped.
 
-public struct BXGridColumn<Content> : View where Content:View
+public struct BXGridCell<Content> : View where Content:View
 {
 	// Params
 	
