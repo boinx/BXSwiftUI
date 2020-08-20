@@ -305,15 +305,8 @@ public extension EnvironmentValues
 {
     var bxGridID:String
     {
-        set
-        {
-            self[BXGridIDKey.self] = newValue
-        }
-
-        get
-        {
-            return self[BXGridIDKey.self]
-        }
+        set { self[BXGridIDKey.self] = newValue }
+        get { self[BXGridIDKey.self] }
     }
 }
 
@@ -332,15 +325,8 @@ public extension EnvironmentValues
 {
     var bxGridSpacing:CGSize
     {
-        set
-        {
-            self[BXGridSpacingKey.self] = newValue
-        }
-
-        get
-        {
-            return self[BXGridSpacingKey.self]
-        }
+        set { self[BXGridSpacingKey.self] = newValue }
+        get { self[BXGridSpacingKey.self] }
     }
 }
 
@@ -359,15 +345,8 @@ public extension EnvironmentValues
 {
     var bxGridColumnWidths:[CGFloat]
     {
-        set
-        {
-            self[BXGridColumnWidthsKey.self] = newValue
-        }
-
-        get
-        {
-            return self[BXGridColumnWidthsKey.self]
-        }
+        set { self[BXGridColumnWidthsKey.self] = newValue }
+        get { self[BXGridColumnWidthsKey.self] }
     }
 }
 
