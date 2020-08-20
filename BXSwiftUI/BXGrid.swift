@@ -173,7 +173,7 @@ public struct BXGridCell<Content> : View where Content:View
 {
 	// Params
 	
-	private var columns:[Int]
+	private var columns:ClosedRange<Int>
 	private var alignment:Alignment
 	private var content:()->Content
 
@@ -187,12 +187,12 @@ public struct BXGridCell<Content> : View where Content:View
 	
 	public init(_ column:Int, alignment:Alignment = .leading, @ViewBuilder content:@escaping ()->Content)
 	{
-		self.columns = [column]
+		self.columns = column ... column
 		self.alignment = alignment
 		self.content = content
 	}
 	
-	public init(_ columns:[Int], alignment:Alignment = .leading, @ViewBuilder content:@escaping ()->Content)
+	public init(_ columns:ClosedRange<Int>, alignment:Alignment = .leading, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.columns = columns
 		self.alignment = alignment
@@ -250,10 +250,10 @@ public struct BXGridCell<Content> : View where Content:View
 
 extension View
 {
-	/// Measures the required width of the receiving view and attaches a preference with the corresponding data, so that the enclosing BXGrid can
+	/// Measures the required width of the content of a BXGridCell and attaches a preference with the corresponding data, so that the enclosing BXGrid can
 	/// determine the column widths.
 	
-	func measureRequiredWidth(gridID:String, columns:[Int]) -> some View
+	func measureRequiredWidth(gridID:String, columns:ClosedRange<Int>) -> some View
 	{
 		guard columns.count == 1 else { return AnyView(self) }
 		
@@ -261,7 +261,7 @@ extension View
 		{
 			Color.clear.preference(
 				key: BXGridColumnWidthKey.self,
-				value: [BXGridColumnData(gridID:gridID, column:columns[0], width:$0.size.width)])
+				value: [BXGridColumnData(gridID:gridID, column:columns.lowerBound, width:$0.size.width)])
 		}))
 	}
 }
