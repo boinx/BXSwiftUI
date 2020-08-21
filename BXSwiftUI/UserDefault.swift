@@ -7,10 +7,17 @@
 //**********************************************************************************************************************
 
 
+import Combine
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
 @propertyWrapper public struct UserDefault<T>
 {
     let key:String
     let defaultValue:T
+	let publisher = PassthroughSubject<T,Never>()
 	
     public init(_ key:String, defaultValue:T)
     {
@@ -28,7 +35,13 @@
         set
         {
 			UserDefaults.standard.set(newValue, forKey:key)
+			publisher.send(newValue)
         }
+    }
+    
+    public var projectedValue:PassthroughSubject<T,Never>
+    {
+		return publisher
     }
 }
 
@@ -40,6 +53,7 @@
 {
     let key:String
     let defaultValue:T
+	let publisher = PassthroughSubject<T,Never>()
 
     public init(_ key:String, defaultValue:T)
     {
@@ -60,7 +74,13 @@
         {
             let data = try? JSONEncoder().encode(newValue)
             UserDefaults.standard.set(data, forKey:key)
+            publisher.send(newValue)
         }
+    }
+    
+    public var projectedValue:PassthroughSubject<T,Never>
+    {
+		return publisher
     }
 }
 
