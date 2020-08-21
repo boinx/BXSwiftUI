@@ -20,7 +20,7 @@ public extension View
 	
 	func descriptionLabel(_ description:String) -> some View
 	{
-		VStack(alignment:.leading)
+		VStack(alignment:.leading, spacing:9)
 		{
 			self
 
@@ -28,7 +28,7 @@ public extension View
 				.controlSize(.small)
 				.lineLimit(nil)									// Wrap text to as many lines as needed
 				.fixedSize(horizontal:false, vertical:true) 	// Workaround because .lineLimit(nil) doesn't work by itself
-				.opacity(0.33)
+				.opacity(0.4)
 		}
 	}
 }
