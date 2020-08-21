@@ -299,6 +299,8 @@ struct BXGridColumnData : Equatable
 //----------------------------------------------------------------------------------------------------------------------
 
 
+// MARK: -
+
 /// Injects the ID of a BXGrid into the environment
 
 public extension EnvironmentValues
