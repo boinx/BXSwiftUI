@@ -33,9 +33,9 @@ public extension Formatter
 		let formatter = NumberFormatter()
 		formatter.allowsFloats = true
 		formatter.numberStyle = .decimal
-		formatter.maximumFractionDigits = 1
-		formatter.positiveFormat = "#.#°"
-		formatter.negativeFormat = "-#.#°"
+		formatter.maximumFractionDigits = 2
+		formatter.positiveFormat = "#.##°"
+		formatter.negativeFormat = "-#.##°"
 		formatter.hasThousandSeparators = false
 		return formatter
 	}()
