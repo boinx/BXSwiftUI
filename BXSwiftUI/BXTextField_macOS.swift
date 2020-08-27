@@ -18,7 +18,7 @@ import AppKit
 /// information can be used to update the appearance of the textfield. The arguments are:
 /// - The NSTextField
 /// - A Bool indicating whether the field is currently enabled
-/// - A Bool indicating whether the field is currently firstResponder (i.e. being edited)
+/// - A Bool indicating whether the field is currentlybeing edited
 /// - A Bool indicating whether the the mouse is currenty inside the field
 
 public typealias BXTextFieldStatusHandler = (NSTextField,Bool,Bool,Bool)->Void
@@ -118,6 +118,12 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 	
 	public func updateNSView(_ textfield:BXTextFieldNative, context:Context)
     {
+		// Do not update the NSTextField value if the user is currently editing
+		
+		guard !textfield.isEditing else { return }
+		
+		// Otherwise adopt the value from the data model (source of thruth)
+		
 		if let value = self.value.wrappedValue as? String
 		{
 			textfield.stringValue = value
@@ -162,7 +168,6 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
         var textfield:BXTextFieldWrapper<T>
 		var undoManager:UndoManager?
 		var undoName:String
-		var currentString = ""
 		
         init(_ textfield:BXTextFieldWrapper<T>, _ undoManager:UndoManager?, _ undoName:String)
         {
@@ -171,28 +176,28 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
             self.undoName = undoName
         }
 		
+		// The user has started editing. Set isEditing flag to true so that update values in updateNSView
+		// can be suppressed, because now the text the user is typing should NOT be replaced with the data model!
+		
 		public func controlTextDidBeginEditing(_ notification:Notification)
 		{
 			guard let textfield = notification.object as? BXTextFieldNative else { return }
-			self.currentString = textfield.stringValue
+			textfield.isEditing = true
 		}
 
-		public func controlTextDidChange(_ notification:Notification)
-		{
-			guard let textfield = notification.object as? BXTextFieldNative else { return }
-			self.currentString = textfield.stringValue // Save the currentString as textfield.stringValue gets wiped out before controlTextDidEndEditing is called
-		}
+		// The user has ended editing. Update the data model value, then clear the isEditing flag again.
 		
 		public func controlTextDidEndEditing(_ notification:Notification)
 		{
 			guard let textfield = notification.object as? BXTextFieldNative else { return }
 			let action = textfield.action
 			self.perform(action, with:textfield)
+			textfield.isEditing = false
 		}
 
         @objc func updateStringValue(with sender:NSTextField)
         {
-            textfield.value.wrappedValue = self.currentString as! T
+            textfield.value.wrappedValue = sender.stringValue as! T
 			self.undoManager?.setActionName(undoName)
         }
  
@@ -245,8 +250,8 @@ public class BXTextFieldNative : NSTextField
 {
 	var statusHandler:(BXTextFieldStatusHandler)? = nil
 	var trackingArea:NSTrackingArea? = nil
-	var isFirstResponder = false { didSet { self.notify() } }
 	var isHovering = false { didSet { self.notify() } }
+	var isEditing = false { didSet { self.notify() } }
 	var fixedHeight:CGFloat? = nil
 
 	override init(frame:NSRect)
@@ -311,32 +316,9 @@ public class BXTextFieldNative : NSTextField
 		self.isHovering = false
 	}
 
-	override public func becomeFirstResponder() -> Bool
-	{
-		self.isFirstResponder = true
-		self.selectText(nil)
-		return true
-	}
-	
-	override public func resignFirstResponder() -> Bool
-	{
-		self.isFirstResponder = false
-		
-//		if self.nextKeyView == nil, let window = self.window
-//		{
-//			DispatchQueue.main.async
-//			{
-//				let firstResponder = window.initialFirstResponder
-//				window.makeFirstResponder(firstResponder	)
-//			}
-//		}
-		
-		return true
-	}
-	
 	@objc func notify()
 	{
-		self.statusHandler?(self, self.isEnabled, isFirstResponder, isHovering)
+		self.statusHandler?(self, self.isEnabled, isEditing, isHovering)
 	}
 }
 

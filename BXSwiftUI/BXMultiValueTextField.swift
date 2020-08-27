@@ -93,6 +93,12 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 	
 	public func updateNSView(_ textfield:BXTextFieldNative, context:Context)
     {
+		// Do not update the NSTextField value if the user is currently editing
+		
+		guard !textfield.isEditing else { return }
+		
+		// Otherwise adopt the value from the data model (source of thruth)
+		
 		if values.wrappedValue.count == 0
 		{
 			textfield.stringValue = ""
@@ -135,7 +141,6 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
         var textfield:BXMultiValueTextField<T>
 		var undoManager:UndoManager?
 		var undoName:String
-		var currentString = ""
 
         init(_ textfield:BXMultiValueTextField<T>, _ undoManager:UndoManager?, _ undoName:String)
         {
@@ -144,28 +149,28 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
             self.undoName = undoName
         }
 
+		// The user has started editing. Set isEditing flag to true so that update values in updateNSView
+		// can be suppressed, because now the text the user is typing should NOT be replaced with the data model!
+		
 		public func controlTextDidBeginEditing(_ notification:Notification)
 		{
 			guard let textfield = notification.object as? BXTextFieldNative else { return }
-			self.currentString = textfield.stringValue
+			textfield.isEditing = true
 		}
 
-		public func controlTextDidChange(_ notification:Notification)
-		{
-			guard let textfield = notification.object as? BXTextFieldNative else { return }
-			self.currentString = textfield.stringValue // Save the currentString as textfield.stringValue gets wiped out before controlTextDidEndEditing is called
-		}
-		
+		// The user has ended editing. Update the data model value, then clear the isEditing flag again.
+
 		public func controlTextDidEndEditing(_ notification:Notification)
 		{
 			guard let textfield = notification.object as? BXTextFieldNative else { return }
 			let action = textfield.action
 			self.perform(action, with:textfield)
+			textfield.isEditing = false
 		}
 
         @objc func updateStringValues(with sender:NSTextField)
         {
-			textfield.values.wrappedValue = Set([self.currentString as! T])
+			textfield.values.wrappedValue = Set([sender.stringValue as! T])
 			self.undoManager?.setActionName(undoName)
         }
         
