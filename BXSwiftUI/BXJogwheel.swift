@@ -19,7 +19,9 @@ public struct BXJogwheel : View
 	
 	private var value:Binding<Double>
 	private var speed:Double
-	private var deltaAction:((Double)->Void)? = nil
+	private var onBegan:(()->Void)? = nil
+	private var onChanged:((Double,Double)->Void)? = nil
+	private var onEnded:(()->Void)? = nil
 	
 	// Environment
 	
@@ -29,11 +31,13 @@ public struct BXJogwheel : View
 
 	// Init
 	
-	public init(value:Binding<Double>, speed:Double = 1.0, deltaAction:((Double)->Void)? = nil)
+	public init(value:Binding<Double>, speed:Double = 1.0, onBegan:(()->Void)? = nil, onChanged:((Double,Double)->Void)? = nil, onEnded:(()->Void)? = nil)
 	{
 		self.value = value
 		self.speed = speed
-		self.deltaAction = deltaAction
+		self.onBegan = onBegan
+		self.onChanged = onChanged
+		self.onEnded = onEnded
 	}
 	
 	
@@ -118,21 +122,23 @@ public struct BXJogwheel : View
 				{
 					self.undoManager?.beginUndoGrouping()
 					self.dragInitialValue = self.value.wrappedValue
+					self.onBegan?()
 				}
+				
+				self.dragIteration += 1
 
 				// Update the current value
 
-				let dx = $0.translation.width 
-				self.value.wrappedValue = self.dragInitialValue + self.speed * Double(dx)
+				let dx = $0.translation.width
+				let value = self.dragInitialValue + self.speed * Double(dx)
+				self.value.wrappedValue = value
 				
-				// Call the delta action
+				// Call the onChanged action with current value and delta
 				
 				let x = $0.location.x
 				let delta = self.speed * Double(x - self.prevX)
 				self.prevX = x
-				self.deltaAction?(delta)
-				
-				self.dragIteration += 1
+				self.onChanged?(value,delta)
 			}
 
 			// When the drag ends, close the undo group and reset state
@@ -141,6 +147,7 @@ public struct BXJogwheel : View
 			{
 				_ in
 
+				self.onEnded?()
 				self.undoManager?.setActionName(self.undoName)
 				self.undoManager?.endUndoGrouping()
 				self.dragIteration = 0
