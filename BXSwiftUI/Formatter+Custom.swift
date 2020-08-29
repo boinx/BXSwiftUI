@@ -23,6 +23,7 @@ public extension Formatter
 		formatter.maximumFractionDigits = 2
 		formatter.positiveFormat = "#.##s"
 		formatter.negativeFormat = "-#.##s"
+		formatter.zeroSymbol = "0s"
 		formatter.hasThousandSeparators = false
 		return formatter
 	}()
@@ -36,6 +37,7 @@ public extension Formatter
 		formatter.maximumFractionDigits = 2
 		formatter.positiveFormat = "#.##°"
 		formatter.negativeFormat = "-#.##°"
+		formatter.zeroSymbol = "0°"
 		formatter.hasThousandSeparators = false
 		return formatter
 	}()
@@ -49,6 +51,7 @@ public extension Formatter
 		formatter.maximumFractionDigits = 0
 		formatter.positiveFormat = "#px"
 		formatter.negativeFormat = "-#px"
+		formatter.zeroSymbol = "0px"
 		formatter.hasThousandSeparators = false
 		return formatter
 	}()
@@ -62,6 +65,7 @@ public extension Formatter
 		formatter.maximumFractionDigits = 0
 		formatter.positiveFormat = "#pt"
 		formatter.negativeFormat = "-#pt"
+		formatter.zeroSymbol = "0pt"
 		formatter.hasThousandSeparators = false
 		return formatter
 	}()
@@ -75,6 +79,7 @@ public extension Formatter
 		formatter.maximumFractionDigits = 1
 		formatter.positiveFormat = "#x"
 		formatter.negativeFormat = "-#x"
+		formatter.zeroSymbol = "0x"
 		formatter.hasThousandSeparators = false
 		return formatter
 	}()
