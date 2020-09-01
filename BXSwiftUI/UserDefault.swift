@@ -86,3 +86,42 @@ import Combine
 
 
 //----------------------------------------------------------------------------------------------------------------------
+
+
+@propertyWrapper public struct RawUserDefault<T:RawRepresentable>
+{
+    let key:String
+    let defaultValue:T
+	let publisher = PassthroughSubject<T,Never>()
+
+    public init(_ key:String, defaultValue:T)
+    {
+        self.key = key.replacingOccurrences(of:".", with:"-")	// UserDefaults doesn't like keys containing "." so replace them
+        self.defaultValue = defaultValue
+    }
+
+    public var wrappedValue : T
+    {
+        get
+        {
+			guard let raw = UserDefaults.standard.value(forKey: key) as? T.RawValue else { return defaultValue }
+			let value = T.init(rawValue:raw)
+			return value ?? defaultValue
+        }
+        
+        set
+        {
+			let raw = newValue.rawValue
+            UserDefaults.standard.set(raw, forKey:key)
+            publisher.send(newValue)
+        }
+    }
+    
+    public var projectedValue:PassthroughSubject<T,Never>
+    {
+		return publisher
+    }
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
