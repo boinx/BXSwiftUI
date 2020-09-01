@@ -43,7 +43,6 @@
 		D0499C35241CC97A007463F0 /* Binding+multiValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0499C34241CC97A007463F0 /* Binding+multiValue.swift */; };
 		D0499C37241CDC82007463F0 /* Binding+attributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0499C36241CDC82007463F0 /* Binding+attributedString.swift */; };
 		D04B14DD23DB4773001203FD /* BXStrokedCheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B14DC23DB4773001203FD /* BXStrokedCheckboxStyle.swift */; };
-		D04C46AF23E15A7700A1CBAD /* BXAutomaticEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C46AE23E15A7700A1CBAD /* BXAutomaticEditView.swift */; };
 		D058543423FD2342004BDCCC /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = D058543323FD2342004BDCCC /* UserDefault.swift */; };
 		D05ED7B923F143C90019FE46 /* BXModifierKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05ED7B823F143C90019FE46 /* BXModifierKeys.swift */; };
 		D05ED7BB23F1AAEC0019FE46 /* View+Cursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05ED7BA23F1AAEC0019FE46 /* View+Cursor.swift */; };
@@ -459,7 +458,6 @@
 			files = (
 				D09C93F323F86D18008BA68F /* BXSliderResponse.swift in Sources */,
 				D0D25BCC23DCB3B400A1B61D /* BXIndentationView.swift in Sources */,
-				D04C46AF23E15A7700A1CBAD /* BXAutomaticEditView.swift in Sources */,
 				D0499C35241CC97A007463F0 /* Binding+multiValue.swift in Sources */,
 				D02A6361240276EA00C55416 /* BXRoundButtonStyle.swift in Sources */,
 				D077D5C523E2F05D00C1D20F /* Image+SFSymbols.swift in Sources */,
