@@ -20,6 +20,7 @@
 		D002FE8823D22EC5002CF0A1 /* BXMultiValueToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7E23D22EC5002CF0A1 /* BXMultiValueToggle.swift */; };
 		D011B1CB23E1C73D00643F20 /* BXStrokedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011B1CA23E1C73D00643F20 /* BXStrokedButtonStyle.swift */; };
 		D013E79C2423535500207D48 /* BXPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D013E79B2423535400207D48 /* BXPicker.swift */; };
+		D017FC8525093E5C003953B0 /* BXBorderlessWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017FC8425093E5B003953B0 /* BXBorderlessWindow.swift */; };
 		D0257F9D23FA7A15000E1816 /* BXCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0257F9C23FA7A15000E1816 /* BXCircularSlider.swift */; };
 		D029B91B23EC4FE80095DE37 /* View+Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D029B91A23EC4FE80095DE37 /* View+Popup.swift */; };
 		D02A6361240276EA00C55416 /* BXRoundButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02A6360240276EA00C55416 /* BXRoundButtonStyle.swift */; };
@@ -109,6 +110,7 @@
 		D0083BE623EDC8490097C7A1 /* BXColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXColorTheme.swift; sourceTree = "<group>"; };
 		D011B1CA23E1C73D00643F20 /* BXStrokedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXStrokedButtonStyle.swift; sourceTree = "<group>"; };
 		D013E79B2423535400207D48 /* BXPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXPicker.swift; sourceTree = "<group>"; };
+		D017FC8425093E5B003953B0 /* BXBorderlessWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXBorderlessWindow.swift; sourceTree = "<group>"; };
 		D0257F9A23FA7541000E1816 /* BXSliderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSliderStyle.swift; sourceTree = "<group>"; };
 		D0257F9C23FA7A15000E1816 /* BXCircularSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXCircularSlider.swift; sourceTree = "<group>"; };
 		D029B91A23EC4FE80095DE37 /* View+Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Popup.swift"; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				D062F3D8241B83CE00837850 /* View+descriptionLabel.swift */,
 				D0E5EBA324E6D2C9009E1385 /* BXPanel.swift */,
 				D0B62E6724E5281D00A14620 /* BXPopover.swift */,
+				D017FC8425093E5B003953B0 /* BXBorderlessWindow.swift */,
 			);
 			name = "View Hierarchy";
 			sourceTree = "<group>";
@@ -495,6 +498,7 @@
 				D077D5D023E32ED800C1D20F /* NSSavePanel+Present.swift in Sources */,
 				D0A2400423DF5716004E9F31 /* BXOptionalView.swift in Sources */,
 				D0EED8FE23EEA13200E4243D /* BXColorTheme.swift in Sources */,
+				D017FC8525093E5C003953B0 /* BXBorderlessWindow.swift in Sources */,
 				D0793E7E23D45D170069327F /* BXMultiValueBoolInspectorView.swift in Sources */,
 				D002FE8523D22EC5002CF0A1 /* TextAlignment+AppKit.swift in Sources */,
 				D077D5D423E348B400C1D20F /* NSOpenPanel+Present.swift in Sources */,
