@@ -14,7 +14,7 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public class BXBorderlessWindow : NSWindow, NSWindowDelegate,ObservableObject
+public class BXBorderlessWindow : NSWindow, ObservableObject
 {
     /// Creates an NSPanel with the specified SwiftUI view as contents
     
@@ -28,7 +28,6 @@ public class BXBorderlessWindow : NSWindow, NSWindowDelegate,ObservableObject
 			backing:.buffered,
 			defer:false)
 
-		self.delegate = self
 		self.isMovableByWindowBackground = true
 		self.isReleasedWhenClosed = true
 		
