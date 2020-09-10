@@ -20,7 +20,7 @@ public class BXBorderlessWindow : NSWindow, ObservableObject
     
     public init<V:View>(with view:V)
     {
-		// Create a hud panel window
+		// Create a borderless window
 	
  		super.init(
 			contentRect:CGRect(x:0, y:0, width:300, height:200),
@@ -46,6 +46,13 @@ public class BXBorderlessWindow : NSWindow, ObservableObject
 		hostingView.bottomAnchor.constraint(equalTo:rootView.bottomAnchor).isActive = true
 		hostingView.leadingAnchor.constraint(equalTo:rootView.leadingAnchor).isActive = true
 		hostingView.trailingAnchor.constraint(equalTo:rootView.trailingAnchor).isActive = true
+    }
+    
+    // Override to make sure that borderless window can accept keyboard events
+    
+    override open var canBecomeKey : Bool
+    {
+		return true
     }
 }
 
