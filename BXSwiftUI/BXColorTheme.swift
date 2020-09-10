@@ -15,10 +15,18 @@ import SwiftUI
 
 public struct BXColorTheme
 {
-	internal let backgroundColor:	(ColorScheme) -> Color
-	internal let fillColor:			(ColorScheme,Bool,Double) -> Color
-	internal let strokeColor:		(ColorScheme,Bool,Double) -> Color
-	internal let contentColor:		(ColorScheme,Bool,Double) -> Color
+	let backgroundColor: (ColorScheme)->Color
+	let fillColor: (ColorScheme,Bool,Double)->Color
+	let strokeColor: (ColorScheme,Bool,Double)->Color
+	let contentColor: (ColorScheme,Bool,Double)->Color
+	
+	public init(backgroundColor:@escaping (ColorScheme)->Color, fillColor:@escaping (ColorScheme,Bool,Double)->Color, strokeColor:@escaping (ColorScheme,Bool,Double)->Color, contentColor:@escaping (ColorScheme,Bool,Double)->Color)
+	{
+		self.backgroundColor = backgroundColor
+		self.fillColor = fillColor
+		self.strokeColor = strokeColor
+		self.contentColor = contentColor
+	}
 }
 
 
