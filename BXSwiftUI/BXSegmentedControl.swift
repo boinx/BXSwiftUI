@@ -50,10 +50,14 @@ public struct BXSegmentedControl<Content> : View where Content:View
 		{
 			content()
 		}
-		.environment(\.bxLabelGroupID, self.id)
-		
-		.environment(\.bxLabelWidth, self.$segmentWidth)
 		.environment(\.bxSegmentIndex, self.value)
+
+		// Use BXLabelGroup code for measuring segment widths
+		
+		.environment(\.bxLabelGroupID, self.id)
+		.environment(\.bxLabelWidth, self.$segmentWidth)
+		
+		// Decide on common width for all segments (use widest segment as reference)
 		
 		.onPreferenceChange(BXViewSizeKey.self)
 		{
@@ -72,6 +76,8 @@ public struct BXSegmentedControl<Content> : View where Content:View
 			
 			self.segmentWidth = maxSize.width
 		}
+		
+		// Apply stroke with rounded corners
 		
 		.cornerRadius(cornerRadius)
 
@@ -121,12 +127,20 @@ public struct BXSegment<Content> : View where Content:View
 			.padding(.horizontal,10)
 			.padding(.vertical,2)
 			
+			// Measure segment width
+			
 			.measureViewSize(forGroupID:self.id)
+			
+			// Resize to common width
 			
 			.resizeView(to:self.segmentWidth, for:self.id, alignment:.center)
 			
+			// Apply background and text color
+			
 			.background( Rectangle().fill(self.fillColor) )
 			.foregroundColor(self.contentColor)
+			
+			// When clicked, select this segment and call action handler
 			
 			.contentShape(Rectangle())
 			
@@ -137,12 +151,16 @@ public struct BXSegment<Content> : View where Content:View
 			}
 	}
 	
+	/// Background color for this segment
+	
 	var fillColor : Color
 	{
 		self.value == self.bxSegmentIndex.wrappedValue ?
 			bxColorTheme.fillColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1) :
 			bxColorTheme.backgroundColor()
 	}
+	
+	/// Text color for this segment
 	
 	var contentColor : Color
 	{
