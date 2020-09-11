@@ -73,6 +73,7 @@
 		D08FB76F23E4920A00C1A193 /* BXTextField_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FB76E23E4920A00C1A193 /* BXTextField_macOS.swift */; };
 		D09C93F323F86D18008BA68F /* BXSliderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09C93F223F86D18008BA68F /* BXSliderResponse.swift */; };
 		D0A2400423DF5716004E9F31 /* BXOptionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A2400323DF5716004E9F31 /* BXOptionalView.swift */; };
+		D0AFEC91250B402C00449507 /* BXSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AFEC90250B402C00449507 /* BXSegmentedControl.swift */; };
 		D0B5475423EC091A00046F96 /* BXJogwheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B5475323EC091A00046F96 /* BXJogwheel.swift */; };
 		D0B62E6824E5281E00A14620 /* BXPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B62E6724E5281D00A14620 /* BXPopover.swift */; };
 		D0B64EB623E6C92A0089A33F /* BXMultiValueAttributedStringInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B64EB523E6C92A0089A33F /* BXMultiValueAttributedStringInspectorView.swift */; };
@@ -163,6 +164,7 @@
 		D08FB76E23E4920A00C1A193 /* BXTextField_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXTextField_macOS.swift; sourceTree = "<group>"; };
 		D09C93F223F86D18008BA68F /* BXSliderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSliderResponse.swift; sourceTree = "<group>"; };
 		D0A2400323DF5716004E9F31 /* BXOptionalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXOptionalView.swift; sourceTree = "<group>"; };
+		D0AFEC90250B402C00449507 /* BXSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSegmentedControl.swift; sourceTree = "<group>"; };
 		D0B5475323EC091A00046F96 /* BXJogwheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXJogwheel.swift; sourceTree = "<group>"; };
 		D0B62E6724E5281D00A14620 /* BXPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXPopover.swift; sourceTree = "<group>"; };
 		D0B64EB523E6C92A0089A33F /* BXMultiValueAttributedStringInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueAttributedStringInspectorView.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 			children = (
 				D077D5CB23E3104400C1D20F /* BXButton.swift */,
 				D013E79B2423535400207D48 /* BXPicker.swift */,
+				D0AFEC90250B402C00449507 /* BXSegmentedControl.swift */,
 				D0ED327623E557B700B37B3D /* BXTextField.swift */,
 				D08FB76E23E4920A00C1A193 /* BXTextField_macOS.swift */,
 				D0EBA10923D9881D00E82E59 /* BXTextView.swift */,
@@ -500,6 +503,7 @@
 				D0EED8FE23EEA13200E4243D /* BXColorTheme.swift in Sources */,
 				D017FC8525093E5C003953B0 /* BXBorderlessWindow.swift in Sources */,
 				D0793E7E23D45D170069327F /* BXMultiValueBoolInspectorView.swift in Sources */,
+				D0AFEC91250B402C00449507 /* BXSegmentedControl.swift in Sources */,
 				D002FE8523D22EC5002CF0A1 /* TextAlignment+AppKit.swift in Sources */,
 				D077D5D423E348B400C1D20F /* NSOpenPanel+Present.swift in Sources */,
 				D0FFC33123E039F100BEA7A4 /* BXMenuItemSpec.swift in Sources */,
