@@ -74,6 +74,7 @@
 		D09C93F323F86D18008BA68F /* BXSliderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09C93F223F86D18008BA68F /* BXSliderResponse.swift */; };
 		D0A2400423DF5716004E9F31 /* BXOptionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A2400323DF5716004E9F31 /* BXOptionalView.swift */; };
 		D0AFEC91250B402C00449507 /* BXSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AFEC90250B402C00449507 /* BXSegmentedControl.swift */; };
+		D0AFEC93250BC2EF00449507 /* BXDisableWindowDragging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AFEC92250BC2EF00449507 /* BXDisableWindowDragging.swift */; };
 		D0B5475423EC091A00046F96 /* BXJogwheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B5475323EC091A00046F96 /* BXJogwheel.swift */; };
 		D0B62E6824E5281E00A14620 /* BXPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B62E6724E5281D00A14620 /* BXPopover.swift */; };
 		D0B64EB623E6C92A0089A33F /* BXMultiValueAttributedStringInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B64EB523E6C92A0089A33F /* BXMultiValueAttributedStringInspectorView.swift */; };
@@ -165,6 +166,7 @@
 		D09C93F223F86D18008BA68F /* BXSliderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSliderResponse.swift; sourceTree = "<group>"; };
 		D0A2400323DF5716004E9F31 /* BXOptionalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXOptionalView.swift; sourceTree = "<group>"; };
 		D0AFEC90250B402C00449507 /* BXSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSegmentedControl.swift; sourceTree = "<group>"; };
+		D0AFEC92250BC2EF00449507 /* BXDisableWindowDragging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXDisableWindowDragging.swift; sourceTree = "<group>"; };
 		D0B5475323EC091A00046F96 /* BXJogwheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXJogwheel.swift; sourceTree = "<group>"; };
 		D0B62E6724E5281D00A14620 /* BXPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXPopover.swift; sourceTree = "<group>"; };
 		D0B64EB523E6C92A0089A33F /* BXMultiValueAttributedStringInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueAttributedStringInspectorView.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				D002FE7523D22EC5002CF0A1 /* BXLabelView.swift */,
 				D0F3D30B24EC146200551A16 /* BXGrid.swift */,
 				D0A2400323DF5716004E9F31 /* BXOptionalView.swift */,
+				D0AFEC92250BC2EF00449507 /* BXDisableWindowDragging.swift */,
 				D062F3DC241BC16800837850 /* View+aligned.swift */,
 				D062F3D8241B83CE00837850 /* View+descriptionLabel.swift */,
 				D0E5EBA324E6D2C9009E1385 /* BXPanel.swift */,
@@ -499,6 +502,7 @@
 				D075AA4823EB33AE009EF839 /* BXRangeSlider.swift in Sources */,
 				D0C1249A23DAE4A600DB3592 /* BXMultiValueColorSlider.swift in Sources */,
 				D077D5D023E32ED800C1D20F /* NSSavePanel+Present.swift in Sources */,
+				D0AFEC93250BC2EF00449507 /* BXDisableWindowDragging.swift in Sources */,
 				D0A2400423DF5716004E9F31 /* BXOptionalView.swift in Sources */,
 				D0EED8FE23EEA13200E4243D /* BXColorTheme.swift in Sources */,
 				D017FC8525093E5C003953B0 /* BXBorderlessWindow.swift in Sources */,
