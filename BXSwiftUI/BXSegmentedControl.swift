@@ -91,6 +91,7 @@ public struct BXSegment<Content> : View where Content:View
 	// Params
 	
 	private var value:Int
+	private var action:()->Void
 	private var content:()->Content
 
 	// Environment
@@ -104,9 +105,10 @@ public struct BXSegment<Content> : View where Content:View
 
 	// Init
 	
-	public init(value:Int, @ViewBuilder content:@escaping ()->Content)
+	public init(value:Int, action:@escaping ()->Void = {}, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.value = value
+		self.action = action
 		self.content = content
 	}
 	
@@ -131,6 +133,7 @@ public struct BXSegment<Content> : View where Content:View
 			.onTapGesture
 			{
 				self.bxSegmentIndex.wrappedValue = self.value
+				self.action()
 			}
 	}
 	
