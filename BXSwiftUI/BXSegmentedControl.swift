@@ -50,7 +50,6 @@ public struct BXSegmentedControl<Content> : View where Content:View
 		{
 			content()
 		}
-				
 		.environment(\.bxLabelGroupID, self.id)
 		
 		.environment(\.bxLabelWidth, self.$segmentWidth)
