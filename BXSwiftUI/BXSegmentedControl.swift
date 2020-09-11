@@ -54,7 +54,6 @@ public struct BXSegmentedControl<Content> : View where Content:View
 		
 		.environment(\.bxLabelWidth, self.$segmentWidth)
 		.environment(\.bxSegmentIndex, self.value)
-//		.environment(\.bxColorTheme, self.colorTheme)
 		
 		.onPreferenceChange(BXViewSizeKey.self)
 		{
@@ -81,17 +80,6 @@ public struct BXSegmentedControl<Content> : View where Content:View
 				.stroke(self.bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1), lineWidth:0.5)
 		)
 	}
-
-//	var colorTheme : BXColorTheme
-//	{
-//		BXColorTheme(
-//			backgroundColor: { _ in Color.blue },
-//			fillColor: { _,isEnabled,_ in Color.white.opacity(isEnabled ? 0.9 : 0.3) },
-//			strokeColor: { _,isEnabled,_ in Color.white.opacity(isEnabled ? 1.0 : 0.33) },
-//			contentColor: { _,isEnabled,_ in Color.white.opacity(isEnabled ? 1.0 : 0.33) }
-//		)
-//	}
-
 }
 
 
