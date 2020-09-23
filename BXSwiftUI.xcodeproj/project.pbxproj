@@ -82,6 +82,8 @@
 		D0B64EBA23E6F31F0089A33F /* BXHasMultipleValuesKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B64EB923E6F31F0089A33F /* BXHasMultipleValuesKey.swift */; };
 		D0C1249A23DAE4A600DB3592 /* BXMultiValueColorSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C1249923DAE4A600DB3592 /* BXMultiValueColorSlider.swift */; };
 		D0C9841424A87102009E4D8F /* Binding+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9841324A87102009E4D8F /* Binding+Convert.swift */; };
+		D0CAF8D3251B15500015CFE4 /* BXScreenPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CAF8D2251B15500015CFE4 /* BXScreenPicker.swift */; };
+		D0CAF8D5251B16A70015CFE4 /* BXFullscreenWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CAF8D4251B16A70015CFE4 /* BXFullscreenWindow.swift */; };
 		D0D25BCC23DCB3B400A1B61D /* BXIndentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */; };
 		D0D28EB823E748E30012F9E1 /* Bundle+BXSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D28EB723E748E30012F9E1 /* Bundle+BXSwiftUI.swift */; };
 		D0E2429623D8827D00145CEA /* BXDisclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2429523D8827D00145CEA /* BXDisclosureView.swift */; };
@@ -174,6 +176,8 @@
 		D0B64EB923E6F31F0089A33F /* BXHasMultipleValuesKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXHasMultipleValuesKey.swift; sourceTree = "<group>"; };
 		D0C1249923DAE4A600DB3592 /* BXMultiValueColorSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueColorSlider.swift; sourceTree = "<group>"; };
 		D0C9841324A87102009E4D8F /* Binding+Convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Convert.swift"; sourceTree = "<group>"; };
+		D0CAF8D2251B15500015CFE4 /* BXScreenPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXScreenPicker.swift; sourceTree = "<group>"; };
+		D0CAF8D4251B16A70015CFE4 /* BXFullscreenWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXFullscreenWindow.swift; sourceTree = "<group>"; };
 		D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIndentationView.swift; sourceTree = "<group>"; };
 		D0D28EB723E748E30012F9E1 /* Bundle+BXSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+BXSwiftUI.swift"; sourceTree = "<group>"; };
 		D0E2429523D8827D00145CEA /* BXDisclosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXDisclosureView.swift; sourceTree = "<group>"; };
@@ -222,7 +226,6 @@
 			children = (
 				D02BC59623DC2ACE00676CF3 /* View Hierarchy */,
 				D02BC59523DC2AB200676CF3 /* Controls */,
-				D02BC58E23DC270F00676CF3 /* Styles */,
 				D02ED7C423E970D1000572FE /* Behaviors */,
 				D02BC58D23DC26FB00676CF3 /* Editor Views */,
 				D02BC59723DC2B1B00676CF3 /* Inspector Views */,
@@ -301,6 +304,8 @@
 				D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */,
 				D002FE7623D22EC5002CF0A1 /* BXMultiValuePicker.swift */,
 				D0FFC33023E039F100BEA7A4 /* BXMenuItemSpec.swift */,
+				D0CAF8D2251B15500015CFE4 /* BXScreenPicker.swift */,
+				D02BC58E23DC270F00676CF3 /* Styles */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 				D0E5EBA324E6D2C9009E1385 /* BXPanel.swift */,
 				D0B62E6724E5281D00A14620 /* BXPopover.swift */,
 				D017FC8425093E5B003953B0 /* BXBorderlessWindow.swift */,
+				D0CAF8D4251B16A70015CFE4 /* BXFullscreenWindow.swift */,
 			);
 			name = "View Hierarchy";
 			sourceTree = "<group>";
@@ -496,6 +502,7 @@
 				D0B64EB823E6CB360089A33F /* BXMultiValueTextView.swift in Sources */,
 				D061C946240F885400A9C9B2 /* NSView+Publishers.swift in Sources */,
 				D077D5C723E2FB4900C1D20F /* View+Enabled.swift in Sources */,
+				D0CAF8D3251B15500015CFE4 /* BXScreenPicker.swift in Sources */,
 				D0D28EB823E748E30012F9E1 /* Bundle+BXSwiftUI.swift in Sources */,
 				D002FE8023D22EC5002CF0A1 /* BXMultiValuePicker.swift in Sources */,
 				D02BC59E23DC329E00676CF3 /* BXCGSizeEditView.swift in Sources */,
@@ -523,6 +530,7 @@
 				D013E79C2423535500207D48 /* BXPicker.swift in Sources */,
 				D0257F9D23FA7A15000E1816 /* BXCircularSlider.swift in Sources */,
 				D02ED7C323E96FB2000572FE /* View+Undo.swift in Sources */,
+				D0CAF8D5251B16A70015CFE4 /* BXFullscreenWindow.swift in Sources */,
 				D0F9B3B023E8710000AF0929 /* BXStrokedModifier.swift in Sources */,
 				D0499C37241CDC82007463F0 /* Binding+attributedString.swift in Sources */,
 				D04B14DD23DB4773001203FD /* BXStrokedCheckboxStyle.swift in Sources */,
