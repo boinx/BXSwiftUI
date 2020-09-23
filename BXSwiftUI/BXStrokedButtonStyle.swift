@@ -15,14 +15,19 @@ import SwiftUI
 
 public struct BXStrokedButtonStyle : ButtonStyle
 {
-	public init() {}
+	private let isHilited:Bool
+	
+	public init(isHilited:Bool = false)
+	{
+		self.isHilited = isHilited
+	}
 
 	// Unfortunately @Environment values cannot be accessed directly from a ButtonStyle, so
 	// we will create a private subview, which does have access to the @Environment values.
 	
     public func makeBody(configuration:BXStrokedButtonStyle.Configuration) -> some View
     {
-		_BXStrokedButton(configuration:configuration)
+		_BXStrokedButton(configuration:configuration, isHilited:isHilited)
     }
 }
 
@@ -38,6 +43,7 @@ fileprivate struct _BXStrokedButton : View
 	// Params
 	
 	let configuration:ButtonStyleConfiguration
+	let isHilited:Bool
 
 	// Environment
 	
@@ -67,11 +73,19 @@ fileprivate struct _BXStrokedButton : View
 	
 	private var fillColor : Color
 	{
-		if colorScheme == .light { return configuration.isPressed ? .accentColor : .white }
-		let factor = configuration.isPressed ? 2.0 : 1.0
-		return bxColorTheme.fillColor(for:colorScheme, enhanceBy:factor)
+		if configuration.isPressed || isHilited
+		{
+			return bxColorTheme.hiliteColor(for:colorScheme)
+		}
+		
+		return colorScheme == .dark ? bxColorTheme.fillColor(for:colorScheme) : .white
 	}
 
+	private var textColor : Color
+	{
+		configuration.isPressed || isHilited ? .white : .primary
+	}
+	
 	private var strokeColor : Color
 	{
 		return bxColorTheme.strokeColor(for:colorScheme)
@@ -82,6 +96,7 @@ fileprivate struct _BXStrokedButton : View
     var body: some View
     {
 		self.configuration.label
+			.foregroundColor(self.textColor)
             .padding(padding)
 			.reducedOpacityWhenDisabled()
 
