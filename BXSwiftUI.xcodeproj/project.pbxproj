@@ -84,6 +84,7 @@
 		D0C9841424A87102009E4D8F /* Binding+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9841324A87102009E4D8F /* Binding+Convert.swift */; };
 		D0CAF8D3251B15500015CFE4 /* BXScreenPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CAF8D2251B15500015CFE4 /* BXScreenPicker.swift */; };
 		D0CAF8D5251B16A70015CFE4 /* BXFullscreenWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CAF8D4251B16A70015CFE4 /* BXFullscreenWindow.swift */; };
+		D0CAF8DB251B73A90015CFE4 /* View+onKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CAF8DA251B73A90015CFE4 /* View+onKey.swift */; };
 		D0D25BCC23DCB3B400A1B61D /* BXIndentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */; };
 		D0D28EB823E748E30012F9E1 /* Bundle+BXSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D28EB723E748E30012F9E1 /* Bundle+BXSwiftUI.swift */; };
 		D0E2429623D8827D00145CEA /* BXDisclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2429523D8827D00145CEA /* BXDisclosureView.swift */; };
@@ -178,6 +179,7 @@
 		D0C9841324A87102009E4D8F /* Binding+Convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Convert.swift"; sourceTree = "<group>"; };
 		D0CAF8D2251B15500015CFE4 /* BXScreenPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXScreenPicker.swift; sourceTree = "<group>"; };
 		D0CAF8D4251B16A70015CFE4 /* BXFullscreenWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXFullscreenWindow.swift; sourceTree = "<group>"; };
+		D0CAF8DA251B73A90015CFE4 /* View+onKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+onKey.swift"; sourceTree = "<group>"; };
 		D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIndentationView.swift; sourceTree = "<group>"; };
 		D0D28EB723E748E30012F9E1 /* Bundle+BXSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+BXSwiftUI.swift"; sourceTree = "<group>"; };
 		D0E2429523D8827D00145CEA /* BXDisclosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXDisclosureView.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				D05ED7BA23F1AAEC0019FE46 /* View+Cursor.swift */,
 				D02B47A624115CAD0026BE35 /* View+DragWindow.swift */,
 				D07F541623F52F5B001AFD5D /* View+IntrinsicContentSize.swift */,
+				D0CAF8DA251B73A90015CFE4 /* View+onKey.swift */,
 				D05ED7B823F143C90019FE46 /* BXModifierKeys.swift */,
 				D09C93F223F86D18008BA68F /* BXSliderResponse.swift */,
 			);
@@ -517,6 +520,7 @@
 				D0AFEC91250B402C00449507 /* BXSegmentedControl.swift in Sources */,
 				D002FE8523D22EC5002CF0A1 /* TextAlignment+AppKit.swift in Sources */,
 				D077D5D423E348B400C1D20F /* NSOpenPanel+Present.swift in Sources */,
+				D0CAF8DB251B73A90015CFE4 /* View+onKey.swift in Sources */,
 				D0FFC33123E039F100BEA7A4 /* BXMenuItemSpec.swift in Sources */,
 				D0B64EB623E6C92A0089A33F /* BXMultiValueAttributedStringInspectorView.swift in Sources */,
 				D02BC58C23DC26E500676CF3 /* BXStringEditView.swift in Sources */,
