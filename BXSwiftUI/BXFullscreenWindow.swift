@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  BXBorderlessWindow.swift
+//  BXFullscreenWindow.swift
 //	A borderless NSWindow subclass with SwiftUI content
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
@@ -14,22 +14,23 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public class BXBorderlessWindow : NSWindow, ObservableObject
+public class BXFullscreenWindow : NSWindow, ObservableObject
 {
-    /// Creates a NSWindow with the specified SwiftUI view as contents
+    /// Creates a borderless fullscreen NSWindow with the specified SwiftUI view as contents
     
-    public init<V:View>(with view:V)
+    public init<V:View>(for screen:NSScreen, with view:V)
     {
-		// Create a borderless window
+		// Create window
 	
  		super.init(
-			contentRect:CGRect(x:0, y:0, width:300, height:200),
+			contentRect:screen.frame,
 			styleMask:[.borderless,.fullSizeContentView],
 			backing:.buffered,
 			defer:false)
 
-		self.isMovableByWindowBackground = true
+		self.isMovableByWindowBackground = false
 		self.isReleasedWhenClosed = true
+		self.setFrame(screen.frame, display:true)
 		
 		// Install rootView
 		
