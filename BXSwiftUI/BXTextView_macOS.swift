@@ -121,9 +121,12 @@ internal struct BXTextView_macOS : NSViewRepresentable
         
 		let size = textView.fittingSize()
 		
-		DispatchQueue.main.async
+		if !textView.isFirstResponder
 		{
-			self.fittingSize = size
+			DispatchQueue.main.async
+			{
+				self.fittingSize = size
+			}
 		}
 		
 		// Call statusHandler so that clients can update the appearance of the view accordingly
@@ -158,7 +161,8 @@ internal struct BXTextView_macOS : NSViewRepresentable
 			
 			// Notify the SwiftUI layout system of the required size
 
-			self.swituiTextView.fittingSize = textView.fittingSize()
+			let size = textView.fittingSize()
+			self.swituiTextView.fittingSize = size
 		}
 		
 		func textDidEndEditing(_ notification: Notification)
@@ -271,14 +275,13 @@ class BXNativeTextView : NSTextView
 	func fittingSize() -> CGSize
 	{
 		guard let textContainer = self.textContainer else { return .zero }
-
 		self.layoutManager?.glyphRange(for:textContainer) // This forces a text layout pass
 		let frame = self.layoutManager?.usedRect(for:textContainer) ?? NSZeroRect
-	
+
 		var w = frame.width + 2 * self.textContainerInset.width
 		var h = frame.height + 2 * self.textContainerInset.height
 		w = max(w,20.0)
-		h = max(h,20.0)
+		h = max(h,1.0)
 
 		return CGSize(width:w, height:h)
 	}

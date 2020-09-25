@@ -32,7 +32,6 @@ public struct BXTextView : View
 	
 	@State private var fittingSize:CGSize = CGSize(width:20, height:20)
 
-
 	/// BXTextView wraps an NSTextView on macOS or a UITextView on iOS. It doesn't need to be enclosed in a
 	/// ScrollView, since it can resize itself automatically to fit the dimensions of its text.
 	///
@@ -60,9 +59,9 @@ public struct BXTextView : View
 			
 			.alignmentGuide(.firstTextBaseline) { _ in return self.firstBaselineOffset }
 			
-			// Once the correct fitting size has been calculated and set, resize the view to the exact height.
+			// Once the correct fitting size has been calculated, resize the view to the exact height
 			
-			.frame(height:self.fittingSize.height)
+			.intrinsicContentSize(height:self.fittingSize.height)
 			
 		#elseif os(iOS)
 		
