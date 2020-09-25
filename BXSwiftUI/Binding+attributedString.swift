@@ -17,13 +17,16 @@ public extension Binding
 {
 	/// Creates a Binding to an NSAttributedString from a regular String Binding
 
-	static func attributedString(for binding:Binding<String>) -> Binding<NSAttributedString>
+	static func attributedString(for binding:Binding<String>, font:NSFont? = NSFont.systemFont(ofSize:13), color:NSColor? = nil) -> Binding<NSAttributedString>
 	{
 		return Binding<NSAttributedString>(
 		
 			get:
 			{
-				NSAttributedString(string:binding.wrappedValue)
+				var attrs:[NSAttributedString.Key:Any] = [:]
+				if let font = font { attrs[NSAttributedString.Key.font] = font }
+				if let color = color { attrs[NSAttributedString.Key.foregroundColor] = color }
+				return NSAttributedString(string:binding.wrappedValue, attributes:attrs)
 			},
 			
 			set:
