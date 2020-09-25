@@ -115,7 +115,7 @@ fileprivate struct _BXStrokedCheckbox : View
 
 	private var onFillColor : Color
 	{
-		return isEnabled ? Color.accentColor : offFillColor
+		return isEnabled ? bxColorTheme.hiliteColor(for:colorScheme) : offFillColor
 	}
 
 	private var checkmarkColor : Color
