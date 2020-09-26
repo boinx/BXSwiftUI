@@ -88,7 +88,9 @@ fileprivate struct _BXStrokedButton : View
 	
 	private var strokeColor : Color
 	{
-		return bxColorTheme.strokeColor(for:colorScheme)
+		colorScheme == .dark ?
+			self.bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1) :
+			self.bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:0.5)
 	}
 
 	// Build the view
@@ -112,8 +114,10 @@ fileprivate struct _BXStrokedButton : View
 							.fill(self.fillColor)
 
 						RoundedRectangle(cornerRadius:self.radius(for:geometry))
-							.stroke(self.strokeColor, lineWidth:0.5)
+							.stroke(self.strokeColor, lineWidth:1.0)
 					}
+					.cornerRadius(self.radius(for:geometry))
+					.clipped()
 					.reducedOpacityWhenDisabled()
 				}
 			)

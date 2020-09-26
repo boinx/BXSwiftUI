@@ -28,6 +28,13 @@ public struct BXSegmentedControl<Content> : View where Content:View
 	@Environment(\.colorScheme) var colorScheme
 	@Environment(\.bxColorTheme) var bxColorTheme
 	
+	var strokeColor:Color
+	{
+		colorScheme == .dark ?
+			self.bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1) :
+			self.bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:0.5)
+	}
+	
 	// State
 	
 	@State private var segmentWidth:CGFloat = 60.0
@@ -79,12 +86,12 @@ public struct BXSegmentedControl<Content> : View where Content:View
 		
 		// Apply stroke with rounded corners
 		
-		.cornerRadius(cornerRadius)
-
 		.overlay(
 			RoundedRectangle(cornerRadius:cornerRadius)
-				.stroke(self.bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1), lineWidth:0.5)
+				.stroke(self.strokeColor, lineWidth:1.0)
 		)
+		.cornerRadius(cornerRadius)
+		.clipped()
 	}
 }
 
@@ -155,18 +162,36 @@ public struct BXSegment<Content> : View where Content:View
 	
 	var fillColor : Color
 	{
-		self.value == self.bxSegmentIndex.wrappedValue ?
-			bxColorTheme.fillColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1) :
-			bxColorTheme.backgroundColor()
+		if colorScheme == .dark
+		{
+			return self.value == self.bxSegmentIndex.wrappedValue ?
+				bxColorTheme.contentColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1) :
+				Color.clear
+		}
+		else
+		{
+			return self.value == self.bxSegmentIndex.wrappedValue ?
+				bxColorTheme.hiliteColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1) :
+				Color.white
+		}
 	}
 	
 	/// Text color for this segment
 	
 	var contentColor : Color
 	{
-		self.value == self.bxSegmentIndex.wrappedValue ?
-			bxColorTheme.backgroundColor() :
-			bxColorTheme.contentColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1)
+		if colorScheme == .dark
+		{
+			return self.value == self.bxSegmentIndex.wrappedValue ?
+				bxColorTheme.backgroundColor() :
+				bxColorTheme.contentColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1)
+		}
+		else
+		{
+			return self.value == self.bxSegmentIndex.wrappedValue ?
+				Color.white :
+				bxColorTheme.contentColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1)
+		}
 	}
 }
 

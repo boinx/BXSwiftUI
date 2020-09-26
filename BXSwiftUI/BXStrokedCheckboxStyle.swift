@@ -103,7 +103,9 @@ fileprivate struct _BXStrokedCheckbox : View
 	
 	private var strokeColor : Color
 	{
-		return bxColorTheme.strokeColor(for:colorScheme)
+		colorScheme == .dark ?
+			self.bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1) :
+			self.bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:0.5)
 	}
 
 	private var offFillColor : Color
@@ -136,14 +138,16 @@ fileprivate struct _BXStrokedCheckbox : View
 			{
 				// Fill
 				
-				RoundedRectangle(cornerRadius:radius)
-					.foregroundColor(fillColor)
-					.frame(width:edge, height:edge)
+				fillColor
+				
+//				RoundedRectangle(cornerRadius:radius)
+//					.foregroundColor(fillColor)
+//					.frame(width:edge, height:edge)
 
 				// Stroke
 				
 				RoundedRectangle(cornerRadius:radius)
-					.stroke(self.strokeColor, lineWidth:0.5)
+					.stroke(self.strokeColor, lineWidth:1.0)
 					.frame(width:edge, height:edge)
 				
 				// Content
@@ -157,6 +161,9 @@ fileprivate struct _BXStrokedCheckbox : View
 					Text("✓").foregroundColor(self.checkmarkColor).bold().offset(x:offset, y:0)
 				}
 			}
+			.frame(width:edge, height:edge)
+			.cornerRadius(radius)
+			.clipped()
 			
 			// Label
 			
