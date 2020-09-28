@@ -86,6 +86,7 @@
 		D0CAF8D3251B15500015CFE4 /* BXScreenPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CAF8D2251B15500015CFE4 /* BXScreenPicker.swift */; };
 		D0CAF8D5251B16A70015CFE4 /* BXFullscreenWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CAF8D4251B16A70015CFE4 /* BXFullscreenWindow.swift */; };
 		D0CAF8DB251B73A90015CFE4 /* View+onKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CAF8DA251B73A90015CFE4 /* View+onKey.swift */; };
+		D0D1AC5D25223F9100E19CE4 /* View+layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1AC5C25223F9100E19CE4 /* View+layer.swift */; };
 		D0D25BCC23DCB3B400A1B61D /* BXIndentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */; };
 		D0D28EB823E748E30012F9E1 /* Bundle+BXSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D28EB723E748E30012F9E1 /* Bundle+BXSwiftUI.swift */; };
 		D0E2429623D8827D00145CEA /* BXDisclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2429523D8827D00145CEA /* BXDisclosureView.swift */; };
@@ -182,6 +183,7 @@
 		D0CAF8D2251B15500015CFE4 /* BXScreenPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXScreenPicker.swift; sourceTree = "<group>"; };
 		D0CAF8D4251B16A70015CFE4 /* BXFullscreenWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXFullscreenWindow.swift; sourceTree = "<group>"; };
 		D0CAF8DA251B73A90015CFE4 /* View+onKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+onKey.swift"; sourceTree = "<group>"; };
+		D0D1AC5C25223F9100E19CE4 /* View+layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+layer.swift"; sourceTree = "<group>"; };
 		D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIndentationView.swift; sourceTree = "<group>"; };
 		D0D28EB723E748E30012F9E1 /* Bundle+BXSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+BXSwiftUI.swift"; sourceTree = "<group>"; };
 		D0E2429523D8827D00145CEA /* BXDisclosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXDisclosureView.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				D002FE7523D22EC5002CF0A1 /* BXLabelView.swift */,
 				D0F3D30B24EC146200551A16 /* BXGrid.swift */,
 				D0A2400323DF5716004E9F31 /* BXOptionalView.swift */,
+				D0D1AC5C25223F9100E19CE4 /* View+layer.swift */,
 				D0AFEC92250BC2EF00449507 /* BXDisableWindowDragging.swift */,
 				D062F3DC241BC16800837850 /* View+aligned.swift */,
 				D062F3D8241B83CE00837850 /* View+descriptionLabel.swift */,
@@ -479,6 +482,7 @@
 			files = (
 				D09C93F323F86D18008BA68F /* BXSliderResponse.swift in Sources */,
 				D0D25BCC23DCB3B400A1B61D /* BXIndentationView.swift in Sources */,
+				D0D1AC5D25223F9100E19CE4 /* View+layer.swift in Sources */,
 				D0499C35241CC97A007463F0 /* Binding+multiValue.swift in Sources */,
 				D02A6361240276EA00C55416 /* BXRoundButtonStyle.swift in Sources */,
 				D077D5C523E2F05D00C1D20F /* Image+SFSymbols.swift in Sources */,
