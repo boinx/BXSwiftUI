@@ -18,6 +18,7 @@
 		D002FE8523D22EC5002CF0A1 /* TextAlignment+AppKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */; };
 		D002FE8623D22EC5002CF0A1 /* Formatter+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */; };
 		D002FE8823D22EC5002CF0A1 /* BXMultiValueToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7E23D22EC5002CF0A1 /* BXMultiValueToggle.swift */; };
+		D007CB792521B3D000402E10 /* BXSpinningWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D007CB782521B3D000402E10 /* BXSpinningWheel.swift */; };
 		D011B1CB23E1C73D00643F20 /* BXStrokedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011B1CA23E1C73D00643F20 /* BXStrokedButtonStyle.swift */; };
 		D013E79C2423535500207D48 /* BXPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D013E79B2423535400207D48 /* BXPicker.swift */; };
 		D017FC8525093E5C003953B0 /* BXBorderlessWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017FC8425093E5B003953B0 /* BXBorderlessWindow.swift */; };
@@ -112,6 +113,7 @@
 		D002FE7B23D22EC5002CF0A1 /* TextAlignment+AppKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextAlignment+AppKit.swift"; sourceTree = "<group>"; };
 		D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+Custom.swift"; sourceTree = "<group>"; };
 		D002FE7E23D22EC5002CF0A1 /* BXMultiValueToggle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXMultiValueToggle.swift; sourceTree = "<group>"; };
+		D007CB782521B3D000402E10 /* BXSpinningWheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSpinningWheel.swift; sourceTree = "<group>"; };
 		D0083BE623EDC8490097C7A1 /* BXColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXColorTheme.swift; sourceTree = "<group>"; };
 		D011B1CA23E1C73D00643F20 /* BXStrokedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXStrokedButtonStyle.swift; sourceTree = "<group>"; };
 		D013E79B2423535400207D48 /* BXPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXPicker.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				D002FE7623D22EC5002CF0A1 /* BXMultiValuePicker.swift */,
 				D0FFC33023E039F100BEA7A4 /* BXMenuItemSpec.swift */,
 				D0CAF8D2251B15500015CFE4 /* BXScreenPicker.swift */,
+				D007CB782521B3D000402E10 /* BXSpinningWheel.swift */,
 				D02BC58E23DC270F00676CF3 /* Styles */,
 			);
 			name = Controls;
@@ -506,6 +509,7 @@
 				D061C946240F885400A9C9B2 /* NSView+Publishers.swift in Sources */,
 				D077D5C723E2FB4900C1D20F /* View+Enabled.swift in Sources */,
 				D0CAF8D3251B15500015CFE4 /* BXScreenPicker.swift in Sources */,
+				D007CB792521B3D000402E10 /* BXSpinningWheel.swift in Sources */,
 				D0D28EB823E748E30012F9E1 /* Bundle+BXSwiftUI.swift in Sources */,
 				D002FE8023D22EC5002CF0A1 /* BXMultiValuePicker.swift in Sources */,
 				D02BC59E23DC329E00676CF3 /* BXCGSizeEditView.swift in Sources */,
