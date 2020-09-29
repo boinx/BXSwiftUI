@@ -87,6 +87,7 @@
 		D0CAF8D5251B16A70015CFE4 /* BXFullscreenWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CAF8D4251B16A70015CFE4 /* BXFullscreenWindow.swift */; };
 		D0CAF8DB251B73A90015CFE4 /* View+onKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CAF8DA251B73A90015CFE4 /* View+onKey.swift */; };
 		D0D1AC5D25223F9100E19CE4 /* View+layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1AC5C25223F9100E19CE4 /* View+layer.swift */; };
+		D0D1AC5F25224D1300E19CE4 /* View+fixedSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1AC5E25224D1300E19CE4 /* View+fixedSize.swift */; };
 		D0D25BCC23DCB3B400A1B61D /* BXIndentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */; };
 		D0D28EB823E748E30012F9E1 /* Bundle+BXSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D28EB723E748E30012F9E1 /* Bundle+BXSwiftUI.swift */; };
 		D0E2429623D8827D00145CEA /* BXDisclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2429523D8827D00145CEA /* BXDisclosureView.swift */; };
@@ -184,6 +185,7 @@
 		D0CAF8D4251B16A70015CFE4 /* BXFullscreenWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXFullscreenWindow.swift; sourceTree = "<group>"; };
 		D0CAF8DA251B73A90015CFE4 /* View+onKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+onKey.swift"; sourceTree = "<group>"; };
 		D0D1AC5C25223F9100E19CE4 /* View+layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+layer.swift"; sourceTree = "<group>"; };
+		D0D1AC5E25224D1300E19CE4 /* View+fixedSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+fixedSize.swift"; sourceTree = "<group>"; };
 		D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIndentationView.swift; sourceTree = "<group>"; };
 		D0D28EB723E748E30012F9E1 /* Bundle+BXSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+BXSwiftUI.swift"; sourceTree = "<group>"; };
 		D0E2429523D8827D00145CEA /* BXDisclosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXDisclosureView.swift; sourceTree = "<group>"; };
@@ -326,9 +328,10 @@
 				D002FE7523D22EC5002CF0A1 /* BXLabelView.swift */,
 				D0F3D30B24EC146200551A16 /* BXGrid.swift */,
 				D0A2400323DF5716004E9F31 /* BXOptionalView.swift */,
-				D0D1AC5C25223F9100E19CE4 /* View+layer.swift */,
 				D0AFEC92250BC2EF00449507 /* BXDisableWindowDragging.swift */,
 				D062F3DC241BC16800837850 /* View+aligned.swift */,
+				D0D1AC5C25223F9100E19CE4 /* View+layer.swift */,
+				D0D1AC5E25224D1300E19CE4 /* View+fixedSize.swift */,
 				D062F3D8241B83CE00837850 /* View+descriptionLabel.swift */,
 				D0E5EBA324E6D2C9009E1385 /* BXPanel.swift */,
 				D0B62E6724E5281D00A14620 /* BXPopover.swift */,
@@ -564,6 +567,7 @@
 				D077D5CC23E3104400C1D20F /* BXButton.swift in Sources */,
 				D0F3D30C24EC146300551A16 /* BXGrid.swift in Sources */,
 				D02BC5A223DC37A500676CF3 /* BXURLEditView.swift in Sources */,
+				D0D1AC5F25224D1300E19CE4 /* View+fixedSize.swift in Sources */,
 				D05ED7B923F143C90019FE46 /* BXModifierKeys.swift in Sources */,
 				D082496723E40ABB006142CE /* BXTextView.swift in Sources */,
 				D02BC59023DC297400676CF3 /* BXIntEditView.swift in Sources */,
