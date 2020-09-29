@@ -45,12 +45,11 @@ public extension View
 	{
 		// IMPORTANT
 
-		// By itself ZStack is very expensive when computing layout, because it queries the sizes and
-		// positions of all its children before deciding on its own size. This can cause immense CPU workload
-		// for large numbers of children.
-		
-		// However when enclosing the ZStack in an overlay of a existing parent view, then the size of the ZStack
-		// seems to be identical to the parent view and all this layout calculation is skipped.
+		// By itself ZStack is very expensive when calculating layout, because it queries the sizes and positions of
+		// all its children before deciding on its own size. This can cause immense CPU workload for large numbers
+		// of children. However when enclosing the ZStack in an overlay of a existing parent view, then the size of
+		// the ZStack seems to be identical to the parent view and all this layout calculation is skipped, thus saving
+		// a lot of CPU time.
 		
 		self.overlay(
 		
@@ -58,8 +57,7 @@ public extension View
 			{
 				ForEach(objects)
 				{
-					object in
-					layer(object)
+					layer($0)
 				}
 			},
 			
