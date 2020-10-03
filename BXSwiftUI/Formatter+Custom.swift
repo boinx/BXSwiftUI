@@ -108,6 +108,34 @@ public extension Formatter
 	}()
 	
 	
+	static var singleDigitFormatter: NumberFormatter =
+	{
+		let formatter = NumberFormatter()
+		formatter.allowsFloats = true
+		formatter.numberStyle = .decimal
+		formatter.maximumFractionDigits = 1
+		formatter.positiveFormat = "#.#"
+		formatter.negativeFormat = "-#.#"
+		formatter.zeroSymbol = "0"
+		formatter.hasThousandSeparators = false
+		return formatter
+	}()
+
+
+	static var doubleDigitFormatter: NumberFormatter =
+	{
+		let formatter = NumberFormatter()
+		formatter.allowsFloats = true
+		formatter.numberStyle = .decimal
+		formatter.maximumFractionDigits = 2
+		formatter.positiveFormat = "#.##"
+		formatter.negativeFormat = "-#.##"
+		formatter.zeroSymbol = "0"
+		formatter.hasThousandSeparators = false
+		return formatter
+	}()
+
+
 	static var intFormatter: NumberFormatter =
 	{
 		let formatter = NumberFormatter()
