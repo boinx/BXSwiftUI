@@ -20,6 +20,13 @@ public struct BXSpinningWheel : NSViewRepresentable
 	
 	var size:NSControl.ControlSize = .regular
 	
+	// Init
+	
+	public init(size:NSControl.ControlSize = .regular)
+	{
+		self.size = size
+	}
+	
 	// Create the underlying AppKit view
 	
 	public func makeNSView(context:Context) -> NSProgressIndicator
@@ -28,7 +35,8 @@ public struct BXSpinningWheel : NSViewRepresentable
 		wheel.style = .spinning
     	wheel.controlSize = self.size
     	wheel.isIndeterminate = true
-    	wheel.isDisplayedWhenStopped = true
+		wheel.usesThreadedAnimation = true
+		wheel.isDisplayedWhenStopped = false
     	wheel.startAnimation(nil)
  		return wheel
     }
