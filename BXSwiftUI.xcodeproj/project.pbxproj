@@ -42,6 +42,7 @@
 		D02BC5A423DC390500676CF3 /* BXArrayEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC5A323DC390400676CF3 /* BXArrayEditView.swift */; };
 		D02BC5AC23DC627900676CF3 /* BXBoolEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC5AB23DC627800676CF3 /* BXBoolEditView.swift */; };
 		D02ED7C323E96FB2000572FE /* View+Undo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02ED7C223E96FB2000572FE /* View+Undo.swift */; };
+		D039205A25372ECC00544F33 /* BXProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039205925372ECB00544F33 /* BXProgressBar.swift */; };
 		D03A287223D705CA00673CB1 /* BXMultiValueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */; };
 		D0499C35241CC97A007463F0 /* Binding+multiValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0499C34241CC97A007463F0 /* Binding+multiValue.swift */; };
 		D0499C37241CDC82007463F0 /* Binding+attributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0499C36241CDC82007463F0 /* Binding+attributedString.swift */; };
@@ -144,6 +145,7 @@
 		D02BC5A323DC390400676CF3 /* BXArrayEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXArrayEditView.swift; sourceTree = "<group>"; };
 		D02BC5AB23DC627800676CF3 /* BXBoolEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXBoolEditView.swift; sourceTree = "<group>"; };
 		D02ED7C223E96FB2000572FE /* View+Undo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Undo.swift"; sourceTree = "<group>"; };
+		D039205925372ECB00544F33 /* BXProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXProgressBar.swift; sourceTree = "<group>"; };
 		D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueButton.swift; sourceTree = "<group>"; };
 		D0499C34241CC97A007463F0 /* Binding+multiValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+multiValue.swift"; sourceTree = "<group>"; };
 		D0499C36241CDC82007463F0 /* Binding+attributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+attributedString.swift"; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				D0FFC33023E039F100BEA7A4 /* BXMenuItemSpec.swift */,
 				D0CAF8D2251B15500015CFE4 /* BXScreenPicker.swift */,
 				D007CB782521B3D000402E10 /* BXSpinningWheel.swift */,
+				D039205925372ECB00544F33 /* BXProgressBar.swift */,
 				D02BC58E23DC270F00676CF3 /* Styles */,
 			);
 			name = Controls;
@@ -554,6 +557,7 @@
 				D0FFC32F23E037B800BEA7A4 /* BXIntEnumView.swift in Sources */,
 				D077D5C323E2E14C00C1D20F /* Binding+Optional.swift in Sources */,
 				D002FE8423D22EC5002CF0A1 /* BXMultiValueTextField.swift in Sources */,
+				D039205A25372ECC00544F33 /* BXProgressBar.swift in Sources */,
 				D075AA4623EB14A6009EF839 /* View+ToolTip.swift in Sources */,
 				D07F541723F52F5B001AFD5D /* View+IntrinsicContentSize.swift in Sources */,
 				D013E79C2423535500207D48 /* BXPicker.swift in Sources */,
