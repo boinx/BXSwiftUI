@@ -1,7 +1,7 @@
 //**********************************************************************************************************************
 //
-//  BXMenuItemSpec.swift
-//	Specifies a single menu item in a picker
+//  BXSpinningWheel.swift
+//	Displays a circular spinning wheel
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
