@@ -43,6 +43,7 @@
 		D02BC5AC23DC627900676CF3 /* BXBoolEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC5AB23DC627800676CF3 /* BXBoolEditView.swift */; };
 		D02ED7C323E96FB2000572FE /* View+Undo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02ED7C223E96FB2000572FE /* View+Undo.swift */; };
 		D039205A25372ECC00544F33 /* BXProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039205925372ECB00544F33 /* BXProgressBar.swift */; };
+		D039206C25381FED00544F33 /* BXMessageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039206B25381FED00544F33 /* BXMessageBox.swift */; };
 		D03A287223D705CA00673CB1 /* BXMultiValueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */; };
 		D0499C35241CC97A007463F0 /* Binding+multiValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0499C34241CC97A007463F0 /* Binding+multiValue.swift */; };
 		D0499C37241CDC82007463F0 /* Binding+attributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0499C36241CDC82007463F0 /* Binding+attributedString.swift */; };
@@ -146,6 +147,7 @@
 		D02BC5AB23DC627800676CF3 /* BXBoolEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXBoolEditView.swift; sourceTree = "<group>"; };
 		D02ED7C223E96FB2000572FE /* View+Undo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Undo.swift"; sourceTree = "<group>"; };
 		D039205925372ECB00544F33 /* BXProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXProgressBar.swift; sourceTree = "<group>"; };
+		D039206B25381FED00544F33 /* BXMessageBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXMessageBox.swift; sourceTree = "<group>"; };
 		D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueButton.swift; sourceTree = "<group>"; };
 		D0499C34241CC97A007463F0 /* Binding+multiValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+multiValue.swift"; sourceTree = "<group>"; };
 		D0499C36241CDC82007463F0 /* Binding+attributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+attributedString.swift"; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				D002FE7523D22EC5002CF0A1 /* BXLabelView.swift */,
 				D0F3D30B24EC146200551A16 /* BXGrid.swift */,
 				D0A2400323DF5716004E9F31 /* BXOptionalView.swift */,
+				D039206B25381FED00544F33 /* BXMessageBox.swift */,
 				D06076C2252F009E003851D7 /* BXLazyVStack.swift */,
 				D0D3AC5A252E1BFF00354795 /* BXEnclosingScrollViewProxy.swift */,
 				D0AFEC92250BC2EF00449507 /* BXDisableWindowDragging.swift */,
@@ -517,6 +520,7 @@
 				D062F3DB241B847D00837850 /* BXLabelGroup.swift in Sources */,
 				D02A63682402D88200C55416 /* BXCustomSlider.swift in Sources */,
 				D0B62E6824E5281E00A14620 /* BXPopover.swift in Sources */,
+				D039206C25381FED00544F33 /* BXMessageBox.swift in Sources */,
 				D02BC59423DC29ED00676CF3 /* BXCGPointEditView.swift in Sources */,
 				D08FB76F23E4920A00C1A193 /* BXTextField_macOS.swift in Sources */,
 				D002FE8623D22EC5002CF0A1 /* Formatter+Custom.swift in Sources */,
