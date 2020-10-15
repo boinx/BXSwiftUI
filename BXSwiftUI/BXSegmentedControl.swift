@@ -20,6 +20,7 @@ public struct BXSegmentedControl<Content> : View where Content:View
 	private var id:String
 	private var value:Binding<Int>
 	private var cornerRadius:CGFloat
+	private var minSegmentWidth:CGFloat
 	private var content:()->Content
 	
 	// Environment
@@ -41,11 +42,12 @@ public struct BXSegmentedControl<Content> : View where Content:View
 	
 	// Init
 	
-	public init(value:Binding<Int>, cornerRadius:CGFloat = 4.0, @ViewBuilder content:@escaping ()->Content)
+	public init(value:Binding<Int>, cornerRadius:CGFloat = 4.0, minSegmentWidth:CGFloat = 0, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.id = UUID().uuidString
 		self.value = value
 		self.cornerRadius = cornerRadius
+		self.minSegmentWidth = minSegmentWidth
 		self.content = content
 	}
 	
@@ -81,7 +83,7 @@ public struct BXSegmentedControl<Content> : View where Content:View
 				}
 			}
 			
-			self.segmentWidth = maxSize.width
+			self.segmentWidth = max(self.minSegmentWidth, maxSize.width)
 		}
 		
 		// Apply stroke with rounded corners
