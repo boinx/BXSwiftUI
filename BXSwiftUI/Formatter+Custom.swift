@@ -147,6 +147,48 @@ public extension Formatter
 	}()
 	
 	
+	static var kbitFormatter: NumberFormatter =
+	{
+		let formatter = NumberFormatter()
+		formatter.allowsFloats = false
+		formatter.numberStyle = .decimal
+		formatter.maximumFractionDigits = 0
+		formatter.positiveFormat = "# kbit"
+		formatter.negativeFormat = "-# kbit"
+		formatter.zeroSymbol = "0 kbit"
+		formatter.hasThousandSeparators = false
+		return formatter
+	}()
+	
+	
+	static var bitFormatter: NumberFormatter =
+	{
+		let formatter = NumberFormatter()
+		formatter.allowsFloats = false
+		formatter.numberStyle = .decimal
+		formatter.maximumFractionDigits = 0
+		formatter.positiveFormat = "# bit"
+		formatter.negativeFormat = "-# bit"
+		formatter.zeroSymbol = "0 bit"
+		formatter.hasThousandSeparators = false
+		return formatter
+	}()
+	
+	
+	static var HzFormatter: NumberFormatter =
+	{
+		let formatter = NumberFormatter()
+		formatter.allowsFloats = false
+		formatter.numberStyle = .decimal
+		formatter.maximumFractionDigits = 0
+		formatter.positiveFormat = "# Hz"
+		formatter.negativeFormat = "-# Hz"
+		formatter.zeroSymbol = "0 Hz"
+		formatter.hasThousandSeparators = false
+		return formatter
+	}()
+	
+	
 	static var timecodeFormatter: BXTimeCodeFormatter =
 	{
 		let formatter = BXTimeCodeFormatter()
