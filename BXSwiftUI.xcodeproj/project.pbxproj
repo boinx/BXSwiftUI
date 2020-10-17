@@ -103,6 +103,7 @@
 		D0F3D30C24EC146300551A16 /* BXGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F3D30B24EC146200551A16 /* BXGrid.swift */; };
 		D0F9B3AE23E86F7C00AF0929 /* BXReducedOpacityWhenDisabledModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9B3AD23E86F7B00AF0929 /* BXReducedOpacityWhenDisabledModifier.swift */; };
 		D0F9B3B023E8710000AF0929 /* BXStrokedModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9B3AF23E8710000AF0929 /* BXStrokedModifier.swift */; };
+		D0FE7A16253ADF4800FD3305 /* BXSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FE7A15253ADF4800FD3305 /* BXSlider.swift */; };
 		D0FFC32F23E037B800BEA7A4 /* BXIntEnumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FFC32E23E037B800BEA7A4 /* BXIntEnumView.swift */; };
 		D0FFC33123E039F100BEA7A4 /* BXMenuItemSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FFC33023E039F100BEA7A4 /* BXMenuItemSpec.swift */; };
 /* End PBXBuildFile section */
@@ -207,6 +208,7 @@
 		D0F3D30B24EC146200551A16 /* BXGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXGrid.swift; sourceTree = "<group>"; };
 		D0F9B3AD23E86F7B00AF0929 /* BXReducedOpacityWhenDisabledModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXReducedOpacityWhenDisabledModifier.swift; sourceTree = "<group>"; };
 		D0F9B3AF23E8710000AF0929 /* BXStrokedModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXStrokedModifier.swift; sourceTree = "<group>"; };
+		D0FE7A15253ADF4800FD3305 /* BXSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSlider.swift; sourceTree = "<group>"; };
 		D0FFC32E23E037B800BEA7A4 /* BXIntEnumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIntEnumView.swift; sourceTree = "<group>"; };
 		D0FFC33023E039F100BEA7A4 /* BXMenuItemSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMenuItemSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -315,6 +317,7 @@
 				D075AA4723EB33AD009EF839 /* BXRangeSlider.swift */,
 				D0B5475323EC091A00046F96 /* BXJogwheel.swift */,
 				D02A63672402D88200C55416 /* BXCustomSlider.swift */,
+				D0FE7A15253ADF4800FD3305 /* BXSlider.swift */,
 				D02A636A2402E25500C55416 /* BXMultiValueSlider.swift */,
 				D002FE7723D22EC5002CF0A1 /* BXMultiValueNativeSlider.swift */,
 				D0C1249923DAE4A600DB3592 /* BXMultiValueColorSlider.swift */,
@@ -525,6 +528,7 @@
 				D08FB76F23E4920A00C1A193 /* BXTextField_macOS.swift in Sources */,
 				D002FE8623D22EC5002CF0A1 /* Formatter+Custom.swift in Sources */,
 				D02BC5A023DC339D00676CF3 /* BXCGRectEditView.swift in Sources */,
+				D0FE7A16253ADF4800FD3305 /* BXSlider.swift in Sources */,
 				D0D3AC5B252E1BFF00354795 /* BXEnclosingScrollViewProxy.swift in Sources */,
 				D062F3DD241BC16800837850 /* View+aligned.swift in Sources */,
 				D02B47A724115CAE0026BE35 /* View+DragWindow.swift in Sources */,
