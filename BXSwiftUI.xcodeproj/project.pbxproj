@@ -309,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				D077D5CB23E3104400C1D20F /* BXButton.swift */,
+				D0FE7A15253ADF4800FD3305 /* BXSlider.swift */,
 				D013E79B2423535400207D48 /* BXPicker.swift */,
 				D0AFEC90250B402C00449507 /* BXSegmentedControl.swift */,
 				D0ED327623E557B700B37B3D /* BXTextField.swift */,
@@ -319,7 +320,6 @@
 				D075AA4723EB33AD009EF839 /* BXRangeSlider.swift */,
 				D0B5475323EC091A00046F96 /* BXJogwheel.swift */,
 				D02A63672402D88200C55416 /* BXCustomSlider.swift */,
-				D0FE7A15253ADF4800FD3305 /* BXSlider.swift */,
 				D02A636A2402E25500C55416 /* BXMultiValueSlider.swift */,
 				D002FE7723D22EC5002CF0A1 /* BXMultiValueNativeSlider.swift */,
 				D0C1249923DAE4A600DB3592 /* BXMultiValueColorSlider.swift */,

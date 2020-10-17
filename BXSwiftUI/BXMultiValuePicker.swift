@@ -8,6 +8,7 @@
 
 
 import BXSwiftUtils
+import BXUIKit
 import SwiftUI
 import AppKit
 import Combine
@@ -15,6 +16,23 @@ import Combine
 
 //----------------------------------------------------------------------------------------------------------------------
 
+
+// Since we are dealing with multiple selection, a value can either be "none" (no selection), it can be
+// "unique", or in case of multiple selected values that are different, it will be "Multiple".
+
+fileprivate enum Values : Int
+{
+	case none = -2
+	case multiple = -1
+	case unique = 0
+	case initialDivider = -3
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+// MARK:-
 
 public struct BXMultiValuePicker : NSViewRepresentable
 {
@@ -27,6 +45,8 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	// Environment
 	
 	@Environment(\.isEnabled) private var isEnabled
+	@Environment(\.colorScheme) private var colorScheme
+	@Environment(\.bxColorTheme) private var bxColorTheme
 	@Environment(\.bxUndoManager) private var undoManager
 	@Environment(\.bxUndoName) private var undoName
 	
@@ -43,7 +63,13 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	
 	public func makeNSView(context:Context) -> NSPopUpButton
     {
+		let cell = BXPopUpButtonCell(textCell:"", pullsDown:false)
+		cell.fillColor = NSColor(bxColorTheme.fillColor(for:colorScheme, isEnabled:true, enhanceBy:0.5))
+		cell.strokeColor = NSColor(bxColorTheme.strokeColor())
+		cell.hiliteColor = NSColor(bxColorTheme.hiliteColor())
+		
         let popup = NSPopUpButton(frame:.zero)
+        popup.cell = cell
         popup.autoenablesItems = false
 		popup.target = context.coordinator
 		popup.action = #selector(Coordinator.updateValues(with:))
@@ -57,6 +83,8 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	
 	public func updateNSView(_ popup:NSPopUpButton, context:Context)
     {
+		popup.isBordered = colorScheme == .light
+		
 		DispatchQueue.main.async
 		{
 			self.selectItem(for:self.values.wrappedValue, in:popup)
@@ -160,15 +188,99 @@ public struct BXMultiValuePicker : NSViewRepresentable
 //----------------------------------------------------------------------------------------------------------------------
 
 
-// Since we are dealing with multiple selection, a value can either be "none" (no selection), it can be
-// "unique", or in case of multiple selected values that are different, it will be "Multiple".
+// MARK: -
 
-fileprivate enum Values : Int
+class BXPopUpButtonCell : NSPopUpButtonCell
 {
-	case none = -2
-	case multiple = -1
-	case unique = 0
-	case initialDivider = -3
+	var fillColor = NSColor(calibratedWhite:1.0, alpha:0.05)
+	var strokeColor = NSColor(calibratedWhite:1.0, alpha:0.65)
+	var hiliteColor = NSColor.controlAccentColor
+	
+	var isDarkScheme:Bool
+	{
+		let name = self.controlView?.effectiveAppearance.name ?? NSAppearance.Name.darkAqua
+		return name == NSAppearance.Name.darkAqua
+	}
+
+    override open func drawBorderAndBackground(withFrame cellFrame:NSRect, in controlView:NSView)
+    {
+		// For dark mode do custom drawing, because system drawing looks UGLY!
+		
+		if isDarkScheme
+		{
+			NSGraphicsContext.saveGraphicsState()
+			defer { NSGraphicsContext.restoreGraphicsState() }
+			
+			let frame = cellFrame //.insetBy(dx:0.5, dy:0.5)
+			var arrowBox = frame
+			arrowBox.size.width = 16
+			arrowBox.origin.x = frame.maxX - 16
+			
+			let path = NSBezierPath(roundedRect:frame, cornerRadius:4)
+			path.lineWidth = 1.0
+			path.setClip()
+			
+			// Background fill
+			
+			self.fillColor.set()
+			path.fill()
+			
+			// Blue hilite
+			
+			let isKeyWindow = true //controlView.window?.isKeyWindow ?? false
+			
+			if isEnabled && isKeyWindow
+			{
+				self.hiliteColor.set()
+				NSUIRectFill(arrowBox)
+			}
+			
+			// Arrows
+			
+			self.drawArrows(in:arrowBox)
+			
+			// Frame
+			
+			self.strokeColor.set()
+			path.stroke()
+		}
+		
+		// Light mode is okay, so we'll let the system do it
+		
+		else
+		{
+			super.drawBorderAndBackground(withFrame:cellFrame, in:controlView)
+		}
+    }
+	
+	func drawArrows(in rect:CGRect)
+	{
+		let l = CGFloat(3.5)
+		let d = CGFloat(2)
+		
+		let x1 = rect.midX - l
+		let x2 = rect.midX
+		let x3 = rect.midX + l
+		let y1 = rect.midY - d - l
+		let y2 = rect.midY - d
+		let y3 = rect.midY + d
+		let y4 = rect.midY + d + l
+		
+		let path = NSBezierPath()
+		path.lineWidth = 1.5
+		path.lineJoinStyle = .round
+		path.lineCapStyle = .round
+		
+		path.move(to:CGPoint(x1,y2))
+		path.line(to:CGPoint(x2,y1))
+		path.line(to:CGPoint(x3,y2))
+		path.move(to:CGPoint(x1,y3))
+		path.line(to:CGPoint(x2,y4))
+		path.line(to:CGPoint(x3,y3))
+		
+		NSColor.white.set()
+		path.stroke()
+	}
 }
 
 

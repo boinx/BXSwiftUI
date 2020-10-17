@@ -74,7 +74,6 @@ public struct BXMultiValueIntInspectorView : View
 				values:self.values,
 				initialAction:self.initialAction,
 				orderedItems:self.orderedItems)
-					.modifier(BXStrokedModifier(isEnabled:self.isEnabled))
 					//.reducedOpacityWhenDisabled()	// Not needed because AppKit already dimmed the control
 		}
 		
