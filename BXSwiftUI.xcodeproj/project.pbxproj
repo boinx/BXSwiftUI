@@ -104,6 +104,7 @@
 		D0F9B3AE23E86F7C00AF0929 /* BXReducedOpacityWhenDisabledModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9B3AD23E86F7B00AF0929 /* BXReducedOpacityWhenDisabledModifier.swift */; };
 		D0F9B3B023E8710000AF0929 /* BXStrokedModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9B3AF23E8710000AF0929 /* BXStrokedModifier.swift */; };
 		D0FE7A16253ADF4800FD3305 /* BXSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FE7A15253ADF4800FD3305 /* BXSlider.swift */; };
+		D0FE7A18253B085000FD3305 /* Color+Native.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FE7A17253B085000FD3305 /* Color+Native.swift */; };
 		D0FFC32F23E037B800BEA7A4 /* BXIntEnumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FFC32E23E037B800BEA7A4 /* BXIntEnumView.swift */; };
 		D0FFC33123E039F100BEA7A4 /* BXMenuItemSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FFC33023E039F100BEA7A4 /* BXMenuItemSpec.swift */; };
 /* End PBXBuildFile section */
@@ -209,6 +210,7 @@
 		D0F9B3AD23E86F7B00AF0929 /* BXReducedOpacityWhenDisabledModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXReducedOpacityWhenDisabledModifier.swift; sourceTree = "<group>"; };
 		D0F9B3AF23E8710000AF0929 /* BXStrokedModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXStrokedModifier.swift; sourceTree = "<group>"; };
 		D0FE7A15253ADF4800FD3305 /* BXSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSlider.swift; sourceTree = "<group>"; };
+		D0FE7A17253B085000FD3305 /* Color+Native.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Native.swift"; sourceTree = "<group>"; };
 		D0FFC32E23E037B800BEA7A4 /* BXIntEnumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIntEnumView.swift; sourceTree = "<group>"; };
 		D0FFC33023E039F100BEA7A4 /* BXMenuItemSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMenuItemSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -391,6 +393,7 @@
 				D061C945240F885400A9C9B2 /* NSView+Publishers.swift */,
 				D077D5D323E348B400C1D20F /* NSOpenPanel+Present.swift */,
 				D077D5CF23E32ED800C1D20F /* NSSavePanel+Present.swift */,
+				D0FE7A17253B085000FD3305 /* Color+Native.swift */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				D0AFEC93250BC2EF00449507 /* BXDisableWindowDragging.swift in Sources */,
 				D0A2400423DF5716004E9F31 /* BXOptionalView.swift in Sources */,
 				D0EED8FE23EEA13200E4243D /* BXColorTheme.swift in Sources */,
+				D0FE7A18253B085000FD3305 /* Color+Native.swift in Sources */,
 				D017FC8525093E5C003953B0 /* BXBorderlessWindow.swift in Sources */,
 				D0793E7E23D45D170069327F /* BXMultiValueBoolInspectorView.swift in Sources */,
 				D0AFEC91250B402C00449507 /* BXSegmentedControl.swift in Sources */,
