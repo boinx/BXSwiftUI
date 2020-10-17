@@ -28,6 +28,8 @@ public struct BXMultiValueNativeSlider : NSViewRepresentable
 	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.bxUndoManager) private var undoManager
 	@Environment(\.bxUndoName) private var undoName
+	@Environment(\.bxColorTheme) private var bxColorTheme
+	@Environment(\.colorScheme) private var colorScheme
 
 	// Init
 	
@@ -52,6 +54,8 @@ public struct BXMultiValueNativeSlider : NSViewRepresentable
 		slider.target = context.coordinator
 		slider.action = #selector(Coordinator.updateValues(with:))
 		
+		self.setColors(for:slider)
+		
 		if self.response.reversed
 		{
 			slider.minValue = self.response.modelToView(range.upperBound)
@@ -71,6 +75,8 @@ public struct BXMultiValueNativeSlider : NSViewRepresentable
 
 	public func updateNSView(_ slider:NSSlider, context:Context)
     {
+		self.setColors(for:slider)
+
 		(slider.cell as? NSMultiValueSliderCell)?.values = self.values.wrappedValue
 		
 		if let value = values.wrappedValue.first
@@ -85,6 +91,16 @@ public struct BXMultiValueNativeSlider : NSViewRepresentable
 		}
 		
 		slider.isEnabled = self.isEnabled && self.values.wrappedValue.count > 0
+    }
+    
+    
+    private func setColors(for slider:NSSlider)
+    {
+		guard let cell = slider.cell as? NSMultiValueSliderCell else { return }
+		cell.hiliteColor = NSColor(self.bxColorTheme.hiliteColor())
+		cell.fillColor = colorScheme == .dark ?
+			NSColor(calibratedWhite:1.0, alpha:0.15) :
+			NSColor(calibratedWhite:0.0, alpha:0.25)
     }
     
     
@@ -127,7 +143,11 @@ class NSMultiValueSliderCell : NSSliderCell
 	public var response:BXSliderResponse = .linear
 	public var undoManager:UndoManager?
 	public var undoName:String = ""
-
+	
+	public var fillColor:NSColor = NSColor(calibratedWhite:0.5, alpha:0.45)
+	public var strokeColor:NSColor = NSColor(calibratedWhite:0.5, alpha:0.15)
+	public var hiliteColor:NSColor = NSColor.controlAccentColor
+	
     override open func drawBar(inside rect:NSRect, flipped:Bool)
     {
 		let savedValue = self.doubleValue
@@ -135,7 +155,28 @@ class NSMultiValueSliderCell : NSSliderCell
 		
 		let value = self.values.max() ?? self.minValue
 		self.doubleValue = self.response.modelToView(value)
-		super.drawBar(inside:rect, flipped:flipped)
+		
+//		super.drawBar(inside:rect, flipped:flipped)
+
+		let frame = rect.insetBy(dx:0, dy:0.5)
+		NSGraphicsContext.saveGraphicsState()
+		let path = NSBezierPath(roundedRect:frame, cornerRadius:0.5*frame.height)
+		path.lineWidth = 1
+		path.setClip()
+		
+		self.fillColor.set()
+		path.fill()
+		
+		let fraction = self.doubleValue / self.maxValue
+		var rect1 = frame
+		rect1.size.width = CGFloat(fraction) * frame.width
+		self.hiliteColor.set()
+		__NSRectFillUsingOperation(rect1,.sourceOver)
+		
+//		self.strokeColor.set()
+//		path.stroke()
+		
+		NSGraphicsContext.restoreGraphicsState()
 	}
 
 	override func drawKnob()

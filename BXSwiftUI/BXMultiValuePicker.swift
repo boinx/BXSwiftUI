@@ -63,18 +63,15 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	
 	public func makeNSView(context:Context) -> NSPopUpButton
     {
-		let cell = BXPopUpButtonCell(textCell:"", pullsDown:false)
-		cell.fillColor = NSColor(bxColorTheme.fillColor(for:colorScheme, isEnabled:true, enhanceBy:0.5))
-		cell.strokeColor = NSColor(bxColorTheme.strokeColor())
-		cell.hiliteColor = NSColor(bxColorTheme.hiliteColor())
-		
         let popup = NSPopUpButton(frame:.zero)
-        popup.cell = cell
+        popup.cell = BXPopUpButtonCell(textCell:"", pullsDown:false)
+        popup.isBordered = false
         popup.autoenablesItems = false
 		popup.target = context.coordinator
 		popup.action = #selector(Coordinator.updateValues(with:))
 		
 		self.rebuildMenuItems(in:popup)
+		self.setColors(of:popup)
 		
 		return popup
     }
@@ -83,8 +80,10 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	
 	public func updateNSView(_ popup:NSPopUpButton, context:Context)
     {
-		popup.isBordered = colorScheme == .light
-		
+		popup.isBordered = false //colorScheme == .light
+
+		self.setColors(of:popup)
+
 		DispatchQueue.main.async
 		{
 			self.selectItem(for:self.values.wrappedValue, in:popup)
@@ -158,6 +157,14 @@ public struct BXMultiValuePicker : NSViewRepresentable
 		}
 	}
     
+	private func setColors(of popup:NSPopUpButton)
+    {
+		guard let cell = popup.cell as? BXPopUpButtonCell else { return }
+		cell.fillColor = NSColor(bxColorTheme.fillColor(for:colorScheme, enhanceBy: colorScheme == .dark ? 0.5 : 1.0))
+		cell.strokeColor = NSColor(bxColorTheme.strokeColor(for:colorScheme, enhanceBy: colorScheme == .dark ? 1.0 : 0.6))
+		cell.hiliteColor = NSColor(bxColorTheme.hiliteColor())
+    }
+
 	// The NSPopUpButton side has changed, so update the SwiftUI state
 	
 	public class Coordinator : NSObject
@@ -206,12 +213,19 @@ class BXPopUpButtonCell : NSPopUpButtonCell
     {
 		// For dark mode do custom drawing, because system drawing looks UGLY!
 		
-		if isDarkScheme
-		{
+//		if isDarkScheme
+//		{
 			NSGraphicsContext.saveGraphicsState()
 			defer { NSGraphicsContext.restoreGraphicsState() }
 			
-			let frame = cellFrame //.insetBy(dx:0.5, dy:0.5)
+			var frame = cellFrame //.insetBy(dx:0.5, dy:0.5)
+			
+			if self.controlSize == .small
+			{
+				let dy = 0.5 * (frame.height - 18.0)
+				frame = frame.insetBy(dx:0.0, dy:dy)
+			}
+			
 			var arrowBox = frame
 			arrowBox.size.width = 16
 			arrowBox.origin.x = frame.maxX - 16
@@ -243,14 +257,14 @@ class BXPopUpButtonCell : NSPopUpButtonCell
 			
 			self.strokeColor.set()
 			path.stroke()
-		}
-		
-		// Light mode is okay, so we'll let the system do it
-		
-		else
-		{
-			super.drawBorderAndBackground(withFrame:cellFrame, in:controlView)
-		}
+//		}
+//
+//		// Light mode is okay, so we'll let the system do it
+//
+//		else
+//		{
+//			super.drawBorderAndBackground(withFrame:cellFrame, in:controlView)
+//		}
     }
 	
 	func drawArrows(in rect:CGRect)
