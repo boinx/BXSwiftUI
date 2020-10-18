@@ -207,68 +207,76 @@ class BXPopUpButtonCell : NSPopUpButtonCell
 		return name == NSAppearance.Name.darkAqua
 	}
 
+
+	// According to https://stackoverflow.com/questions/51175125/nspopupbutton-nspopupbuttoncell-deprecated
+	// drawInterior must be implemented in order for drawBorderAndBackground to work properly. So do not
+	// remove this override!
+	
+	override open func drawInterior(withFrame cellFrame:NSRect, in controlView:NSView)
+	{
+		super.drawInterior(withFrame:cellFrame, in:controlView)
+	}
+	
     override open func drawBorderAndBackground(withFrame cellFrame:NSRect, in controlView:NSView)
     {
-		// For dark mode do custom drawing, because system drawing looks UGLY!
+		// Standard drawing
 		
-//		if isDarkScheme
-//		{
-			NSGraphicsContext.saveGraphicsState()
-			defer { NSGraphicsContext.restoreGraphicsState() }
-			
-			var frame = cellFrame //.insetBy(dx:0.5, dy:0.5)
-			
-			if self.controlSize == .small
-			{
-				let dy = 0.5 * (frame.height - 18.0)
-				frame = frame.insetBy(dx:0.0, dy:dy)
-			}
-			
-			var arrowBox = frame
-			arrowBox.size.width = 16
-			arrowBox.origin.x = frame.maxX - 16
-			
-			let path = NSBezierPath(roundedRect:frame, cornerRadius:4)
-			path.lineWidth = 1.0
-			path.setClip()
-			
-			// Background fill
-			
-			self.fillColor.set()
-			path.fill()
-			
-			// Blue hilite
-			
-			let isKeyWindow = true //controlView.window?.isKeyWindow ?? false
-			
-			if isEnabled && isKeyWindow
-			{
-				self.hiliteColor.set()
-				NSUIRectFill(arrowBox)
-			}
-			
-			// Arrows
-			
-			self.drawArrows(in:arrowBox)
-			
-			// Frame
-			
-			self.strokeColor.set()
-			path.stroke()
-//		}
-//
-//		// Light mode is okay, so we'll let the system do it
-//
-//		else
-//		{
-//			super.drawBorderAndBackground(withFrame:cellFrame, in:controlView)
-//		}
+//		super.drawBorderAndBackground(withFrame:cellFrame, in:controlView)
+		
+		// Custom drawing
+		
+		NSGraphicsContext.saveGraphicsState()
+		defer { NSGraphicsContext.restoreGraphicsState() }
+		
+		var frame = cellFrame //.insetBy(dx:0.5, dy:0.5)
+		
+		if self.controlSize == .regular
+		{
+			frame = cellFrame.insetBy(dx:3, dy:3).offsetBy(dx:0, dy:-1)
+		}
+		else if self.controlSize == .small
+		{
+			frame = cellFrame.insetBy(dx:4, dy:3).offsetBy(dx:0, dy:-1)
+		}
+		
+		var arrowBox = frame
+		arrowBox.size.width = 16
+		arrowBox.origin.x = frame.maxX - 16
+		
+		let path = NSBezierPath(roundedRect:frame, cornerRadius:3)
+		path.lineWidth = 1.0
+		path.setClip()
+		
+		// Background fill
+		
+		self.fillColor.set()
+		path.fill()
+		
+		// Blue hilite
+		
+		let isKeyWindow = true //controlView.window?.isKeyWindow ?? false
+		
+		if isEnabled && isKeyWindow
+		{
+			self.hiliteColor.set()
+			NSUIRectFill(arrowBox)
+		}
+		
+		// Arrows
+		
+		self.drawArrows(in:arrowBox)
+		
+		// Frame
+		
+		self.strokeColor.set()
+		path.stroke()
     }
 	
 	func drawArrows(in rect:CGRect)
 	{
-		let l = CGFloat(3.5)
-		let d = CGFloat(2)
+		let l:CGFloat = controlSize == .regular ? 3.5 : 2.5
+		let d:CGFloat = controlSize == .regular ? 2.0 : 1.5
+		let w:CGFloat = controlSize == .regular ? 1.5 : 1.0
 		
 		let x1 = rect.midX - l
 		let x2 = rect.midX
@@ -277,9 +285,9 @@ class BXPopUpButtonCell : NSPopUpButtonCell
 		let y2 = rect.midY - d
 		let y3 = rect.midY + d
 		let y4 = rect.midY + d + l
-		
+
 		let path = NSBezierPath()
-		path.lineWidth = 1.5
+		path.lineWidth = w
 		path.lineJoinStyle = .round
 		path.lineCapStyle = .round
 		
