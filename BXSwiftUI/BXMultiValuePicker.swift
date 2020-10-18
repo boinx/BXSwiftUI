@@ -160,8 +160,8 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	private func setColors(of popup:NSPopUpButton)
     {
 		guard let cell = popup.cell as? BXPopUpButtonCell else { return }
-		cell.fillColor = NSColor(bxColorTheme.fillColor(for:colorScheme, enhanceBy: colorScheme == .dark ? 0.5 : 1.0))
-		cell.strokeColor = NSColor(bxColorTheme.strokeColor(for:colorScheme, enhanceBy: colorScheme == .dark ? 1.0 : 0.6))
+		cell.fillColor = NSColor(bxColorTheme.fillColor(for:colorScheme, isEnabled:popup.isEnabled, enhanceBy: colorScheme == .dark ? 0.5 : 1.0))
+		cell.strokeColor = NSColor(bxColorTheme.strokeColor(for:colorScheme, isEnabled:popup.isEnabled, enhanceBy: colorScheme == .dark ? 1.0 : 0.6))
 		cell.hiliteColor = NSColor(bxColorTheme.hiliteColor())
     }
 
@@ -292,7 +292,8 @@ class BXPopUpButtonCell : NSPopUpButtonCell
 		path.line(to:CGPoint(x2,y4))
 		path.line(to:CGPoint(x3,y3))
 		
-		NSColor.white.set()
+		let alpha:CGFloat = isEnabled ? 1.0 : 0.33
+		NSColor(calibratedWhite:1.0, alpha:alpha).set()
 		path.stroke()
 	}
 }
