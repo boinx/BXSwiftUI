@@ -167,7 +167,7 @@ class NSMultiValueSliderCell : NSSliderCell
 		self.fillColor.set()
 		path.fill()
 		
-		let fraction = self.doubleValue / self.maxValue
+		let fraction = (doubleValue - minValue) / (maxValue - minValue)
 		var rect1 = frame
 		rect1.size.width = CGFloat(fraction) * frame.width
 		self.hiliteColor.set()
