@@ -64,8 +64,8 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	public func makeNSView(context:Context) -> NSPopUpButton
     {
         let popup = NSPopUpButton(frame:.zero)
-        popup.cell = BXPopUpButtonCell(textCell:"", pullsDown:false)
-        popup.isBordered = false
+        
+        popup.cell = BXPopUpButtonCell(textCell:popup.title, pullsDown:popup.pullsDown)
         popup.autoenablesItems = false
 		popup.target = context.coordinator
 		popup.action = #selector(Coordinator.updateValues(with:))
@@ -80,8 +80,6 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	
 	public func updateNSView(_ popup:NSPopUpButton, context:Context)
     {
-		popup.isBordered = false //colorScheme == .light
-
 		self.setColors(of:popup)
 
 		DispatchQueue.main.async
