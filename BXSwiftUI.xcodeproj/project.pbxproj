@@ -24,6 +24,7 @@
 		D017FC8525093E5C003953B0 /* BXBorderlessWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017FC8425093E5B003953B0 /* BXBorderlessWindow.swift */; };
 		D01A7A24252DB73300C3253D /* View+if.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01A7A23252DB73300C3253D /* View+if.swift */; };
 		D0257F9D23FA7A15000E1816 /* BXCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0257F9C23FA7A15000E1816 /* BXCircularSlider.swift */; };
+		D026F693253EC866006797C1 /* BXFadingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D026F690253EB76B006797C1 /* BXFadingScrollView.swift */; };
 		D029B91B23EC4FE80095DE37 /* View+Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D029B91A23EC4FE80095DE37 /* View+Popup.swift */; };
 		D02A6361240276EA00C55416 /* BXRoundButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02A6360240276EA00C55416 /* BXRoundButtonStyle.swift */; };
 		D02A63682402D88200C55416 /* BXCustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02A63672402D88200C55416 /* BXCustomSlider.swift */; };
@@ -131,6 +132,7 @@
 		D01A7A23252DB73300C3253D /* View+if.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+if.swift"; sourceTree = "<group>"; };
 		D0257F9A23FA7541000E1816 /* BXSliderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSliderStyle.swift; sourceTree = "<group>"; };
 		D0257F9C23FA7A15000E1816 /* BXCircularSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXCircularSlider.swift; sourceTree = "<group>"; };
+		D026F690253EB76B006797C1 /* BXFadingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXFadingScrollView.swift; sourceTree = "<group>"; };
 		D029B91A23EC4FE80095DE37 /* View+Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Popup.swift"; sourceTree = "<group>"; };
 		D02A6360240276EA00C55416 /* BXRoundButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXRoundButtonStyle.swift; sourceTree = "<group>"; };
 		D02A63672402D88200C55416 /* BXCustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXCustomSlider.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				D0A2400323DF5716004E9F31 /* BXOptionalView.swift */,
 				D039206B25381FED00544F33 /* BXMessageBox.swift */,
 				D06076C2252F009E003851D7 /* BXLazyVStack.swift */,
+				D026F690253EB76B006797C1 /* BXFadingScrollView.swift */,
 				D0D3AC5A252E1BFF00354795 /* BXEnclosingScrollViewProxy.swift */,
 				D0AFEC92250BC2EF00449507 /* BXDisableWindowDragging.swift */,
 				D01A7A23252DB73300C3253D /* View+if.swift */,
@@ -581,6 +584,7 @@
 				D04B14DD23DB4773001203FD /* BXStrokedCheckboxStyle.swift in Sources */,
 				D0793E8023D45D350069327F /* BXMultiValueDoubleInspectorView.swift in Sources */,
 				D0B5475423EC091A00046F96 /* BXJogwheel.swift in Sources */,
+				D026F693253EC866006797C1 /* BXFadingScrollView.swift in Sources */,
 				D0818FEA240AC66E002BDA9B /* NSViewController+Embed.swift in Sources */,
 				D0793E8223D45D5A0069327F /* BXMultiValueIntInspectorView.swift in Sources */,
 				D062F3D7241B747C00837850 /* Binding+rawValue.swift in Sources */,
