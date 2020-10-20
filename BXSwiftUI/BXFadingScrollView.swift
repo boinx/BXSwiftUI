@@ -28,7 +28,7 @@ public struct BXFadingScrollView<Content:View> : View
 	
 	// Init
 	
-	public init(margin:CGFloat = 40, @ViewBuilder content:@escaping ()->Content)
+	public init(margin:CGFloat = 30, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.margin = margin
 		self.content = content
