@@ -8,7 +8,6 @@
 
 
 import BXSwiftUtils
-import BXUIKit
 import SwiftUI
 import AppKit
 import Combine
@@ -243,10 +242,10 @@ class BXPopUpButtonCell : NSPopUpButtonCell
 		arrowBox.size.width = 16
 		arrowBox.origin.x = frame.maxX - 16
 		
-		let path = NSBezierPath(roundedRect:frame, cornerRadius:3)
+		let path = NSBezierPath(roundedRect:frame, xRadius:3, yRadius:3)
 		path.lineWidth = 1.0
 		path.setClip()
-		
+
 		// Background fill
 		
 		self.fillColor.set()
@@ -259,7 +258,7 @@ class BXPopUpButtonCell : NSPopUpButtonCell
 		if isEnabled && isKeyWindow
 		{
 			self.hiliteColor.set()
-			NSUIRectFill(arrowBox)
+			arrowBox.fill()
 		}
 		
 		// Arrows

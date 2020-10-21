@@ -159,8 +159,9 @@ class NSMultiValueSliderCell : NSSliderCell
 //		super.drawBar(inside:rect, flipped:flipped)
 
 		let frame = rect.insetBy(dx:0, dy:0.5)
+		let r = 0.5*frame.height
 		NSGraphicsContext.saveGraphicsState()
-		let path = NSBezierPath(roundedRect:frame, cornerRadius:0.5*frame.height)
+		let path = NSBezierPath(roundedRect:frame, xRadius:r, yRadius:r)
 		path.lineWidth = 1
 		path.setClip()
 		
