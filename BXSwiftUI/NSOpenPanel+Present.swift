@@ -45,6 +45,11 @@ public extension NSOpenPanel
 			panel.allowedFileTypes = allowedFileTypes
 		}
 
+		if let directoryURL = directoryURL
+		{
+			panel.directoryURL = directoryURL
+		}
+
 		let button = panel.runModal()
 		
 		if button == NSApplication.ModalResponse.OK
