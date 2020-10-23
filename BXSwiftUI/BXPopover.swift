@@ -21,6 +21,10 @@ public class BXPopover : NSPopover, NSPopoverDelegate
 	
 	public var autoClosesOnScrollingOutOfSight = true
 	
+	/// Set to true if the popover can be detached and moved around the screen
+	
+	public var allowDetaching = false
+	
 	/// Internal housekeeping
 	
 	private var observers:[Any] = []
@@ -132,6 +136,7 @@ public class BXPopover : NSPopover, NSPopoverDelegate
     {
         guard let clipView = notification.object as? NSClipView else { return }
 		guard let documentView = clipView.documentView else { return }
+		guard self.isDetached == false else { return }
 		
         let parentViewRect = documentView.convert(positioningRect, from:parentView)
         let visibleRect = clipView.documentVisibleRect
@@ -199,6 +204,11 @@ public class BXPopover : NSPopover, NSPopoverDelegate
         }
         
         return false
+    }
+
+    public func popoverShouldDetach(_ popover:NSPopover) -> Bool
+    {
+		return self.allowDetaching
     }
 
 
