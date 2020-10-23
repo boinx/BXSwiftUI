@@ -46,6 +46,7 @@
 		D039205A25372ECC00544F33 /* BXProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039205925372ECB00544F33 /* BXProgressBar.swift */; };
 		D039206C25381FED00544F33 /* BXMessageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039206B25381FED00544F33 /* BXMessageBox.swift */; };
 		D03A287223D705CA00673CB1 /* BXMultiValueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */; };
+		D048EE4625431D3100322C2E /* BXContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048EE4525431D3100322C2E /* BXContainerView.swift */; };
 		D0499C35241CC97A007463F0 /* Binding+multiValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0499C34241CC97A007463F0 /* Binding+multiValue.swift */; };
 		D0499C37241CDC82007463F0 /* Binding+attributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0499C36241CDC82007463F0 /* Binding+attributedString.swift */; };
 		D04B14DD23DB4773001203FD /* BXStrokedCheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B14DC23DB4773001203FD /* BXStrokedCheckboxStyle.swift */; };
@@ -153,6 +154,7 @@
 		D039205925372ECB00544F33 /* BXProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXProgressBar.swift; sourceTree = "<group>"; };
 		D039206B25381FED00544F33 /* BXMessageBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXMessageBox.swift; sourceTree = "<group>"; };
 		D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueButton.swift; sourceTree = "<group>"; };
+		D048EE4525431D3100322C2E /* BXContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXContainerView.swift; sourceTree = "<group>"; };
 		D0499C34241CC97A007463F0 /* Binding+multiValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+multiValue.swift"; sourceTree = "<group>"; };
 		D0499C36241CDC82007463F0 /* Binding+attributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+attributedString.swift"; sourceTree = "<group>"; };
 		D04B14DC23DB4773001203FD /* BXStrokedCheckboxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXStrokedCheckboxStyle.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 			children = (
 				D0E2429523D8827D00145CEA /* BXDisclosureView.swift */,
 				D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */,
+				D048EE4525431D3100322C2E /* BXContainerView.swift */,
 				D062F3DA241B847D00837850 /* BXLabelGroup.swift */,
 				D002FE7523D22EC5002CF0A1 /* BXLabelView.swift */,
 				D0F3D30B24EC146200551A16 /* BXGrid.swift */,
@@ -585,6 +588,7 @@
 				D0793E8023D45D350069327F /* BXMultiValueDoubleInspectorView.swift in Sources */,
 				D0B5475423EC091A00046F96 /* BXJogwheel.swift in Sources */,
 				D026F693253EC866006797C1 /* BXFadingScrollView.swift in Sources */,
+				D048EE4625431D3100322C2E /* BXContainerView.swift in Sources */,
 				D0818FEA240AC66E002BDA9B /* NSViewController+Embed.swift in Sources */,
 				D0793E8223D45D5A0069327F /* BXMultiValueIntInspectorView.swift in Sources */,
 				D062F3D7241B747C00837850 /* Binding+rawValue.swift in Sources */,
