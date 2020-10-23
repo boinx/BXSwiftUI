@@ -146,7 +146,7 @@ public extension EnvironmentValues
 
 public extension View
 {
-	func setBXColorTheme(_ colorTheme:BXColorTheme) -> some View
+	func bxColorTheme(_ colorTheme:BXColorTheme) -> some View
     {
         self.environment(\.bxColorTheme, colorTheme)
     }
