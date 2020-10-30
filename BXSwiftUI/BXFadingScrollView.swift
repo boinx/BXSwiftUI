@@ -18,18 +18,20 @@ public struct BXFadingScrollView<Content:View> : View
 {
 	// Params
 	
+	let axis:Axis.Set
 	let margin:CGFloat
 	let content:()->Content
 	
 	// State
 	
-	@State private var topAlpha = 1.0
-	@State private var bottomAlpha = 1.0
+	@State private var alpha1 = 1.0
+	@State private var alpha2 = 1.0
 	
 	// Init
 	
-	public init(margin:CGFloat = 30, @ViewBuilder content:@escaping ()->Content)
+	public init(_ axis:Axis.Set = .vertical, margin:CGFloat = 30, @ViewBuilder content:@escaping ()->Content)
 	{
+		self.axis = axis
 		self.margin = margin
 		self.content = content
 	}
@@ -42,7 +44,7 @@ public struct BXFadingScrollView<Content:View> : View
 		{
 			outer in
 			
-			ScrollView
+			ScrollView(self.axis)
 			{
 				self.content()
 				
@@ -58,7 +60,7 @@ public struct BXFadingScrollView<Content:View> : View
 			// Apply a gradient mask to ScrollView
 			
 			.mask(
-				self.verticalGradient()
+				self.gradient()
 			)
 			
 			// Update the gradient mask upon scrolling
@@ -73,39 +75,65 @@ public struct BXFadingScrollView<Content:View> : View
 		}
 	}
 
+
 	/// Called when the user scrolled. Recalculate the top and bottom alpha levels.
 	
 	func didScroll(_ innerBounds:CGRect,_ outerBounds:CGRect)
 	{
-		let H = innerBounds.height
-		let h = outerBounds.height
-		let a1 = 1.0 - (innerBounds.origin.y + H-h - outerBounds.origin.y).clipped(to:0...margin) / margin
-		let a2 = 1.0 - (outerBounds.origin.y - innerBounds.origin.y).clipped(to:0...margin) / margin
+		if axis == .vertical
+		{
+			let H = innerBounds.height
+			let h = outerBounds.height
+
+			let a1 = 1.0 - (innerBounds.origin.y + H-h - outerBounds.origin.y).clipped(to:0...margin) / margin
+			let a2 = 1.0 - (outerBounds.origin.y - innerBounds.origin.y).clipped(to:0...margin) / margin
+			
+			self.alpha1 = Double(a1)
+			self.alpha2 = Double(a2)
+		}
+		else
+		{
+			let W = innerBounds.width
+			let w = outerBounds.width
+
+			let a1 = 1.0 - (outerBounds.origin.x - innerBounds.origin.x).clipped(to:0...margin) / margin
+			let a2 = 1.0 - (innerBounds.origin.x - outerBounds.origin.x + W-w).clipped(to:0...margin) / margin
+			
+			self.alpha1 = Double(a1)
+			self.alpha2 = Double(a2)
+		}
 		
-		self.topAlpha = Double(a1)
-		self.bottomAlpha = Double(a2)
 //		print("outerBounds=\(outerBounds)   innerBounds=\(innerBounds)    alpha1=\(alpha1)    alpha2=\(alpha2)")
 	}
 
 	/// Rebuilds the mask gradient
 	
-	func verticalGradient() -> some View
+	func gradient() -> some View
 	{
 		var colors:[Color] = []
 		
-		colors += Color(white:1.0, opacity:topAlpha)
+		colors += Color(white:1.0, opacity:alpha1)
 		colors += [.white,.white]
-		colors += Color(white:1.0, opacity:bottomAlpha)
-				
-		return LinearGradient(
-			gradient:Gradient(colors:colors),
-			startPoint:.top,
-			endPoint:.bottom)
+		colors += Color(white:1.0, opacity:alpha2)
+		
+		if axis == .vertical
+		{
+			return LinearGradient(
+				gradient:Gradient(colors:colors),
+				startPoint:.top,
+				endPoint:.bottom)
+		}
+		else
+		{
+			return LinearGradient(
+				gradient:Gradient(colors:colors),
+				startPoint:.leading,
+				endPoint:.trailing)
+		}
 	}
-	
 }
 
-
+	
 //----------------------------------------------------------------------------------------------------------------------
 
 
