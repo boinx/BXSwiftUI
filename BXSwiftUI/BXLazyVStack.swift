@@ -77,6 +77,70 @@ public struct BXLazyVStack<Content:View> : View
 //----------------------------------------------------------------------------------------------------------------------
 
 
+/// BXLazyHStack is similar to HStack but instead of creating ALL children at once it only creates those that are currently visible. Children that are not visible
+/// due to being scrolled out of sight will be represented by a Spacer of specified size to make sure that the enclosing ScrollView still behaves correctly.
+///
+///     BXLazyHStack
+///		{
+///			ForEach(...)
+///			{
+///				SomeView()
+///					.lazy(height:20)
+///			}
+///		}
+
+public struct BXLazyHStack<Content:View> : View
+{
+	// Params
+	
+	private var alignment: VerticalAlignment
+	private var spacing: CGFloat?
+	private var content:()->Content
+
+	// Init
+	
+	public init(alignment: VerticalAlignment = .center, spacing: CGFloat? = nil, @ViewBuilder content:@escaping ()->Content)
+	{
+		self.alignment = alignment
+		self.spacing = spacing
+		self.content = content
+	}
+	
+	// Build VStack
+	
+	public var body : some View
+	{
+		BXEnclosingScrollViewProxy
+		{
+			visibleRect in
+
+			HStack(alignment:self.alignment, spacing:self.spacing)
+			{
+				self.content()
+			}
+			.environment(\.bxVisibleRect, visibleRect)
+		}
+		.background(
+			
+			GeometryReader
+			{
+				Color.clear.environment(\.bxReferenceRect, self.referenceRect(for:$0))
+			}
+		)
+		.coordinateSpace(name:"BXLazyVStack")
+	}
+
+	private func referenceRect(for geometry:GeometryProxy) -> CGRect
+	{
+		let rect = geometry.frame(in:.local)
+		return rect
+	}
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
 // MARK: -
 
 /// BXLazyCell wraps its content and replaces it with a Spacer of specified size if its is currently being scrolled out of sight.
