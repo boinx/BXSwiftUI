@@ -63,7 +63,7 @@ public struct BXLazyVStack<Content:View> : View
 				Color.clear.environment(\.bxReferenceRect, self.referenceRect(for:$0))
 			}
 		)
-		.coordinateSpace(name:"BXLazyVStack")
+		.coordinateSpace(name:"BXLazy")
 	}
 
 	private func referenceRect(for geometry:GeometryProxy) -> CGRect
@@ -85,7 +85,7 @@ public struct BXLazyVStack<Content:View> : View
 ///			ForEach(...)
 ///			{
 ///				SomeView()
-///					.lazy(height:20)
+///					.lazy(width:100)
 ///			}
 ///		}
 
@@ -127,7 +127,7 @@ public struct BXLazyHStack<Content:View> : View
 				Color.clear.environment(\.bxReferenceRect, self.referenceRect(for:$0))
 			}
 		)
-		.coordinateSpace(name:"BXLazyVStack")
+		.coordinateSpace(name:"BXLazy")
 	}
 
 	private func referenceRect(for geometry:GeometryProxy) -> CGRect
@@ -193,7 +193,7 @@ public struct BXLazyCell<Content:View> : View
 	
 	private func isVisible(_ geometry:GeometryProxy) -> Bool
 	{
-		let rect = geometry.frame(in:.named("BXLazyVStack")).offsetBy(dx:0, dy:1210)
+		let rect = geometry.frame(in:.named("BXLazy")).offsetBy(dx:0, dy:1210)
 		let isVisible = NSIntersectsRect(rect,bxVisibleRect)
 		print("BXLazyCell.isVisible = \(isVisible)   rect=\(rect)    bxVisibleRect=\(bxVisibleRect)     bxReferenceRect=\(bxReferenceRect)")
 		return isVisible
