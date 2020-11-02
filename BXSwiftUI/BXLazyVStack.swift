@@ -54,16 +54,16 @@ public struct BXLazyVStack<Content:View> : View
 			{
 				self.content()
 			}
+			.coordinateSpace(name:"BXLazyStack")
 			.environment(\.bxVisibleRect, visibleRect)
 		}
-		.background(
-			
-			GeometryReader
-			{
-				Color.clear.environment(\.bxReferenceRect, self.referenceRect(for:$0))
-			}
-		)
-		.coordinateSpace(name:"BXLazy")
+//		.background(
+//			
+//			GeometryReader
+//			{
+//				Color.clear.environment(\.bxReferenceRect, self.referenceRect(for:$0))
+//			}
+//		)
 	}
 
 	private func referenceRect(for geometry:GeometryProxy) -> CGRect
@@ -118,16 +118,16 @@ public struct BXLazyHStack<Content:View> : View
 			{
 				self.content()
 			}
+			.coordinateSpace(name:"BXLazyStack")
 			.environment(\.bxVisibleRect, visibleRect)
 		}
-		.background(
-			
-			GeometryReader
-			{
-				Color.clear.environment(\.bxReferenceRect, self.referenceRect(for:$0))
-			}
-		)
-		.coordinateSpace(name:"BXLazy")
+//		.background(
+//
+//			GeometryReader
+//			{
+//				Color.clear.environment(\.bxReferenceRect, self.referenceRect(for:$0))
+//			}
+//		)
 	}
 
 	private func referenceRect(for geometry:GeometryProxy) -> CGRect
@@ -156,7 +156,7 @@ public struct BXLazyCell<Content:View> : View
 	// Environment
 	
 	@Environment(\.bxVisibleRect) private var bxVisibleRect
-	@Environment(\.bxReferenceRect) private var bxReferenceRect
+//	@Environment(\.bxReferenceRect) private var bxReferenceRect
 
 	// Init
 	
@@ -183,19 +183,20 @@ public struct BXLazyCell<Content:View> : View
 				}
 				else
 				{
-					Spacer().frame(width:self.width, height:self.height)
+					Spacer()
 				}
 			}
 		}
+		.frame(width:self.width, height:self.height)
 	}
 	
 	/// Returns true if this cell is currently visible
 	
 	private func isVisible(_ geometry:GeometryProxy) -> Bool
 	{
-		let rect = geometry.frame(in:.named("BXLazy")).offsetBy(dx:0, dy:1210)
+		let rect = geometry.frame(in:.named("BXLazyStack"))
 		let isVisible = NSIntersectsRect(rect,bxVisibleRect)
-		print("BXLazyCell.isVisible = \(isVisible)   rect=\(rect)    bxVisibleRect=\(bxVisibleRect)     bxReferenceRect=\(bxReferenceRect)")
+//		print("BXLazyCell.isVisible = \(isVisible)   rect=\(rect)    bxVisibleRect=\(bxVisibleRect)")
 		return isVisible
 	}
 }
@@ -240,19 +241,19 @@ struct BXVisibleRectKey : EnvironmentKey
 
 /// Injects the visibleRect into the environment
 
-public extension EnvironmentValues
-{
-    var bxReferenceRect:CGRect
-    {
-        set { self[BXReferenceRectKey.self] = newValue }
-        get { self[BXReferenceRectKey.self] }
-    }
-}
-
-struct BXReferenceRectKey : EnvironmentKey
-{
-    static let defaultValue:CGRect = .zero
-}
+//public extension EnvironmentValues
+//{
+//    var bxReferenceRect:CGRect
+//    {
+//        set { self[BXReferenceRectKey.self] = newValue }
+//        get { self[BXReferenceRectKey.self] }
+//    }
+//}
+//
+//struct BXReferenceRectKey : EnvironmentKey
+//{
+//    static let defaultValue:CGRect = .zero
+//}
 
 
 //----------------------------------------------------------------------------------------------------------------------
