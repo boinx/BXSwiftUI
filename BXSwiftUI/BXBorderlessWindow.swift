@@ -14,7 +14,7 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public class BXBorderlessWindow : NSWindow, ObservableObject
+open class BXBorderlessWindow : NSWindow, ObservableObject
 {
     /// Creates a NSWindow with the specified SwiftUI view as contents
     
