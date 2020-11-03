@@ -28,8 +28,8 @@ public extension View
 	{
 		HStack
 		{
-			self
 			Spacer()
+			self
 		}
 	}
 	
