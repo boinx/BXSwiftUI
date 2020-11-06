@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D002FE6C23D22945002CF0A1 /* BXSwiftUI.h in Headers */ = {isa = PBXBuildFile; fileRef = D002FE6A23D22945002CF0A1 /* BXSwiftUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D002FE7323D22A06002CF0A1 /* BXSwiftUI.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D002FE7223D22A06002CF0A1 /* BXSwiftUI.xcconfig */; };
 		D002FE7F23D22EC5002CF0A1 /* BXLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7523D22EC5002CF0A1 /* BXLabelView.swift */; };
 		D002FE8023D22EC5002CF0A1 /* BXMultiValuePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7623D22EC5002CF0A1 /* BXMultiValuePicker.swift */; };
 		D002FE8123D22EC5002CF0A1 /* BXMultiValueNativeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7723D22EC5002CF0A1 /* BXMultiValueNativeSlider.swift */; };
@@ -502,7 +501,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D002FE7323D22A06002CF0A1 /* BXSwiftUI.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
