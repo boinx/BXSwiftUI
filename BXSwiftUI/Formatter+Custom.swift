@@ -251,11 +251,10 @@ public class BXTimeCodeFormatter : NumberFormatter
 		
 		for part in parts.reversed()
 		{
-			if let v = part.replacingOccurrences(of:",", with:".").doubleValue
-			{
-				value += v * multiplier
-				multiplier *= 60.0
-			}
+			let str = part.replacingOccurrences(of:",", with:".") as NSString
+			let v = str.doubleValue
+			value += v * multiplier
+			multiplier *= 60.0
 		}
 		
 		object?.pointee = NSNumber(value:value)

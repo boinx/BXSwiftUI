@@ -8,6 +8,7 @@
 
 
 import SwiftUI
+import BXSwiftUtils
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -70,7 +71,7 @@ public struct BXGrid<Content> : View where Content:View
 
 	// State
 	
-	@State private var columnWidths = Array<CGFloat>()
+	@State private var columnWidths:[CGFloat] = []
 	
 	// Init
 	
@@ -81,6 +82,11 @@ public struct BXGrid<Content> : View where Content:View
 		self.spacing = spacing
 		self.content = content
 		
+		self.setDefaultWidths(columnCount:columnCount, defaultColumnWidth:defaultColumnWidth)	// Separated into its own function to avoid a Swift compiler segmentation fault on Xcode 12 - do not eliminate this for now!
+	}
+	
+	func setDefaultWidths(columnCount:Int, defaultColumnWidth:CGFloat)
+	{
 		self.columnWidths = [CGFloat](repeating:defaultColumnWidth, count:columnCount)
 	}
 	
@@ -133,24 +139,24 @@ public struct BXGrid<Content> : View where Content:View
 public struct BXGridRow<Content> : View where Content:View
 {
 	// Params
-	
+
 	private var alignment:VerticalAlignment
 	private var content:()->Content
-	
+
 	// Environment
 
 	@Environment(\.bxGridSpacing) private var bxGridSpacing
 
 	// Init
-	
+
 	public init(alignment:VerticalAlignment = .firstTextBaseline, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.alignment = alignment
 		self.content = content
 	}
-	
+
 	// Build View
-	
+
 	public var body: some View
 	{
 		HStack(alignment:self.alignment, spacing: bxGridSpacing.width)
@@ -172,55 +178,55 @@ public struct BXGridRow<Content> : View where Content:View
 public struct BXGridCell<Content> : View where Content:View
 {
 	// Params
-	
+
 	private var columns:ClosedRange<Int>
 	private var alignment:Alignment
 	private var content:()->Content
 
 	// Environment
-	
+
 	@Environment(\.bxGridID) private var bxGridID
 	@Environment(\.bxGridColumnWidths) private var bxGridColumnWidths
 	@Environment(\.bxGridSpacing) private var bxGridSpacing
 
 	// Init
-	
+
 	public init(_ column:Int, alignment:Alignment = .leading, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.columns = column ... column
 		self.alignment = alignment
 		self.content = content
 	}
-	
+
 	public init(_ columns:ClosedRange<Int>, alignment:Alignment = .leading, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.columns = columns
 		self.alignment = alignment
 		self.content = content
 	}
-	
+
 	// Build View
-	
+
 	public var body: some View
 	{
 		self.content()
-		
+
 			// Measure the required width for this column content
-			
+
 			.measureRequiredWidth(gridID:self.bxGridID, columns:self.columns)
 
 			// Resize to column width that was calculated by the enclosing BXGrid
-			
+
 			.frame(width:self.columnWidth, alignment:self.alignment)
 	}
-	
+
 	// Returns the width for the current column
-	
+
 	private var columnWidth:CGFloat
 	{
 		var width:CGFloat = 0.0
 		let n = self.columns.count
-		
+
 		for i in self.columns
 		{
 			if i < bxGridColumnWidths.count
@@ -232,7 +238,7 @@ public struct BXGridCell<Content> : View where Content:View
 				width += 10000
 			}
 		}
-		
+
 		if n > 1
 		{
 			width += CGFloat(n-1) * bxGridSpacing.width
