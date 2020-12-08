@@ -91,6 +91,16 @@ public extension View
 			BXKeyEventView(onKeyDown:{_ in}, onKeyUp:action)
 		)
 	}
+	
+	/// Adds a keyDown/Up handlers to a view
+	
+	func onKey(down:@escaping (NSEvent)->Void, up:@escaping (NSEvent)->Void) -> some View
+	{
+		return self.background(
+			BXKeyEventView(onKeyDown:down, onKeyUp:up)
+		)
+	}
+
 }
 
 
