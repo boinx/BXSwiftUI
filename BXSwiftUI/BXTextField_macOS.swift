@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  BXTextField.swift
+//  BXTextField_macOS.swift
 //	SwiftUI wrapper for NSTextField with custom behavior
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
