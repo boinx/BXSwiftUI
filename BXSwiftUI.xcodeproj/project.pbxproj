@@ -99,6 +99,8 @@
 		D0D3AC5B252E1BFF00354795 /* BXEnclosingScrollViewProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D3AC5A252E1BFF00354795 /* BXEnclosingScrollViewProxy.swift */; };
 		D0E2429623D8827D00145CEA /* BXDisclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2429523D8827D00145CEA /* BXDisclosureView.swift */; };
 		D0E5EBA424E6D2C9009E1385 /* BXPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E5EBA324E6D2C9009E1385 /* BXPanel.swift */; };
+		D0EBA337257FC1A7007D9ACA /* BXSearchField_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EBA336257FC1A7007D9ACA /* BXSearchField_macOS.swift */; };
+		D0EBA33B257FC505007D9ACA /* BXSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EBA33A257FC505007D9ACA /* BXSearchField.swift */; };
 		D0ED327723E557B700B37B3D /* BXTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED327623E557B700B37B3D /* BXTextField.swift */; };
 		D0EED8FE23EEA13200E4243D /* BXColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0083BE623EDC8490097C7A1 /* BXColorTheme.swift */; };
 		D0F3D30C24EC146300551A16 /* BXGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F3D30B24EC146200551A16 /* BXGrid.swift */; };
@@ -208,6 +210,8 @@
 		D0E2429523D8827D00145CEA /* BXDisclosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXDisclosureView.swift; sourceTree = "<group>"; };
 		D0E5EBA324E6D2C9009E1385 /* BXPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXPanel.swift; sourceTree = "<group>"; };
 		D0EBA10923D9881D00E82E59 /* BXTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXTextView.swift; sourceTree = "<group>"; };
+		D0EBA336257FC1A7007D9ACA /* BXSearchField_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSearchField_macOS.swift; sourceTree = "<group>"; };
+		D0EBA33A257FC505007D9ACA /* BXSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSearchField.swift; sourceTree = "<group>"; };
 		D0ED327623E557B700B37B3D /* BXTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXTextField.swift; sourceTree = "<group>"; };
 		D0F3D30B24EC146200551A16 /* BXGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXGrid.swift; sourceTree = "<group>"; };
 		D0F9B3AD23E86F7B00AF0929 /* BXReducedOpacityWhenDisabledModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXReducedOpacityWhenDisabledModifier.swift; sourceTree = "<group>"; };
@@ -317,6 +321,8 @@
 				D0AFEC90250B402C00449507 /* BXSegmentedControl.swift */,
 				D0ED327623E557B700B37B3D /* BXTextField.swift */,
 				D08FB76E23E4920A00C1A193 /* BXTextField_macOS.swift */,
+				D0EBA33A257FC505007D9ACA /* BXSearchField.swift */,
+				D0EBA336257FC1A7007D9ACA /* BXSearchField_macOS.swift */,
 				D0EBA10923D9881D00E82E59 /* BXTextView.swift */,
 				D08FB76C23E48D2400C1A193 /* BXTextView_macOS.swift */,
 				D0257F9C23FA7A15000E1816 /* BXCircularSlider.swift */,
@@ -561,6 +567,7 @@
 				D017FC8525093E5C003953B0 /* BXBorderlessWindow.swift in Sources */,
 				D0793E7E23D45D170069327F /* BXMultiValueBoolInspectorView.swift in Sources */,
 				D0AFEC91250B402C00449507 /* BXSegmentedControl.swift in Sources */,
+				D0EBA33B257FC505007D9ACA /* BXSearchField.swift in Sources */,
 				D002FE8523D22EC5002CF0A1 /* TextAlignment+AppKit.swift in Sources */,
 				D077D5D423E348B400C1D20F /* NSOpenPanel+Present.swift in Sources */,
 				D01A7A24252DB73300C3253D /* View+if.swift in Sources */,
@@ -586,6 +593,7 @@
 				D0793E8023D45D350069327F /* BXMultiValueDoubleInspectorView.swift in Sources */,
 				D0B5475423EC091A00046F96 /* BXJogwheel.swift in Sources */,
 				D026F693253EC866006797C1 /* BXFadingScrollView.swift in Sources */,
+				D0EBA337257FC1A7007D9ACA /* BXSearchField_macOS.swift in Sources */,
 				D048EE4625431D3100322C2E /* BXContainerView.swift in Sources */,
 				D0818FEA240AC66E002BDA9B /* NSViewController+Embed.swift in Sources */,
 				D0793E8223D45D5A0069327F /* BXMultiValueIntInspectorView.swift in Sources */,
