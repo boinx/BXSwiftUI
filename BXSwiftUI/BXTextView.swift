@@ -78,7 +78,7 @@ public struct BXTextView : View
 			case .small: 		return 11.0
 			case .mini: 		return 8.0
 			
-			@unknown default:	return 15.0
+			default:	return 15.0
 		}
 	}
 }

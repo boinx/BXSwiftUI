@@ -37,7 +37,7 @@ public struct BXMultiValueIntInspectorView : View
 			case .regular: 		return 18
 			case .small: 		return 18
 			case .mini: 		return 18
-			@unknown default: 	return 18
+			default: 	return 18
 		}
 	}
 	

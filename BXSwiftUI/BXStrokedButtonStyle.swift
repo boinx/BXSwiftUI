@@ -67,7 +67,7 @@ fileprivate struct _BXStrokedButton : View
 			case .small: 	return EdgeInsets(top:1, leading:12, bottom:1, trailing:12)
 			case .mini: 	return EdgeInsets(top:1, leading:12, bottom:1, trailing:12)
 			
-			@unknown default: return EdgeInsets(top:2, leading:12, bottom:3, trailing:12)
+			default: return EdgeInsets(top:2, leading:12, bottom:3, trailing:12)
 		}
 	}
 	

@@ -59,7 +59,7 @@ fileprivate struct _BXStrokedCheckbox : View
 			case .small: 		return 12.0
 			case .mini: 		return 9.0
 			
-			@unknown default:	return 15.0
+			default:	return 15.0
 		}
 	}
 
@@ -71,7 +71,7 @@ fileprivate struct _BXStrokedCheckbox : View
 			case .small: 		return 2.0
 			case .mini: 		return 2.0
 			
-			@unknown default:	return 3.0
+			default:	return 3.0
 		}
 	}
 
@@ -83,7 +83,7 @@ fileprivate struct _BXStrokedCheckbox : View
 			case .small: 		return 0.0
 			case .mini: 		return 0.0
 			
-			@unknown default:	return 0.5
+			default:	return 0.5
 		}
 	}
 
@@ -95,7 +95,7 @@ fileprivate struct _BXStrokedCheckbox : View
 			case .small: 		return 6
 			case .mini: 		return 4
 			
-			@unknown default:	return 8
+			default:	return 8
 		}
 	}
 

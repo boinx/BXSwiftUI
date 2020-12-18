@@ -53,7 +53,7 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 			case .regular: 		return .regular
 			case .small: 		return .small
 			case .mini: 		return .mini
-			@unknown default: 	return .regular
+			default: 	return .regular
 		}
 	}
 

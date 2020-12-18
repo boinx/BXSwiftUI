@@ -55,7 +55,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 			case .regular: 		return .regular
 			case .small: 		return .small
 			case .mini: 		return .mini
-			@unknown default: 	return .regular
+			default: 			return .regular
 		}
 	}
 

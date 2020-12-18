@@ -40,7 +40,7 @@ public struct BXMultiValueDoubleInspectorView: View
 			case .regular: 		return 25
 			case .small: 		return 25
 			case .mini: 		return 25
-			@unknown default: 	return 25
+			default: 	return 25
 		}
 	}
 	

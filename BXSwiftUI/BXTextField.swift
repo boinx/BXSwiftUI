@@ -61,7 +61,7 @@ public struct  BXTextField<T> : View
 //					self.height = 16.0
 					self.baseline = 11.0
 
-				@unknown default:
+				default:
 //					self.height = 21.0
 					self.baseline = 15.0
 			}

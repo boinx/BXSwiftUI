@@ -32,10 +32,11 @@ public struct BXMultiValueStringInspectorView : View
 	{
 		switch controlSize
 		{
+//			case .large: 		return 14
 			case .regular: 		return 14
 			case .small: 		return 14
 			case .mini: 		return 14
-			@unknown default: 	return 14
+			default: 			return 14
 		}
 	}
 	// Init
