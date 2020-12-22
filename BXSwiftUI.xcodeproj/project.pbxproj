@@ -42,6 +42,7 @@
 		D02BC5A423DC390500676CF3 /* BXArrayEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC5A323DC390400676CF3 /* BXArrayEditView.swift */; };
 		D02BC5AC23DC627900676CF3 /* BXBoolEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC5AB23DC627800676CF3 /* BXBoolEditView.swift */; };
 		D02ED7C323E96FB2000572FE /* View+Undo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02ED7C223E96FB2000572FE /* View+Undo.swift */; };
+		D03671E725920E190027FE11 /* BXButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03671E625920E190027FE11 /* BXButtonGroup.swift */; };
 		D039205A25372ECC00544F33 /* BXProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039205925372ECB00544F33 /* BXProgressBar.swift */; };
 		D039206C25381FED00544F33 /* BXMessageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039206B25381FED00544F33 /* BXMessageBox.swift */; };
 		D03A287223D705CA00673CB1 /* BXMultiValueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */; };
@@ -152,6 +153,7 @@
 		D02BC5A323DC390400676CF3 /* BXArrayEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXArrayEditView.swift; sourceTree = "<group>"; };
 		D02BC5AB23DC627800676CF3 /* BXBoolEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXBoolEditView.swift; sourceTree = "<group>"; };
 		D02ED7C223E96FB2000572FE /* View+Undo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Undo.swift"; sourceTree = "<group>"; };
+		D03671E625920E190027FE11 /* BXButtonGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXButtonGroup.swift; sourceTree = "<group>"; };
 		D039205925372ECB00544F33 /* BXProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXProgressBar.swift; sourceTree = "<group>"; };
 		D039206B25381FED00544F33 /* BXMessageBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXMessageBox.swift; sourceTree = "<group>"; };
 		D03A287123D705CA00673CB1 /* BXMultiValueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXMultiValueButton.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				D0E2429523D8827D00145CEA /* BXDisclosureView.swift */,
 				D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */,
 				D048EE4525431D3100322C2E /* BXContainerView.swift */,
+				D03671E625920E190027FE11 /* BXButtonGroup.swift */,
 				D062F3DA241B847D00837850 /* BXLabelGroup.swift */,
 				D002FE7523D22EC5002CF0A1 /* BXLabelView.swift */,
 				D0F3D30B24EC146200551A16 /* BXGrid.swift */,
@@ -523,6 +526,7 @@
 				D0499C35241CC97A007463F0 /* Binding+multiValue.swift in Sources */,
 				D02A6361240276EA00C55416 /* BXRoundButtonStyle.swift in Sources */,
 				D077D5C523E2F05D00C1D20F /* Image+SFSymbols.swift in Sources */,
+				D03671E725920E190027FE11 /* BXButtonGroup.swift in Sources */,
 				D02BC5AC23DC627900676CF3 /* BXBoolEditView.swift in Sources */,
 				D002FE8323D22EC5002CF0A1 /* TypeCheckable.swift in Sources */,
 				D02A636B2402E25600C55416 /* BXMultiValueSlider.swift in Sources */,
