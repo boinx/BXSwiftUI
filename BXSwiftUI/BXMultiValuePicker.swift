@@ -38,6 +38,7 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	// Params
 	
 	private var values:Binding<Set<Int>>
+	private var huggingPriority:NSLayoutConstraint.Priority = .defaultLow
 	private var initialAction:(()->Void)? = nil
 	private var orderedItems:[BXMenuItemSpec]
 
@@ -51,9 +52,10 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	
 	// Init
 	
-	public init(values:Binding<Set<Int>> , initialAction:(()->Void)? = nil, orderedItems:[BXMenuItemSpec])
+	public init(values:Binding<Set<Int>>, huggingPriority:NSLayoutConstraint.Priority = .defaultLow, initialAction:(()->Void)? = nil, orderedItems:[BXMenuItemSpec])
 	{
 		self.values = values
+		self.huggingPriority = huggingPriority
 		self.initialAction = initialAction
 		self.orderedItems = orderedItems
 	}
@@ -64,11 +66,13 @@ public struct BXMultiValuePicker : NSViewRepresentable
     {
         let popup = NSPopUpButton(frame:.zero)
         
-        popup.cell = BXPopUpButtonCell(textCell:popup.title, pullsDown:popup.pullsDown)
-        popup.autoenablesItems = false
+		popup.cell = BXPopUpButtonCell(textCell:popup.title, pullsDown:popup.pullsDown)
+		popup.autoenablesItems = false
 		popup.target = context.coordinator
 		popup.action = #selector(Coordinator.updateValues(with:))
-		
+		popup.setContentHuggingPriority(self.huggingPriority, for:.horizontal)
+//		popup.setContentCompressionResistancePriority(.defaultLow, for:.horizontal)
+
 		self.rebuildMenuItems(in:popup)
 		self.setColors(of:popup)
 		
@@ -144,9 +148,10 @@ public struct BXMultiValuePicker : NSViewRepresentable
 		item = NSMenuItem.separator()
 		item.tag = Values.initialDivider.rawValue
 		item.isEnabled = false
+		item.isHidden = true
 		popup.menu?.addItem(item)
 
-		// Add menu items for transitions
+		// Add the menu items
 		
 		if let menu = popup.menu
 		{
@@ -187,6 +192,35 @@ public struct BXMultiValuePicker : NSViewRepresentable
         return Coordinator(self)
     }
 }
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+// MARK: -
+
+
+//class BXPopUpButton : NSPopUpButton
+//{
+//	var maxWidth:CGFloat? = nil
+//
+//	override var intrinsicContentSize : NSSize
+//	{
+//		var size = super.intrinsicContentSize
+//
+////		if let maxWidth = maxWidth
+////		{
+////			size.width = min(size.width, maxWidth)
+////		}
+//
+//		return size
+//	}
+//
+//	override func sizeThatFits(_ size:NSSize) -> NSSize
+//	{
+//		return self.intrinsicContentSize
+//	}
+//}
 
 
 //----------------------------------------------------------------------------------------------------------------------

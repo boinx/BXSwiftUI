@@ -21,14 +21,16 @@ public struct BXPicker : View
 	// Params
 	
 	private var value:Binding<Int>
+	private var huggingPriority:NSLayoutConstraint.Priority = .defaultLow
 	private var initialAction:(()->Void)? = nil
 	private var orderedItems:[BXMenuItemSpec]
 
 	// Init
 	
-	public init(value:Binding<Int>, initialAction:(()->Void)? = nil, orderedItems:[BXMenuItemSpec])
+	public init(value:Binding<Int>, huggingPriority:NSLayoutConstraint.Priority = .defaultLow, initialAction:(()->Void)? = nil, orderedItems:[BXMenuItemSpec])
 	{
 		self.value = value
+		self.huggingPriority = huggingPriority
 		self.initialAction = initialAction
 		self.orderedItems = orderedItems
 	}
@@ -37,7 +39,7 @@ public struct BXPicker : View
 	
 	public var body: some View
 	{
-		BXMultiValuePicker(values:multiValueBinding, initialAction:initialAction, orderedItems:orderedItems)
+		return BXMultiValuePicker(values:multiValueBinding, huggingPriority:huggingPriority, initialAction:initialAction, orderedItems:orderedItems)
 	}
 
 	// Convert between Int and Set<Int>
