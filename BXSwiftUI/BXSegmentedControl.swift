@@ -105,6 +105,7 @@ public struct BXSegment<Content> : View where Content:View
 {
 	// Params
 	
+	private var fixedWidth:CGFloat? = nil
 	private var value:Int
 	private var action:()->Void
 	private var content:()->Content
@@ -120,8 +121,9 @@ public struct BXSegment<Content> : View where Content:View
 
 	// Init
 	
-	public init(value:Int, action:@escaping ()->Void = {}, @ViewBuilder content:@escaping ()->Content)
+	public init(fixedWidth:CGFloat? = nil, value:Int, action:@escaping ()->Void = {}, @ViewBuilder content:@escaping ()->Content)
 	{
+		self.fixedWidth = fixedWidth
 		self.value = value
 		self.action = action
 		self.content = content
@@ -131,19 +133,8 @@ public struct BXSegment<Content> : View where Content:View
 	
 	public var body: some View
 	{
-		HStack { self.content() }
+		self.segment
 		
-			.padding(.horizontal,10)
-			.padding(.vertical,2)
-			
-			// Measure segment width
-			
-			.measureViewSize(forGroupID:self.id)
-			
-			// Resize to common width
-			
-			.resizeView(to:self.segmentWidth, for:self.id, alignment:.center)
-			
 			// Apply background and text color
 			
 			.background( Rectangle().fill(self.fillColor) )
@@ -158,6 +149,36 @@ public struct BXSegment<Content> : View where Content:View
 				self.bxSegmentIndex.wrappedValue = self.value
 				self.action()
 			}
+	}
+	
+	/// Returns either a fixed width or an ideal width segment
+	
+	var segment: some View
+	{
+		Group
+		{
+			if let fixedWidth = fixedWidth
+			{
+				HStack { self.content() }
+					.padding(.horizontal,10)
+					.padding(.vertical,2)
+					.frame(width:fixedWidth)
+			}
+			else
+			{
+				HStack { self.content() }
+					.padding(.horizontal,10)
+					.padding(.vertical,2)
+					
+					// Measure segment width
+					
+					.measureViewSize(forGroupID:self.id)
+					
+					// Resize to common width
+					
+					.resizeView(to:self.segmentWidth, for:self.id, alignment:.center)
+			}
+		}
 	}
 	
 	/// Background color for this segment
