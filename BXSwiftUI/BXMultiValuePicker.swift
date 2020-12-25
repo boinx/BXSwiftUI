@@ -73,8 +73,8 @@ public struct BXMultiValuePicker : NSViewRepresentable
 		popup.setContentHuggingPriority(self.huggingPriority, for:.horizontal)
 //		popup.setContentCompressionResistancePriority(.defaultLow, for:.horizontal)
 
-		self.rebuildMenuItems(in:popup)
-		self.setColors(of:popup)
+//		self.rebuildMenuItems(in:popup)
+//		self.setColors(of:popup)
 		
 		return popup
     }
@@ -83,6 +83,7 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	
 	public func updateNSView(_ popup:NSPopUpButton, context:Context)
     {
+		self.rebuildMenuItems(in:popup)
 		self.setColors(of:popup)
 
 		DispatchQueue.main.async
