@@ -77,7 +77,7 @@ public struct BXPopupView : NSViewRepresentable
 					item.tag = -1
 					popup.menu?.addItem(item)
 
-				case .regular(let icon, let name, let value):
+				case .regular(let icon, let name, let value, let representedObject):
 					
 					let item = NSMenuItem(title:name, action:nil, keyEquivalent:"")
 					item.image = icon
@@ -86,6 +86,7 @@ public struct BXPopupView : NSViewRepresentable
 					item.isEnabled = true
 					item.isHidden = false
 					item.tag = value
+					item.representedObject = representedObject
 					popup.menu?.addItem(item)
 				
 				case .section(let name):

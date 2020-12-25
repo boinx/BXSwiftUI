@@ -18,7 +18,7 @@ import AppKit
 public enum BXMenuItemSpec
 {
 	case action(icon:NSImage? = nil, title:String, isEnabled:@autoclosure ()->Bool = true, action:()->Void)
-	case regular(icon:NSImage? = nil, title:String, value:Int)
+	case regular(icon:NSImage? = nil, title:String, value:Int, representedObject:Any? = nil)
 	case section(title:String)
 	case divider
 }
@@ -80,11 +80,12 @@ public extension NSMenu
 			{
 				// Add a regular menu item
 					
-				case .regular(let icon,let title,let value):
+				case .regular(let icon,let title, let value, let representedObject):
 				
 					item = NSMenuItem(title:title, action:nil, keyEquivalent:"")
 					item.image = icon
 					item.tag = value
+					item.representedObject = representedObject
 					item.isEnabled = true
 					menu.addItem(item)
 					
