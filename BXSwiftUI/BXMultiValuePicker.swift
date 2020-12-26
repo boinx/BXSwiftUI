@@ -72,9 +72,6 @@ public struct BXMultiValuePicker : NSViewRepresentable
 		popup.action = #selector(Coordinator.updateValues(with:))
 		popup.setContentHuggingPriority(self.huggingPriority, for:.horizontal)
 //		popup.setContentCompressionResistancePriority(.defaultLow, for:.horizontal)
-
-//		self.rebuildMenuItems(in:popup)
-//		self.setColors(of:popup)
 		
 		return popup
     }
@@ -83,13 +80,25 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	
 	public func updateNSView(_ popup:NSPopUpButton, context:Context)
     {
-		self.rebuildMenuItems(in:popup)
-		self.setColors(of:popup)
-
+		// If necessary rebuild the menu item of the popup
+		
+		let identifier = self.identifier(for:orderedItems)
+		if identifier != context.coordinator.identifier
+		{
+			self.rebuildMenuItems(in:popup)
+			context.coordinator.identifier = identifier
+		}
+		
+		// Select the current menu item
+		
 		DispatchQueue.main.async
 		{
 			self.selectItem(for:self.values.wrappedValue, in:popup)
 		}
+
+		// When the color scheme has changes, update the popup colors
+		
+		self.setColors(of:popup)
     }
     
     /// Selects the correct menu item for the current value. If we have multiple values then the special menu item will be shown and selected.
@@ -160,6 +169,27 @@ public struct BXMultiValuePicker : NSViewRepresentable
 		}
 	}
     
+    
+    /// Returns a unique identifier string that can be used to check if the menu items of a popup have changed and need to be updated
+	
+	func identifier(for items:[BXMenuItemSpec]) -> String
+	{
+		return items.reduce("")
+		{
+			switch $1
+			{
+				case .action(_,let title,_,_): return $0 + title + "\n"
+				case .regular(_,let title,_,_): return $0 + title + "\n"
+				case .section(let title): return $0 + title + "\n"
+				case .divider: return $0 + "-\n"
+//				default: break
+			}
+		}
+	}
+	
+	
+    /// Updates the popup colors when the colorScheme changes
+    
 	private func setColors(of popup:NSPopUpButton)
     {
 		guard let cell = popup.cell as? BXPopUpButtonCell else { return }
@@ -168,12 +198,14 @@ public struct BXMultiValuePicker : NSViewRepresentable
 		cell.hiliteColor = NSColor(bxColorTheme.hiliteColor())
     }
 
+
 	// The NSPopUpButton side has changed, so update the SwiftUI state
 	
 	public class Coordinator : NSObject
     {
         var picker:BXMultiValuePicker
-
+		var identifier:String = ""
+		
         init(_ picker:BXMultiValuePicker)
         {
             self.picker = picker
@@ -193,35 +225,6 @@ public struct BXMultiValuePicker : NSViewRepresentable
         return Coordinator(self)
     }
 }
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-// MARK: -
-
-
-//class BXPopUpButton : NSPopUpButton
-//{
-//	var maxWidth:CGFloat? = nil
-//
-//	override var intrinsicContentSize : NSSize
-//	{
-//		var size = super.intrinsicContentSize
-//
-////		if let maxWidth = maxWidth
-////		{
-////			size.width = min(size.width, maxWidth)
-////		}
-//
-//		return size
-//	}
-//
-//	override func sizeThatFits(_ size:NSSize) -> NSSize
-//	{
-//		return self.intrinsicContentSize
-//	}
-//}
 
 
 //----------------------------------------------------------------------------------------------------------------------
