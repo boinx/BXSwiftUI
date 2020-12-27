@@ -182,7 +182,6 @@ public struct BXMultiValuePicker : NSViewRepresentable
 				case .regular(_,let title,_,_): return $0 + title + "\n"
 				case .section(let title): return $0 + title + "\n"
 				case .divider: return $0 + "-\n"
-//				default: break
 			}
 		}
 	}
