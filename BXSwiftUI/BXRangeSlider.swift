@@ -52,7 +52,7 @@ public struct BXRangeSlider : View
 	
 	private var usedTrackColor : Color
 	{
-		return isEnabled ? Color.accentColor : self.unusedTrackColor
+		return isEnabled ? bxColorTheme.hiliteColor() : self.unusedTrackColor
 	}
 	
 	private var unusedTrackColor : Color
