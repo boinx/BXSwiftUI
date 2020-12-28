@@ -7,6 +7,8 @@
 //**********************************************************************************************************************
 
 
+#if os(macOS)
+
 import SwiftUI
 import AppKit
 
@@ -16,7 +18,7 @@ import AppKit
 
 @available(macOS, obsoleted:10.16)
 
-extension NSColor
+public extension NSColor
 {
 	/// Creates a NSColor from a SwiftUI Color. Please note that macOS 11 Big Sur provides this out of the box
 
@@ -41,7 +43,7 @@ extension NSColor
         var b:CGFloat = 0.0
         var a:CGFloat = 0.0
 
-//     	scanner.scanUpTo("#", into:nil)	// Skip aheade to hex string which starts with '#'
+//     	scanner.scanUpTo("#", into:nil)	// Skip ahead to hex string which starts with '#'
      	
 		if scanner.scanHexInt64(&hexnum)
         {
@@ -57,3 +59,5 @@ extension NSColor
 
 
 //----------------------------------------------------------------------------------------------------------------------
+
+#endif
