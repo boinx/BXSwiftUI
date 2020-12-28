@@ -280,7 +280,7 @@ class BXPopUpButtonCell : NSPopUpButtonCell
 		arrowBox.origin.x = frame.maxX - 16
 		
 		let path = NSBezierPath(roundedRect:frame, xRadius:3, yRadius:3)
-		path.lineWidth = 1.0
+		path.lineWidth = 2.0
 		path.setClip()
 
 		// Background fill

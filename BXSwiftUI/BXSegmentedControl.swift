@@ -94,7 +94,8 @@ public struct BXSegmentedControl<Content> : View where Content:View
 		
 		.overlay(
 			RoundedRectangle(cornerRadius:cornerRadius)
-				.stroke(self.strokeColor, lineWidth:0.5)
+				.stroke(self.strokeColor, lineWidth:1)
+				.padding(0.5)
 		)
 	}
 }

@@ -137,21 +137,22 @@ fileprivate struct _BXStrokedCheckbox : View
 			ZStack()
 			{
 				// Fill
-				
-				fillColor
-				
-//				RoundedRectangle(cornerRadius:radius)
-//					.foregroundColor(fillColor)
-//					.frame(width:edge, height:edge)
+
+				RoundedRectangle(cornerRadius:radius)
+					.foregroundColor(fillColor)
 
 				// Stroke
 				
-				RoundedRectangle(cornerRadius:radius)
-					.stroke(self.strokeColor, lineWidth:1.0)
-					.frame(width:edge, height:edge)
-				
-				// Content
-				
+				RoundedRectangle(cornerRadius:radius-0.5)
+					.stroke(self.strokeColor, lineWidth:1)
+					.padding(0.5)
+			}
+			.frame(width:edge, height:edge)
+			
+			// Content
+			
+			.overlay( Group
+			{
 				if self.hasMultipleValues
 				{
 					Image(systemName:"minus")
@@ -160,10 +161,7 @@ fileprivate struct _BXStrokedCheckbox : View
 				{
 					Text("✓").foregroundColor(self.checkmarkColor).bold().offset(x:offset, y:0)
 				}
-			}
-			.frame(width:edge, height:edge)
-			.cornerRadius(radius)
-			.clipped()
+			})
 			
 			// Label
 			
