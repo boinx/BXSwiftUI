@@ -86,14 +86,16 @@ public struct BXSegmentedControl<Content> : View where Content:View
 			self.segmentWidth = max(self.minSegmentWidth, maxSize.width)
 		}
 		
+		// Clip the corners of the outer segments
+		
+		.cornerRadius(cornerRadius)
+
 		// Apply stroke with rounded corners
 		
 		.overlay(
 			RoundedRectangle(cornerRadius:cornerRadius)
-				.stroke(self.strokeColor, lineWidth:1.0)
+				.stroke(self.strokeColor, lineWidth:0.5)
 		)
-		.cornerRadius(cornerRadius)
-		.clipped()
 	}
 }
 
@@ -189,7 +191,7 @@ public struct BXSegment<Content> : View where Content:View
 		{
 			return self.value == self.bxSegmentIndex.wrappedValue ?
 				bxColorTheme.contentColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1) :
-				Color.clear
+				bxColorTheme.fillColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1) //Color.clear
 		}
 		else
 		{
@@ -198,7 +200,7 @@ public struct BXSegment<Content> : View where Content:View
 				Color.white
 		}
 	}
-	
+
 	/// Text color for this segment
 	
 	var contentColor : Color

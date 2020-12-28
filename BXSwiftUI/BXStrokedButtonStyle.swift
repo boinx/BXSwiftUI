@@ -114,10 +114,8 @@ fileprivate struct _BXStrokedButton : View
 							.fill(self.fillColor)
 
 						RoundedRectangle(cornerRadius:self.radius(for:geometry))
-							.stroke(self.strokeColor, lineWidth:1.0)
+							.stroke(self.strokeColor, lineWidth:0.5)
 					}
-					.cornerRadius(self.radius(for:geometry))
-					.clipped()
 					.reducedOpacityWhenDisabled()
 				}
 			)
