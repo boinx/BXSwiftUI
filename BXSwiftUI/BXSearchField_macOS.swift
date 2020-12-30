@@ -184,6 +184,7 @@ public class BXSearchFieldNative : NSSearchField
 			if let h = fixedHeight { f.size.height = h }
 			super.frame = f
 		}
+		
 		get
 		{
 			return super.frame
