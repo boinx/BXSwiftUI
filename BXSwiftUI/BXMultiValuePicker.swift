@@ -71,7 +71,7 @@ public struct BXMultiValuePicker : NSViewRepresentable
 		popup.target = context.coordinator
 		popup.action = #selector(Coordinator.updateValues(with:))
 		popup.setContentHuggingPriority(self.huggingPriority, for:.horizontal)
-//		popup.setContentCompressionResistancePriority(.defaultLow, for:.horizontal)
+		popup.setContentCompressionResistancePriority(.defaultLow, for:.horizontal)
 		
 		return popup
     }
