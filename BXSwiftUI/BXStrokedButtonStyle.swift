@@ -89,8 +89,8 @@ fileprivate struct _BXStrokedButton : View
 	private var strokeColor : Color
 	{
 		colorScheme == .dark ?
-			self.bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:0.5) :
-			self.bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:0.5)
+			self.bxColorTheme.strokeColor(for:colorScheme) :
+			self.bxColorTheme.strokeColor(for:colorScheme)
 	}
 
 	// Build the view

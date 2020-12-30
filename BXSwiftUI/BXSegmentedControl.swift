@@ -32,8 +32,8 @@ public struct BXSegmentedControl<Content> : View where Content:View
 	var strokeColor:Color
 	{
 		colorScheme == .dark ?
-			self.bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1) :
-			self.bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:0.5)
+			self.bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled) :
+			self.bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled)
 	}
 	
 	// State

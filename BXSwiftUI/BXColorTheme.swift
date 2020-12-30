@@ -100,8 +100,15 @@ extension BXColorTheme
 
 	public static func defaultStrokeColor(for colorScheme:ColorScheme, isEnabled:Bool, enhanceBy factor:Double = 1.0) -> Color
 	{
-		let gray = colorScheme == .dark ? 1.0 : 0.0
-		let alpha = isEnabled ? 0.42 : 0.14
+		var gray = 1.0
+		var alpha = isEnabled ? 0.5 : 0.16
+
+		if colorScheme == .light
+		{
+			gray = 0.0
+			alpha *= 0.48
+		}
+
 		return Color(white:gray, opacity:alpha*factor)
 	}
 	

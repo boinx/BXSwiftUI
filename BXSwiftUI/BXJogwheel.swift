@@ -100,7 +100,7 @@ public struct BXJogwheel : View
 		{
 			Rectangle()
 				.fill(self.fillGradient)
-				.border(self.strokeColor, width:0.5)
+				.border(self.strokeColor, width:1)
 			
 			BXJogwheelLines(value:self.value.wrappedValue)
 				.fill(self.tickmarkColor)
@@ -160,7 +160,7 @@ public struct BXJogwheel : View
 //----------------------------------------------------------------------------------------------------------------------
 
 
-struct BXJogwheelLines: Shape
+struct BXJogwheelLines : Shape
 {
 	var value:Double = 0.0
 	
