@@ -88,7 +88,7 @@ extension BXColorTheme
 
 	public static func defaultFillColor(for colorScheme:ColorScheme, isEnabled:Bool, enhanceBy factor:Double = 1.0) -> Color
 	{
-		var alpha = isEnabled ? 0.1*factor : 0.033*factor
+		var alpha = isEnabled ? 0.075*factor : 0.025*factor
 		
 		if colorScheme == .light
 		{
@@ -101,12 +101,12 @@ extension BXColorTheme
 	public static func defaultStrokeColor(for colorScheme:ColorScheme, isEnabled:Bool, enhanceBy factor:Double = 1.0) -> Color
 	{
 		var gray = 1.0
-		var alpha = isEnabled ? 0.5 : 0.16
+		var alpha = isEnabled ? 0.39 : 0.13
 
 		if colorScheme == .light
 		{
 			gray = 0.0
-			alpha *= 0.48
+			alpha = isEnabled ? 0.3 : 0.1
 		}
 
 		return Color(white:gray, opacity:alpha*factor)
