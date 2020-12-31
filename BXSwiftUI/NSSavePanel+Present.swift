@@ -16,11 +16,12 @@ import AppKit
 
 public extension NSSavePanel
 {
-	class func presentModal(title:String? = nil, message:String? = nil, buttonLabel:String? = nil, defaultFilename:String? = nil, handler:(URL?)->Void)
+	class func presentModal(title:String? = nil, message:String? = nil, buttonLabel:String? = nil, defaultFilename:String? = nil, appearance:NSAppearance? = nil, handler:(URL?)->Void)
 	{
 		let panel = NSSavePanel()
 		
 		panel.canCreateDirectories = true
+		panel.appearance = appearance
 		
 		if let title = title
 		{

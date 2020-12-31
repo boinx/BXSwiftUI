@@ -16,10 +16,11 @@ import AppKit
 
 public extension NSOpenPanel
 {
-	class func presentModal(title:String? = nil, message:String? = nil, buttonLabel:String? = nil, directoryURL:URL? = nil, allowedFileTypes:[String]? = nil, canChooseFiles:Bool = true, canChooseDirectories:Bool = false, allowsMultipleSelection:Bool = false, handler:([URL])->Void)
+	class func presentModal(title:String? = nil, message:String? = nil, buttonLabel:String? = nil, directoryURL:URL? = nil, allowedFileTypes:[String]? = nil, canChooseFiles:Bool = true, canChooseDirectories:Bool = false, allowsMultipleSelection:Bool = false, appearance:NSAppearance? = nil, handler:([URL])->Void)
 	{
 		let panel = NSOpenPanel()
 		
+		panel.appearance = appearance
 		panel.canCreateDirectories = true
 		panel.canChooseFiles = canChooseFiles
 		panel.canChooseDirectories = canChooseDirectories
