@@ -24,6 +24,8 @@ public struct BXMessageBox<Content:View> : View
 
 	// Style
 	
+	@Environment(\.colorScheme) private var colorScheme
+
 	public enum Style
 	{
 		case none
@@ -57,7 +59,7 @@ public struct BXMessageBox<Content:View> : View
 			Spacer()
 		}
 		.padding(8)
-		.background(style.fillColor)
+		.background(style.fillColor(for:colorScheme))
 		.border(style.strokeColor)
 	}
 }
@@ -79,12 +81,14 @@ extension BXMessageBox.Style
 		}
 	}
 	
-	var fillColor:Color
+	func fillColor(for colorScheme:ColorScheme) -> Color
 	{
+		let alpha = colorScheme == .dark ? 0.1 : 0.4
+		
 		switch self
 		{
-			case .none: return Color.white.opacity(0.15)
-			case .info: return Color.white.opacity(0.15)
+			case .none: return Color.white.opacity(alpha)
+			case .info: return Color.white.opacity(alpha)
 			case .warning: return Color.yellow.opacity(0.2)
 			case .error: return Color.red.opacity(0.2)
 		}
@@ -92,7 +96,7 @@ extension BXMessageBox.Style
 
 	var strokeColor:Color
 	{
-		Color.primary.opacity(0.15)
+		Color.primary.opacity(0.25)
 	}
 }
 
