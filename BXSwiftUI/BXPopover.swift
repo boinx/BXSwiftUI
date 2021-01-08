@@ -25,6 +25,17 @@ public class BXPopover : NSPopover, NSPopoverDelegate
 	
 	public var allowDetaching = false
 	
+	/// Defines the visual appearance of the popover
+	
+	public var style:Style
+	
+	public enum Style
+	{
+		case system		// Default appearance (light or dark)
+		case warning	// Yellow background and black text
+		case error		// Red background and black text
+	}
+	
 	/// Internal housekeeping
 	
 	private var observers:[Any] = []
@@ -43,14 +54,35 @@ public class BXPopover : NSPopover, NSPopoverDelegate
 
 	/// Creates an NSPopover with the specified SwiftUI view as contents
     
-    public init<V:View>(with view:V)
+    public init<V:View>(with view:V, style:Style = .system)
     {
+		self.style = style
         super.init()
+        
+        // Adapt text color to popover style
+        
+        var textColor = Color.primary
+        var scheme = ColorScheme.dark
+        
+        if style == .warning
+        {
+			textColor = Color.black.opacity(0.9)
+ 			scheme = .light
+       }
+        else if style == .error
+        {
+			textColor = Color.black.opacity(0.9)
+ 			scheme = .light
+        }
+        
+        let content = view
+			.colorScheme(scheme)
+			.foregroundColor(textColor)
         
         // Create a view controller and embed the SwiftUI view
         
         let frame = CGRect(x:0, y:0, width:1000, height:1000) // For some reason this must be larger than zero initially or the content won't be visible at all
-        let hostingView = NSHostingView(rootView:view)
+        let hostingView = NSHostingView(rootView:content)
 		let rootView = NSView(frame:frame)
         rootView.addSubview(hostingView)
 
@@ -79,6 +111,28 @@ public class BXPopover : NSPopover, NSPopoverDelegate
     {
         fatalError("init(coder:) has not been implemented")
     }
+
+
+	// Apply special background color for warning and error popover styles. Technique was taken from:
+	// https://stackoverflow.com/questions/19978620/how-to-change-nspopover-background-color-include-triangle-part
+	
+	public func popoverWillShow(_ notification:Notification)
+	{
+		guard self.style != .system else { return }
+		guard let viewController = contentViewController else { return }
+		guard let frameView = viewController.view.window?.contentView?.superview else { return }
+
+		let backgroundColor = style == .warning ?
+			CGColor(srgbRed:1, green:0.9, blue:0.6, alpha:1) :
+			CGColor(srgbRed:1, green:0.6, blue:0.55, alpha:1)
+			
+		let backgroundView = NSView(frame: frameView.bounds)
+		backgroundView.wantsLayer = true
+		backgroundView.layer?.backgroundColor = backgroundColor
+		backgroundView.autoresizingMask = [.width,.height]
+
+		frameView.addSubview(backgroundView, positioned: .below, relativeTo: frameView)
+	}
 
 
 //----------------------------------------------------------------------------------------------------------------------
