@@ -16,7 +16,7 @@ import AppKit
 
 public extension NSSavePanel
 {
-	class func presentModal(title:String? = nil, message:String? = nil, buttonLabel:String? = nil, defaultFilename:String? = nil, appearance:NSAppearance? = nil, handler:(URL?)->Void)
+	class func presentModal(title:String? = nil, message:String? = nil, buttonLabel:String? = nil, defaultFilename:String? = nil, appearance:NSAppearance? = nil, handler:(URL?) throws -> Void) rethrows
 	{
 		let panel = NSSavePanel()
 		
@@ -47,11 +47,11 @@ public extension NSSavePanel
 		
 		if button == NSApplication.ModalResponse.OK
 		{
-			handler(panel.url)
+			try handler(panel.url)
 		}
 		else
 		{
-			handler(nil)
+			try handler(nil)
 		}
 	}
 }
