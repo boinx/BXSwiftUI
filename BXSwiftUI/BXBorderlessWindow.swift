@@ -54,6 +54,12 @@ open class BXBorderlessWindow : NSWindow, ObservableObject
     {
 		return true
     }
+
+    override open var canBecomeMain : Bool
+    {
+		return true
+    }
+
 }
 
 
