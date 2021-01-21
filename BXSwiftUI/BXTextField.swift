@@ -21,6 +21,7 @@ public struct  BXTextField<T> : View
 	private var value:Binding<T>
 	private var height:CGFloat? = nil
 	private var alignment:TextAlignment = .leading
+	private var placeholderString:String? = nil
 	private var formatter:Formatter? = nil
 	private var statusHandler:(BXTextFieldStatusHandler)? = nil
 
@@ -34,11 +35,12 @@ public struct  BXTextField<T> : View
 	
 	// Build View
 
-	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, statusHandler:(BXTextFieldStatusHandler)? = nil)
+	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, placeholderString:String? = nil, formatter:Formatter? = nil, statusHandler:(BXTextFieldStatusHandler)? = nil)
 	{
 		self.value = value
 		self.height = height
 		self.alignment = alignment
+		self.placeholderString = placeholderString
 		self.formatter = formatter
 		self.statusHandler = statusHandler
 		
@@ -71,7 +73,7 @@ public struct  BXTextField<T> : View
 
 	public var body: some View
 	{
-		BXTextFieldWrapper(value:value, height:height, alignment:alignment, formatter:formatter, statusHandler:statusHandler)
+		BXTextFieldWrapper(value:value, height:height, alignment:alignment, placeholderString:placeholderString, formatter:formatter, statusHandler:statusHandler)
 
 			// Apply size specific alignment for the first baseline
 			

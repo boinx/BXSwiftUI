@@ -37,6 +37,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 	public var value:Binding<T>
 	public var height:CGFloat? = nil
 	public var alignment:TextAlignment = .leading
+	public var placeholderString:String? = nil
 	public var formatter:Formatter? = nil
 	public var statusHandler:(BXTextFieldStatusHandler)? = nil
 
@@ -61,11 +62,12 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 
 	// Only needed to make init public
 	
-	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, statusHandler:(BXTextFieldStatusHandler)? = nil)
+	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, placeholderString:String? = nil, formatter:Formatter? = nil, statusHandler:(BXTextFieldStatusHandler)? = nil)
 	{
 		self.value = value
 		self.height = height 
 		self.alignment = alignment
+		self.placeholderString = placeholderString
 		self.formatter = formatter
 		self.statusHandler = statusHandler
 	}
@@ -109,6 +111,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 		textfield.isBordered = true
 		textfield.drawsBackground = true
 		textfield.statusHandler = self.statusHandler
+		textfield.placeholderString	 = self.placeholderString
 		
 		return textfield
     }
