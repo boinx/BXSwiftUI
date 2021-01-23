@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D002B5D325BC052800B871A2 /* NSAlert+Present.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002B5D225BC052800B871A2 /* NSAlert+Present.swift */; };
 		D002FE6C23D22945002CF0A1 /* BXSwiftUI.h in Headers */ = {isa = PBXBuildFile; fileRef = D002FE6A23D22945002CF0A1 /* BXSwiftUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D002FE7F23D22EC5002CF0A1 /* BXLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7523D22EC5002CF0A1 /* BXLabelView.swift */; };
 		D002FE8023D22EC5002CF0A1 /* BXMultiValuePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7623D22EC5002CF0A1 /* BXMultiValuePicker.swift */; };
@@ -115,6 +116,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D002B5D225BC052800B871A2 /* NSAlert+Present.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAlert+Present.swift"; sourceTree = "<group>"; };
 		D002FE6723D22945002CF0A1 /* BXSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BXSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D002FE6A23D22945002CF0A1 /* BXSwiftUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BXSwiftUI.h; sourceTree = "<group>"; };
 		D002FE6B23D22945002CF0A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 				D061C945240F885400A9C9B2 /* NSView+Publishers.swift */,
 				D077D5D323E348B400C1D20F /* NSOpenPanel+Present.swift */,
 				D077D5CF23E32ED800C1D20F /* NSSavePanel+Present.swift */,
+				D002B5D225BC052800B871A2 /* NSAlert+Present.swift */,
 				D0FE7A17253B085000FD3305 /* Color+Native.swift */,
 			);
 			name = Misc;
@@ -611,6 +614,7 @@
 				D0B64EBA23E6F31F0089A33F /* BXHasMultipleValuesKey.swift in Sources */,
 				D02BC5A423DC390500676CF3 /* BXArrayEditView.swift in Sources */,
 				D011B1CB23E1C73D00643F20 /* BXStrokedButtonStyle.swift in Sources */,
+				D002B5D325BC052800B871A2 /* NSAlert+Present.swift in Sources */,
 				D0C9841424A87102009E4D8F /* Binding+Convert.swift in Sources */,
 				D0F9B3AE23E86F7C00AF0929 /* BXReducedOpacityWhenDisabledModifier.swift in Sources */,
 				D02BC59223DC29CB00676CF3 /* BXDoubleEditView.swift in Sources */,
