@@ -35,13 +35,21 @@ public struct BXWebView : NSViewRepresentable
  		return webView
     }
 
-	// SwiftUI side has changed, so update the AppKit view
+	// Load the webpage at the specified URL
 	
 	public func updateNSView(_ webView:WKWebView, context:Context)
     {
-		let request = URLRequest(url:self.url)
-		webView.load(request)
+		webView.load(URLRequest(url:self.url))
 	}
+
+	// Unload the webpage (this stops audio and video playback)
+	
+	public static func dismantleNSView(_ webView:WKWebView, coordinator:Self.Coordinator)
+    {
+		let stop = URL(string:"about:blank")!
+		let request = URLRequest(url:stop)
+		webView.load(request)
+    }
 }
 
 
