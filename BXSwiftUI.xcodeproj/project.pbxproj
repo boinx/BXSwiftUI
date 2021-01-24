@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D002B5D325BC052800B871A2 /* NSAlert+Present.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002B5D225BC052800B871A2 /* NSAlert+Present.swift */; };
+		D002B5D725BDB02A00B871A2 /* BXWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002B5D625BDB02A00B871A2 /* BXWebView.swift */; };
 		D002FE6C23D22945002CF0A1 /* BXSwiftUI.h in Headers */ = {isa = PBXBuildFile; fileRef = D002FE6A23D22945002CF0A1 /* BXSwiftUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D002FE7F23D22EC5002CF0A1 /* BXLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7523D22EC5002CF0A1 /* BXLabelView.swift */; };
 		D002FE8023D22EC5002CF0A1 /* BXMultiValuePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D002FE7623D22EC5002CF0A1 /* BXMultiValuePicker.swift */; };
@@ -117,6 +118,7 @@
 
 /* Begin PBXFileReference section */
 		D002B5D225BC052800B871A2 /* NSAlert+Present.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAlert+Present.swift"; sourceTree = "<group>"; };
+		D002B5D625BDB02A00B871A2 /* BXWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXWebView.swift; sourceTree = "<group>"; };
 		D002FE6723D22945002CF0A1 /* BXSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BXSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D002FE6A23D22945002CF0A1 /* BXSwiftUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BXSwiftUI.h; sourceTree = "<group>"; };
 		D002FE6B23D22945002CF0A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				D0CAF8D2251B15500015CFE4 /* BXScreenPicker.swift */,
 				D007CB782521B3D000402E10 /* BXSpinningWheel.swift */,
 				D039205925372ECB00544F33 /* BXProgressBar.swift */,
+				D002B5D625BDB02A00B871A2 /* BXWebView.swift */,
 				D02BC58E23DC270F00676CF3 /* Styles */,
 			);
 			name = Controls;
@@ -574,6 +577,7 @@
 				D0AFEC93250BC2EF00449507 /* BXDisableWindowDragging.swift in Sources */,
 				D0A2400423DF5716004E9F31 /* BXOptionalView.swift in Sources */,
 				D0EED8FE23EEA13200E4243D /* BXColorTheme.swift in Sources */,
+				D002B5D725BDB02A00B871A2 /* BXWebView.swift in Sources */,
 				D0FE7A18253B085000FD3305 /* Color+Native.swift in Sources */,
 				D017FC8525093E5C003953B0 /* BXBorderlessWindow.swift in Sources */,
 				D0793E7E23D45D170069327F /* BXMultiValueBoolInspectorView.swift in Sources */,
