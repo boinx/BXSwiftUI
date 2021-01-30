@@ -67,6 +67,9 @@ extension BXColorTheme
 //----------------------------------------------------------------------------------------------------------------------
 
 
+/// BUGFIX: Please note that we are using the grayscale value 0.99 instead of 1.0 in several cases here, because of a bug on macOS 11 Big Sur which fails
+/// to correctly convert a SwiftUI Color to NSColor when using 1.0 values. Using "almost" white is a workaround for the problem.
+
 extension BXColorTheme
 {
 	public static var `default` : BXColorTheme
@@ -92,15 +95,15 @@ extension BXColorTheme
 		
 		if colorScheme == .light
 		{
-			alpha = isEnabled ? 1.0 : 0.33
+            alpha = isEnabled ? 1.0 : 0.33
 		}
 		
-		return Color(white:1.0, opacity:alpha)
+        return Color(white:0.999, opacity:alpha)
 	}
 
 	public static func defaultStrokeColor(for colorScheme:ColorScheme, isEnabled:Bool, enhanceBy factor:Double = 1.0) -> Color
 	{
-		var gray = 1.0
+        var gray = 0.999
 		var alpha = isEnabled ? 0.39 : 0.13
 
 		if colorScheme == .light
@@ -114,8 +117,8 @@ extension BXColorTheme
 	
 	public static func defaultContentColor(for colorScheme:ColorScheme, isEnabled:Bool, enhanceBy factor:Double = 1.0) -> Color
 	{
-		let gray = colorScheme == .dark ? 1.0 : 0.1
-		let alpha = isEnabled ? 1.0 : 0.33
+		let gray = colorScheme == .dark ? 0.999 : 0.1
+        let alpha = isEnabled ? 1.0 : 0.33
 		return Color(white:gray, opacity:alpha*factor)
 	}
 	
