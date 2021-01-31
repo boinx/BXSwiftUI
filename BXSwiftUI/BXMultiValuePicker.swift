@@ -277,7 +277,7 @@ class BXPopUpButtonCell : NSPopUpButtonCell
 		}
 		else if self.controlSize == .small
 		{
-			frame = cellFrame.insetBy(dx:4, dy:3).offsetBy(dx:0, dy:-1)
+			frame = cellFrame.insetBy(dx:4, dy:2).offsetBy(dx:0, dy:-1)
 		}
 		
 		var arrowBox = frame
