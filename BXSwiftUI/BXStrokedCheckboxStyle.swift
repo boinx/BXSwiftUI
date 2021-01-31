@@ -55,7 +55,7 @@ fileprivate struct _BXStrokedCheckbox : View
 	{
 		switch controlSize
 		{
-			case .regular: 		return 15.0
+			case .regular: 		return 16.0
 			case .small: 		return 12.0
 			case .mini: 		return 9.0
 			
@@ -75,15 +75,14 @@ fileprivate struct _BXStrokedCheckbox : View
 		}
 	}
 
-	private var offset:CGFloat
+	private var checkmarkOffset:CGPoint
 	{
 		switch controlSize
 		{
-			case .regular: 		return 0.5
-			case .small: 		return 0.0
-			case .mini: 		return 0.0
-			
-			default:	return 0.5
+			case .regular: 		return CGPoint(0.5,-0.5)
+			case .small: 		return CGPoint(0.5,0.0)
+			case .mini: 		return CGPoint(0.0,0.0)
+			default:			return CGPoint(0.5,-0.5)
 		}
 	}
 
@@ -134,22 +133,21 @@ fileprivate struct _BXStrokedCheckbox : View
 		
 		return HStack(spacing:spacing)
 		{
-			ZStack()
-			{
-				// Fill
-
-				RoundedRectangle(cornerRadius:radius)
-					.foregroundColor(fillColor)
-
-				// Stroke
-				
-				RoundedRectangle(cornerRadius:radius-0.5)
-					.stroke(self.strokeColor, lineWidth:1)
-					.padding(0.5)
-			}
-			.frame(width:edge, height:edge)
+			// Checkbox body
 			
-			// Content
+			// The following drawing strategy produces better results (no artifacts on non-retina screens) than
+			// using a ZStack with two RoundedRectangles. This is important for external screens that run at @1x.
+			
+			fillColor
+				.frame(width:edge, height:edge)
+				
+				// Double width stroke will be clipped in next line
+				.overlay( RoundedRectangle(cornerRadius:radius).stroke(self.strokeColor,lineWidth:2) )
+				
+				// Creates rounded corners AND clips the stroke that lies outside the bounds
+				.cornerRadius(radius)
+			
+			// Checkmark
 			
 			.overlay( Group
 			{
@@ -159,7 +157,10 @@ fileprivate struct _BXStrokedCheckbox : View
 				}
 				else if configuration.isOn
 				{
-					Text("✓").foregroundColor(self.checkmarkColor).bold().offset(x:offset, y:0)
+					Text("✓")
+						.bold()
+						.foregroundColor(self.checkmarkColor)
+						.offset(x:checkmarkOffset.x, y:checkmarkOffset.y)
 				}
 			})
 			
