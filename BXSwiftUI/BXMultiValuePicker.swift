@@ -346,32 +346,6 @@ class BXPopUpButtonCell : NSPopUpButtonCell
 		NSColor(calibratedWhite:1.0, alpha:alpha).set()
 		path.stroke()
 	}
-	
-//----------------------------------------------------------------------------------------------------------------------
-
-
-	// Popups on macOS 11 Big Sur have changes layout so the menu being displayed is shifted vertically.
-	// We need to compensate for that change by adjusting the rect being handed to performClick()
-	
-	override open func performClick(withFrame frame:NSRect, in controlView:NSView)
-	{
-		var rect = frame
-		
-		if #available(macOS 11,*)
-		{
-			if self.controlSize == .regular
-			{
-				rect = rect.offsetBy(dx:0, dy:0)
-			}
-			else if self.controlSize == .small
-			{
-				rect = rect.offsetBy(dx:0, dy:0)
-			}
-		}
-		
-		super.performClick(withFrame:rect, in:controlView)
-	}
-
 }
 
 
