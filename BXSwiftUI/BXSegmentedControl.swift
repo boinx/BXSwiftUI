@@ -165,14 +165,16 @@ public struct BXSegment<Content> : View where Content:View
 			{
 				HStack { self.content() }
 					.padding(.horizontal,10)
-					.padding(.vertical,2)
+					.padding(.top,2)
+					.padding(.bottom,3)
 					.frame(width:fixedWidth)
 			}
 			else
 			{
 				HStack { self.content() }
 					.padding(.horizontal,10)
-					.padding(.vertical,2)
+					.padding(.top,2)
+					.padding(.bottom,3)
 					
 					// Measure segment width
 					
