@@ -64,10 +64,9 @@ fileprivate struct _BXStrokedButton : View
 		switch controlSize
 		{
 			case .regular: 	return EdgeInsets(top:2, leading:12, bottom:3, trailing:12)
-			case .small: 	return EdgeInsets(top:1, leading:12, bottom:1, trailing:12)
+			case .small: 	return EdgeInsets(top:2, leading:12, bottom:2, trailing:12)
 			case .mini: 	return EdgeInsets(top:1, leading:12, bottom:1, trailing:12)
-			
-			default: return EdgeInsets(top:2, leading:12, bottom:3, trailing:12)
+			default: 		return EdgeInsets(top:2, leading:12, bottom:3, trailing:12)
 		}
 	}
 	
@@ -97,29 +96,43 @@ fileprivate struct _BXStrokedButton : View
 	
     var body: some View
     {
+		// Label
+		
 		self.configuration.label
 			.foregroundColor(self.textColor)
             .padding(padding)
-			.reducedOpacityWhenDisabled()
 
+			// Button shape
+			
             .background(
             
 				GeometryReader
 				{
 					geometry in
-
-					ZStack
-					{
-						RoundedRectangle(cornerRadius:self.radius(for:geometry))
-							.fill(self.fillColor)
-
-						RoundedRectangle(cornerRadius:self.radius(for:geometry)-0.5)
-							.stroke(self.strokeColor, lineWidth:1)
-							.padding(0.5)
-					}
-					.reducedOpacityWhenDisabled()
+					
+					// Instead of drawing a ZStack with two RoundedRectangles (which produces glitches on non-retina
+					// screens), we'll draw a button with a double width stroke. The parts outside the bounds will be
+					// clipped away with the cornerRadius modifier, thus yielding a single width stroke.
+					
+					self.fillColor
+						.overlay( RoundedRectangle(cornerRadius:self.radius(for:geometry)).stroke(self.strokeColor, lineWidth:2) )
+						.cornerRadius(self.radius(for:geometry))
+						
+//					ZStack
+//					{
+//						RoundedRectangle(cornerRadius:self.radius(for:geometry))
+//							.fill(self.fillColor)
+//
+//						RoundedRectangle(cornerRadius:self.radius(for:geometry)-0.5)
+//							.stroke(self.strokeColor, lineWidth:1)
+//							.padding(0.5)
+//					}
 				}
 			)
+			
+			// Dimmed when disabled
+			
+			.reducedOpacityWhenDisabled()
     }
 }
 

@@ -86,17 +86,18 @@ public struct BXSegmentedControl<Content> : View where Content:View
 			self.segmentWidth = max(self.minSegmentWidth, maxSize.width)
 		}
 		
+		// Apply stroke with rounded corners. The 2pt width stroke will be
+		// clipped to 1pt with the cornerRadius modifier that follow below.
+		
+		.overlay(
+			RoundedRectangle(cornerRadius:cornerRadius)
+				.stroke(self.strokeColor, lineWidth:2)
+		)
+		
 		// Clip the corners of the outer segments
 		
 		.cornerRadius(cornerRadius)
 
-		// Apply stroke with rounded corners
-		
-		.overlay(
-			RoundedRectangle(cornerRadius:cornerRadius)
-				.stroke(self.strokeColor, lineWidth:1)
-				.padding(0.5)
-		)
 	}
 }
 
