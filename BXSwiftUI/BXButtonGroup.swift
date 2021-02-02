@@ -120,4 +120,40 @@ public struct BXEqualWidthButton : View
 }
 
 
+/// Creates a button with equal width when inside a BXButtonGroup
+
+public struct BXEqualWidthGenericButton<Content:View> : View
+{
+	// Params
+	
+	private let action:()->Void
+	private let content:(()->Content)?
+	
+	// Environment
+	
+	@Environment(\.bxLabelGroupID) private var bxLabelGroupID
+	@Environment(\.bxLabelWidth) private var bxLabelWidth
+
+	// Init
+	
+	public init(action:@escaping ()->Void, @ViewBuilder content:@escaping ()->Content)
+	{
+		self.action = action
+		self.content = content
+	}
+	
+	// Build View
+	
+	public var body: some View
+	{
+		Button(action:self.action)
+		{
+			self.content!()
+				.fixedSize()
+				.measureViewSize(forGroupID:self.bxLabelGroupID)
+				.frame(width:self.bxLabelWidth.wrappedValue)
+		}
+	}
+}
+
 //----------------------------------------------------------------------------------------------------------------------
