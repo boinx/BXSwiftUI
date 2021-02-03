@@ -30,7 +30,7 @@ public extension View
 					.controlSize(.small)
 					.lineLimit(nil)									// Wrap text to as many lines as needed
 					.fixedSize(horizontal:false, vertical:true) 	// Workaround because .lineLimit(nil) doesn't work by itself
-					.opacity(0.4)
+					.opacity(0.5)
 			}
 		}
 	}
