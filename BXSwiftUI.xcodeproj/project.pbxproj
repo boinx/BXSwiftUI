@@ -84,6 +84,7 @@
 		D08FB76F23E4920A00C1A193 /* BXTextField_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FB76E23E4920A00C1A193 /* BXTextField_macOS.swift */; };
 		D09C93F323F86D18008BA68F /* BXSliderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09C93F223F86D18008BA68F /* BXSliderResponse.swift */; };
 		D0A2400423DF5716004E9F31 /* BXOptionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A2400323DF5716004E9F31 /* BXOptionalView.swift */; };
+		D0A410F325CD906D006E5B91 /* NSAppearance+colorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A410F225CD906D006E5B91 /* NSAppearance+colorScheme.swift */; };
 		D0AFEC91250B402C00449507 /* BXSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AFEC90250B402C00449507 /* BXSegmentedControl.swift */; };
 		D0AFEC93250BC2EF00449507 /* BXDisableWindowDragging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AFEC92250BC2EF00449507 /* BXDisableWindowDragging.swift */; };
 		D0B5475423EC091A00046F96 /* BXJogwheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B5475323EC091A00046F96 /* BXJogwheel.swift */; };
@@ -198,6 +199,7 @@
 		D08FB76E23E4920A00C1A193 /* BXTextField_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXTextField_macOS.swift; sourceTree = "<group>"; };
 		D09C93F223F86D18008BA68F /* BXSliderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSliderResponse.swift; sourceTree = "<group>"; };
 		D0A2400323DF5716004E9F31 /* BXOptionalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXOptionalView.swift; sourceTree = "<group>"; };
+		D0A410F225CD906D006E5B91 /* NSAppearance+colorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAppearance+colorScheme.swift"; sourceTree = "<group>"; };
 		D0AFEC90250B402C00449507 /* BXSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSegmentedControl.swift; sourceTree = "<group>"; };
 		D0AFEC92250BC2EF00449507 /* BXDisableWindowDragging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXDisableWindowDragging.swift; sourceTree = "<group>"; };
 		D0B5475323EC091A00046F96 /* BXJogwheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXJogwheel.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				D0B64EB923E6F31F0089A33F /* BXHasMultipleValuesKey.swift */,
 				D0F9B3AD23E86F7B00AF0929 /* BXReducedOpacityWhenDisabledModifier.swift */,
 				D0083BE623EDC8490097C7A1 /* BXColorTheme.swift */,
+				D0A410F225CD906D006E5B91 /* NSAppearance+colorScheme.swift */,
 			);
 			name = Styles;
 			sourceTree = "<group>";
@@ -618,6 +621,7 @@
 				D0B64EBA23E6F31F0089A33F /* BXHasMultipleValuesKey.swift in Sources */,
 				D02BC5A423DC390500676CF3 /* BXArrayEditView.swift in Sources */,
 				D011B1CB23E1C73D00643F20 /* BXStrokedButtonStyle.swift in Sources */,
+				D0A410F325CD906D006E5B91 /* NSAppearance+colorScheme.swift in Sources */,
 				D002B5D325BC052800B871A2 /* NSAlert+Present.swift in Sources */,
 				D0C9841424A87102009E4D8F /* Binding+Convert.swift in Sources */,
 				D0F9B3AE23E86F7C00AF0929 /* BXReducedOpacityWhenDisabledModifier.swift in Sources */,
