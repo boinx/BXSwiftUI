@@ -54,7 +54,7 @@ public class BXPopover : NSPopover, NSPopoverDelegate
 
 	/// Creates an NSPopover with the specified SwiftUI view as contents
     
-    public init<V:View>(with view:V, style:Style = .system)
+    public init<V:View>(with view:V, style:Style = .system, colorScheme:ColorScheme = .dark)
     {
 		self.style = style
         super.init()
@@ -62,7 +62,7 @@ public class BXPopover : NSPopover, NSPopoverDelegate
         // Adapt text color to popover style
         
         var textColor = Color.primary
-        var scheme = ColorScheme.dark
+        var scheme = colorScheme
         
         if style == .warning
         {
