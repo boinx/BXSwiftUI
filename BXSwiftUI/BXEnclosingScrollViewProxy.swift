@@ -118,7 +118,9 @@ fileprivate class _TrackingView : NSView
 
 		self.observer = NotificationCenter.default.addAutoRemovingObserver(forName:NSView.boundsDidChangeNotification, object:clipView, queue: OperationQueue.main)
 		{
-			[unowned self] _ in
+			[weak self,weak clipView] _ in
+			guard let self = self else { return }
+			guard let clipView = clipView else { return }
 			self.didScrollHandler?(clipView.bounds)
 		}
 	}
