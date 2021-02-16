@@ -21,7 +21,7 @@ public struct BXMultiValueColorSlider : View
 	private var range:ClosedRange<Double>
 	private var response:BXSliderResponse = .linear
 	private var color:Color = .accentColor
-	private var trackWidth:CGFloat = 3
+	private var trackWidth:CGFloat = 4
 	private var knobRadius:CGFloat = 6
 	private var knobStrokeWidth:CGFloat = 1.5
 	private var initialAction:(()->Void)? = nil
@@ -35,7 +35,7 @@ public struct BXMultiValueColorSlider : View
 
 	// Init
 	
-	public init(values:Binding<Set<Double>>, range:ClosedRange<Double> = 0.0...1.0, response:BXSliderResponse = .linear, color:Color = .accentColor, trackWidth:CGFloat = 3, knobRadius:CGFloat = 6, knobStrokeWidth:CGFloat = 1.5, initialAction:(()->Void)? = nil)
+	public init(values:Binding<Set<Double>>, range:ClosedRange<Double> = 0.0...1.0, response:BXSliderResponse = .linear, color:Color = .accentColor, trackWidth:CGFloat = 4, knobRadius:CGFloat = 6, knobStrokeWidth:CGFloat = 1.5, initialAction:(()->Void)? = nil)
 	{
 		self.values = values
 		self.range = range
@@ -150,7 +150,9 @@ public struct BXMultiValueColorSlider : View
 						.fill(self.unusedTrackColor)
 						.frame(height:self.trackWidth)
 				}
-				.clipShape(RoundedRectangle(cornerRadius:1.5))
+				.clipShape(RoundedRectangle(cornerRadius:0.5*trackWidth))
+				
+				// Draw thumbs
 				
 				ForEach(Array(self.values.wrappedValue), id:\.self)
 				{
@@ -162,56 +164,50 @@ public struct BXMultiValueColorSlider : View
 							.fill(self.knobFillColor)
 							.frame(width:2*self.knobRadius, height:2*self.knobRadius)
 							.offset(x:self.knobOffset(for:value, width:geometry.size.width), y:0)
-
+							.disabled(true)
+							
 						Circle()
 							.stroke(self.knobStrokeColor, lineWidth:self.knobStrokeWidth)
 							.frame(width:2*self.knobRadius, height:2*self.knobRadius)
 							.offset(x:self.knobOffset(for:value, width:geometry.size.width), y:0)
 					}
 				}
-			}
-			
-			// Hack: Apply a non-transparent (but non-visible) background color to the whole slide so that we
-			// can receive mouse click events outside the track (i.e. background). That makes the UX much nicer.
-			
-			.background(Color(white:0.0, opacity:0.01))
-//			.compositingGroup()
-			
-			// Add a drag handler for event handling
-
-			.gesture( DragGesture(minimumDistance:0.0)
-
-				.onChanged()
-				{
-					// When dragging starts, open an undo group
-
-					if self.dragIteration == 0
-					{
-						self.undoManager?.beginUndoGrouping()
-						self.initialAction?()
-					}
+				
+				// Handle drag events
+				
+				Color(white:0.0, opacity:0.01)
+					.gesture( DragGesture(minimumDistance:0.0)
 					
-					self.dragIteration += 1
+					.onChanged()
+					{
+						// When dragging starts, open an undo group
 
-					// Update the current value of the chosen knob
-	
-					let value = self.value(for:$0.location.x, width:geometry.size.width).clipped(to:self.range)
-					self.values.wrappedValue = Set([value])
-print("BXMultiValueColorSlider.onChanged")
-				}
+						if self.dragIteration == 0
+						{
+							self.undoManager?.beginUndoGrouping()
+							self.initialAction?()
+						}
+						
+						self.dragIteration += 1
 
-				// When the drag ends, close the undo group and reset state
+						// Update the current value of the chosen knob
 
-				.onEnded
-				{
-					_ in
+						let value = self.value(for:$0.location.x, width:geometry.size.width).clipped(to:self.range)
+						self.values.wrappedValue = Set([value])
+					}
 
-					self.undoManager?.setActionName(self.undoName)
-					self.undoManager?.endUndoGrouping()
+					// When the drag ends, close the undo group and reset state
 
-					self.dragIteration = 0
-				}
-			, including:.gesture)
+					.onEnded
+					{
+						_ in
+
+						self.undoManager?.setActionName(self.undoName)
+						self.undoManager?.endUndoGrouping()
+						self.dragIteration = 0
+					}
+				)
+			}
 		}
 	}
 }
