@@ -48,7 +48,7 @@ public struct BXLazyVStack<Content:View> : View
 	{
 		BXEnclosingScrollViewProxy
 		{
-			visibleRect in
+			_,visibleRect in
 
 			VStack(alignment:self.alignment, spacing:self.spacing)
 			{
@@ -112,7 +112,7 @@ public struct BXLazyHStack<Content:View> : View
 	{
 		BXEnclosingScrollViewProxy
 		{
-			visibleRect in
+			_,visibleRect in
 
 			HStack(alignment:self.alignment, spacing:self.spacing)
 			{
