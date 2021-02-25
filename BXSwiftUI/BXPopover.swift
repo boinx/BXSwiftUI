@@ -140,7 +140,7 @@ public class BXPopover : NSPopover, NSPopoverDelegate
 
 	public class func closeAll()
 	{
-		NotificationCenter.default.post(name:Self.closeAllNotification, object:nil)
+		NotificationCenter.default.postOnMain(name:Self.closeAllNotification, object:nil)
 	}
 
     public func popoverWillClose(_ notification:Notification)
