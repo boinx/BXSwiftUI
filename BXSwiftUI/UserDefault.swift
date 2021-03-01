@@ -17,12 +17,15 @@ import Combine
 {
     let key:String
     let defaultValue:T
+    let validator:(T)->T
 	let publisher = PassthroughSubject<T,Never>()
 	
-    public init(_ key:String, defaultValue:T)
+	public init(_ key:String, defaultValue:T, validator:@escaping (T)->T = {$0})
     {
         self.key = key.replacingOccurrences(of:".", with:"-")	// UserDefaults doesn't like keys containing "." so replace them
         self.defaultValue = defaultValue
+        self.validator = validator
+        
     }
 
     public var wrappedValue : T
@@ -34,7 +37,8 @@ import Combine
         
         set
         {
-			UserDefaults.standard.set(newValue, forKey:key)
+			let value = self.validator(newValue)
+			UserDefaults.standard.set(value, forKey:key)
 			publisher.send(newValue)
         }
     }
@@ -53,13 +57,15 @@ import Combine
 {
     let key:String
     let defaultValue:T
+    let validator:(T)->T
 	let publisher = PassthroughSubject<T,Never>()
 
-    public init(_ key:String, defaultValue:T)
+    public init(_ key:String, defaultValue:T, validator:@escaping (T)->T = {$0})
     {
         self.key = key.replacingOccurrences(of:".", with:"-")	// UserDefaults doesn't like keys containing "." so replace them
         self.defaultValue = defaultValue
-    }
+		self.validator = validator
+   }
 
     public var wrappedValue : T
     {
@@ -72,7 +78,8 @@ import Combine
         
         set
         {
-            let data = try? JSONEncoder().encode(newValue)
+			let value = self.validator(newValue)
+            let data = try? JSONEncoder().encode(value)
             UserDefaults.standard.set(data, forKey:key)
             publisher.send(newValue)
         }
@@ -92,12 +99,14 @@ import Combine
 {
     let key:String
     let defaultValue:T
+    let validator:(T)->T
 	let publisher = PassthroughSubject<T,Never>()
 
-    public init(_ key:String, defaultValue:T)
+    public init(_ key:String, defaultValue:T, validator:@escaping (T)->T = {$0})
     {
         self.key = key.replacingOccurrences(of:".", with:"-")	// UserDefaults doesn't like keys containing "." so replace them
         self.defaultValue = defaultValue
+		self.validator = validator
     }
 
     public var wrappedValue : T
@@ -111,7 +120,8 @@ import Combine
         
         set
         {
-			let raw = newValue.rawValue
+			let value = self.validator(newValue)
+			let raw = value.rawValue
             UserDefaults.standard.set(raw, forKey:key)
             publisher.send(newValue)
         }
