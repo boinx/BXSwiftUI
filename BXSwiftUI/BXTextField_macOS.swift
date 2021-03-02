@@ -309,11 +309,11 @@ public class BXTextFieldNative : NSTextField
 		}
 	}
 	
-    override public func becomeFirstResponder() -> Bool
-    {
-        self.isEditing = true
-        return true
-    }
+//    override public func becomeFirstResponder() -> Bool
+//    {
+//        self.isEditing = true
+//        return true
+//    }
     
 	override public func mouseEntered(with event:NSEvent)
 	{
