@@ -102,7 +102,7 @@ public struct BXJogwheel : View
 				.fill(self.fillGradient)
 				.border(self.strokeColor, width:1)
 			
-			BXJogwheelLines(value:self.value.wrappedValue)
+			BXJogwheelLines(value:self.value.wrappedValue, speed:speed)
 				.fill(self.tickmarkColor)
 		}
 		
@@ -162,16 +162,20 @@ public struct BXJogwheel : View
 
 struct BXJogwheelLines : Shape
 {
-	var value:Double = 0.0
+	var value = 0.0
+	var speed = 0.015
 	
     func path(in rect:CGRect) -> Path
     {
+		let f = 0.015 / speed
+		let v = f * value
+		
         var path = Path()
 		let n = 30
 		
 		for i in 0...n
 		{
-			let radians = 2*Double.pi * Double(i)/Double(n) - value
+			let radians = 2*Double.pi * Double(i)/Double(n) - v
 			let x = cos(radians)
 			let y = sin(radians)
 			
