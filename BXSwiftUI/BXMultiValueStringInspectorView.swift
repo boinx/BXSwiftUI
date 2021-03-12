@@ -61,6 +61,7 @@ public struct BXMultiValueStringInspectorView : View
 				alignment:. leading,
 				allowSpaceKey: self.allowSpaceKey,
 				statusHandler: self.statusHandler)
+					.focusable() // This makes sure that tabbing order (nextKeyViewLoop) is correct (top to bottom)
 //					.reducedOpacityWhenDisabled()	// Not needed because AppKit already dimmed the control
 		}
 

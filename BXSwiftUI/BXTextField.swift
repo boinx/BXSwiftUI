@@ -82,6 +82,10 @@ public struct  BXTextField<T> : View
 			// Apply size specific alignment for the first baseline
 			
 			.alignmentGuide(.firstTextBaseline, computeValue:{ _ in self.baseline })
+			
+			// This makes sure that tabbing order (nextKeyViewLoop) is correct (top to bottom)
+			
+			.focusable()
 	}
 }
 

@@ -54,6 +54,10 @@ public struct BXTextView : View
 		
 		return BXTextView_macOS(value:self.value, fittingSize:self.$fittingSize, statusHandler:statusHandler)
 			
+			// This makes sure that tabbing order (nextKeyViewLoop) is correct (top to bottom)
+			
+			.focusable()
+
 			// Since we are dealing with rich text, we do not really know where the first baseline should be.
 			// So simply use a hardcoded value that looks good relative to the view frame.
 			
