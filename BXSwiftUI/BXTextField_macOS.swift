@@ -279,20 +279,6 @@ public class BXTextFieldNative : NSTextField, NSTextViewDelegate
 		super.init(coder:coder)
 	}
 	
-	override public var frame:NSRect
-	{
-		set
-		{
-			var f = newValue
-			if let h = fixedHeight { f.size.height = h }
-			super.frame = f
-		}
-		get
-		{
-			return super.frame
-		}
-	}
-	
 	override public func viewDidMoveToWindow()
 	{
 		super.viewDidMoveToWindow()
@@ -321,6 +307,28 @@ public class BXTextFieldNative : NSTextField, NSTextViewDelegate
 		}
 	}
 	
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+	override public var frame:NSRect
+	{
+		set
+		{
+			var f = newValue
+			if let h = fixedHeight { f.size.height = h }
+			super.frame = f
+		}
+		get
+		{
+			return super.frame
+		}
+	}
+	
+	
+//----------------------------------------------------------------------------------------------------------------------
+
+
 	override public func mouseDown(with event:NSEvent)
     {
 		super.mouseDown(with:event)
