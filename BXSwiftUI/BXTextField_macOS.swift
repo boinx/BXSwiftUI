@@ -39,6 +39,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 	public var alignment:TextAlignment = .leading
 	public var placeholderString:String? = nil
 	public var formatter:Formatter? = nil
+	public var selectAllOnMouseDown = true
 	public var statusHandler:(BXTextFieldStatusHandler)? = nil
 
 	// Environment
@@ -62,13 +63,14 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 
 	// Only needed to make init public
 	
-	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, placeholderString:String? = nil, formatter:Formatter? = nil, statusHandler:(BXTextFieldStatusHandler)? = nil)
+	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, placeholderString:String? = nil, formatter:Formatter? = nil, selectAllOnMouseDown:Bool = true, statusHandler:(BXTextFieldStatusHandler)? = nil)
 	{
 		self.value = value
 		self.height = height 
 		self.alignment = alignment
 		self.placeholderString = placeholderString
 		self.formatter = formatter
+		self.selectAllOnMouseDown = selectAllOnMouseDown
 		self.statusHandler = statusHandler
 	}
 	
@@ -112,6 +114,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 		textfield.drawsBackground = true
 		textfield.statusHandler = self.statusHandler
 		textfield.placeholderString	 = self.placeholderString
+		textfield.selectAllOnMouseDown = self.selectAllOnMouseDown
 		
 		return textfield
     }
@@ -249,13 +252,14 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 
 /// The BXTextFieldNative subclass provides the desired custom behavior that NSTextField doesn't provide out of the box
 
-public class BXTextFieldNative : NSTextField
+public class BXTextFieldNative : NSTextField, NSTextViewDelegate
 {
 	var statusHandler:(BXTextFieldStatusHandler)? = nil
 	var trackingArea:NSTrackingArea? = nil
 	var isHovering = false { didSet { self.notify() } }
 	var isEditing = false { didSet { self.notify() } }
 	var fixedHeight:CGFloat? = nil
+	var selectAllOnMouseDown = true
 
 	override init(frame:NSRect)
 	{
@@ -309,12 +313,18 @@ public class BXTextFieldNative : NSTextField
 		}
 	}
 	
-//    override public func becomeFirstResponder() -> Bool
-//    {
-//        self.isEditing = true
-//        return true
-//    }
-    
+	override public func mouseDown(with event:NSEvent)
+    {
+		super.mouseDown(with:event)
+		
+		self.isEditing = true
+		
+		if selectAllOnMouseDown
+		{
+			self.currentEditor()?.selectAll(self)
+		}
+    }
+
 	override public func mouseEntered(with event:NSEvent)
 	{
 		self.isHovering = self.isEnabled

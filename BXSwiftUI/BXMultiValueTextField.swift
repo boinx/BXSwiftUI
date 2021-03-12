@@ -22,6 +22,7 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 	private var height:CGFloat? = nil
 	private var alignment:TextAlignment = .leading
 	private var formatter:Formatter? = nil
+	private var selectAllOnMouseDown = true
 	private var statusHandler:(BXTextFieldStatusHandler)? = nil
 	
 	// Environment
@@ -34,12 +35,13 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 
 	// Init
 	
-	public init(values:Binding<Set<T>>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, statusHandler:(BXTextFieldStatusHandler)? = nil)
+	public init(values:Binding<Set<T>>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, selectAllOnMouseDown:Bool = true, statusHandler:(BXTextFieldStatusHandler)? = nil)
 	{
 		self.values = values
 		self.height = height
 		self.alignment = alignment
 		self.formatter = formatter
+		self.selectAllOnMouseDown = selectAllOnMouseDown
 		self.statusHandler = statusHandler
 	}
 
@@ -81,6 +83,7 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
         textfield.fixedHeight = self.height
 		textfield.target = context.coordinator
 		textfield.action = action
+		textfield.selectAllOnMouseDown = self.selectAllOnMouseDown
 		textfield.statusHandler = self.statusHandler
 		
 		textfield.notify()
