@@ -40,6 +40,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 	public var placeholderString:String? = nil
 	public var formatter:Formatter? = nil
 	public var selectAllOnMouseDown = true
+	public var allowSpaceKey = false
 	public var statusHandler:(BXTextFieldStatusHandler)? = nil
 
 	// Environment
@@ -63,7 +64,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 
 	// Only needed to make init public
 	
-	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, placeholderString:String? = nil, formatter:Formatter? = nil, selectAllOnMouseDown:Bool = true, statusHandler:(BXTextFieldStatusHandler)? = nil)
+	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, placeholderString:String? = nil, formatter:Formatter? = nil, selectAllOnMouseDown:Bool = true, allowSpaceKey:Bool = false, statusHandler:(BXTextFieldStatusHandler)? = nil)
 	{
 		self.value = value
 		self.height = height 
@@ -71,6 +72,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 		self.placeholderString = placeholderString
 		self.formatter = formatter
 		self.selectAllOnMouseDown = selectAllOnMouseDown
+		self.allowSpaceKey = allowSpaceKey
 		self.statusHandler = statusHandler
 	}
 	
@@ -115,6 +117,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 		textfield.statusHandler = self.statusHandler
 		textfield.placeholderString	 = self.placeholderString
 		textfield.selectAllOnMouseDown = self.selectAllOnMouseDown
+		textfield.allowSpaceKey = self.allowSpaceKey
 		
 		return textfield
     }
@@ -260,6 +263,11 @@ public class BXTextFieldNative : NSTextField, NSTextViewDelegate
 	var isEditing = false { didSet { self.notify() } }
 	var fixedHeight:CGFloat? = nil
 	var selectAllOnMouseDown = true
+	var allowSpaceKey = false
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
 
 	override init(frame:NSRect)
 	{
@@ -338,6 +346,46 @@ public class BXTextFieldNative : NSTextField, NSTextViewDelegate
 	@objc func notify()
 	{
 		self.statusHandler?(self, self.isEnabled, isEditing, isHovering)
+	}
+	
+	
+//----------------------------------------------------------------------------------------------------------------------
+
+
+	public func textView(_ textView:NSTextView, shouldChangeTextInRanges affectedRanges:[NSValue], replacementStrings:[String]?) -> Bool
+	{
+		let strings = replacementStrings ?? []
+		
+		for string in strings
+		{
+			if string == " " /* && range.length > 0 */
+			{
+				// Only allow replacing a selection with the space char if this textfield was configured to allow spaceKey input
+		
+				if allowSpaceKey
+				{
+					return true
+				}
+				
+				// Otherwise pass on the key press to the nextResponder
+				
+				else if let event = NSApp.currentEvent
+				{
+					if event.type == .keyDown
+					{
+						self.nextResponder?.keyDown(with:event)
+					}
+					else if event.type == .keyUp
+					{
+						self.nextResponder?.keyUp(with:event)
+					}
+					
+					return false
+				}
+			}
+		}
+		
+		return true
 	}
 }
 

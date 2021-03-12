@@ -23,6 +23,8 @@ public struct  BXTextField<T> : View
 	private var alignment:TextAlignment = .leading
 	private var placeholderString:String? = nil
 	private var formatter:Formatter? = nil
+	private var selectAllOnMouseDown = true
+	private var allowSpaceKey = false
 	private var statusHandler:(BXTextFieldStatusHandler)? = nil
 
 	// Environment
@@ -35,13 +37,15 @@ public struct  BXTextField<T> : View
 	
 	// Build View
 
-	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, placeholderString:String? = nil, formatter:Formatter? = nil, statusHandler:(BXTextFieldStatusHandler)? = nil)
+	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, placeholderString:String? = nil, formatter:Formatter? = nil, selectAllOnMouseDown:Bool = true, allowSpaceKey:Bool = false,statusHandler:(BXTextFieldStatusHandler)? = nil)
 	{
 		self.value = value
 		self.height = height
 		self.alignment = alignment
 		self.placeholderString = placeholderString
 		self.formatter = formatter
+		self.selectAllOnMouseDown = selectAllOnMouseDown
+		self.allowSpaceKey = allowSpaceKey
 		self.statusHandler = statusHandler
 		
 		// If a fixed height was not provided, then choose the height and baseline depending on environment controlSize.
@@ -73,7 +77,7 @@ public struct  BXTextField<T> : View
 
 	public var body: some View
 	{
-		BXTextFieldWrapper(value:value, height:height, alignment:alignment, placeholderString:placeholderString, formatter:formatter, statusHandler:statusHandler)
+		BXTextFieldWrapper(value:value, height:height, alignment:alignment, placeholderString:placeholderString, formatter:formatter, selectAllOnMouseDown:selectAllOnMouseDown, allowSpaceKey:allowSpaceKey, statusHandler:statusHandler)
 
 			// Apply size specific alignment for the first baseline
 			

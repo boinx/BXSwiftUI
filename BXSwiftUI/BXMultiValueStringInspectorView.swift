@@ -22,6 +22,7 @@ public struct BXMultiValueStringInspectorView : View
 	
 	private var label:String = ""
 	private var values:Binding<Set<String>>
+	private var allowSpaceKey:Bool = false
 	private var statusHandler:BXTextFieldStatusHandler? = nil
 
 	// Environment
@@ -41,10 +42,11 @@ public struct BXMultiValueStringInspectorView : View
 	}
 	// Init
 	
-	public init(label:String = "", values:Binding<Set<String>>, statusHandler:BXTextFieldStatusHandler? = nil)
+	public init(label:String = "", values:Binding<Set<String>>, allowSpaceKey:Bool = false, statusHandler:BXTextFieldStatusHandler? = nil)
 	{
 		self.label = label
 		self.values = values
+		self.allowSpaceKey = allowSpaceKey
 		self.statusHandler = statusHandler
 	}
 	
@@ -55,9 +57,10 @@ public struct BXMultiValueStringInspectorView : View
 		BXLabelView(label:label, alignment:.leading)
 		{
 			BXMultiValueTextField(
-				values:self.values,
-				alignment:.leading,
-				statusHandler:self.statusHandler)
+				values: self.values,
+				alignment:. leading,
+				allowSpaceKey: self.allowSpaceKey,
+				statusHandler: self.statusHandler)
 //					.reducedOpacityWhenDisabled()	// Not needed because AppKit already dimmed the control
 		}
 
