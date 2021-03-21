@@ -18,10 +18,11 @@ import AppKit
 
 public extension NSAlert
 {
-	class func presentModal(title:String, message:String, okButton:String = "OK", cancelButton:String? = nil, appearance:NSAppearance? = nil, okHandler:(()->Void)? = nil)
+	class func presentModal(style:NSAlert.Style = .informational, title:String, message:String, okButton:String = "OK", cancelButton:String? = nil, appearance:NSAppearance? = nil, okHandler:(()->Void)? = nil)
 	{
 		let alert = NSAlert()
 		
+    	alert.alertStyle = style
 		alert.window.appearance = appearance
 		alert.messageText = title
 		alert.informativeText = message
