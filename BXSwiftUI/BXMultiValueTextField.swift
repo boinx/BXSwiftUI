@@ -25,6 +25,7 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 	private var selectAllOnMouseDown = true
 	private var allowSpaceKey = false
 	private var statusHandler:(BXTextFieldStatusHandler)? = nil
+	private var initialAction:(()->Void)? = nil
 	
 	// Environment
 	
@@ -36,7 +37,7 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 
 	// Init
 	
-	public init(values:Binding<Set<T>>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, selectAllOnMouseDown:Bool = true, allowSpaceKey:Bool = false, statusHandler:(BXTextFieldStatusHandler)? = nil)
+	public init(values:Binding<Set<T>>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, selectAllOnMouseDown:Bool = true, allowSpaceKey:Bool = false, statusHandler:(BXTextFieldStatusHandler)? = nil, initialAction:(()->Void)? = nil)
 	{
 		self.values = values
 		self.height = height
@@ -45,6 +46,7 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 		self.selectAllOnMouseDown = selectAllOnMouseDown
 		self.allowSpaceKey = allowSpaceKey
 		self.statusHandler = statusHandler
+		self.initialAction = initialAction
 	}
 
 	
@@ -172,6 +174,8 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 			let action = textfield.action
 			self.perform(action, with:textfield)
 			textfield.isEditing = false
+			
+			self.textfield.initialAction?()
 		}
 
         @objc func updateStringValues(with sender:NSTextField)
