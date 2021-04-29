@@ -20,7 +20,6 @@ public struct BXMultiValueToggle : View
 	
 	private var values:Binding<Set<Bool>>
 	private var label:String = ""
-	private var onBegan:(()->Void)? = nil
 	private var onEnded:(()->Void)? = nil
 	
 	// Environment
@@ -31,11 +30,10 @@ public struct BXMultiValueToggle : View
 
 	// Init
 	
-	public init(values:Binding<Set<Bool>>, label:String = "", onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil)
+	public init(values:Binding<Set<Bool>>, label:String = "", onEnded:(()->Void)? = nil)
 	{
 		self.values = values
 		self.label = label
-		self.onBegan = onBegan
 		self.onEnded = onEnded
 	}
 	
@@ -75,7 +73,6 @@ public struct BXMultiValueToggle : View
 		}
 		.simultaneousGesture( TapGesture().onEnded
 		{
-			self.onBegan?()
 			self.onEnded?()
 		})
 		.hasMultipleValues(self.values.wrappedValue.count > 1)

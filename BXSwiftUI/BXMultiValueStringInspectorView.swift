@@ -24,6 +24,8 @@ public struct BXMultiValueStringInspectorView : View
 	private var values:Binding<Set<String>>
 	private var allowSpaceKey:Bool = false
 	private var statusHandler:BXTextFieldStatusHandler? = nil
+	private var onBegan:(()->Void)? = nil
+	private var onEnded:(()->Void)? = nil
 
 	// Environment
 	
@@ -42,7 +44,7 @@ public struct BXMultiValueStringInspectorView : View
 	}
 	// Init
 	
-	public init(label:String = "", values:Binding<Set<String>>, allowSpaceKey:Bool = false, statusHandler:BXTextFieldStatusHandler? = nil)
+	public init(label:String = "", values:Binding<Set<String>>, allowSpaceKey:Bool = false, statusHandler:BXTextFieldStatusHandler? = nil, onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil)
 	{
 		self.label = label
 		self.values = values
@@ -60,7 +62,9 @@ public struct BXMultiValueStringInspectorView : View
 				values: self.values,
 				alignment:. leading,
 				allowSpaceKey: self.allowSpaceKey,
-				statusHandler: self.statusHandler)
+				statusHandler: self.statusHandler,
+				onBegan: self.onBegan,
+				onEnded: self.onEnded)
 					.focusable() // This makes sure that tabbing order (nextKeyViewLoop) is correct (top to bottom)
 //					.reducedOpacityWhenDisabled()	// Not needed because AppKit already dimmed the control
 		}

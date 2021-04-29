@@ -26,6 +26,8 @@ public struct  BXTextField<T> : View
 	private var selectAllOnMouseDown = true
 	private var allowSpaceKey = false
 	private var statusHandler:(BXTextFieldStatusHandler)? = nil
+	private var onBegan:(()->Void)? = nil
+	private var onEnded:(()->Void)? = nil
 
 	// Environment
 	
@@ -37,7 +39,7 @@ public struct  BXTextField<T> : View
 	
 	// Build View
 
-	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, placeholderString:String? = nil, formatter:Formatter? = nil, selectAllOnMouseDown:Bool = true, allowSpaceKey:Bool = false,statusHandler:(BXTextFieldStatusHandler)? = nil)
+	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, placeholderString:String? = nil, formatter:Formatter? = nil, selectAllOnMouseDown:Bool = true, allowSpaceKey:Bool = false,statusHandler:(BXTextFieldStatusHandler)? = nil, onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil)
 	{
 		self.value = value
 		self.height = height
@@ -47,6 +49,8 @@ public struct  BXTextField<T> : View
 		self.selectAllOnMouseDown = selectAllOnMouseDown
 		self.allowSpaceKey = allowSpaceKey
 		self.statusHandler = statusHandler
+		self.onBegan = onBegan
+		self.onEnded = onEnded
 		
 		// If a fixed height was not provided, then choose the height and baseline depending on environment controlSize.
 		// Please note that these hardcoded values might possibly changes in future OS versions.

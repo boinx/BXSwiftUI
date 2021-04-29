@@ -24,7 +24,6 @@ public struct BXMultiValueBoolInspectorView : View
 	private var values:Binding<Set<Bool>>
 	private var title:String
 	private var alignment:HorizontalAlignment
-	private var onBegan:(()->Void)? = nil
 	private var onEnded:(()->Void)? = nil
 
 	// Environment
@@ -44,13 +43,12 @@ public struct BXMultiValueBoolInspectorView : View
 	
 	// Init
 	
-	public init(label:String = "", values:Binding<Set<Bool>>, title:String = "", alignment:HorizontalAlignment = .leading, onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil)
+	public init(label:String = "", values:Binding<Set<Bool>>, title:String = "", alignment:HorizontalAlignment = .leading, onEnded:(()->Void)? = nil)
 	{
 		self.label = label
 		self.values = values
 		self.title = title
 		self.alignment = alignment
-		self.onBegan = onBegan
 		self.onEnded = onEnded
 	}
 	
@@ -65,7 +63,7 @@ public struct BXMultiValueBoolInspectorView : View
 				Spacer()
 			}
 			
-			BXMultiValueToggle(values:self.values, label:self.title, onBegan:self.onBegan, onEnded:onEnded)
+			BXMultiValueToggle(values:self.values, label:self.title, onEnded:onEnded)
 			
 			if self.alignment == .leading
 			{

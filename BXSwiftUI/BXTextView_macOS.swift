@@ -54,6 +54,8 @@ internal struct BXTextView_macOS : NSViewRepresentable
     @Binding var value:NSAttributedString
 	@Binding var fittingSize:CGSize
 	var statusHandler:(BXTextViewStatusHandler)? = nil
+	var onBegan:(()->Void)? = nil
+	var onEnded:(()->Void)? = nil
 
 	// Environment
 	
@@ -150,6 +152,11 @@ internal struct BXTextView_macOS : NSViewRepresentable
             self.undoName = undoName
         }
 		
+		func textDidBeginEditing(_ notification:Notification)
+		{
+			self.swituiTextView.onBegan?()
+		}
+		
 		func textDidChange(_ notification:Notification)
 		{
 			guard let textView = notification.object as? BXNativeTextView else { return }
@@ -167,6 +174,8 @@ internal struct BXTextView_macOS : NSViewRepresentable
 		
 		func textDidEndEditing(_ notification: Notification)
 		{
+			self.swituiTextView.onEnded?()
+			
 			// Once editing end set the undoName
 			
 			self.undoManager?.setActionName(undoName)

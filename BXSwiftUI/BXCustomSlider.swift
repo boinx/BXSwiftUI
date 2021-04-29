@@ -24,6 +24,8 @@ public struct BXCustomSlider : View
 	private var trackWidth:CGFloat = 4
 	private var knobRadius:CGFloat = 6
 	private var knobStrokeWidth:CGFloat = 1.5
+	private var onBegan:(()->Void)? = nil
+	private var onEnded:(()->Void)? = nil
 	
 	// Environment
 	
@@ -35,7 +37,7 @@ public struct BXCustomSlider : View
 
 	// Init
 	
-	public init(value:Binding<Double>, range:ClosedRange<Double> = 0.0...1.0, response:BXSliderResponse = .linear, color:Color = .accentColor, trackWidth:CGFloat = 4, knobRadius:CGFloat = 6, knobStrokeWidth:CGFloat = 1.5)
+	public init(value:Binding<Double>, range:ClosedRange<Double> = 0.0...1.0, response:BXSliderResponse = .linear, color:Color = .accentColor, trackWidth:CGFloat = 4, knobRadius:CGFloat = 6, knobStrokeWidth:CGFloat = 1.5, onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil)
 	{
 		self.value = value
 		self.range = range
@@ -44,6 +46,8 @@ public struct BXCustomSlider : View
 		self.trackWidth = trackWidth
 		self.knobRadius = knobRadius
 		self.knobStrokeWidth = knobStrokeWidth
+		self.onBegan = onBegan
+		self.onEnded = onEnded
 	}
 	
 	
@@ -180,6 +184,7 @@ public struct BXCustomSlider : View
 						if self.dragIteration == 0
 						{
 							self.undoManager?.beginUndoGrouping()
+							self.onBegan?()
 						}
 						
 						self.dragIteration += 1
@@ -196,6 +201,7 @@ public struct BXCustomSlider : View
 					{
 						_ in
 
+						self.onEnded?()
 						self.undoManager?.setActionName(self.undoName)
 						self.undoManager?.endUndoGrouping()
 						self.dragIteration = 0

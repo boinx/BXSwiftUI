@@ -23,6 +23,8 @@ public struct BXTextView : View
 	
     private var value:Binding<NSAttributedString>
 	private var statusHandler:(BXTextViewStatusHandler)? = nil
+	private var onBegan:(()->Void)? = nil
+	private var onEnded:(()->Void)? = nil
 
 	// Environment
 	
@@ -39,10 +41,12 @@ public struct BXTextView : View
 	/// - parameter isActiveHandler: A closure that is called repeatedly as the mouse enters or exits the view,
 	/// or when editing starts or ends. Can be used to change the appearance of the view.
 
-	public init(value:Binding<NSAttributedString>, statusHandler:(BXTextViewStatusHandler)? = nil)
+	public init(value:Binding<NSAttributedString>, statusHandler:(BXTextViewStatusHandler)? = nil, onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil)
 	{
 		self.value = value
 		self.statusHandler = statusHandler
+		self.onBegan = onBegan
+		self.onEnded = onEnded
 	}
 	
 	
@@ -52,7 +56,7 @@ public struct BXTextView : View
 	{
 		#if os(macOS)
 		
-		return BXTextView_macOS(value:self.value, fittingSize:self.$fittingSize, statusHandler:statusHandler)
+		return BXTextView_macOS(value:self.value, fittingSize:self.$fittingSize, statusHandler:statusHandler, onBegan:onBegan, onEnded:onEnded)
 			
 			// This makes sure that tabbing order (nextKeyViewLoop) is correct (top to bottom)
 			
