@@ -24,7 +24,8 @@ public struct BXMultiValueColorSlider : View
 	private var trackWidth:CGFloat = 4
 	private var knobRadius:CGFloat = 6
 	private var knobStrokeWidth:CGFloat = 1.5
-	private var initialAction:(()->Void)? = nil
+	private var onBegan:(()->Void)? = nil
+	private var onEnded:(()->Void)? = nil
 
 	// Environment
 	
@@ -35,7 +36,7 @@ public struct BXMultiValueColorSlider : View
 
 	// Init
 	
-	public init(values:Binding<Set<Double>>, range:ClosedRange<Double> = 0.0...1.0, response:BXSliderResponse = .linear, color:Color = .accentColor, trackWidth:CGFloat = 4, knobRadius:CGFloat = 6, knobStrokeWidth:CGFloat = 1.5, initialAction:(()->Void)? = nil)
+	public init(values:Binding<Set<Double>>, range:ClosedRange<Double> = 0.0...1.0, response:BXSliderResponse = .linear, color:Color = .accentColor, trackWidth:CGFloat = 4, knobRadius:CGFloat = 6, knobStrokeWidth:CGFloat = 1.5, onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil)
 	{
 		self.values = values
 		self.range = range
@@ -44,7 +45,8 @@ public struct BXMultiValueColorSlider : View
 		self.trackWidth = trackWidth
 		self.knobRadius = knobRadius
 		self.knobStrokeWidth = knobStrokeWidth
-		self.initialAction = initialAction
+		self.onBegan = onBegan
+		self.onEnded = onEnded
 	}
 	
 	
@@ -185,7 +187,7 @@ public struct BXMultiValueColorSlider : View
 						if self.dragIteration == 0
 						{
 							self.undoManager?.beginUndoGrouping()
-							self.initialAction?()
+							self.onBegan?()
 						}
 						
 						self.dragIteration += 1
@@ -202,6 +204,7 @@ public struct BXMultiValueColorSlider : View
 					{
 						_ in
 
+						self.onEnded?()
 						self.undoManager?.setActionName(self.undoName)
 						self.undoManager?.endUndoGrouping()
 						self.dragIteration = 0

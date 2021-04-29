@@ -9,6 +9,7 @@
 
 import SwiftUI
 import AppKit
+import BXSwiftUtils
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -21,7 +22,8 @@ public struct BXMultiValueNativeSlider : NSViewRepresentable
 	private var values:Binding<Set<Double>>
 	private var range:ClosedRange<Double> = 0.0...1.0
 	private var response:BXSliderResponse = .linear
-	private var initialAction:(()->Void)? = nil
+	private var onBegan:(()->Void)? = nil
+	private var onEnded:(()->Void)? = nil
 	
 	// Environment
 	
@@ -33,12 +35,13 @@ public struct BXMultiValueNativeSlider : NSViewRepresentable
 
 	// Init
 	
-	public init(values:Binding<Set<Double>>, in range:ClosedRange<Double> = 0.0...1.0, response:BXSliderResponse = .linear, initialAction:(()->Void)? = nil)
+	public init(values:Binding<Set<Double>>, in range:ClosedRange<Double> = 0.0...1.0, response:BXSliderResponse = .linear, onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil)
 	{
 		self.values = values
 		self.range = range
 		self.response = response
-		self.initialAction = initialAction
+		self.onBegan = onBegan
+		self.onEnded = onEnded
 	}
 	
 
@@ -104,7 +107,7 @@ public struct BXMultiValueNativeSlider : NSViewRepresentable
     }
     
     
-	public class Coordinator : NSObject
+	public class Coordinator : NSObject,BXInstanceInfoMixin
     {
         var slider:BXMultiValueNativeSlider
 		var response:BXSliderResponse
@@ -120,9 +123,10 @@ public struct BXMultiValueNativeSlider : NSViewRepresentable
 			let viewValue = sender.doubleValue
 			let modelValue = self.response.viewToModel(viewValue)
 			
-			self.slider.initialAction?()
+			self.slider.onBegan?()
 			self.slider.values.wrappedValue = Set([modelValue])
 			
+			DispatchQueue.main.coalesce("\(self.instanceIdentifier).commit", block:{ [weak self] in self?.slider.onEnded?() })
 			DispatchQueue.main.executeScheduledBlocks()
         }
     }

@@ -26,7 +26,8 @@ public struct BXMultiValueDoubleInspectorView: View
 	private var response:BXSliderResponse = .linear
 	private var formatter:Formatter? = nil
 	private var statusHandler:BXTextFieldStatusHandler? = nil
-	private var initialAction:(()->Void)? = nil
+	private var onBegan:(()->Void)? = nil
+	private var onEnded:(()->Void)? = nil
 
 	// Environment
 	
@@ -47,7 +48,7 @@ public struct BXMultiValueDoubleInspectorView: View
 
 	// Init
 	
-	public init(label:String = "", values:Binding<Set<Double>>, range:ClosedRange<Double>, response:BXSliderResponse = .linear, formatter:Formatter? = nil, statusHandler:BXTextFieldStatusHandler? = nil, initialAction:(()->Void)? = nil)
+	public init(label:String = "", values:Binding<Set<Double>>, range:ClosedRange<Double>, response:BXSliderResponse = .linear, formatter:Formatter? = nil, statusHandler:BXTextFieldStatusHandler? = nil, onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil)
 	{
 		self.label = label
 		self.values = values
@@ -55,7 +56,8 @@ public struct BXMultiValueDoubleInspectorView: View
 		self.response = response
 		self.formatter = formatter
 		self.statusHandler = statusHandler
-		self.initialAction = initialAction
+		self.onBegan = onBegan
+		self.onEnded = onEnded
 	}
 	
 	private var value:Double
@@ -76,13 +78,13 @@ public struct BXMultiValueDoubleInspectorView: View
 					
 				Spacer()
 
-				BXMultiValueTextField(values:values, alignment:.trailing, formatter:formatter, statusHandler:statusHandler, initialAction:initialAction)
+				BXMultiValueTextField(values:values, alignment:.trailing, formatter:formatter, statusHandler:statusHandler, onBegan:onBegan, onEnded:onEnded)
 					.frame(width:60.0)
 					.focusable() // This makes sure that tabbing order (nextKeyViewLoop) is correct (top to bottom)
 					//.reducedOpacityWhenDisabled()	// Not needed because AppKit already dimmed the control
 			}
 			
-			BXMultiValueSlider(values:values, in:range, response:response, initialAction:initialAction)
+			BXMultiValueSlider(values:values, in:range, response:response, onBegan:onBegan, onEnded:onEnded)
 				.zIndex(-1)
 				.offset(x:0,y:1)
 				//.reducedOpacityWhenDisabled()		// Not needed because AppKit already dimmed the control

@@ -23,6 +23,8 @@ public struct BXRangeSlider : View
 	private var knobSize:CGFloat = 12
 	private var trackWidth:CGFloat = 3
 	private var isUniqueValue:Bool = true
+	private var onBegan:(()->Void)? = nil
+	private var onEnded:(()->Void)? = nil
 	
 	// Environment
 	
@@ -34,7 +36,7 @@ public struct BXRangeSlider : View
 
 	// Init
 	
-	public init(lowerValue:Binding<Double>, upperValue:Binding<Double>, range:ClosedRange<Double> = 0.0...360.0, knobSize:CGFloat = 12, trackWidth:CGFloat = 3, isUniqueValue:Bool = true)
+	public init(lowerValue:Binding<Double>, upperValue:Binding<Double>, range:ClosedRange<Double> = 0.0...360.0, knobSize:CGFloat = 12, trackWidth:CGFloat = 3, isUniqueValue:Bool = true, onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil)
 	{
 		self.lowerValue = lowerValue
 		self.upperValue = upperValue
@@ -42,6 +44,8 @@ public struct BXRangeSlider : View
 		self.knobSize = knobSize
 		self.trackWidth = trackWidth
 		self.isUniqueValue = isUniqueValue
+		self.onBegan = onBegan
+		self.onEnded = onEnded
 	}
 	
 	
@@ -237,6 +241,8 @@ public struct BXRangeSlider : View
 						{
 							self.dragKnobIndex = 1
 						}
+						
+						self.onBegan?()
 					}
 					
 					self.dragIteration += 1
@@ -259,6 +265,7 @@ public struct BXRangeSlider : View
 				{
 					_ in
 
+					self.onEnded?()
 					self.undoManager?.setActionName(self.undoName)
 					self.undoManager?.endUndoGrouping()
 					self.dragIteration = 0

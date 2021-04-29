@@ -25,7 +25,8 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 	private var selectAllOnMouseDown = true
 	private var allowSpaceKey = false
 	private var statusHandler:(BXTextFieldStatusHandler)? = nil
-	private var initialAction:(()->Void)? = nil
+	private var onBegan:(()->Void)? = nil
+	private var onEnded:(()->Void)? = nil
 	
 	// Environment
 	
@@ -37,7 +38,7 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 
 	// Init
 	
-	public init(values:Binding<Set<T>>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, selectAllOnMouseDown:Bool = true, allowSpaceKey:Bool = false, statusHandler:(BXTextFieldStatusHandler)? = nil, initialAction:(()->Void)? = nil)
+	public init(values:Binding<Set<T>>, height:CGFloat? = nil, alignment:TextAlignment = .leading, formatter:Formatter? = nil, selectAllOnMouseDown:Bool = true, allowSpaceKey:Bool = false, statusHandler:(BXTextFieldStatusHandler)? = nil, onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil)
 	{
 		self.values = values
 		self.height = height
@@ -46,7 +47,8 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 		self.selectAllOnMouseDown = selectAllOnMouseDown
 		self.allowSpaceKey = allowSpaceKey
 		self.statusHandler = statusHandler
-		self.initialAction = initialAction
+		self.onBegan = onBegan
+		self.onEnded = onEnded
 	}
 
 	
@@ -164,6 +166,8 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 		{
 			guard let textfield = notification.object as? BXTextFieldNative else { return }
 			textfield.isEditing = true
+
+			self.textfield.onBegan?()
 		}
 
 		// The user has ended editing. Update the data model value, then clear the isEditing flag again.
@@ -175,7 +179,7 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 			self.perform(action, with:textfield)
 			textfield.isEditing = false
 			
-			self.textfield.initialAction?()
+			self.textfield.onEnded?()
 		}
 
         @objc func updateStringValues(with sender:NSTextField)

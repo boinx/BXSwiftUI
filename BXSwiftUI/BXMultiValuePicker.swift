@@ -39,7 +39,8 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	
 	private var values:Binding<Set<Int>>
 	private var huggingPriority:NSLayoutConstraint.Priority = .defaultLow
-	private var initialAction:(()->Void)? = nil
+	private var onBegan:(()->Void)? = nil
+	private var onEnded:(()->Void)? = nil
 	private var orderedItems:[BXMenuItemSpec]
 
 	// Environment
@@ -52,11 +53,12 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	
 	// Init
 	
-	public init(values:Binding<Set<Int>>, huggingPriority:NSLayoutConstraint.Priority = .defaultLow, initialAction:(()->Void)? = nil, orderedItems:[BXMenuItemSpec])
+	public init(values:Binding<Set<Int>>, huggingPriority:NSLayoutConstraint.Priority = .defaultLow, onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil, orderedItems:[BXMenuItemSpec])
 	{
 		self.values = values
 		self.huggingPriority = huggingPriority
-		self.initialAction = initialAction
+		self.onBegan = onBegan
+		self.onEnded = onEnded
 		self.orderedItems = orderedItems
 	}
 	
@@ -213,8 +215,9 @@ public struct BXMultiValuePicker : NSViewRepresentable
         @objc func updateValues(with sender:NSPopUpButton)
         {
 			let tag = sender.selectedTag()
-			picker.initialAction?()
+			picker.onBegan?()
 			picker.values.wrappedValue = Set([tag])
+			picker.onEnded?()
 			picker.undoManager?.setActionName(picker.undoName)
         }
     }

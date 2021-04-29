@@ -20,6 +20,8 @@ public struct BXCircularSlider : View
 	private var value:Binding<Double>
 	private var range:ClosedRange<Double>
 	private var radius:CGFloat = 16.0
+	private var onBegan:(()->Void)? = nil
+	private var onEnded:(()->Void)? = nil
 
 	// Environment
 	
@@ -35,11 +37,13 @@ public struct BXCircularSlider : View
 
 	// Init
 	
-	public init(value:Binding<Double>, range:ClosedRange<Double> = 0.0...360.0, radius:CGFloat = 15.0)
+	public init(value:Binding<Double>, range:ClosedRange<Double> = 0.0...360.0, radius:CGFloat = 15.0, onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil)
 	{
 		self.value = value
 		self.range = range
 		self.radius = radius
+		self.onBegan = onBegan
+		self.onEnded = onEnded
 	}
 	
 	// Build the view
@@ -69,6 +73,7 @@ public struct BXCircularSlider : View
 						if self.dragIteration == 0
 						{
 							self.undoManager?.beginUndoGrouping()
+							self.onBegan?()
 						}
 						
 						self.dragIteration += 1
@@ -83,6 +88,7 @@ public struct BXCircularSlider : View
 						
 						// On mouse up close undo group
 						
+						self.onEnded?()
 						self.undoManager?.setActionName(self.undoName)
 						self.undoManager?.endUndoGrouping()
 						self.dragIteration = 0
