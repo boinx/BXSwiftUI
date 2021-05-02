@@ -20,7 +20,7 @@ public final class BXModifierKeys : NSObject, ObservableObject
 	
 	public static var shared = BXModifierKeys()
 	
-
+	
 //----------------------------------------------------------------------------------------------------------------------
 
 
@@ -43,9 +43,22 @@ public final class BXModifierKeys : NSObject, ObservableObject
 //----------------------------------------------------------------------------------------------------------------------
 
 
+	/// Key event handlers of this type  can be registered with BXModifierKeys
+	
+	public typealias Handler = (NSEvent)->Void
+	
+	/// The registered keyDown handlers
+	
+	public var onKeyDown:[String:Handler] = [:]
+	
+	/// The registered keyUp handlers
+	
+	public var onKeyUp:[String:Handler] = [:]
+	
 	/// The currently pressed key
 	
 	@Published public var key:String? = nil
+	
 	
 	/// Call this function from a keyDown() somewhere in your responder chain. The best place would be near the
 	/// root (e.g. in the AppDelegate). Make sure to call super so that the responder chain doesn't get broken.
@@ -53,6 +66,11 @@ public final class BXModifierKeys : NSObject, ObservableObject
     public func keyDown(with event:NSEvent)
     {
 		self.key = event.charactersIgnoringModifiers
+		
+		for (_,handler) in onKeyDown
+		{
+			handler(event)
+		}
     }
     
 	/// Call this function from a keyUp() somewhere in your responder chain. The best place would be near the
@@ -60,6 +78,11 @@ public final class BXModifierKeys : NSObject, ObservableObject
 	
     public func keyUp(with event:NSEvent)
     {
+		for (_,handler) in onKeyUp
+		{
+			handler(event)
+		}
+
 		self.key = nil
     }
 }
