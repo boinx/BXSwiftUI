@@ -72,6 +72,7 @@ public struct BXCircularSlider : View
 						
 						if self.dragIteration == 0
 						{
+							self.undoManager?.groupsByEvent = false
 							self.undoManager?.beginUndoGrouping()
 							self.onBegan?()
 						}
@@ -91,6 +92,7 @@ public struct BXCircularSlider : View
 						self.onEnded?()
 						self.undoManager?.setActionName(self.undoName)
 						self.undoManager?.endUndoGrouping()
+						self.undoManager?.groupsByEvent = true
 						self.dragIteration = 0
 					}
 				)
@@ -167,6 +169,7 @@ public struct BXMultiValueCircularSlider : View
 						
 						if self.dragIteration == 0
 						{
+							self.undoManager?.groupsByEvent = false
 							self.undoManager?.beginUndoGrouping()
 							self.onBegan?()
 						}
@@ -191,6 +194,7 @@ public struct BXMultiValueCircularSlider : View
 						self.onEnded?()
 						self.undoManager?.setActionName(self.undoName)
 						self.undoManager?.endUndoGrouping()
+						self.undoManager?.groupsByEvent = true
 						self.dragIteration = 0
 					}
 				)

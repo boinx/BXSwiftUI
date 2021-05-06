@@ -232,6 +232,7 @@ public struct BXRangeSlider : View
 
 					if self.dragIteration == 0
 					{
+						self.undoManager?.groupsByEvent = false
 						self.undoManager?.beginUndoGrouping()
 						if abs(value-self.lowerValue.wrappedValue) <= abs(value-self.upperValue.wrappedValue)
 						{
@@ -268,6 +269,7 @@ public struct BXRangeSlider : View
 					self.onEnded?()
 					self.undoManager?.setActionName(self.undoName)
 					self.undoManager?.endUndoGrouping()
+					self.undoManager?.groupsByEvent = true
 					self.dragIteration = 0
 				}
 			)

@@ -183,6 +183,7 @@ public struct BXCustomSlider : View
 
 						if self.dragIteration == 0
 						{
+							self.undoManager?.groupsByEvent = false
 							self.undoManager?.beginUndoGrouping()
 							self.onBegan?()
 						}
@@ -204,6 +205,7 @@ public struct BXCustomSlider : View
 						self.onEnded?()
 						self.undoManager?.setActionName(self.undoName)
 						self.undoManager?.endUndoGrouping()
+						self.undoManager?.groupsByEvent = true
 						self.dragIteration = 0
 					}
 				)

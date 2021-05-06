@@ -120,6 +120,7 @@ public struct BXJogwheel : View
 
 				if self.dragIteration == 0
 				{
+					self.undoManager?.groupsByEvent = false
 					self.undoManager?.beginUndoGrouping()
 					self.dragInitialValue = self.value.wrappedValue
 					self.onBegan?()
@@ -150,6 +151,7 @@ public struct BXJogwheel : View
 				self.onEnded?()
 				self.undoManager?.setActionName(self.undoName)
 				self.undoManager?.endUndoGrouping()
+				self.undoManager?.groupsByEvent = true
 				self.dragIteration = 0
 			}
 		)
