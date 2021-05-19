@@ -18,7 +18,7 @@ import AppKit
 
 public extension NSSavePanel
 {
-	class func presentModal(title:String? = nil, message:String? = nil, buttonLabel:String? = nil, defaultFilename:String? = nil, appearance:NSAppearance? = nil, handler:(URL?) throws -> Void) rethrows
+	class func presentModal(title:String? = nil, message:String? = nil, buttonLabel:String? = nil, defaultFilename:String? = nil, allowedExtensions:[String]? = nil, appearance:NSAppearance? = nil, handler:(URL?) throws -> Void) rethrows
 	{
 		let panel = NSSavePanel()
 		
@@ -43,6 +43,11 @@ public extension NSSavePanel
 		if let defaultFilename = defaultFilename
 		{
 			panel.nameFieldStringValue = defaultFilename
+		}
+		
+		if let allowedExtensions = allowedExtensions
+		{
+			panel.allowedFileTypes = allowedExtensions
 		}
 		
 		let button = panel.runModal()
