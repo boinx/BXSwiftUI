@@ -31,9 +31,11 @@ public struct BXSegmentedControl<Content> : View where Content:View
 	
 	var strokeColor:Color
 	{
-		colorScheme == .dark ?
-			self.bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled) :
-			self.bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled)
+		self.bxColorTheme.strokeColor(for:colorScheme)
+		
+//		colorScheme == .dark ?
+//			self.bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled) :
+//			self.bxColorTheme.strokeColor(for:colorScheme, isEnabled:isEnabled)
 	}
 	
 	// State
@@ -98,6 +100,9 @@ public struct BXSegmentedControl<Content> : View where Content:View
 		
 		.cornerRadius(cornerRadius)
 
+		// Dim when disabled
+		
+		.reducedOpacityWhenDisabled()
 	}
 }
 
@@ -195,12 +200,12 @@ public struct BXSegment<Content> : View where Content:View
 		{
 			return self.value == self.bxSegmentIndex.wrappedValue ?
 				bxColorTheme.contentColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1) :
-				bxColorTheme.fillColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1) //Color.clear
+				bxColorTheme.fillColor(for:colorScheme, isEnabled:true, enhanceBy:1) //Color.clear
 		}
 		else
 		{
 			return self.value == self.bxSegmentIndex.wrappedValue ?
-				bxColorTheme.hiliteColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1) :
+				bxColorTheme.hiliteColor(for:colorScheme, isEnabled:true, enhanceBy:1) :
 				Color.white
 		}
 	}
@@ -212,14 +217,14 @@ public struct BXSegment<Content> : View where Content:View
 		if colorScheme == .dark
 		{
 			return self.value == self.bxSegmentIndex.wrappedValue ?
-				bxColorTheme.backgroundColor() :
-				bxColorTheme.contentColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1)
+				(isEnabled ? bxColorTheme.backgroundColor() : Color.white) :
+				bxColorTheme.contentColor(for:colorScheme, isEnabled:true, enhanceBy:1)
 		}
 		else
 		{
 			return self.value == self.bxSegmentIndex.wrappedValue ?
 				Color.white :
-				bxColorTheme.contentColor(for:colorScheme, isEnabled:isEnabled, enhanceBy:1)
+				bxColorTheme.contentColor(for:colorScheme, isEnabled:true, enhanceBy:1)
 		}
 	}
 }
