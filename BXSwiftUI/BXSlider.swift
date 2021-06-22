@@ -38,7 +38,7 @@ public struct BXSlider : View
 	
 	public var body: some View
 	{
-		// Since BXMultiValueSlider is the more capaable (general) version of this, we'll simply
+		// Since BXMultiValueSlider is the more capable (general) version of this, we'll simply
 		// reuse it for now, converting the single-value Binding to a multi-value Binding.
 		
 		BXMultiValueSlider(values: Binding<Double>.multiValue(for:value), in:range, response:response, onBegan:onBegan, onEnded:onEnded)
