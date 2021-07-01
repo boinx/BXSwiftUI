@@ -110,14 +110,7 @@ fileprivate struct _BXStrokedButton : View
 				{
 					geometry in
 					
-					// Instead of drawing a ZStack with two RoundedRectangles (which produces glitches on non-retina
-					// screens), we'll draw a button with a double width stroke. The parts outside the bounds will be
-					// clipped away with the cornerRadius modifier, thus yielding a single width stroke.
 					
-					self.fillColor
-						.overlay( RoundedRectangle(cornerRadius:self.radius(for:geometry)).stroke(self.strokeColor, lineWidth:2) )
-						.cornerRadius(self.radius(for:geometry))
-						
 //					ZStack
 //					{
 //						RoundedRectangle(cornerRadius:self.radius(for:geometry))
@@ -127,6 +120,21 @@ fileprivate struct _BXStrokedButton : View
 //							.stroke(self.strokeColor, lineWidth:1)
 //							.padding(0.5)
 //					}
+
+					// Instead of drawing a ZStack with two RoundedRectangles (which produces glitches on non-retina
+					// screens), we'll draw a button with a double width stroke. The parts outside the bounds will be
+					// clipped away with the cornerRadius modifier, thus yielding a single width stroke.
+					
+					ZStack
+					{
+						self.fillColor
+							.overlay( RoundedRectangle(cornerRadius:self.radius(for:geometry)).stroke(self.strokeColor, lineWidth:2) )
+							.cornerRadius(self.radius(for:geometry))
+						
+						// Disable window dragging when clicking on buttons
+						
+						BXNonDraggingView()
+					}
 				}
 			)
 			
@@ -134,6 +142,33 @@ fileprivate struct _BXStrokedButton : View
 			
 			.reducedOpacityWhenDisabled()
     }
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+public struct BXNonDraggingView : NSViewRepresentable
+{
+	public func makeNSView(context:Context) -> _BXNonDraggingView
+    {
+		return _BXNonDraggingView(frame:.zero)
+    }
+
+
+	public func updateNSView(_ view:_BXNonDraggingView, context:Context)
+    {
+
+    }
+}
+
+
+public class _BXNonDraggingView : NSView
+{
+	public override var mouseDownCanMoveWindow: Bool
+	{
+		return false
+	}
 }
 
 
