@@ -20,6 +20,18 @@ public final class BXModifierKeys : NSObject, ObservableObject
 	
 	public static var shared = BXModifierKeys()
 	
+	/// The currently pressed modifiers
+	
+	@Published public var flags:NSEvent.ModifierFlags = []
+	
+	/// The currently pressed key
+	
+	@Published public var key:String? = nil
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
 	/// Key event handlers of this type  can be registered with BXModifierKeys
 	
 	public typealias Handler = (NSEvent)->Void
@@ -35,14 +47,6 @@ public final class BXModifierKeys : NSObject, ObservableObject
 	/// The registered flagsChanged handlers
 	
 	public var onFlagsChanged:[String:Handler] = [:]
-	
-	/// The currently pressed key
-	
-	@Published public var key:String? = nil
-
-	/// The currently pressed modifiers
-	
-	@Published public var flags:NSEvent.ModifierFlags = []
 	
 	
 //----------------------------------------------------------------------------------------------------------------------
