@@ -54,7 +54,7 @@ public final class BXModifierKeys : NSObject, ObservableObject
     public func flagsChanged(with event:NSEvent)
     {
 		self.flags = event.modifierFlags
-#imageLiteral(resourceName: "simon-english-48nerZQCHgo-unsplash.jpg")
+
 		for (_,handler) in onFlagsChanged
 		{
 			handler(event)
