@@ -20,29 +20,6 @@ public final class BXModifierKeys : NSObject, ObservableObject
 	
 	public static var shared = BXModifierKeys()
 	
-	
-//----------------------------------------------------------------------------------------------------------------------
-
-
-	/// The current set of pressed modifier keys
-	
-	public var flags:NSEvent.ModifierFlags
-	{
-		return NSApp.currentEvent?.modifierFlags ?? []
-	}
-	
-	/// Call this function from a flagsChanged() somewhere in your responder chain. The best place would be near the
-	/// root (e.g. in the AppDelegate). Make sure to call super so that the responder chain doesn't get broken.
-	
-    public func flagsChanged(with event:NSEvent)
-    {
-		self.objectWillChange.send()
-    }
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
 	/// Key event handlers of this type  can be registered with BXModifierKeys
 	
 	public typealias Handler = (NSEvent)->Void
@@ -55,11 +32,36 @@ public final class BXModifierKeys : NSObject, ObservableObject
 	
 	public var onKeyUp:[String:Handler] = [:]
 	
+	/// The registered flagsChanged handlers
+	
+	public var onFlagsChanged:[String:Handler] = [:]
+	
 	/// The currently pressed key
 	
 	@Published public var key:String? = nil
+
+	/// The currently pressed modifiers
+	
+	@Published public var flags:NSEvent.ModifierFlags = []
 	
 	
+//----------------------------------------------------------------------------------------------------------------------
+
+
+	/// Call this function from a flagsChanged() somewhere in your responder chain. The best place would be near the
+	/// root (e.g. in the AppDelegate). Make sure to call super so that the responder chain doesn't get broken.
+	
+    public func flagsChanged(with event:NSEvent)
+    {
+		self.flags = event.modifierFlags
+#imageLiteral(resourceName: "simon-english-48nerZQCHgo-unsplash.jpg")
+		for (_,handler) in onFlagsChanged
+		{
+			handler(event)
+		}
+    }
+
+
 	/// Call this function from a keyDown() somewhere in your responder chain. The best place would be near the
 	/// root (e.g. in the AppDelegate). Make sure to call super so that the responder chain doesn't get broken.
 	
