@@ -205,7 +205,14 @@ class NSMultiValueSliderCell : NSSliderCell
 		let y:CGFloat = knobRect.midY
 		let w:CGFloat = isDarkMode ? 12.0 : 13.25
 		let h:CGFloat = isDarkMode ? 12.0 : 13.25
-		let rect = CGRect(x:x-0.5*w,y:y-0.5*h,width:w,height:h)
+        
+		var rect = CGRect(x:x-0.5*w,y:y-0.5*h,width:w,height:h)
+        
+        if #available(macOS 11,*)
+        {
+            rect = rect.offsetBy(dx:0.0, dy:-2)
+        }
+        
 		let path = NSBezierPath(ovalIn:rect)
 		path.lineWidth = isDarkMode ? 1.5 : 0.5
 
