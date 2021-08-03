@@ -242,8 +242,7 @@ class BXPopUpButtonCell : NSPopUpButtonCell
 	
 	var isDarkScheme:Bool
 	{
-		let name = self.controlView?.effectiveAppearance.name ?? NSAppearance.Name.darkAqua
-		return name == NSAppearance.Name.darkAqua
+        self.controlView?.effectiveAppearance.isDarkMode ?? false
 	}
 
 

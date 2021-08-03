@@ -198,8 +198,7 @@ class NSMultiValueSliderCell : NSSliderCell
 
 	override open func drawKnob(_ knobRect:NSRect)
 	{
-		let appearance = self.controlView?.effectiveAppearance.name ?? .darkAqua
-		let isDarkMode = appearance == NSAppearance.Name.darkAqua
+        let isDarkMode = self.controlView?.effectiveAppearance.isDarkMode ?? false
 		let alpha:CGFloat = isEnabled ? 1.0 : 0.33
 
 		let x:CGFloat = knobRect.midX

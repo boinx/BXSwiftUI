@@ -14,13 +14,36 @@ import AppKit
 //----------------------------------------------------------------------------------------------------------------------
 
 
-extension NSAppearance
+public extension NSAppearance
 {
+    var isDarkMode:Bool
+    {
+        let darkAppearances:[NSAppearance.Name] =
+        [
+            .vibrantDark,
+            .darkAqua,
+            .accessibilityHighContrastVibrantDark,
+            .accessibilityHighContrastDarkAqua
+        ]
+ 
+        return darkAppearances.contains(self.name)
+
+//         self.name
+//            .rawValue
+//            .lowercased()
+//            .contains("dark")
+    }
+
+    var isLightMode:Bool
+    {
+        !self.isDarkMode
+    }
+    
 	/// Returns the corresponding ColorScheme for this NSAppearance
 	
-	public var colorScheme:ColorScheme
+	var colorScheme:ColorScheme
 	{
-		self.name == .darkAqua ? .dark : .light
+		self.isDarkMode ? .dark : .light
 	}
 }
 
