@@ -212,7 +212,7 @@ class BXCursorViewTracker
 	
 	func updateCursor()
 	{
-		let keys = BXModifierKeys.shared.flags.deviceIndependent
+		let keys = NSEvent.modifierFlags.deviceIndependent
 		self.cursors = currentView?.cursors ?? [:]
 		let currentCursor = self.cursors[keys] ?? NSCursor.arrow
 		currentCursor.set()

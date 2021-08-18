@@ -91,6 +91,12 @@ public final class BXModifierKeys : NSObject, ObservableObject
 
 		self.key = nil
     }
+    
+ 
+ 	public var currentFlags:NSEvent.ModifierFlags
+ 	{
+		NSEvent.modifierFlags
+ 	}
 }
 
 
