@@ -13,7 +13,7 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
-/// BXHuggingContainerView hugs its child view as closely as possible. It can be expanded by the child views, but will resist being streched to infinity by
+/// BXHuggingContainerView hugs its child view as closely as possible. It can be expanded by the child views, but will resist being stretched to infinity by
 /// greedy views like Spacer or Color.
 
 public struct BXHuggingContainerView<Content> : View where Content:View
@@ -45,33 +45,33 @@ public struct BXHuggingContainerView<Content> : View where Content:View
 	{
 		content()
 		
-			// Measure the required size of the content
-			
-			.measureViewSize(forGroupID:self.id)
-
-			// Make view as large as needed, but at LEAST the minimum size
-			
-			.onPreferenceChange(BXViewSizeKey.self)
-			{
-				preferences in
-				
-				var maxSize = CGSize(self.minWidth,self.minHeight)
-				
-				for metadata in preferences
-				{
-					if metadata.groupID == self.id
-					{
-						maxSize.width = max(maxSize.width, metadata.size.width)
-						maxSize.height = max(maxSize.height, metadata.size.height)
-					}
-				}
-				
-				self.size = maxSize
-			}
-			
-			// Resize to final size
-			
-			.frame(width:self.size.width, height:self.size.height)
+//			// Measure the required size of the content
+//			
+//			.measureViewSize(forGroupID:self.id)
+//
+//			// Make view as large as needed, but at LEAST the minimum size
+//			
+//			.onPreferenceChange(BXViewSizeKey.self)
+//			{
+//				preferences in
+//				
+//				var maxSize = CGSize(self.minWidth,self.minHeight)
+//				
+//				for metadata in preferences
+//				{
+//					if metadata.groupID == self.id
+//					{
+//						maxSize.width = max(maxSize.width, metadata.size.width)
+//						maxSize.height = max(maxSize.height, metadata.size.height)
+//					}
+//				}
+//				
+//				self.size = maxSize
+//			}
+//			
+//			// Resize to final size
+//			
+//			.frame(width:self.size.width, height:self.size.height)
 	}
 
 }
