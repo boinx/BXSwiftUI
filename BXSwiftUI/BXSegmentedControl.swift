@@ -61,19 +61,18 @@ public struct BXSegmentedControl<Content> : View where Content:View
 		{
 			content()
 		}
+		.environment(\.bxSegmentGroupID, self.id)
+		.environment(\.bxSegmentWidth, self.$segmentWidth)
 		.environment(\.bxSegmentIndex, self.value)
-
-		// Use BXLabelGroup code for measuring segment widths
-		
-		.environment(\.bxLabelGroupID, self.id)
-		.environment(\.bxLabelWidth, self.$segmentWidth)
 		
 		// Decide on common width for all segments (use widest segment as reference)
 		
-		.onPreferenceChange(BXViewSizeKey.self)
+		.onPreferenceChange(BXSegmentSizeKey.self)
 		{
 			preferences in
 			
+			print("BXSegmentedControl.onPreferenceChange")
+		
 			var maxSize = CGSize(0.0,0.0)
 			
 			for metadata in preferences
@@ -110,6 +109,8 @@ public struct BXSegmentedControl<Content> : View where Content:View
 //----------------------------------------------------------------------------------------------------------------------
 
 
+// MARK: -
+
 public struct BXSegment<Content> : View where Content:View
 {
 	// Params
@@ -121,12 +122,12 @@ public struct BXSegment<Content> : View where Content:View
 
 	// Environment
 	
-	@Environment(\.bxLabelGroupID) private var id
-	@Environment(\.bxLabelWidth) private var segmentWidth
+	@Environment(\.bxSegmentGroupID) private var id
+	@Environment(\.bxSegmentWidth) private var segmentWidth
+	@Environment(\.bxSegmentIndex) var bxSegmentIndex
 	@Environment(\.isEnabled) var isEnabled
 	@Environment(\.colorScheme) var colorScheme
 	@Environment(\.bxColorTheme) var bxColorTheme
-	@Environment(\.bxSegmentIndex) var bxSegmentIndex
 
 	// Init
 	
@@ -183,11 +184,11 @@ public struct BXSegment<Content> : View where Content:View
 					
 					// Measure segment width
 					
-					.measureViewSize(forGroupID:self.id)
+					.measureSegmentSize(forGroupID:self.id)
 					
 					// Resize to common width
 					
-					.resizeView(to:self.segmentWidth, for:self.id, alignment:.center)
+					.resizeSegment(to:self.segmentWidth, for:self.id, alignment:.center)
 			}
 		}
 	}
@@ -235,19 +236,112 @@ public struct BXSegment<Content> : View where Content:View
 
 // MARK: -
 
+public extension View
+{
+	// Measures the size of a View and attaches a preference (with its size)
+	
+	func measureSegmentSize(forGroupID groupID:String) -> some View
+	{
+		print("\(#function)")
+		
+		return self.background( GeometryReader
+		{
+			Color.clear.preference(
+				key: BXSegmentSizeKey.self,
+				value: [BXSegmentSizeData(groupID:groupID, size:$0.size)])
+		})
+	}
+	
+	/// Resizes the view to the width of a particular group.
+	
+	func resizeSegment(to width:Binding<CGFloat>, for groupID:String, alignment:Alignment = .leading) -> some View
+	{
+		print("\(#function)")
+		
+		return self
+		
+			// Measure the label size and attach a preference (metadata)
+			
+			.measureSegmentSize(forGroupID:groupID)
+
+			// Resize the label to the decided upon common width
+			
+			.frame(minWidth:width.wrappedValue, alignment:alignment)
+	}
+}
+
+
+/// The key needed to attach size data to a View
+
+struct BXSegmentSizeKey : PreferenceKey
+{
+	typealias Value = [BXSegmentSizeData]
+
+	static var defaultValue:[BXSegmentSizeData] = []
+
+    static func reduce(value:inout [BXSegmentSizeData], nextValue:()->[BXSegmentSizeData])
+    {
+		value.append(contentsOf: nextValue())
+    }
+}
+
+
+/// The attached data contains the size and a groupID to filter out unwanted candidates when deciding on a common label width
+
+struct BXSegmentSizeData : Equatable
+{
+	let groupID:String
+    let size:CGSize
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+// MARK: -
+
+public extension EnvironmentValues
+{
+    var bxSegmentGroupID:String
+    {
+        set { self[BXSegmentGroupIDKey.self] = newValue }
+        get { return self[BXSegmentGroupIDKey.self] }
+    }
+}
+
+struct BXSegmentGroupIDKey : EnvironmentKey
+{
+    static let defaultValue:String = "defaultGroup"
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+public extension EnvironmentValues
+{
+    var bxSegmentWidth:Binding<CGFloat>
+    {
+        set { self[BXSegmentWidthKey.self] = newValue }
+        get { return self[BXSegmentWidthKey.self] }
+    }
+}
+
+struct BXSegmentWidthKey : EnvironmentKey
+{
+    static let defaultValue:Binding<CGFloat> = Binding.constant(60.0)
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
 public extension EnvironmentValues
 {
     var bxSegmentIndex:Binding<Int>
     {
-        set
-        {
-            self[BXSegmentIndexKey.self] = newValue
-        }
-
-        get
-        {
-            return self[BXSegmentIndexKey.self]
-        }
+        set { self[BXSegmentIndexKey.self] = newValue }
+        get { return self[BXSegmentIndexKey.self] }
     }
 }
 

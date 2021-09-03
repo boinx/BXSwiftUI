@@ -19,20 +19,20 @@ public struct BXButtonGroup<Content> : View where Content:View
 {
 	// Params
 	
-	private var labelGroupID:String
+	private var buttonGroupID:String
 	private var minWidth:CGFloat = 0.0
 	private var spacing:CGFloat = 12.0
 	private var content:()->Content
 
 	// State
 	
-	@State private var labelWidth:CGFloat = 60.0
+	@State private var buttonWidth:CGFloat = 60.0
 	
 	// Init
 	
 	public init(spacing:CGFloat = 12.0, minWidth:CGFloat = 0.0, @ViewBuilder content:@escaping ()->Content)
 	{
-		self.labelGroupID = UUID().uuidString
+		self.buttonGroupID = UUID().uuidString
 		self.spacing = spacing
 		self.minWidth = minWidth
 		self.content = content
@@ -49,30 +49,32 @@ public struct BXButtonGroup<Content> : View where Content:View
 		
 		// Inject group ID into environment so that child BXLabelViews know how to add preference data
 		
-		.environment(\.bxLabelGroupID, self.labelGroupID)
+		.environment(\.bxButtonGroupID, self.buttonGroupID)
 		
 		// Inject labelWidth binding into environment so that BXLabelViews can resize themselves
 		
-		.environment(\.bxLabelWidth, self.$labelWidth)
+		.environment(\.bxButtonWidth, self.$buttonWidth)
 		
 		// Determine largest view size to decide on common label width for this group
 		
-		.onPreferenceChange(BXViewSizeKey.self)
+		.onPreferenceChange(BXButtonSizeKey.self)
 		{
 			preferences in
 			
+			print("BXButtonGroup.onPreferenceChange")
+		
 			var maxSize = CGSize(self.minWidth,0.0)
 			
 			for metadata in preferences
 			{
-				if metadata.groupID == self.labelGroupID
+				if metadata.groupID == self.buttonGroupID
 				{
 					maxSize.width = max(maxSize.width, metadata.size.width)
 					maxSize.height = max(maxSize.height, metadata.size.height)
 				}
 			}
 
-			self.labelWidth = ceil(maxSize.width)
+			self.buttonWidth = ceil(maxSize.width)
 		}
 	}
 
@@ -81,6 +83,8 @@ public struct BXButtonGroup<Content> : View where Content:View
 
 //----------------------------------------------------------------------------------------------------------------------
 
+
+// MARK: -
 
 /// Creates a button with equal width when inside a BXButtonGroup
 
@@ -93,8 +97,8 @@ public struct BXEqualWidthButton : View
 	
 	// Environment
 	
-	@Environment(\.bxLabelGroupID) private var bxLabelGroupID
-	@Environment(\.bxLabelWidth) private var bxLabelWidth
+	@Environment(\.bxButtonGroupID) private var bxButtonGroupID
+	@Environment(\.bxButtonWidth) private var bxButtonWidth
 
 	// Init
 	
@@ -113,12 +117,17 @@ public struct BXEqualWidthButton : View
 			Text(title)
 				.lineLimit(1)
 				.fixedSize()
-				.measureViewSize(forGroupID:self.bxLabelGroupID)
-				.frame(width:self.bxLabelWidth.wrappedValue)
+				.measureButtonSize(forGroupID:self.bxButtonGroupID)
+				.frame(width:self.bxButtonWidth.wrappedValue)
 		}
 	}
 }
 
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+// MARK: -
 
 /// Creates a button with equal width when inside a BXButtonGroup
 
@@ -131,8 +140,8 @@ public struct BXEqualWidthGenericButton<Content:View> : View
 	
 	// Environment
 	
-	@Environment(\.bxLabelGroupID) private var bxLabelGroupID
-	@Environment(\.bxLabelWidth) private var bxLabelWidth
+	@Environment(\.bxButtonGroupID) private var bxButtonGroupID
+	@Environment(\.bxButtonWidth) private var bxButtonWidth
 
 	// Init
 	
@@ -150,10 +159,113 @@ public struct BXEqualWidthGenericButton<Content:View> : View
 		{
 			self.content!()
 				.fixedSize()
-				.measureViewSize(forGroupID:self.bxLabelGroupID)
-				.frame(width:self.bxLabelWidth.wrappedValue)
+				.measureButtonSize(forGroupID:self.bxButtonGroupID)
+				.frame(width:self.bxButtonWidth.wrappedValue)
 		}
 	}
 }
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+// MARK: -
+
+public extension View
+{
+	// Measures the size of a View and attaches a preference (with its size)
+	
+	func measureButtonSize(forGroupID groupID:String) -> some View
+	{
+		print("\(#function)")
+		
+		return self.background( GeometryReader
+		{
+			Color.clear.preference(
+				key: BXButtonSizeKey.self,
+				value: [BXButtonSizeData(groupID:groupID, size:$0.size)])
+		})
+	}
+	
+	/// Resizes the view to the width of a particular group.
+	
+	func resizeButton(to width:Binding<CGFloat>, for groupID:String, alignment:Alignment = .leading) -> some View
+	{
+		print("\(#function)")
+		
+		return self
+		
+			// Measure the label size and attach a preference (metadata)
+			
+			.measureButtonSize(forGroupID:groupID)
+
+			// Resize the label to the decided upon common width
+			
+			.frame(minWidth:width.wrappedValue, alignment:alignment)
+	}
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+/// The key needed to attach size data to a View
+
+struct BXButtonSizeKey : PreferenceKey
+{
+	typealias Value = [BXButtonSizeData]
+
+	static var defaultValue:[BXButtonSizeData] = []
+
+    static func reduce(value:inout [BXButtonSizeData], nextValue:()->[BXButtonSizeData])
+    {
+		value.append(contentsOf: nextValue())
+    }
+}
+
+/// The attached data contains the size and a groupID to filter out unwanted candidates when deciding on a common label width
+
+struct BXButtonSizeData : Equatable
+{
+	let groupID:String
+    let size:CGSize
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+public extension EnvironmentValues
+{
+    var bxButtonGroupID:String
+    {
+        set { self[BXButtonGroupIDKey.self] = newValue }
+        get { return self[BXButtonGroupIDKey.self] }
+    }
+}
+
+struct BXButtonGroupIDKey : EnvironmentKey
+{
+    static let defaultValue:String = "defaultGroup"
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+public extension EnvironmentValues
+{
+    var bxButtonWidth:Binding<CGFloat>
+    {
+        set { self[BXButtonWidthKey.self] = newValue }
+        get { return self[BXButtonWidthKey.self] }
+    }
+}
+
+struct BXButtonWidthKey : EnvironmentKey
+{
+    static let defaultValue:Binding<CGFloat> = Binding.constant(60.0)
+}
+
 
 //----------------------------------------------------------------------------------------------------------------------

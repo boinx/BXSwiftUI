@@ -2,7 +2,7 @@
 //
 //  BXLabelView.swift
 //	BXLabelViews communicate with each other and decide on a common maximum width for localization purposes
-//  Copyright ©2020 Peter Baumgartner. All rights reserved.
+//  Copyright ©2020-2021 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
 
@@ -53,10 +53,12 @@ public struct BXLabelGroup<Content> : View where Content:View
 			
 			// Determine largest view size to decide on common label width for this group
 			
-			.onPreferenceChange(BXViewSizeKey.self)
+			.onPreferenceChange(BXLabelSizeKey.self)
 			{
 				preferences in
 				
+				print("BXLabelGroup.onPreferenceChange")
+		
 				var maxSize = CGSize(self.minWidth,0.0)
 				
 				for metadata in preferences
@@ -84,15 +86,8 @@ public extension EnvironmentValues
 {
     var bxLabelGroupID:String
     {
-        set
-        {
-            self[BXLabelGroupIDKey.self] = newValue
-        }
-
-        get
-        {
-            return self[BXLabelGroupIDKey.self]
-        }
+        set { self[BXLabelGroupIDKey.self] = newValue }
+        get { return self[BXLabelGroupIDKey.self] }
     }
 }
 
@@ -111,15 +106,8 @@ public extension EnvironmentValues
 {
     var bxLabelWidth:Binding<CGFloat>
     {
-        set
-        {
-            self[BXLabelWidthKey.self] = newValue
-        }
-
-        get
-        {
-            return self[BXLabelWidthKey.self]
-        }
+        set { self[BXLabelWidthKey.self] = newValue }
+        get { return self[BXLabelWidthKey.self] }
     }
 }
 

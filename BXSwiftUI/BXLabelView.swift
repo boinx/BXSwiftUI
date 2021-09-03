@@ -2,7 +2,7 @@
 //
 //  BXLabelView.swift
 //	BXLabelViews communicate with each other and decide on a common maximum width for localization purposes
-//  Copyright ©2020 Peter Baumgartner. All rights reserved.
+//  Copyright ©2020-2021 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
 
@@ -79,7 +79,7 @@ public struct BXLabelView<Content> : View where Content:View
 					}
 				}
 				
-				.resizeView(to:self.bxLabelWidth, for:self.bxLabelGroupID, alignment:self.alignment)
+				.resizeLabel(to:self.bxLabelWidth, for:self.bxLabelGroupID, alignment:self.alignment)
 				
 				// Dimmed when disabled
 				
@@ -97,30 +97,35 @@ public struct BXLabelView<Content> : View where Content:View
 
 // MARK: -
 
-
 public extension View
 {
 	// Measures the size of a View and attaches a preference (with its size)
 	
-	func measureViewSize(forGroupID groupID:String) -> some View
+	func measureLabelSize(forGroupID groupID:String) -> some View
 	{
-		self.background( GeometryReader
-		{
-			Color.clear.preference(
-				key: BXViewSizeKey.self,
-				value: [BXViewSizeData(groupID:groupID, size:$0.size)])
-		})
+		print("\(#function)")
+		
+		return self
+		
+			.background( GeometryReader
+			{
+				Color.clear.preference(
+					key: BXLabelSizeKey.self,
+					value: [BXLabelSizeData(groupID:groupID, size:$0.size)])
+			})
 	}
 	
 	/// Resizes the view to the width of a particular group.
 	
-	func resizeView(to width:Binding<CGFloat>, for groupID:String, alignment:Alignment = .leading) -> some View
+	func resizeLabel(to width:Binding<CGFloat>, for groupID:String, alignment:Alignment = .leading) -> some View
 	{
+		print("\(#function)")
+		
 		return self
 		
 			// Measure the label size and attach a preference (metadata)
 			
-			.measureViewSize(forGroupID:groupID)
+			.measureLabelSize(forGroupID:groupID)
 
 			// Resize the label to the decided upon common width
 			
@@ -129,15 +134,20 @@ public extension View
 }
 
 
+//----------------------------------------------------------------------------------------------------------------------
+
+
+// MARK: -
+
 /// The key needed to attach size data to a View
 
-struct BXViewSizeKey : PreferenceKey
+struct BXLabelSizeKey : PreferenceKey
 {
-	typealias Value = [BXViewSizeData]
+	typealias Value = [BXLabelSizeData]
 
-	static var defaultValue:[BXViewSizeData] = []
+	static var defaultValue:[BXLabelSizeData] = []
 
-    static func reduce(value:inout [BXViewSizeData], nextValue:()->[BXViewSizeData])
+    static func reduce(value:inout [BXLabelSizeData], nextValue:()->[BXLabelSizeData])
     {
 		value.append(contentsOf: nextValue())
     }
@@ -145,7 +155,7 @@ struct BXViewSizeKey : PreferenceKey
 
 /// The attached data contains the size and a groupID to filter out unwanted candidates when deciding on a common label width
 
-struct BXViewSizeData : Equatable
+struct BXLabelSizeData : Equatable
 {
 	let groupID:String
     let size:CGSize

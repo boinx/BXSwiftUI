@@ -110,9 +110,11 @@ public struct BXGrid<Content> : View where Content:View
 		.onPreferenceChange(BXGridColumnWidthKey.self)
 		{
 			preferences in
-			
+
+			print("BXButtonGroup.onPreferenceChange")
+
 			var widths = [CGFloat](repeating:0.0, count:self.columnCount)
-			
+
 			for metadata in preferences
 			{
 				if metadata.gridID == self.gridID
@@ -122,7 +124,7 @@ public struct BXGrid<Content> : View where Content:View
 					widths[i] = w
 				}
 			}
-			
+
 			self.columnWidths = widths
 		}
 	}
@@ -213,7 +215,7 @@ public struct BXGridCell<Content> : View where Content:View
 
 			// Measure the required width for this column content
 
-			.measureRequiredWidth(gridID:self.bxGridID, columns:self.columns)
+			.measureGridCellWidth(gridID:self.bxGridID, columns:self.columns)
 
 			// Resize to column width that was calculated by the enclosing BXGrid
 
@@ -259,16 +261,23 @@ extension View
 	/// Measures the required width of the content of a BXGridCell and attaches a preference with the corresponding data, so that the enclosing BXGrid can
 	/// determine the column widths.
 	
-	func measureRequiredWidth(gridID:String, columns:ClosedRange<Int>) -> some View
+	func measureGridCellWidth(gridID:String, columns:ClosedRange<Int>) -> some View
 	{
-		guard columns.count == 1 else { return AnyView(self) }
-		
-		return AnyView( self.background( GeometryReader
-		{
-			Color.clear.preference(
-				key: BXGridColumnWidthKey.self,
-				value: [BXGridColumnData(gridID:gridID, column:columns.lowerBound, width:$0.size.width)])
-		}))
+		print("\(#function)")
+
+		return self.background(
+			GeometryReader
+			{
+				proxy in
+				
+				if columns.count == 1
+				{
+					Color.clear.preference(
+						key: BXGridColumnWidthKey.self,
+						value: [BXGridColumnData(gridID:gridID, column:columns.lowerBound, width:proxy.size.width)])
+				}
+			}
+		)
 	}
 }
 
