@@ -71,8 +71,6 @@ public struct BXSegmentedControl<Content> : View where Content:View
 		{
 			preferences in
 			
-			print("BXSegmentedControl.onPreferenceChange")
-		
 			var maxSize = CGSize(0.0,0.0)
 			
 			for metadata in preferences
@@ -242,9 +240,7 @@ public extension View
 	
 	func measureSegmentSize(forGroupID groupID:String) -> some View
 	{
-		print("\(#function)")
-		
-		return self.background( GeometryReader
+		self.background( GeometryReader
 		{
 			Color.clear.preference(
 				key: BXSegmentSizeKey.self,
@@ -256,9 +252,7 @@ public extension View
 	
 	func resizeSegment(to width:Binding<CGFloat>, for groupID:String, alignment:Alignment = .leading) -> some View
 	{
-		print("\(#function)")
-		
-		return self
+		self
 		
 			// Measure the label size and attach a preference (metadata)
 			

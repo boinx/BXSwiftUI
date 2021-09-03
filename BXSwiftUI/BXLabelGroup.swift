@@ -57,8 +57,6 @@ public struct BXLabelGroup<Content> : View where Content:View
 			{
 				preferences in
 				
-				print("BXLabelGroup.onPreferenceChange")
-		
 				var maxSize = CGSize(self.minWidth,0.0)
 				
 				for metadata in preferences

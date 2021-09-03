@@ -111,8 +111,6 @@ public struct BXGrid<Content> : View where Content:View
 		{
 			preferences in
 
-			print("BXButtonGroup.onPreferenceChange")
-
 			var widths = [CGFloat](repeating:0.0, count:self.columnCount)
 
 			for metadata in preferences
@@ -263,9 +261,7 @@ extension View
 	
 	func measureGridCellWidth(gridID:String, columns:ClosedRange<Int>) -> some View
 	{
-		print("\(#function)")
-
-		return self.background(
+		self.background(
 			GeometryReader
 			{
 				proxy in
