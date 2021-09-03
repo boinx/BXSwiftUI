@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  Binding+Optional.swift
+//  Binding+rawValue.swift
 //	Creates a non-optional Binding to an optional property
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
@@ -20,7 +20,7 @@ public extension Binding
 	/// - parameter binding: A Binding to a RawRepresentable type (e.g. an Int enum)
 	/// - returns: A Binding to the rawValue of the original type (e.g. Int)
 
-	static func rawValue<T:RawRepresentable>(for binding:Binding<T>) -> Binding<T.RawValue>
+	static func rawValue<T:RawRepresentable>(for binding:Binding<T>) -> Binding<T.RawValue> where T:Equatable
 	{
 		return Binding<T.RawValue>(
 		
@@ -32,7 +32,11 @@ public extension Binding
 			set:
 			{
 				guard let value = T.init(rawValue:$0) else { return }
-				binding.wrappedValue = value
+				
+				if binding.wrappedValue != value
+				{
+					binding.wrappedValue = value
+				}
 			})
 	}
 }
