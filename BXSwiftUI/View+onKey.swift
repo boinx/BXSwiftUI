@@ -22,6 +22,7 @@ public struct BXKeyEventView : NSViewRepresentable
 	
 	var onKeyDown:(NSEvent)->Void
 	var onKeyUp:(NSEvent)->Void
+	var onModifiersChanged:(NSEvent)->Void
 	
 	/// AppKit helper view that performs keyboard handling
 	
@@ -29,6 +30,7 @@ public struct BXKeyEventView : NSViewRepresentable
     {
 		var onKeyDown:(NSEvent)->Void = { _ in }
 		var onKeyUp:(NSEvent)->Void = { _ in }
+		var onModifiersChanged:(NSEvent)->Void = { _ in }
 
 		// Set this helper view as initialFirstResponder, so that we can restore it when textfields resign
 		
@@ -54,6 +56,11 @@ public struct BXKeyEventView : NSViewRepresentable
         {
              self.onKeyUp(event)
         }
+        
+		override public func flagsChanged(with event:NSEvent)
+		{
+			self.onModifiersChanged(event)
+		}
     }
 
 
@@ -84,7 +91,7 @@ public extension View
 	func onKeyDown(action:@escaping (NSEvent)->Void) -> some View
 	{
 		return self.background(
-			BXKeyEventView(onKeyDown:action, onKeyUp:{_ in})
+			BXKeyEventView(onKeyDown:action, onKeyUp:{ _ in }, onModifiersChanged:{ _ in })
 		)
 	}
 
@@ -93,16 +100,25 @@ public extension View
 	func onKeyUp(action:@escaping (NSEvent)->Void) -> some View
 	{
 		return self.background(
-			BXKeyEventView(onKeyDown:{_ in}, onKeyUp:action)
+			BXKeyEventView(onKeyDown:{ _ in }, onKeyUp:action, onModifiersChanged:{ _ in })
+		)
+	}
+	
+	/// Adds a keyUp handler to a view
+	
+	func onModifiersChanged(action:@escaping (NSEvent)->Void) -> some View
+	{
+		return self.background(
+			BXKeyEventView(onKeyDown:{ _ in }, onKeyUp:{ _ in }, onModifiersChanged:action)
 		)
 	}
 	
 	/// Adds a keyDown/Up handlers to a view
 	
-	func onKey(down:@escaping (NSEvent)->Void, up:@escaping (NSEvent)->Void) -> some View
+	func onKey(down:@escaping (NSEvent)->Void = { _ in }, up:@escaping (NSEvent)->Void = { _ in }, modifiers:@escaping (NSEvent)->Void = { _ in }) -> some View
 	{
 		return self.background(
-			BXKeyEventView(onKeyDown:down, onKeyUp:up)
+			BXKeyEventView(onKeyDown:down, onKeyUp:up, onModifiersChanged:modifiers)
 		)
 	}
 
