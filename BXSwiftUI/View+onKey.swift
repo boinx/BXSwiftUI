@@ -25,44 +25,49 @@ public struct BXKeyEventView : NSViewRepresentable
 	
 	/// AppKit helper view that performs keyboard handling
 	
-    class KeyView : NSView
+    public class KeyView : NSView
     {
 		var onKeyDown:(NSEvent)->Void = { _ in }
 		var onKeyUp:(NSEvent)->Void = { _ in }
 
-        override var acceptsFirstResponder:Bool { true }
+		// Set this helper view as initialFirstResponder, so that we can restore it when textfields resign
+		
+		override public func viewDidMoveToWindow()
+		{
+			self.window?.initialFirstResponder = self
+            self.window?.makeFirstResponder(self)
+		}
+		
+        override public var acceptsFirstResponder:Bool
+        {
+			true
+        }
         
-        override func keyDown(with event:NSEvent)
+        // Keyboard event handling
+        
+        override public func keyDown(with event:NSEvent)
         {
             self.onKeyDown(event)
         }
         
-        override func keyUp(with event:NSEvent)
+        override public func keyUp(with event:NSEvent)
         {
              self.onKeyUp(event)
         }
     }
 
 
-	public func makeNSView(context:Context) -> NSView
-    {
-		// Create helper view
+	// Create helper view
 		
+	public func makeNSView(context:Context) -> KeyView
+    {
         let view = KeyView(frame:.zero)
         view.onKeyDown = self.onKeyDown
         view.onKeyUp = self.onKeyUp
-        
-        // Wait till next runloop cycle
-        
-        DispatchQueue.main.async
-        {
-            view.window?.makeFirstResponder(view)
-        }
-        
         return view
     }
 
-	public func updateNSView(_ nsView:NSView, context:Context)
+	public func updateNSView(_ keyView:KeyView, context:Context)
     {
     
     }

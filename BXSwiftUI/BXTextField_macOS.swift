@@ -208,6 +208,12 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 			self.perform(action, with:textfield)
 			textfield.isEditing = false
 			self.textfield.onEnded?()
+
+			if let window = textfield.window
+			{
+				let responder = window.initialFirstResponder
+				window.makeFirstResponder(responder)
+			}
 		}
 
         @objc func updateStringValue(with sender:NSTextField)

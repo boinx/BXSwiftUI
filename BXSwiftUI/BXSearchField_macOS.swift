@@ -121,20 +121,30 @@ public struct BXSearchFieldWrapper : NSViewRepresentable
 			textfield.isEditing = true
 		}
 
-		// The user has ended editing. Update the data model value, then clear the isEditing flag again.
+		// The user has ended editing
 		
 		public func controlTextDidEndEditing(_ notification:Notification)
 		{
+			// Update the data model value, then clear the isEditing flag again.
+		
 			guard let searchfield = notification.object as? BXSearchFieldNative else { return }
 			let action = searchfield.action
 			self.perform(action, with:searchfield)
 			searchfield.isEditing = false
 			
+			// Call the commit closure
+			
 			self.searchfield.onCommit?(searchfield,searchfield.stringValue)
 
+			// Restore initialFirstResponder, so that key event handling works again
+			
 			DispatchQueue.main.async
 			{
-				searchfield.window?.makeFirstResponder(nil)
+				if let window = searchfield.window
+				{
+					let responder = window.initialFirstResponder
+					window.makeFirstResponder(responder)
+				}
 			}
 		}
 
