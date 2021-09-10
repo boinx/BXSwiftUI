@@ -20,14 +20,10 @@ public final class BXModifierKeys : NSObject, ObservableObject
 	
 	public static var shared = BXModifierKeys()
 	
-	/// The currently pressed modifiers
-	
-	@Published public var flags:NSEvent.ModifierFlags = []
-	
 	/// The currently pressed key
 	
 	@Published public var key:String? = nil
-
+	
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -57,7 +53,7 @@ public final class BXModifierKeys : NSObject, ObservableObject
 	
     public func flagsChanged(with event:NSEvent)
     {
-		self.flags = event.modifierFlags
+		self.objectWillChange.send()
 
 		for (_,handler) in onFlagsChanged
 		{
