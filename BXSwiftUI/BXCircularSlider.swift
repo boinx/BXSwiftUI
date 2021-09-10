@@ -270,7 +270,7 @@ fileprivate func degrees(for location:CGPoint, in radius:CGFloat) -> Double
 	while degrees < 0.0 { degrees += 360.0 }
 	while degrees > 360.0 { degrees -= 360.0 }
 	
-	if BXModifierKeys.shared.flags.contains(.shift)
+	if NSEvent.modifierFlags.contains(.shift)
 	{
 		degrees = round(degrees / 45.0) * 45.0
 	}
