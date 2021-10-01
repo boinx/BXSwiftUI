@@ -88,7 +88,8 @@ public struct BXMultiValueColorSlider : View
 		let v0 = range.lowerBound
 		let v1 = range.upperBound
 		let fraction = (value - Double(v0)) / (v1-v0)
-		let x = knobRadius + CGFloat(fraction) * (width-knobRadius)
+		let w = width - 2 * knobRadius
+		let x = knobRadius + CGFloat(fraction) * w
 		return x
 	}
 
@@ -97,7 +98,7 @@ public struct BXMultiValueColorSlider : View
 		let v0 = range.lowerBound
 		let v1 = range.upperBound
 		let x0 = knobRadius
-		let x1 = width - 0.5*knobRadius
+		let x1 = width - knobRadius
 		
 		let fraction = (x - x0) / (x1-x0)
 		return v0 + Double(fraction) * (v1-v0)
