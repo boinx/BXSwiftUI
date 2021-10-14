@@ -23,6 +23,7 @@ struct BXMultiValueTextView : View
 	// Environment
 	
 	@Environment(\.isEnabled) private var isEnabled
+	@Environment(\.colorScheme) private var colorScheme
 
 	// Custom bindings
 	
@@ -34,20 +35,25 @@ struct BXMultiValueTextView : View
 			{
 				if self.values.wrappedValue.count > 1
 				{
-					return NSAttributedString(string:"Multiple")
+					return NSAttributedString(string:"Multiple", attributes:[.foregroundColor:textColor])
 				}
 				else if let value = self.values.wrappedValue.first
 				{
 					return value
 				}
 				
-				return NSAttributedString(string:"None")
+				return NSAttributedString(string:"None", attributes:[.foregroundColor:textColor])
 			},
 			
 			set:
 			{
 				self.values.wrappedValue = Set([$0])
 			})
+	}
+	
+	private var textColor:NSColor
+	{
+		colorScheme == .dark ? NSColor(calibratedWhite:1.0, alpha:0.35) : NSColor(calibratedWhite:0.0, alpha:0.35)
 	}
 	
 	// Init
