@@ -175,7 +175,9 @@ class NSMultiValueSliderCell : NSSliderCell
 		let fraction = (doubleValue - minValue) / (maxValue - minValue)
 		var rect1 = frame
 		rect1.size.width = CGFloat(fraction) * frame.width
-		self.hiliteColor.set()
+
+		let alpha:CGFloat = isEnabled ? 1.0 : 0.33
+		self.hiliteColor.withAlphaComponent(alpha).set()
 		__NSRectFillUsingOperation(rect1,.sourceOver)
 		
 //		self.strokeColor.set()
