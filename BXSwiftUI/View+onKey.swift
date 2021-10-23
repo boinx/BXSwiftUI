@@ -36,8 +36,10 @@ public struct BXKeyEventView : NSViewRepresentable
 		
 		override public func viewDidMoveToWindow()
 		{
-			self.window?.initialFirstResponder = self
-            self.window?.makeFirstResponder(self)
+			guard let window = self.window else { return }
+			window.initialFirstResponder = self
+            window.makeFirstResponder(self)
+            window.makeKey()
 		}
 		
         override public var acceptsFirstResponder:Bool
