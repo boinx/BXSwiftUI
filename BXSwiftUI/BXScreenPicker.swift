@@ -196,8 +196,8 @@ extension BXScreenPicker
 	
 	func scale(for geometry:GeometryProxy) -> CGFloat
     {
-		let W = enclosingRect.width
-		let H = enclosingRect.height
+		let W = max(1, enclosingRect.width)
+		let H = max(1, enclosingRect.height)
 		let w = geometry.size.width
 		let h = geometry.size.height
 		let fx = w / W

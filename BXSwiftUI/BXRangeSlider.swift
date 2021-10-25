@@ -122,7 +122,9 @@ public struct BXRangeSlider : View
 	{
 		let v0 = range.lowerBound
 		let v1 = range.upperBound
-		let fraction = (value - Double(v0)) / (v1-v0)
+		let dv = v1 - v0
+		
+		let fraction = dv>0 ? (value-Double(v0)) / dv : 0.0
 		let x = 0.5*knobSize + CGFloat(fraction) * (width-knobSize)
 		return x
 	}
@@ -131,10 +133,12 @@ public struct BXRangeSlider : View
 	{
 		let v0 = range.lowerBound
 		let v1 = range.upperBound
+		
 		let x0 = 0.5*knobSize
 		let x1 = width - 0.5*knobSize
+		let dx = x1 - x0
 		
-		let fraction = (x - x0) / (x1-x0)
+		let fraction = dx>0 ? (x-x0)/dx : 0.0
 		return v0 + Double(fraction) * (v1-v0)
 	}
 
