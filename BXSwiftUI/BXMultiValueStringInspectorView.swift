@@ -65,7 +65,6 @@ public struct BXMultiValueStringInspectorView : View
 				statusHandler: self.statusHandler,
 				onBegan: self.onBegan,
 				onEnded: self.onEnded)
-					.focusable() // This makes sure that tabbing order (nextKeyViewLoop) is correct (top to bottom)
 //					.reducedOpacityWhenDisabled()	// Not needed because AppKit already dimmed the control
 		}
 

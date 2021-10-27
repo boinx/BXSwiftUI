@@ -80,7 +80,6 @@ public struct BXMultiValueDoubleInspectorView: View
 
 				BXMultiValueTextField(values:values, alignment:.trailing, formatter:formatter, statusHandler:statusHandler, onBegan:onBegan, onEnded:onEnded)
 					.frame(width:60.0)
-					.focusable() // This makes sure that tabbing order (nextKeyViewLoop) is correct (top to bottom)
 					//.reducedOpacityWhenDisabled()	// Not needed because AppKit already dimmed the control
 			}
 			
