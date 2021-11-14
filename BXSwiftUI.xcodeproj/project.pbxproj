@@ -86,6 +86,7 @@
 		D09C93F323F86D18008BA68F /* BXSliderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09C93F223F86D18008BA68F /* BXSliderResponse.swift */; };
 		D0A2400423DF5716004E9F31 /* BXOptionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A2400323DF5716004E9F31 /* BXOptionalView.swift */; };
 		D0A410F325CD906D006E5B91 /* NSAppearance+colorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A410F225CD906D006E5B91 /* NSAppearance+colorScheme.swift */; };
+		D0A74C32273E82AD00C406E4 /* BXPlainButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A74C31273E82AC00C406E4 /* BXPlainButtonStyle.swift */; };
 		D0AFEC91250B402C00449507 /* BXSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AFEC90250B402C00449507 /* BXSegmentedControl.swift */; };
 		D0AFEC93250BC2EF00449507 /* BXDisableWindowDragging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AFEC92250BC2EF00449507 /* BXDisableWindowDragging.swift */; };
 		D0B5475423EC091A00046F96 /* BXJogwheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B5475323EC091A00046F96 /* BXJogwheel.swift */; };
@@ -202,6 +203,7 @@
 		D09C93F223F86D18008BA68F /* BXSliderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSliderResponse.swift; sourceTree = "<group>"; };
 		D0A2400323DF5716004E9F31 /* BXOptionalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXOptionalView.swift; sourceTree = "<group>"; };
 		D0A410F225CD906D006E5B91 /* NSAppearance+colorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAppearance+colorScheme.swift"; sourceTree = "<group>"; };
+		D0A74C31273E82AC00C406E4 /* BXPlainButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXPlainButtonStyle.swift; sourceTree = "<group>"; };
 		D0AFEC90250B402C00449507 /* BXSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSegmentedControl.swift; sourceTree = "<group>"; };
 		D0AFEC92250BC2EF00449507 /* BXDisableWindowDragging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXDisableWindowDragging.swift; sourceTree = "<group>"; };
 		D0B5475323EC091A00046F96 /* BXJogwheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXJogwheel.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				D011B1CA23E1C73D00643F20 /* BXStrokedButtonStyle.swift */,
 				D04B14DC23DB4773001203FD /* BXStrokedCheckboxStyle.swift */,
 				D02A6360240276EA00C55416 /* BXRoundButtonStyle.swift */,
+				D0A74C31273E82AC00C406E4 /* BXPlainButtonStyle.swift */,
 				D0708F2624052DC70013AFBD /* BXGradientFillStyle.swift */,
 				D0257F9A23FA7541000E1816 /* BXSliderStyle.swift */,
 				D0F9B3AF23E8710000AF0929 /* BXStrokedModifier.swift */,
@@ -619,6 +622,7 @@
 				D048EE4625431D3100322C2E /* BXHuggingContainerView.swift in Sources */,
 				D0818FEA240AC66E002BDA9B /* NSViewController+Embed.swift in Sources */,
 				D0793E8223D45D5A0069327F /* BXMultiValueIntInspectorView.swift in Sources */,
+				D0A74C32273E82AD00C406E4 /* BXPlainButtonStyle.swift in Sources */,
 				D062F3D7241B747C00837850 /* Binding+rawValue.swift in Sources */,
 				D058543423FD2342004BDCCC /* UserDefault.swift in Sources */,
 				D03A287223D705CA00673CB1 /* BXMultiValueButton.swift in Sources */,
