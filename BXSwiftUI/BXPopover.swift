@@ -14,7 +14,7 @@ import SwiftUI
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public class BXPopover : NSPopover, NSPopoverDelegate
+public class BXPopover : NSPopover, NSPopoverDelegate, ObservableObject
 {
 	/// Set this to true if you want the popover to automatically close, when the view it is attached to was scrolled out of sight. Please note that
 	/// this will have no effect, if the popover is currently pinned. Since pinning has a higher priority, the popover will stay open in this case.
@@ -78,6 +78,7 @@ public class BXPopover : NSPopover, NSPopoverDelegate
         let content = view
 			.colorScheme(scheme)
 			.foregroundColor(textColor)
+			.environmentObject(self)
         
         // Create a view controller and embed the SwiftUI view
         
