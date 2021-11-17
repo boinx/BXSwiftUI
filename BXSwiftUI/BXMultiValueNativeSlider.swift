@@ -204,10 +204,15 @@ class NSMultiValueSliderCell : NSSliderCell
 		let alpha:CGFloat = isEnabled ? 1.0 : 0.33
 
 		let x:CGFloat = knobRect.midX
-		let y:CGFloat = knobRect.midY
+		var y:CGFloat = knobRect.midY
 		let w:CGFloat = isDarkMode ? 12.0 : 13.25
 		let h:CGFloat = isDarkMode ? 12.0 : 13.25
-        
+  
+		if self.controlSize == .regular
+		{
+			y -= 2
+		}
+
 		let rect = CGRect(x:x-0.5*w,y:y-0.5*h,width:w,height:h)
 		let path = NSBezierPath(ovalIn:rect)
 		path.lineWidth = isDarkMode ? 1.5 : 0.5
