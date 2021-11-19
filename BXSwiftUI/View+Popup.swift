@@ -43,7 +43,7 @@ public struct BXPopupView : NSViewRepresentable
 	
 	// Init
 	
-    init(itemSpecs:[BXMenuItemSpec], value:Binding<Int>? = nil)
+    public init(itemSpecs:[BXMenuItemSpec], value:Binding<Int>? = nil)
     {
          self.itemSpecs = itemSpecs
          self.value = value
@@ -58,6 +58,8 @@ public struct BXPopupView : NSViewRepresentable
 		popup.isBordered = false
 		popup.pullsDown = true
 		popup.alphaValue = 0.01
+		
+		let selectedTag = self.value?.wrappedValue
 		
 		// Fill with NSMenuItems
 		
@@ -77,15 +79,16 @@ public struct BXPopupView : NSViewRepresentable
 					item.tag = -1
 					popup.menu?.addItem(item)
 
-				case .regular(let icon, let name, let value, let representedObject):
+				case .regular(let icon, let name, let value, let isEnabled, let representedObject):
 					
 					let item = NSMenuItem(title:name, action:nil, keyEquivalent:"")
 					item.image = icon
 					item.target = context.coordinator
 					item.action = #selector(Coordinator.setValue(_:))
-					item.isEnabled = true
+					item.isEnabled = isEnabled()
 					item.isHidden = false
 					item.tag = value
+					item.state = value == selectedTag ? .on : .off
 					item.representedObject = representedObject
 					popup.menu?.addItem(item)
 				

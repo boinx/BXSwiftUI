@@ -181,7 +181,7 @@ public struct BXMultiValuePicker : NSViewRepresentable
 			switch $1
 			{
 				case .action(_,let title,_,_): return $0 + title + "\n"
-				case .regular(_,let title,_,_): return $0 + title + "\n"
+				case .regular(_,let title,_,_,_): return $0 + title + "\n"
 				case .section(let title): return $0 + title + "\n"
 				case .divider: return $0 + "-\n"
 			}
