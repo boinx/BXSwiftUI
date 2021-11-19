@@ -135,6 +135,13 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 		
 		guard !textfield.isEditing else { return }
 		
+		// Update the formatter if necessary
+		
+		if textfield.formatter !== self.formatter
+		{
+			textfield.formatter = self.formatter
+		}
+		
 		// Otherwise adopt the value from the data model (source of thruth)
 		
 		if let value = self.value.wrappedValue as? String
