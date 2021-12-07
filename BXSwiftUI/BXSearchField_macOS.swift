@@ -25,6 +25,8 @@ public struct BXSearchFieldWrapper : NSViewRepresentable
 	public var placeholderString:String = ""
 	public var height:CGFloat? = nil
 	public var statusHandler:(BXTextFieldStatusHandler)? = nil
+	public var onBegan:((NSSearchField,String)->Void)? = nil
+	public var onChanged:((NSSearchField,String)->Void)? = nil
 	public var onCommit:((NSSearchField,String)->Void)? = nil
 
 	// Environment
@@ -49,12 +51,14 @@ public struct BXSearchFieldWrapper : NSViewRepresentable
 
 	// Only needed to make init public
 	
-	public init(value:Binding<String>, placeholderString:String = "", height:CGFloat? = nil, statusHandler:(BXTextFieldStatusHandler)? = nil, onCommit:((NSSearchField,String)->Void)? = nil)
+	public init(value:Binding<String>, placeholderString:String = "", height:CGFloat? = nil, statusHandler:(BXTextFieldStatusHandler)? = nil, onBegan:((NSSearchField,String)->Void)? = nil, onChanged:((NSSearchField,String)->Void)? = nil, onCommit:((NSSearchField,String)->Void)? = nil)
 	{
 		self.value = value
 		self.height = height 
 		self.placeholderString = placeholderString
 		self.statusHandler = statusHandler
+		self.onBegan = onBegan
+		self.onChanged = onChanged
 		self.onCommit = onCommit
 	}
 	
@@ -117,10 +121,19 @@ public struct BXSearchFieldWrapper : NSViewRepresentable
 		
 		public func controlTextDidBeginEditing(_ notification:Notification)
 		{
-			guard let textfield = notification.object as? BXTextFieldNative else { return }
-			textfield.isEditing = true
+			guard let searchfield = notification.object as? BXSearchFieldNative else { return }
+			searchfield.isEditing = true
+			self.searchfield.onBegan?(searchfield, searchfield.stringValue)
 		}
 
+		// Call the onChanged handler while the user types
+		
+    	public func controlTextDidChange(_ notification:Notification)
+    	{
+			guard let searchfield = notification.object as? BXSearchFieldNative else { return }
+			self.searchfield.onChanged?(searchfield, searchfield.stringValue)
+    	}
+    	
 		// The user has ended editing
 		
 		public func controlTextDidEndEditing(_ notification:Notification)
@@ -134,7 +147,7 @@ public struct BXSearchFieldWrapper : NSViewRepresentable
 			
 			// Call the commit closure
 			
-			self.searchfield.onCommit?(searchfield,searchfield.stringValue)
+			self.searchfield.onCommit?(searchfield, searchfield.stringValue)
 
 			// Restore initialFirstResponder, so that key event handling works again
 			
