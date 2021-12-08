@@ -90,9 +90,10 @@ public struct BXSearchFieldWrapper : NSViewRepresentable
     {
 		// Do not update the NSTextField value if the user is currently editing
 		
-		guard !searchfield.isEditing else { return }
+		let string = self.value.wrappedValue
+		if searchfield.isEditing && !string.isEmpty { return }
 		
-		searchfield.stringValue = self.value.wrappedValue
+		searchfield.stringValue = string
 		searchfield.isEnabled = context.environment.isEnabled
 
 		// Call statusHandler so that clients can update the appearance of the view accordingly
