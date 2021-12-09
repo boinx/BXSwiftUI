@@ -25,9 +25,12 @@ public struct BXSearchFieldWrapper : NSViewRepresentable
 	public var placeholderString:String = ""
 	public var height:CGFloat? = nil
 	public var statusHandler:(BXTextFieldStatusHandler)? = nil
+	public var onFocused:((NSSearchField,String)->Void)? = nil
 	public var onBegan:((NSSearchField,String)->Void)? = nil
 	public var onChanged:((NSSearchField,String)->Void)? = nil
 	public var onCommit:((NSSearchField,String)->Void)? = nil
+	public var onArrowUpKey:((NSSearchField)->Void)? = nil
+	public var onArrowDownKey:((NSSearchField)->Void)? = nil
 
 	// Environment
 	
@@ -51,15 +54,18 @@ public struct BXSearchFieldWrapper : NSViewRepresentable
 
 	// Only needed to make init public
 	
-	public init(value:Binding<String>, placeholderString:String = "", height:CGFloat? = nil, statusHandler:(BXTextFieldStatusHandler)? = nil, onBegan:((NSSearchField,String)->Void)? = nil, onChanged:((NSSearchField,String)->Void)? = nil, onCommit:((NSSearchField,String)->Void)? = nil)
+	public init(value:Binding<String>, placeholderString:String = "", height:CGFloat? = nil, statusHandler:(BXTextFieldStatusHandler)? = nil, onFocused:((NSSearchField,String)->Void)? = nil, onBegan:((NSSearchField,String)->Void)? = nil, onChanged:((NSSearchField,String)->Void)? = nil, onCommit:((NSSearchField,String)->Void)? = nil, onArrowUpKey:((NSSearchField)->Void)? = nil, onArrowDownKey:((NSSearchField)->Void)? = nil)
 	{
 		self.value = value
 		self.height = height 
 		self.placeholderString = placeholderString
 		self.statusHandler = statusHandler
+		self.onFocused = onFocused
 		self.onBegan = onBegan
 		self.onChanged = onChanged
 		self.onCommit = onCommit
+		self.onArrowUpKey = onArrowUpKey
+		self.onArrowDownKey = onArrowDownKey
 	}
 	
 	
@@ -79,6 +85,7 @@ public struct BXSearchFieldWrapper : NSViewRepresentable
 		searchfield.bezelStyle = .roundedBezel
 		searchfield.drawsBackground = true
 		searchfield.statusHandler = self.statusHandler
+		searchfield.onFocused = self.onFocused
 		
 		return searchfield
     }
@@ -161,6 +168,25 @@ public struct BXSearchFieldWrapper : NSViewRepresentable
 				}
 			}
 		}
+		
+		public func control(_ control:NSControl, textView:NSTextView, doCommandBy commandSelector:Selector) -> Bool
+		{
+			if let nssearchfield = control as? BXSearchFieldNative
+			{
+				if commandSelector == #selector(NSControl.moveUp(_:))
+				{
+					searchfield.onArrowUpKey?(nssearchfield)
+					return true
+				}
+				else if commandSelector == #selector(NSControl.moveDown(_:))
+				{
+					searchfield.onArrowDownKey?(nssearchfield)
+					return true
+				}
+			}
+			
+			return false
+		}
 
         @objc func updateStringValue(with sender:NSTextField)
         {
@@ -186,6 +212,7 @@ public struct BXSearchFieldWrapper : NSViewRepresentable
 public class BXSearchFieldNative : NSSearchField
 {
 	var statusHandler:(BXTextFieldStatusHandler)? = nil
+	var onFocused:((NSSearchField,String)->Void)? = nil
 	var trackingArea:NSTrackingArea? = nil
 	var isEditing = false { didSet { self.notify() } }
 	var fixedHeight:CGFloat? = nil
@@ -213,6 +240,12 @@ public class BXSearchFieldNative : NSSearchField
 		{
 			return super.frame
 		}
+	}
+	
+	override public func becomeFirstResponder() -> Bool
+	{
+		self.onFocused?(self,self.stringValue)
+		return super.becomeFirstResponder()
 	}
 	
 	@objc func notify()
