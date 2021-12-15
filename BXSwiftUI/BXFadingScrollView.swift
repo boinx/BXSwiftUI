@@ -84,9 +84,13 @@ public struct BXFadingScrollView<Content:View> : View
 		{
 			let H = innerBounds.height
 			let h = outerBounds.height
-
-			let a1 = 1.0 - (innerBounds.origin.y + H-h - outerBounds.origin.y).clipped(to:0...margin) / margin
-			let a2 = 1.0 - (outerBounds.origin.y - innerBounds.origin.y).clipped(to:0...margin) / margin
+			
+			let A1 = 1.0 - (innerBounds.origin.y + H-h - outerBounds.origin.y).clipped(to:0...margin) / margin
+			let A2 = 1.0 - (outerBounds.origin.y - innerBounds.origin.y).clipped(to:0...margin) / margin
+			let isRunningOnMonterey = ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 12
+			
+			let a1 = isRunningOnMonterey ? A2 : A1
+			let a2 = isRunningOnMonterey ? A1 : A2
 			
 			self.alpha1 = Double(a1)
 			self.alpha2 = Double(a2)
