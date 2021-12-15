@@ -85,10 +85,17 @@ public struct BXFadingScrollView<Content:View> : View
 			let H = innerBounds.height
 			let h = outerBounds.height
 			
+			// Calculate the alpha values for the top and bottom of the ScrollView depending on the
+			// outerBounds and innerBounds of the ScrollView.
+			
 			let A1 = 1.0 - (innerBounds.origin.y + H-h - outerBounds.origin.y).clipped(to:0...margin) / margin
 			let A2 = 1.0 - (outerBounds.origin.y - innerBounds.origin.y).clipped(to:0...margin) / margin
-			let isRunningOnMonterey = ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 12
 			
+			/// WORKAROUND: For some reason the behavior of innerBounds was changed on macOS 12 Monterey.
+			/// Different CGRect values are returned of origin.y, so we need to swap the calculated alpha
+			/// values to get the expected results again
+			
+			let isRunningOnMonterey = ProcessInfo.isRunningOnMontereyOrNewer
 			let a1 = isRunningOnMonterey ? A2 : A1
 			let a2 = isRunningOnMonterey ? A1 : A2
 			
