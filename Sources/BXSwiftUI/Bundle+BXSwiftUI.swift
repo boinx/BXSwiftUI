@@ -13,21 +13,14 @@ import Foundation
 //----------------------------------------------------------------------------------------------------------------------
 
 
-extension Bundle
+public extension Bundle
 {
-	/// Returns the bundle for BXSwiftUI.framework
-	
-	public class var BXSwiftUI:Bundle
-	{
-		#if SWIFT_PACKAGE
-		return Bundle.module
-		#else
-		return Bundle(for:BXSwiftUIMarker.self)
-		#endif
-		
-	}
+	#if SWIFT_PACKAGE
+	static let BXSwiftUI = Bundle.module
+	#else
+	static let BXSwiftUI = Bundle(for:BXSwiftUIMarker.self) // Bundle(identifier:"com.boinx.BXSwiftUI")
+	#endif
 }
-
 
 private final class BXSwiftUIMarker { }
 
