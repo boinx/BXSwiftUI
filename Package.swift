@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
 
     name: "BXSwiftUI",
-    defaultLocalization: "en",
+//    defaultLocalization: "en",
     
     platforms:
     [
