@@ -7,6 +7,12 @@
 //**********************************************************************************************************************
 
 
+import Darwin
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
 /// This type contains two closures that transform value between model and view (slider) values
 
 public struct BXSliderResponse
