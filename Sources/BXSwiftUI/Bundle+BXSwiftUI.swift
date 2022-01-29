@@ -19,12 +19,17 @@ extension Bundle
 	
 	public class var BXSwiftUI:Bundle
 	{
+		#if SWIFT_PACKAGE
+		return Bundle.module
+		#else
 		return Bundle(for:BXSwiftUIMarker.self)
+		#endif
+		
 	}
 }
 
 
-private class BXSwiftUIMarker { }
+private final class BXSwiftUIMarker { }
 
 
 //----------------------------------------------------------------------------------------------------------------------

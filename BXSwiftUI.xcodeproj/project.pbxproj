@@ -201,6 +201,8 @@
 		D08FB76C23E48D2400C1A193 /* BXTextView_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXTextView_macOS.swift; sourceTree = "<group>"; };
 		D08FB76E23E4920A00C1A193 /* BXTextField_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXTextField_macOS.swift; sourceTree = "<group>"; };
 		D09C93F223F86D18008BA68F /* BXSliderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSliderResponse.swift; sourceTree = "<group>"; };
+		D09F1B1B27A5972400097FA9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D09F1B1C27A5972400097FA9 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		D0A2400323DF5716004E9F31 /* BXOptionalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXOptionalView.swift; sourceTree = "<group>"; };
 		D0A410F225CD906D006E5B91 /* NSAppearance+colorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAppearance+colorScheme.swift"; sourceTree = "<group>"; };
 		D0A74C31273E82AC00C406E4 /* BXPlainButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXPlainButtonStyle.swift; sourceTree = "<group>"; };
@@ -276,7 +278,8 @@
 				D02BC59723DC2B1B00676CF3 /* Inspector Views */,
 				D02BC59C23DC2D5500676CF3 /* Misc */,
 			);
-			path = BXSwiftUI;
+			name = BXSwiftUI;
+			path = Sources/BXSwiftUI;
 			sourceTree = "<group>";
 		};
 		D002FE7423D22A0F002CF0A1 /* Config */ = {
@@ -285,6 +288,8 @@
 				D002FE7223D22A06002CF0A1 /* BXSwiftUI.xcconfig */,
 				D002FE6A23D22945002CF0A1 /* BXSwiftUI.h */,
 				D002FE6B23D22945002CF0A1 /* Info.plist */,
+				D09F1B1B27A5972400097FA9 /* README.md */,
+				D09F1B1C27A5972400097FA9 /* Package.swift */,
 			);
 			name = Config;
 			sourceTree = "<group>";
