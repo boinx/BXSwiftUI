@@ -102,7 +102,6 @@
 		D0D1AC5D25223F9100E19CE4 /* View+layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1AC5C25223F9100E19CE4 /* View+layer.swift */; };
 		D0D1AC5F25224D1300E19CE4 /* View+fixedSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1AC5E25224D1300E19CE4 /* View+fixedSize.swift */; };
 		D0D25BCC23DCB3B400A1B61D /* BXIndentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */; };
-		D0D28EB823E748E30012F9E1 /* Bundle+BXSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D28EB723E748E30012F9E1 /* Bundle+BXSwiftUI.swift */; };
 		D0D3AC5B252E1BFF00354795 /* BXEnclosingScrollViewProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D3AC5A252E1BFF00354795 /* BXEnclosingScrollViewProxy.swift */; };
 		D0E2429623D8827D00145CEA /* BXDisclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2429523D8827D00145CEA /* BXDisclosureView.swift */; };
 		D0E5EBA424E6D2C9009E1385 /* BXPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E5EBA324E6D2C9009E1385 /* BXPanel.swift */; };
@@ -221,7 +220,6 @@
 		D0D1AC5C25223F9100E19CE4 /* View+layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+layer.swift"; sourceTree = "<group>"; };
 		D0D1AC5E25224D1300E19CE4 /* View+fixedSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+fixedSize.swift"; sourceTree = "<group>"; };
 		D0D25BCB23DCB3B400A1B61D /* BXIndentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXIndentationView.swift; sourceTree = "<group>"; };
-		D0D28EB723E748E30012F9E1 /* Bundle+BXSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+BXSwiftUI.swift"; sourceTree = "<group>"; };
 		D0D3AC5A252E1BFF00354795 /* BXEnclosingScrollViewProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXEnclosingScrollViewProxy.swift; sourceTree = "<group>"; };
 		D0E2429523D8827D00145CEA /* BXDisclosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXDisclosureView.swift; sourceTree = "<group>"; };
 		D0E5EBA324E6D2C9009E1385 /* BXPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXPanel.swift; sourceTree = "<group>"; };
@@ -412,7 +410,6 @@
 		D02BC59C23DC2D5500676CF3 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
-				D0D28EB723E748E30012F9E1 /* Bundle+BXSwiftUI.swift */,
 				D077D5C423E2F05D00C1D20F /* Image+SFSymbols.swift */,
 				D002FE7C23D22EC5002CF0A1 /* Formatter+Custom.swift */,
 				D077D5C223E2E14C00C1D20F /* Binding+Optional.swift */,
@@ -582,7 +579,6 @@
 				D077D5C723E2FB4900C1D20F /* View+Enabled.swift in Sources */,
 				D0CAF8D3251B15500015CFE4 /* BXScreenPicker.swift in Sources */,
 				D007CB792521B3D000402E10 /* BXSpinningWheel.swift in Sources */,
-				D0D28EB823E748E30012F9E1 /* Bundle+BXSwiftUI.swift in Sources */,
 				D002FE8023D22EC5002CF0A1 /* BXMultiValuePicker.swift in Sources */,
 				D02BC59E23DC329E00676CF3 /* BXCGSizeEditView.swift in Sources */,
 				D075AA4823EB33AE009EF839 /* BXRangeSlider.swift in Sources */,
