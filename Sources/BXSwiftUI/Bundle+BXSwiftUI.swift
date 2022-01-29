@@ -13,7 +13,7 @@ import Foundation
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public extension Bundle
+extension Bundle
 {
 	#if SWIFT_PACKAGE
 	static let BXSwiftUI = Bundle.module
