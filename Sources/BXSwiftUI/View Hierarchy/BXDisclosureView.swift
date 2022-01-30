@@ -18,6 +18,7 @@ public struct BXDisclosureView<H,B> : View where H:View, B:View
 	// Params
 	
 	private var isExpanded:Binding<Bool>
+	private var spacing:CGFloat
 	private var headerBuilder:()->H
 	private var bodyBuilder:()->B
 
@@ -27,9 +28,10 @@ public struct BXDisclosureView<H,B> : View where H:View, B:View
 
 	// Init
 	
-	public init(isExpanded:Binding<Bool>, @ViewBuilder header headerBuilder:@escaping ()->H, @ViewBuilder body bodyBuilder:@escaping ()->B)
+	public init(isExpanded:Binding<Bool>, spacing:CGFloat = 12, @ViewBuilder header headerBuilder:@escaping ()->H, @ViewBuilder body bodyBuilder:@escaping ()->B)
 	{
 		self.isExpanded = isExpanded
+		self.spacing = spacing
 		self.headerBuilder = headerBuilder
 		self.bodyBuilder = bodyBuilder
 	}
@@ -38,7 +40,7 @@ public struct BXDisclosureView<H,B> : View where H:View, B:View
 	
 	public var body: some View
 	{
-		VStack(alignment:.leading, spacing:12)
+		VStack(alignment:.leading, spacing:spacing)
 		{
 			headerBuilder()
 				
@@ -47,7 +49,6 @@ public struct BXDisclosureView<H,B> : View where H:View, B:View
 				bodyBuilder()
 			}
 		}
-		
 	}
 }
 
