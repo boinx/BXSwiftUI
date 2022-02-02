@@ -211,6 +211,23 @@ public extension Formatter
 		return formatter
 	}()
 	
+	
+	static var exposureTimeFormatter: BXExposureTimeFormatter =
+	{
+		let formatter = BXExposureTimeFormatter()
+		formatter.allowsFloats = true
+		formatter.numberStyle = .decimal
+		formatter.maximumFractionDigits = 1
+		formatter.positiveFormat = "#.#"
+		formatter.negativeFormat = "-#.#"
+		formatter.zeroSymbol = "0"
+		formatter.hasThousandSeparators = false
+		return formatter
+	}()
+
+
+
+	
 }
 
 
@@ -234,11 +251,96 @@ public extension NumberFormatter
 //----------------------------------------------------------------------------------------------------------------------
 
 
+public class BXExposureTimeFormatter : NumberFormatter
+{
+	override open func string(for objectValue:Any?) -> String?
+	{
+		guard let number = objectValue as? NSNumber else { return nil }
+		var value = number.doubleValue
+		if value.isNaN { value = 0.0 }
+	
+		if value < 0.0005
+		{
+			return "1/4000s"
+		}
+		else if value < 0.001
+		{
+			return "1/2000s"
+		}
+		else if value < 0.001
+		{
+			return "1/2000s"
+		}
+		else if value < 0.005
+		{
+			return "1/1000s"
+		}
+		else if value < 0.01
+		{
+			return "1/500s"
+		}
+		else if value < 0.05
+		{
+			return "1/250s"
+		}
+		else if value < 0.1
+		{
+			return "1/125s"
+		}
+		else if value < 0.2
+		{
+			return "1/60s"
+		}
+		else if value < 0.4
+		{
+			return "1/30s"
+		}
+		else if value < 0.7
+		{
+			return "1/15s"
+		}
+		else if value < 0.14
+		{
+			return "1/8s"
+		}
+		else if value < 0.14
+		{
+			return "1/8s"
+		}
+		else if value < 0.3
+		{
+			return "1/4s"
+		}
+		else if value < 0.6
+		{
+			return "1/2s"
+		}
+		else
+		{
+			return self.string(for:value)
+		}
+	}
+	
+	
+	override open func getObjectValue(_ object:AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string:String, range:UnsafeMutablePointer<NSRange>?) throws
+	{
+		let parts = string.replacingOccurrences(of:"s", with:"").components(separatedBy:":")
+		let a = parts.first?.doubleValue ?? 0.0
+		let b = parts.last?.doubleValue ?? 1.0
+		let value = a / b
+		object?.pointee = NSNumber(value:value)
+	}
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
 public class BXTimeCodeFormatter : NumberFormatter
 {
 	override open func string(for objectValue:Any?) -> String?
 	{
-		guard let number = objectValue as? NSNumber else { return nil}
+		guard let number = objectValue as? NSNumber else { return nil }
 		
 		var value = number.doubleValue
 		if value.isNaN { value = 0.0 }
