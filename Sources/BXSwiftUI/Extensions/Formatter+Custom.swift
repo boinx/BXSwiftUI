@@ -217,6 +217,23 @@ public extension Formatter
 //----------------------------------------------------------------------------------------------------------------------
 
 
+public extension NumberFormatter
+{
+    func string(for value:Double) -> String?
+    {
+		self.string(from:NSNumber(value:value))
+    }
+    
+    func string(for value:Int) -> String?
+    {
+		self.string(from:NSNumber(value:value))
+    }
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
 public class BXTimeCodeFormatter : NumberFormatter
 {
 	override open func string(for objectValue:Any?) -> String?
