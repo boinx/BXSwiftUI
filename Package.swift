@@ -10,8 +10,8 @@ let package = Package(
     
     platforms:
     [
-		.macOS(.v10_15),
-		.iOS(.v13)
+		.macOS("10.15.2"),
+		.iOS("13.2")
     ],
     
 	// Products define the executables and libraries a package produces, and make them visible to other packages
