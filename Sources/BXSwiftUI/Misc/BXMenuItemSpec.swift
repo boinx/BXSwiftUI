@@ -29,7 +29,7 @@ public enum BXMenuItemSpec
 
 /// Bundles a menu item action and a closure that determines whether the menu item should be enabled or disabled.
 
-public struct BXAutoEnablingAction
+public class BXAutoEnablingAction : NSObject
 {
 	// The action to be executed when the menu item is selected
 	
@@ -52,6 +52,11 @@ public struct BXAutoEnablingAction
 	public func execute()
 	{
 		self.action()
+	}
+	
+	@IBAction func execute(_ menuItem:NSMenuItem)
+	{
+		self.execute()
 	}
 	
 	// Determine the enabled state of the menu item
@@ -78,6 +83,19 @@ public extension NSMenu
 		{
 			switch itemSpec
 			{
+				case .action(let icon, let name, let isEnabled, let action):
+					
+					let wrapper = BXAutoEnablingAction(action:action, isEnabled:isEnabled)
+					item = NSMenuItem(title:name, action:nil, keyEquivalent:"")
+					item.image = icon
+					item.representedObject = wrapper
+					item.target = wrapper
+					item.action = #selector(BXAutoEnablingAction.execute(_:))
+					item.isEnabled = isEnabled()
+					item.isHidden = false
+					item.tag = -1
+					menu.addItem(item)
+						
 				// Add a regular menu item
 					
 				case .regular(let icon,let title, let value, let isEnabled, let representedObject):
@@ -88,7 +106,7 @@ public extension NSMenu
 					item.representedObject = representedObject
 					item.isEnabled = isEnabled()
 					menu.addItem(item)
-					
+				
 				// Add a section name (disabled)
 				
 				case .section(let title):
@@ -107,8 +125,6 @@ public extension NSMenu
 					item.tag = -666
 					item.isEnabled = false
 					menu.addItem(item)
-					
-				default: break
 			}
 		}
 	}
