@@ -117,6 +117,7 @@
 		D00CE2E727A6E25B006D766C /* BXDisableWindowDragging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE27B27A6E25A006D766C /* BXDisableWindowDragging.swift */; };
 		D00CE2E827A6E25B006D766C /* BXIndentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE27C27A6E25A006D766C /* BXIndentationView.swift */; };
 		D0793E8A23D469870069327F /* BXSwiftUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0793E8923D469870069327F /* BXSwiftUtils.framework */; };
+		D0D0EE5927B3C7B60050E20D /* NSWindow+present.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D0EE5827B3C7B60050E20D /* NSWindow+present.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -235,6 +236,7 @@
 		D0793E8923D469870069327F /* BXSwiftUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BXSwiftUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D09F1B1B27A5972400097FA9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D09F1B1C27A5972400097FA9 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		D0D0EE5827B3C7B60050E20D /* NSWindow+present.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindow+present.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,6 +333,9 @@
 		D00CE22027A6E25A006D766C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D0D0EE5827B3C7B60050E20D /* NSWindow+present.swift */,
+				D00CE22927A6E25A006D766C /* NSAlert+Present.swift */,
+				D00CE23727A6E25A006D766C /* NSSavePanel+Present.swift */,
 				D00CE22127A6E25A006D766C /* NSOpenPanel+Present.swift */,
 				D00CE22227A6E25A006D766C /* Color+Native.swift */,
 				D00CE22327A6E25A006D766C /* Binding+rawValue.swift */,
@@ -339,7 +344,6 @@
 				D00CE22627A6E25A006D766C /* View+fixedSize.swift */,
 				D00CE22727A6E25A006D766C /* View+Enabled.swift */,
 				D00CE22827A6E25A006D766C /* Binding+attributedString.swift */,
-				D00CE22927A6E25A006D766C /* NSAlert+Present.swift */,
 				D00CE22A27A6E25A006D766C /* View+ToolTip.swift */,
 				D00CE22B27A6E25A006D766C /* Image+SFSymbols.swift */,
 				D00CE22C27A6E25A006D766C /* View+Popup.swift */,
@@ -353,7 +357,6 @@
 				D00CE23427A6E25A006D766C /* View+layer.swift */,
 				D00CE23527A6E25A006D766C /* Binding+Convert.swift */,
 				D00CE23627A6E25A006D766C /* NSViewController+Embed.swift */,
-				D00CE23727A6E25A006D766C /* NSSavePanel+Present.swift */,
 				D00CE23827A6E25A006D766C /* Binding+Optional.swift */,
 				D00CE23927A6E25A006D766C /* Formatter+Custom.swift */,
 				D00CE23A27A6E25A006D766C /* View+if.swift */,
@@ -624,6 +627,7 @@
 				D00CE2E727A6E25B006D766C /* BXDisableWindowDragging.swift in Sources */,
 				D00CE2D627A6E25B006D766C /* BXMultiValueStringInspectorView.swift in Sources */,
 				D00CE2A727A6E25B006D766C /* NSSavePanel+Present.swift in Sources */,
+				D0D0EE5927B3C7B60050E20D /* NSWindow+present.swift in Sources */,
 				D00CE2A527A6E25B006D766C /* Binding+Convert.swift in Sources */,
 				D00CE29927A6E25A006D766C /* NSAlert+Present.swift in Sources */,
 				D00CE28027A6E25A006D766C /* TypeCheckable.swift in Sources */,
