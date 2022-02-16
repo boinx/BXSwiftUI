@@ -30,15 +30,12 @@ extension View
 		let view = NSHostingView(rootView:self.colorScheme(colorScheme))
         let size = view.intrinsicContentSize
         let bounds = CGRect(origin:.zero, size:size)
-
-		let window = NSWindow(contentRect:bounds, styleMask:.borderless, backing:.buffered, defer:false)
-		window.contentView = view
-		window.setFrame(CGRect(x:1000000, y:1000000, width:size.width, height:size.height), display:true)
+		view.frame = bounds
 		
 		guard let bitmap = view.bitmapImageRepForCachingDisplay(in:bounds) else { return nil }
 		bitmap.size = size
 		view.cacheDisplay(in:bounds, to:bitmap)
-		
+
 		let image = NSImage(size:size)
 		image.addRepresentation(bitmap)
 		image.isTemplate = isTemplate
