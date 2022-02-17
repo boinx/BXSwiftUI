@@ -21,6 +21,22 @@ import UIKit
 
 extension View
 {
+	/// Returns a rasterized Image of the original View
+	
+	@ViewBuilder public func asImage() -> some View
+	{
+		let image = self.renderImage(colorScheme:.light, isTemplate:false)
+		
+		if let image = image
+		{
+			SwiftUI.Image(nsImage:image)
+		}
+		else
+		{
+			EmptyView()
+		}
+	}
+
 	#if os(macOS)
 
 	/// Renders the view to an NSImage
