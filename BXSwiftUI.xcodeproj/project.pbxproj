@@ -117,6 +117,7 @@
 		D00CE2E727A6E25B006D766C /* BXDisableWindowDragging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE27B27A6E25A006D766C /* BXDisableWindowDragging.swift */; };
 		D00CE2E827A6E25B006D766C /* BXIndentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE27C27A6E25A006D766C /* BXIndentationView.swift */; };
 		D0793E8A23D469870069327F /* BXSwiftUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0793E8923D469870069327F /* BXSwiftUtils.framework */; };
+		D0CCA3E527BD6CCA00467723 /* BXPageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCA3E427BD6CC900467723 /* BXPageLayout.swift */; };
 		D0D0EE5927B3C7B60050E20D /* NSWindow+present.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D0EE5827B3C7B60050E20D /* NSWindow+present.swift */; };
 /* End PBXBuildFile section */
 
@@ -236,6 +237,7 @@
 		D0793E8923D469870069327F /* BXSwiftUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BXSwiftUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D09F1B1B27A5972400097FA9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D09F1B1C27A5972400097FA9 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		D0CCA3E427BD6CC900467723 /* BXPageLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXPageLayout.swift; sourceTree = "<group>"; };
 		D0D0EE5827B3C7B60050E20D /* NSWindow+present.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindow+present.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -446,6 +448,7 @@
 				D00CE27627A6E25A006D766C /* BXLabelGroup.swift */,
 				D00CE27727A6E25A006D766C /* BXFullscreenWindow.swift */,
 				D00CE27827A6E25A006D766C /* BXGrid.swift */,
+				D0CCA3E427BD6CC900467723 /* BXPageLayout.swift */,
 				D00CE27927A6E25A006D766C /* BXMessageBox.swift */,
 				D00CE27A27A6E25A006D766C /* BXLazyVStack.swift */,
 				D00CE27B27A6E25A006D766C /* BXDisableWindowDragging.swift */,
@@ -643,6 +646,7 @@
 				D00CE28727A6E25A006D766C /* BXStringEditView.swift in Sources */,
 				D00CE2C827A6E25B006D766C /* BXCircularSlider.swift in Sources */,
 				D00CE2E127A6E25B006D766C /* BXDisclosureView.swift in Sources */,
+				D0CCA3E527BD6CCA00467723 /* BXPageLayout.swift in Sources */,
 				D00CE2C227A6E25B006D766C /* BXTextField.swift in Sources */,
 				D00CE2BA27A6E25B006D766C /* BXMultiValueNativeSlider.swift in Sources */,
 				D00CE2A027A6E25A006D766C /* View+eraseToAnyView.swift in Sources */,
