@@ -21,13 +21,13 @@ public struct BXImage : View
 {
 	// Params
 	
-	private var systemName:String
+	private var name:String
 
 	// Init
 	
 	public init(systemName:String)
 	{
-		self.systemName = systemName
+		self.name = systemName
 	}
 	
 	// Build View
@@ -38,14 +38,14 @@ public struct BXImage : View
 		
 		if #available(macOS 11, iOS 13, *)
 		{
-			SwiftUI.Image(systemName:systemName)
+			SwiftUI.Image(systemName:name)
 		}
 		
 		// On macOS Catalina use our own fallback images that are shipped with the package resources
 		
 		else
 		{
-			SwiftUI.Image(systemName, bundle:Bundle.BXSwiftUI)
+			SwiftUI.Image(name, bundle:Bundle.BXSwiftUI)
 		}
 	}
 }
