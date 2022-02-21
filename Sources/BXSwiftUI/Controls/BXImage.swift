@@ -36,17 +36,17 @@ public struct BXImage : View
 	{
 		// On Big Sur or newer use the system SF Symbols
 		
-		if #available(macOS 11, iOS 13, *)
-		{
-			SwiftUI.Image(systemName:name)
-		}
-		
-		// On macOS Catalina use our own fallback images that are shipped with the package resources
-		
-		else
-		{
+//		if #available(macOS 11, iOS 13, *)
+//		{
+//			SwiftUI.Image(systemName:name)
+//		}
+//
+//		// On macOS Catalina use our own fallback images that are shipped with the package resources
+//
+//		else
+//		{
 			SwiftUI.Image(name, bundle:Bundle.BXSwiftUI)
-		}
+//		}
 	}
 }
 
