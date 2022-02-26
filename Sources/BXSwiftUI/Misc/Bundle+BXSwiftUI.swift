@@ -18,9 +18,11 @@ public extension Bundle
 	#if SWIFT_PACKAGE
 	static let BXSwiftUI = Bundle.module
 	#else
-	static let BXSwiftUI = Bundle(identifier:"com.boinx.BXSwiftUI")
+	static let BXSwiftUI = Bundle(for:BXSwiftUIMarker.self)
 	#endif
 }
+
+fileprivate class BXSwiftUIMarker {}
 
 
 //----------------------------------------------------------------------------------------------------------------------
