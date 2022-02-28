@@ -153,7 +153,7 @@ fileprivate struct _BXStrokedCheckbox : View
 			{
 				if self.hasMultipleValues
 				{
-					Image(systemName:"minus")
+					BXImage(systemName:"minus")
 				}
 				else if configuration.isOn
 				{

@@ -61,7 +61,7 @@ public struct BXButton : View
 			{
 				if systemName != nil
 				{
-					Image(systemName:systemName!)
+					BXImage(systemName:systemName!)
 				}
 				
 				if title != nil
