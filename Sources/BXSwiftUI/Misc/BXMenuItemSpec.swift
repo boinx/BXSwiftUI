@@ -17,7 +17,7 @@ import AppKit
 
 public enum BXMenuItemSpec
 {
-	case action(icon:NSImage? = nil, title:String, isEnabled:@autoclosure ()->Bool = true, action:()->Void)
+	case action(icon:NSImage? = nil, title:String, isEnabled:@autoclosure ()->Bool = true, state:()->NSControl.StateValue = { .off },  action:()->Void)
 	case regular(icon:NSImage? = nil, title:String, value:Int, isEnabled:@autoclosure ()->Bool = true, representedObject:Any? = nil)
 	case section(title:String)
 	case divider
@@ -39,12 +39,17 @@ public class BXAutoEnablingAction : NSObject
 	
 	private let isEnabledHandler: ()->Bool
 	
+	// This closure determines whether the menu item is checked or not
+	
+	public let stateHandler: ()->NSControl.StateValue
+	
 	// Creates a BXAutoEnablingAction
 	
-	public init(action:@escaping ()->Void, isEnabled:@escaping ()->Bool = {true})
+	public init(action:@escaping ()->Void, isEnabled:@escaping ()->Bool = {true}, state:@escaping ()->NSControl.StateValue = { .off })
 	{
 		self.action = action
 		self.isEnabledHandler = isEnabled
+		self.stateHandler = state
 	}
 	
 	// Executes the menu item action
@@ -83,15 +88,16 @@ public extension NSMenu
 		{
 			switch itemSpec
 			{
-				case .action(let icon, let name, let isEnabled, let action):
+				case .action(let icon, let name, let isEnabled, let state, let action):
 					
-					let wrapper = BXAutoEnablingAction(action:action, isEnabled:isEnabled)
+					let wrapper = BXAutoEnablingAction(action:action, isEnabled:isEnabled, state:state)
 					item = NSMenuItem(title:name, action:nil, keyEquivalent:"")
 					item.image = icon
 					item.representedObject = wrapper
 					item.target = wrapper
 					item.action = #selector(BXAutoEnablingAction.execute(_:))
 					item.isEnabled = isEnabled()
+					item.state = state()
 					item.isHidden = false
 					item.tag = -1
 					menu.addItem(item)

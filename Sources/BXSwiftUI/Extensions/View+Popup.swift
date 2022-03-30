@@ -67,14 +67,15 @@ public struct BXPopupView : NSViewRepresentable
 		{
 			switch itemSpec
 			{
-				case .action(let icon, let name, let isEnabled, let action):
+				case .action(let icon, let name, let isEnabled, let state, let action):
 				
 					let item = NSMenuItem(title:name, action:nil, keyEquivalent:"")
 					item.image = icon
-					item.representedObject = BXAutoEnablingAction(action:action, isEnabled:isEnabled)
+					item.representedObject = BXAutoEnablingAction(action:action, isEnabled:isEnabled, state:state)
 					item.target = context.coordinator
 					item.action = #selector(Coordinator.execute(_:))
 					item.isEnabled = true
+					item.state = state()
 					item.isHidden = false
 					item.tag = -1
 					popup.menu?.addItem(item)
@@ -95,6 +96,7 @@ public struct BXPopupView : NSViewRepresentable
 				case .section(let name):
 				
 					let item = NSMenuItem(title:name, action:nil, keyEquivalent:"")
+					item.attributedTitle = NSAttributedString(string:name.uppercased(), attributes:[.font:NSFont.systemFont(ofSize:11)])
 					item.isEnabled = false
 					item.tag = -1
 					popup.menu?.addItem(item)
@@ -131,6 +133,7 @@ public struct BXPopupView : NSViewRepresentable
 					if let action = menuItem.representedObject as? BXAutoEnablingAction
 					{
 						menuItem.isEnabled = action.isEnabled
+						menuItem.state = action.stateHandler()
 					}
 					
 					// Display a checkmark for the selected item
@@ -176,7 +179,7 @@ public struct BXPopupView : NSViewRepresentable
         {
 			guard let action = menuItem.representedObject as? BXAutoEnablingAction else { return }
 			action.execute()
-			menuItem.state = .off
+//			menuItem.state = action.stateHandler()
         }
  
         @objc func setValue(_ menuItem:NSMenuItem)
