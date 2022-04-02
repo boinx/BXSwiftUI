@@ -29,7 +29,7 @@ public struct BXFadingScrollView<Content:View> : View
 	
 	// Init
 	
-	public init(_ axis:Axis.Set = .vertical, margin:CGFloat = 30, @ViewBuilder content:@escaping ()->Content)
+	public init(_ axis:Axis.Set = .vertical, margin:CGFloat = 50, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.axis = axis
 		self.margin = margin
@@ -60,7 +60,7 @@ public struct BXFadingScrollView<Content:View> : View
 			// Apply a gradient mask to ScrollView
 			
 			.mask(
-				self.gradient()
+				self.gradient(with:outer)
 			)
 			
 			// Update the gradient mask upon scrolling
@@ -119,25 +119,33 @@ public struct BXFadingScrollView<Content:View> : View
 
 	/// Rebuilds the mask gradient
 	
-	func gradient() -> some View
+	func gradient(with geometry:GeometryProxy) -> some View
 	{
-		var colors:[Color] = []
-		
-		colors += Color(white:1.0, opacity:alpha1)
-		colors += [.white,.white]
-		colors += Color(white:1.0, opacity:alpha2)
+		var colors:[Gradient.Stop] = []
 		
 		if axis == .vertical
 		{
+			let dy = self.margin / geometry.size.height
+			colors += Gradient.Stop(color:Color(white:1.0, opacity:alpha1), location:0.0)
+			colors += Gradient.Stop(color:Color(white:1.0, opacity:1.0), 	location:0.0+dy)
+			colors += Gradient.Stop(color:Color(white:1.0, opacity:1.0), 	location:1.0-dy)
+			colors += Gradient.Stop(color:Color(white:1.0, opacity:alpha2), location:1.0)
+
 			return LinearGradient(
-				gradient:Gradient(colors:colors),
+				stops:colors,
 				startPoint:.top,
 				endPoint:.bottom)
 		}
 		else
 		{
+			let dx = self.margin / geometry.size.width
+			colors += Gradient.Stop(color:Color(white:1.0, opacity:alpha1), location:0.0)
+			colors += Gradient.Stop(color:.white, location:0.0+dx)
+			colors += Gradient.Stop(color:.white, location:1.0-dx)
+			colors += Gradient.Stop(color:Color(white:1.0, opacity:alpha2), location:1.0)
+
 			return LinearGradient(
-				gradient:Gradient(colors:colors),
+				stops:colors,
 				startPoint:.leading,
 				endPoint:.trailing)
 		}
