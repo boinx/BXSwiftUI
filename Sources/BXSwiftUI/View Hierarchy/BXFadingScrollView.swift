@@ -125,7 +125,9 @@ public struct BXFadingScrollView<Content:View> : View
 		
 		if axis == .vertical
 		{
-			let dy = self.margin / geometry.size.height
+			let h = geometry.size.height
+			let dy = min(0.49*h, margin/h)
+			
 			colors += Gradient.Stop(color:Color(white:1.0, opacity:alpha1), location:0.0)
 			colors += Gradient.Stop(color:Color(white:1.0, opacity:1.0), 	location:0.0+dy)
 			colors += Gradient.Stop(color:Color(white:1.0, opacity:1.0), 	location:1.0-dy)
@@ -138,7 +140,9 @@ public struct BXFadingScrollView<Content:View> : View
 		}
 		else
 		{
-			let dx = self.margin / geometry.size.width
+			let w = geometry.size.width
+			let dx = min(0.49*w, margin/w)
+			
 			colors += Gradient.Stop(color:Color(white:1.0, opacity:alpha1), location:0.0)
 			colors += Gradient.Stop(color:.white, location:0.0+dx)
 			colors += Gradient.Stop(color:.white, location:1.0-dx)
