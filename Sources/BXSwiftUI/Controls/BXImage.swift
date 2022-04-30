@@ -36,7 +36,7 @@ public struct BXImage : View
 	{
 		// On Big Sur or newer use the system SF Symbols
 		
-		if #available(macOS 11, iOS 13, *)
+		if #available(macOS 11, iOS 14, *)
 		{
 			SwiftUI.Image(systemName:name)
 		}

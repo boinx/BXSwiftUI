@@ -25,11 +25,13 @@ extension View
 	
 	@ViewBuilder public func asImage() -> some View
 	{
-		let image = self.renderImage(colorScheme:.light, isTemplate:false)
-		
-		if let image = image
+		if let image = self.renderImage(colorScheme:.light, isTemplate:false)
 		{
+			#if os(macOS)
 			SwiftUI.Image(nsImage:image)
+			#else
+			SwiftUI.Image(uiImage:image)
+			#endif
 		}
 		else
 		{
@@ -63,7 +65,7 @@ extension View
 
 	/// Renders the view to a UIImage
 	
-	public func renderImage(colorScheme:ColorScheme = .dark, isTemplate:Bool = true) -> UIImage?
+	public func renderImage(colorScheme:ColorScheme = .dark, isTemplate:Bool = false) -> UIImage?
 	{
         let controller = UIHostingController(rootView:self.colorScheme(colorScheme))
         guard let view = controller.view else { return nil }
@@ -77,7 +79,6 @@ extension View
 			_ in view.drawHierarchy(in:view.bounds, afterScreenUpdates:true)
         }
         
-		image.isTemplate = isTemplate
 		return image
 	}
 

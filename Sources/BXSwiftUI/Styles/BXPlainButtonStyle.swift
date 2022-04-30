@@ -7,6 +7,8 @@
 //**********************************************************************************************************************
 
 
+#if os(macOS)
+
 import SwiftUI
 
 
@@ -105,7 +107,9 @@ fileprivate struct _BXPlainButton : View
 						
 						// Disable window dragging when clicking on buttons
 						
+						#if os(macOS)
 						BXNonDraggingView()
+						#endif
 					}
 				}
 			)
@@ -118,3 +122,5 @@ fileprivate struct _BXPlainButton : View
 
 
 //----------------------------------------------------------------------------------------------------------------------
+
+#endif

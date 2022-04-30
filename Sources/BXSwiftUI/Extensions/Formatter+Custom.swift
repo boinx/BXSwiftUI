@@ -24,7 +24,9 @@ public extension Formatter
 		formatter.positiveFormat = "#.#s"
 		formatter.negativeFormat = "-#.#s"
 		formatter.zeroSymbol = "0s"
+		#if os(macOS)
 		formatter.hasThousandSeparators = false
+		#endif
 		return formatter
 	}()
 
@@ -38,7 +40,9 @@ public extension Formatter
 		formatter.positiveFormat = "#.##°"
 		formatter.negativeFormat = "-#.##°"
 		formatter.zeroSymbol = "0°"
+		#if os(macOS)
 		formatter.hasThousandSeparators = false
+		#endif
 		return formatter
 	}()
 	
@@ -52,7 +56,9 @@ public extension Formatter
 		formatter.positiveFormat = "#px"
 		formatter.negativeFormat = "-#px"
 		formatter.zeroSymbol = "0px"
+		#if os(macOS)
 		formatter.hasThousandSeparators = false
+		#endif
 		return formatter
 	}()
 	
@@ -66,7 +72,9 @@ public extension Formatter
 		formatter.positiveFormat = "#pt"
 		formatter.negativeFormat = "-#pt"
 		formatter.zeroSymbol = "0pt"
+		#if os(macOS)
 		formatter.hasThousandSeparators = false
+		#endif
 		return formatter
 	}()
 	
@@ -80,7 +88,9 @@ public extension Formatter
 		formatter.positiveFormat = "#x"
 		formatter.negativeFormat = "-#x"
 		formatter.zeroSymbol = "0x"
+		#if os(macOS)
 		formatter.hasThousandSeparators = false
+		#endif
 		return formatter
 	}()
 	
@@ -91,7 +101,9 @@ public extension Formatter
 //		formatter.allowsFloats = false
 		formatter.numberStyle = .percent
 		formatter.percentSymbol = "%"
+		#if os(macOS)
 		formatter.hasThousandSeparators = false
+		#endif
 		formatter.isLenient = true
 		return formatter
 	}()
@@ -103,7 +115,9 @@ public extension Formatter
 		formatter.allowsFloats = true
 		formatter.numberStyle = .decimal
 		formatter.maximumFractionDigits = 6
+		#if os(macOS)
 		formatter.hasThousandSeparators = false
+		#endif
 		return formatter
 	}()
 	
@@ -117,7 +131,9 @@ public extension Formatter
 		formatter.positiveFormat = "#.#"
 		formatter.negativeFormat = "-#.#"
 		formatter.zeroSymbol = "0"
+		#if os(macOS)
 		formatter.hasThousandSeparators = false
+		#endif
 		return formatter
 	}()
 
@@ -131,7 +147,9 @@ public extension Formatter
 		formatter.positiveFormat = "#.##"
 		formatter.negativeFormat = "-#.##"
 		formatter.zeroSymbol = "0"
+		#if os(macOS)
 		formatter.hasThousandSeparators = false
+		#endif
 		return formatter
 	}()
 
@@ -142,7 +160,9 @@ public extension Formatter
 		formatter.allowsFloats = false
 		formatter.numberStyle = .decimal
 		formatter.maximumFractionDigits = 0
+		#if os(macOS)
 		formatter.hasThousandSeparators = false
+		#endif
 		return formatter
 	}()
 	
@@ -156,7 +176,9 @@ public extension Formatter
 		formatter.positiveFormat = "# kbit"
 		formatter.negativeFormat = "-# kbit"
 		formatter.zeroSymbol = "0 kbit"
+		#if os(macOS)
 		formatter.hasThousandSeparators = false
+		#endif
 		return formatter
 	}()
 	
@@ -170,7 +192,9 @@ public extension Formatter
 		formatter.positiveFormat = "# bit"
 		formatter.negativeFormat = "-# bit"
 		formatter.zeroSymbol = "0 bit"
+		#if os(macOS)
 		formatter.hasThousandSeparators = false
+		#endif
 		return formatter
 	}()
 	
@@ -184,7 +208,9 @@ public extension Formatter
 		formatter.positiveFormat = "# Hz"
 		formatter.negativeFormat = "-# Hz"
 		formatter.zeroSymbol = "0 Hz"
+		#if os(macOS)
 		formatter.hasThousandSeparators = false
+		#endif
 		return formatter
 	}()
 	
@@ -195,7 +221,9 @@ public extension Formatter
 		formatter.allowsFloats = true
 		formatter.minimumFractionDigits = 3
 		formatter.maximumFractionDigits = 3
+		#if os(macOS)
 		formatter.hasThousandSeparators = false
+		#endif
 		formatter.isLenient = true
 		return formatter
 	}()
@@ -221,7 +249,9 @@ public extension Formatter
 		formatter.positiveFormat = "#.#"
 		formatter.negativeFormat = "-#.#"
 		formatter.zeroSymbol = "0"
+		#if os(macOS)
 		formatter.hasThousandSeparators = false
+		#endif
 		return formatter
 	}()
 

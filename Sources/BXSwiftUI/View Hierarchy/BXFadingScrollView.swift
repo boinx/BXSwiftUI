@@ -95,9 +95,14 @@ public struct BXFadingScrollView<Content:View> : View
 			/// Different CGRect values are returned of origin.y, so we need to swap the calculated alpha
 			/// values to get the expected results again
 			
+			#if os(macOS)
 			let isRunningOnMonterey = ProcessInfo.isRunningOnMontereyOrNewer
 			let a1 = isRunningOnMonterey ? A2 : A1
 			let a2 = isRunningOnMonterey ? A1 : A2
+			#else
+			let a1 = A1
+			let a2 = A2
+			#endif
 			
 			self.alpha1 = Double(a1)
 			self.alpha2 = Double(a2)

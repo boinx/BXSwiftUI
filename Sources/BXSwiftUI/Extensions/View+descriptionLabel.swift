@@ -27,10 +27,12 @@ public extension View
 			if isVisible
 			{
 				Text(description)
-					.controlSize(.small)
 					.lineLimit(nil)									// Wrap text to as many lines as needed
 					.fixedSize(horizontal:false, vertical:true) 	// Workaround because .lineLimit(nil) doesn't work by itself
 					.opacity(0.5)
+					#if os(macOS)
+					.controlSize(.small)
+					#endif
 			}
 		}
 	}
