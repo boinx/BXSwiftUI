@@ -7,6 +7,8 @@
 //**********************************************************************************************************************
 
 
+#if os(macOS)
+
 import Cocoa
 import SwiftUI
 
@@ -271,3 +273,5 @@ public class BXPopover : NSPopover, NSPopoverDelegate, ObservableObject
 
 
 }
+
+#endif
