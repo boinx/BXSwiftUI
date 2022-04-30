@@ -488,9 +488,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		D002FE6623D22945002CF0A1 /* BXSwiftUI-macOS */ = {
+		D002FE6623D22945002CF0A1 /* BXSwiftUI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D002FE6F23D22945002CF0A1 /* Build configuration list for PBXNativeTarget "BXSwiftUI-macOS" */;
+			buildConfigurationList = D002FE6F23D22945002CF0A1 /* Build configuration list for PBXNativeTarget "BXSwiftUI" */;
 			buildPhases = (
 				D002FE6223D22945002CF0A1 /* Headers */,
 				D002FE6323D22945002CF0A1 /* Sources */,
@@ -501,7 +501,7 @@
 			);
 			dependencies = (
 			);
-			name = "BXSwiftUI-macOS";
+			name = BXSwiftUI;
 			productName = BXSwiftUI;
 			productReference = D002FE6723D22945002CF0A1 /* BXSwiftUI.framework */;
 			productType = "com.apple.product-type.framework";
@@ -536,7 +536,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D002FE6623D22945002CF0A1 /* BXSwiftUI-macOS */,
+				D002FE6623D22945002CF0A1 /* BXSwiftUI */,
 			);
 		};
 /* End PBXProject section */
@@ -811,9 +811,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.boinx.BXSwiftUI;
 				PRODUCT_NAME = BXSwiftUI;
-				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -837,9 +835,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.boinx.BXSwiftUI;
 				PRODUCT_NAME = BXSwiftUI;
-				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = macosx;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -856,7 +852,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D002FE6F23D22945002CF0A1 /* Build configuration list for PBXNativeTarget "BXSwiftUI-macOS" */ = {
+		D002FE6F23D22945002CF0A1 /* Build configuration list for PBXNativeTarget "BXSwiftUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D002FE7023D22945002CF0A1 /* Debug */,
