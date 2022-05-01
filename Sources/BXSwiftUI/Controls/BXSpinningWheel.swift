@@ -7,14 +7,17 @@
 //**********************************************************************************************************************
 
 
-#if os(macOS)
-
 import SwiftUI
+
+#if canImport(AppKit)
 import AppKit
+#endif
 
 
 //----------------------------------------------------------------------------------------------------------------------
 
+
+#if os(macOS)
 
 public struct BXSpinningWheel : NSViewRepresentable
 {
@@ -51,8 +54,38 @@ public struct BXSpinningWheel : NSViewRepresentable
 	}
 }
 
+#endif
+
 
 //----------------------------------------------------------------------------------------------------------------------
 
 
+#if os(iOS)
+
+public struct BXSpinningWheel : UIViewRepresentable
+{
+	public init() { }
+
+	// Create the underlying UIKit view
+	
+	public func makeUIView(context:Context) -> UIActivityIndicatorView
+    {
+    	let wheel = UIActivityIndicatorView(frame:.zero)
+		wheel.style = .medium
+		wheel.hidesWhenStopped = true
+    	wheel.startAnimating()
+ 		return wheel
+    }
+
+	// SwiftUI side has changed, so update the AppKit view
+	
+	public func updateUIView(_ wheel:UIActivityIndicatorView, context:Context)
+    {
+
+	}
+}
+
 #endif
+
+
+//----------------------------------------------------------------------------------------------------------------------
