@@ -7,30 +7,59 @@
 //**********************************************************************************************************************
 
 
-#if os(macOS)
-
 import BXSwiftUtils
 import SwiftUI
+
+#if canImport(AppKit)
 import AppKit
+#endif
 
 
 //----------------------------------------------------------------------------------------------------------------------
 
+
+#if os(macOS)
 
 public extension View
 {
 	/// Attaches a popup menu to a view hierarchy. The items are defined by an array of BXMenuItemSpec.
 	/// Please note that you need to use BXMenuItemSpec.action or there will be nothing to execute!
 	
-    func popupMenu(value:Binding<Int>? = nil, _ itemSpecs:@autoclosure ()->[BXMenuItemSpec]) -> some View
+	@ViewBuilder func popupMenu(value:Binding<Int>? = nil, _ itemSpecs:@autoclosure ()->[BXMenuItemSpec]) -> some View
     {
 		self.overlay(BXPopupView(itemSpecs:itemSpecs(), value:value))
-    }
+	}
 }
-  
-  
+
+#endif
+
+
 //----------------------------------------------------------------------------------------------------------------------
 
+
+// MARK: -
+
+// Custom subclass that forces the size of the popup to 16x16 pt, regardless of length of menu items
+
+#if os(macOS)
+
+fileprivate class _NSPopUpButton : NSPopUpButton
+{
+	override open var intrinsicContentSize:NSSize
+	{
+		return NSMakeSize(16,16)
+	}
+}
+
+#endif
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+// MARK: -
+
+#if os(macOS)
 
 public struct BXPopupView : NSViewRepresentable
 {
@@ -192,22 +221,75 @@ public struct BXPopupView : NSViewRepresentable
    }
 }
 
+#endif
+
 
 //----------------------------------------------------------------------------------------------------------------------
 
 
-// Custom subclass that forces the size of the popup to 16x16 pt, regardless of length of menu items
+// MARK: -
 
-fileprivate class _NSPopUpButton : NSPopUpButton
+#if os(iOS)
+
+public extension View
 {
-	override open var intrinsicContentSize:NSSize
-	{
-		return NSMakeSize(16,16)
-	}
+	/// Attaches a popup menu to a view hierarchy. The items are defined by an array of BXMenuItemSpec.
+	/// Please note that you need to use BXMenuItemSpec.action or there will be nothing to execute!
+	
+    @ViewBuilder func popupMenu(value:Binding<Int>? = nil, _ itemSpecs:@autoclosure ()->[BXMenuItemSpec]) -> some View
+    {
+		if #available(iOS 14, *)
+		{
+			Menu( content:
+			{
+				let items = itemSpecs()
+				
+				ForEach(0 ..< items.count)
+				{
+					self.button(for:items[$0])
+				}
+			},
+			label:
+			{
+				self
+			})
+		}
+		else
+		{
+			self
+		}
+    }
+    
+    func button(for itemSpec:BXMenuItemSpec) -> some View
+    {
+		Group
+		{
+			if case .action(_,let title, let isEnabled, let state, let action) = itemSpec
+			{
+						Button
+						{
+							action()
+						}
+						label:
+						{
+							HStack
+							{
+								Text(state() != .off ? "✓" : " ")
+								Text(title)
+							}
+						}
+						.enabled(isEnabled())
+			}
+			else
+			{
+				EmptyView()
+			}
+		}
+    }
 }
 
+#endif
+
 
 //----------------------------------------------------------------------------------------------------------------------
 
-
-#endif
