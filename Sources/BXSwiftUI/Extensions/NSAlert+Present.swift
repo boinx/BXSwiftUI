@@ -7,14 +7,12 @@
 //**********************************************************************************************************************
 
 
-#if os(macOS)
-
-import SwiftUI
-import AppKit
-
-
 //----------------------------------------------------------------------------------------------------------------------
 
+
+#if os(macOS)
+
+import AppKit
 
 public extension NSAlert
 {
@@ -40,8 +38,37 @@ public extension NSAlert
 	}
 }
 
+#endif
+
 
 //----------------------------------------------------------------------------------------------------------------------
 
 
+#if os(iOS)
+
+import UIKit
+
+public extension UIViewController
+{
+	func presentAlert(title:String, message:String, okButton:String = "OK", cancelButton:String? = nil, okHandler:(()->Void)? = nil)
+	{
+		let alert = UIAlertController(title:title, message:message, preferredStyle:.alert)
+		
+		alert.addAction( UIAlertAction(title:okButton, style:.default)
+		{
+			_ in okHandler?()
+		})
+
+		alert.addAction( UIAlertAction(title:cancelButton, style:.cancel)
+		{
+			_ in okHandler?()
+		})
+
+		self.present(alert, animated:true, completion: nil)
+	}
+}
+
 #endif
+
+
+//----------------------------------------------------------------------------------------------------------------------
