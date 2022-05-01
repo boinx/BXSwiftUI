@@ -7,9 +7,34 @@
 //**********************************************************************************************************************
 
 
-#if os(macOS)
+import SwiftUI
 
+#if canImport(AppKit)
 import AppKit
+#endif
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+#if os(macOS)
+public typealias NativeImage = NSImage
+#else
+public typealias NativeImage = UIImage
+#endif
+
+
+#if os(iOS)
+public enum NSControl
+{
+	public enum StateValue
+	{
+		case off
+		case on
+		case mixed
+	}
+}
+#endif
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -19,8 +44,8 @@ import AppKit
 
 public enum BXMenuItemSpec
 {
-	case action(icon:NSImage? = nil, title:String, isEnabled:@autoclosure ()->Bool = true, state:()->NSControl.StateValue = { .off },  action:()->Void)
-	case regular(icon:NSImage? = nil, title:String, value:Int, isEnabled:@autoclosure ()->Bool = true, representedObject:Any? = nil)
+	case action(icon:NativeImage? = nil, title:String, isEnabled:@autoclosure ()->Bool = true, state:()->NSControl.StateValue = { .off },  action:()->Void)
+	case regular(icon:NativeImage? = nil, title:String, value:Int, isEnabled:@autoclosure ()->Bool = true, representedObject:Any? = nil)
 	case section(title:String)
 	case divider
 }
@@ -28,6 +53,8 @@ public enum BXMenuItemSpec
 
 //----------------------------------------------------------------------------------------------------------------------
 
+
+#if os(macOS)
 
 /// Bundles a menu item action and a closure that determines whether the menu item should be enabled or disabled.
 
@@ -74,9 +101,13 @@ public class BXAutoEnablingAction : NSObject
 	}
 }
 
+#endif
+
 
 //----------------------------------------------------------------------------------------------------------------------
 
+
+#if os(macOS)
 
 public extension NSMenu
 {
@@ -138,8 +169,8 @@ public extension NSMenu
 	}
 }
 
+#endif
+
 
 //----------------------------------------------------------------------------------------------------------------------
 
-
-#endif
