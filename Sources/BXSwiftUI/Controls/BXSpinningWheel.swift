@@ -64,24 +64,32 @@ public struct BXSpinningWheel : NSViewRepresentable
 
 public struct BXSpinningWheel : UIViewRepresentable
 {
-	public init() { }
-
-	// Create the underlying UIKit view
+	public typealias UIViewType = UIActivityIndicatorView
 	
+	// Params
+
+	var style:UIActivityIndicatorView.Style = .large
+
+	// Init
+
+	public init(style:UIActivityIndicatorView.Style = .large)
+	{
+		self.style = style
+	}
+
 	public func makeUIView(context:Context) -> UIActivityIndicatorView
-    {
-    	let wheel = UIActivityIndicatorView(frame:.zero)
-		wheel.style = .medium
+	{
+		let wheel = UIActivityIndicatorView()
+		wheel.style = self.style
 		wheel.hidesWhenStopped = true
-    	wheel.startAnimating()
- 		return wheel
-    }
-
-	// SwiftUI side has changed, so update the AppKit view
+		wheel.startAnimating()
+		
+		return wheel
+	}
 	
-	public func updateUIView(_ wheel:UIActivityIndicatorView, context:Context)
-    {
-
+	public func updateUIView(_ uiView:UIActivityIndicatorView, context:Context)
+	{
+		
 	}
 }
 

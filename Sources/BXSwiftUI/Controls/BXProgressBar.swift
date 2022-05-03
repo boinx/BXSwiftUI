@@ -2,19 +2,26 @@
 //
 //  BXProgressBar.swift
 //	Displays a linear progress bar
-//  Copyright ©2020 Peter Baumgartner. All rights reserved.
+//  Copyright ©2020-2022 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
 
 
-#if os(macOS)
-
 import SwiftUI
+
+#if canImport(AppKit)
 import AppKit
+#endif
+
+#if canImport(UIKit)
+import UIKit
+#endif
 
 
 //----------------------------------------------------------------------------------------------------------------------
 
+
+#if os(macOS)
 
 public struct BXProgressBar : NSViewRepresentable
 {
@@ -69,8 +76,46 @@ public struct BXProgressBar : NSViewRepresentable
 	}
 }
 
+#endif
+
 
 //----------------------------------------------------------------------------------------------------------------------
 
 
+#if os(iOS)
+
+public struct BXProgressBar : UIViewRepresentable
+{
+	public typealias UIViewType = UIProgressView
+	
+	// Params
+	
+	var value:Double = 0.0
+	
+	// Init
+	
+	public init(isIndeterminate:Bool = false, value:Double = 0.0, minValue:Double = 0.0, maxValue:Double = 1.0)
+	{
+		self.value = value
+	}
+	
+	public func makeUIView(context:Context) -> UIProgressView
+	{
+    	let progressBar = UIProgressView(frame:.zero)
+		progressBar.progressViewStyle = .bar
+		progressBar.trackTintColor = .darkGray
+ 		return progressBar
+	}
+	
+	public func updateUIView(_ progressBar:UIProgressView, context:Context)
+	{
+		progressBar.progress = Float(self.value)
+	}
+}
+
 #endif
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+

@@ -7,8 +7,6 @@
 //**********************************************************************************************************************
 
 
-#if os(macOS)
-
 import SwiftUI
 
 
@@ -50,7 +48,9 @@ fileprivate struct _BXStrokedButton : View
 	// Environment
 	
 	@Environment(\.isEnabled) var isEnabled
+	#if os(macOS)
 	@Environment(\.controlSize) var controlSize
+	#endif
 	@Environment(\.colorScheme) var colorScheme
 	@Environment(\.bxColorTheme) var bxColorTheme
 
@@ -63,6 +63,7 @@ fileprivate struct _BXStrokedButton : View
 	
 	private var padding : EdgeInsets
 	{
+		#if os(macOS)
 		switch controlSize
 		{
 			case .regular: 	return EdgeInsets(top:2, leading:12, bottom:3, trailing:12)
@@ -70,7 +71,12 @@ fileprivate struct _BXStrokedButton : View
 			case .mini: 	return EdgeInsets(top:1, leading:12, bottom:1, trailing:12)
 			default: 		return EdgeInsets(top:2, leading:12, bottom:3, trailing:12)
 		}
+		#endif
+		
+		return EdgeInsets(top:4, leading:12, bottom:5, trailing:12)
 	}
+	
+	#if os(macOS)
 	
 	private var fillColor : Color
 	{
@@ -93,6 +99,30 @@ fileprivate struct _BXStrokedButton : View
 			self.bxColorTheme.strokeColor(for:colorScheme) :
 			self.bxColorTheme.strokeColor(for:colorScheme)
 	}
+	
+	#else
+	
+	private var fillColor : Color
+	{
+		if configuration.isPressed || isHilited
+		{
+			return Color.primary.opacity(0.2)
+		}
+		
+		return Color.clear
+	}
+
+	private var textColor : Color
+	{
+		.primary
+	}
+	
+	private var strokeColor : Color
+	{
+		.primary
+	}
+
+	#endif
 
 	// Build the view
 	
@@ -135,7 +165,9 @@ fileprivate struct _BXStrokedButton : View
 						
 						// Disable window dragging when clicking on buttons
 						
+						#if os(macOS)
 						BXNonDraggingView()
+						#endif
 					}
 				}
 			)
@@ -149,6 +181,8 @@ fileprivate struct _BXStrokedButton : View
 
 //----------------------------------------------------------------------------------------------------------------------
 
+
+#if os(macOS)
 
 public struct BXNonDraggingView : NSViewRepresentable
 {
@@ -173,8 +207,7 @@ public class _BXNonDraggingView : NSView
 	}
 }
 
+#endif
+
 
 //----------------------------------------------------------------------------------------------------------------------
-
-
-#endif
