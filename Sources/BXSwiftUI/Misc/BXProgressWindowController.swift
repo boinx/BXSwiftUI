@@ -63,12 +63,6 @@ open class BXProgressWindowController : NSWindowController
 		self.window = window
 	}
 	
-	
-	func unloadWindow()
-	{
-		self.window = nil
-	}
-	
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -138,16 +132,11 @@ open class BXProgressWindowController : NSWindowController
 	}
 
 	private func update()
+	
+	func unloadWindow()
 	{
-		DispatchQueue.main.asyncIfNeeded
-		{
-			guard let viewController = self.viewController else { return }
-			
-			viewController.progressTitle = self.title
-			viewController.progressMessage = self.message
-			viewController.fraction = self.value
-			viewController.isIndeterminate = self.isIndeterminate
-		}
+		self.contentViewController = nil
+		self.window = nil
 	}
 }
 
