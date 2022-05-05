@@ -45,6 +45,7 @@ public struct BXProgressView : View
 					{
 						BXImage(systemName:"xmark.circle")
 					}
+					.buttonStyle(.borderless)
 				}
 			}
 			
