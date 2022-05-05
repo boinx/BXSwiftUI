@@ -31,6 +31,10 @@ open class BXProgressViewController : NSViewController, ObservableObject
 		self.view = BXProgressBackgroundView(frame:frame)
 		self.view.wantsLayer = true
 		
+		// Create a SwiftUI view that observes the properties of this controller.
+		//
+		// ATTENTION: This creates a retain cycle self -> view -> NSHostingView -> BXProgressView -> self
+		
 		let hostView = NSHostingView(rootView: BXProgressView(controller:self))
 		hostView.frame = frame
 		self.view.addSubview(hostView)
@@ -39,6 +43,21 @@ open class BXProgressViewController : NSViewController, ObservableObject
 		hostView.bottomAnchor.constraint(equalTo:view.bottomAnchor, constant:0).isActive = true
 		hostView.leadingAnchor.constraint(equalTo:view.leadingAnchor, constant:0).isActive = true
 		hostView.trailingAnchor.constraint(equalTo:view.trailingAnchor, constant:0).isActive = true
+	}
+	
+	override open func viewDidDisappear()
+	{
+		print("viewDidDisappear")
+		super.viewDidDisappear()
+
+		// Break the retain cycle from above
+		
+		self.view = NSView(frame:.zero)
+	}
+	
+	deinit
+	{
+		print("deinit")
 	}
 }
 
@@ -71,7 +90,18 @@ open class BXProgressViewController : UIHostingController<BXProgressView>, Obser
 
 	override open func loadView()
 	{
+		// ATTENTION: This creates a retain cycle self -> rootView -> BXProgressView -> self
+
 		self.rootView = BXProgressView(controller:self)
+	}
+	
+	override open func viewDidDisappear()
+	{
+		super.viewDidDisappear()
+		
+		// Break the retain cycle from above
+		
+		self.view = UIView(frame:.zero)
 	}
 }
 
