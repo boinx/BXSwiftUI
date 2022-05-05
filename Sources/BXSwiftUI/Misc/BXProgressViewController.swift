@@ -44,22 +44,17 @@ open class BXProgressViewController : NSViewController, ObservableObject
 		hostView.leadingAnchor.constraint(equalTo:view.leadingAnchor, constant:0).isActive = true
 		hostView.trailingAnchor.constraint(equalTo:view.trailingAnchor, constant:0).isActive = true
 	}
-	
+		
 	override open func viewDidDisappear()
 	{
-		print("viewDidDisappear")
 		super.viewDidDisappear()
 
 		// Break the retain cycle from above
 		
 		self.view = NSView(frame:.zero)
 	}
-	
-	deinit
-	{
-		print("deinit")
-	}
 }
+
 
 public class BXProgressBackgroundView : NSView
 {

@@ -137,7 +137,6 @@ open class BXProgressWindowController : NSWindowController
 		DispatchQueue.main.async
 		{
 			self.window?.center()
-//			self.showWindow(nil)
 			self.window?.makeKeyAndOrderFront(nil)
 		}
 	}
@@ -162,20 +161,6 @@ open class BXProgressWindowController : NSWindowController
 		self.contentViewController = nil
 		self.window = nil
 	}
-
-
-//	private func update()
-//	{
-//		DispatchQueue.main.asyncIfNeeded
-//		{
-//			guard let viewController = self.viewController else { return }
-//
-//			viewController.progressTitle = self.title
-//			viewController.progressMessage = self.message
-//			viewController.fraction = self.value
-//			viewController.isIndeterminate = self.isIndeterminate
-//		}
-//	}
 }
 
 
