@@ -51,7 +51,7 @@ open class BXProgressWindowController : NSWindowController
 	{
 		let frame = CGRect(x:0, y:0, width:360, height:88)
 		let style:NSWindow.StyleMask = [.nonactivatingPanel,.titled,.fullSizeContentView]			// .titled is necessary here to get a window with rounded corners - even though we do not really want a titlebar!
-		let window = NSWindow(contentRect:frame, styleMask:style, backing:.buffered, defer:true)
+		let window = NSPanel(contentRect:frame, styleMask:style, backing:.buffered, defer:true)
 		
 		window.titleVisibility = .hidden															// These two lines hide
 		window.titlebarAppearsTransparent = true													// the titlebar again
