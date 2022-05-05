@@ -16,13 +16,10 @@ import SwiftUI
 public struct BXProgressView : View
 {
 	@ObservedObject var controller:BXProgressViewController
-
-	private var cancelHandler:(()->Void)? = nil
 	
-	public init(controller:BXProgressViewController, cancelHandler:(()->Void)? = nil)
+	public init(controller:BXProgressViewController)
 	{
 		self.controller = controller
-		self.cancelHandler = cancelHandler
 	}
 	
 	public var body: some View
@@ -39,7 +36,7 @@ public struct BXProgressView : View
 			{
 				BXProgressBar(isIndeterminate:controller.isIndeterminate, value:controller.fraction, minValue:0, maxValue:1)
 				
-				if let cancelHandler = cancelHandler
+				if let cancelHandler = BXProgressViewController.cancelHandler
 				{
 					Button(action:cancelHandler)
 					{

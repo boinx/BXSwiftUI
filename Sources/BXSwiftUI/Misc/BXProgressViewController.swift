@@ -23,7 +23,7 @@ open class BXProgressViewController : NSViewController, ObservableObject
 	@Published open var isIndeterminate:Bool = false
 	@Published open var fraction:Double = 0.0
 	@Published open var progressMessage:String? = nil
-	open var cancelHandler:(()->Void)? = nil
+	public static var cancelHandler:(()->Void)? = nil
 
 	override open func loadView()
 	{
@@ -86,7 +86,7 @@ open class BXProgressViewController : UIHostingController<BXProgressView>, Obser
 	@Published open var isIndeterminate:Bool = false
 	@Published open var fraction:Double = 0.0
 	@Published open var progressMessage:String? = nil
-	open var cancelHandler:(()->Void)? = nil
+	public static var cancelHandler:(()->Void)? = nil
 
 	override open func loadView()
 	{

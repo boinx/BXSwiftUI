@@ -71,33 +71,59 @@ open class BXProgressWindowController : NSWindowController
 	
 	open var title:String = ""
 	{
-		didSet { self.update() }
+		didSet
+		{
+			DispatchQueue.main.asyncIfNeeded
+			{
+				self.viewController?.progressTitle = self.title
+			}
+		}
 	}
 	
 	open var message:String = ""
 	{
-		didSet { self.update() }
+		didSet
+		{
+			DispatchQueue.main.asyncIfNeeded
+			{
+				self.viewController?.progressMessage = self.message
+			}
+		}
 	}
 	
 	open var value:Double = 0.0
 	{
-		didSet { self.update() }
+		didSet
+		{
+			DispatchQueue.main.asyncIfNeeded
+			{
+				self.viewController?.fraction = self.value
+			}
+		}
 	}
 	
 	open var isIndeterminate = false
 	{
-		didSet { self.update() }
-	}
-	
-	open var isVisible:Bool
-	{
-		self.window?.isVisible ?? false
+		didSet
+		{
+			DispatchQueue.main.asyncIfNeeded
+			{
+				self.viewController?.isIndeterminate = self.isIndeterminate
+			}
+		}
 	}
 	
 	open var cancelHandler:(()->Void)?
 	{
-		set { self.viewController?.cancelHandler = newValue }
-		get { self.viewController?.cancelHandler }
+		didSet
+		{
+			BXProgressViewController.cancelHandler = self.cancelHandler
+		}
+	}
+
+	open var isVisible:Bool
+	{
+		self.window?.isVisible ?? false
 	}
 	
 	
@@ -130,14 +156,26 @@ open class BXProgressWindowController : NSWindowController
 		super.close()
 		self.unloadWindow()
 	}
-
-	private func update()
 	
 	func unloadWindow()
 	{
 		self.contentViewController = nil
 		self.window = nil
 	}
+
+
+//	private func update()
+//	{
+//		DispatchQueue.main.asyncIfNeeded
+//		{
+//			guard let viewController = self.viewController else { return }
+//
+//			viewController.progressTitle = self.title
+//			viewController.progressMessage = self.message
+//			viewController.fraction = self.value
+//			viewController.isIndeterminate = self.isIndeterminate
+//		}
+//	}
 }
 
 
