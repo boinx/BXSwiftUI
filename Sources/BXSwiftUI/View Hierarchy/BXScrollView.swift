@@ -7,9 +7,12 @@
 //**********************************************************************************************************************
 
 
+#if os(macOS)
+
 import FotoMagicoCore
 import BXSwiftUtils
 import SwiftUI
+import AppKit
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -26,6 +29,7 @@ public struct BXScrollView<Content:View> : NSViewRepresentable
     private var hasHorizontalScroller:Bool = true
     private var hasVerticalScroller:Bool = true
     private var allowsMagnification:Bool = true
+    private var isCentered:Bool = false
 	private var content:()->Content
 	
 	
@@ -43,7 +47,7 @@ public struct BXScrollView<Content:View> : NSViewRepresentable
 	///   - allowsMagnification: Set to true if zooming is allowed
 	///   - contentView: The SwiftUI content view that is embedded in the NSScrollView
 	
-	public init(scrollPosition:Binding<CGPoint> = .constant(.zero), magnification:Binding<CGFloat> = .constant(1.0), minMagnification:Binding<CGFloat> = .constant(1.0), maxMagnification:Binding<CGFloat> = .constant(1.0), backgroundColor:NSColor = .gray, drawsBackground:Bool = true, hasHorizontalScroller:Bool = true, hasVerticalScroller:Bool = true, allowsMagnification:Bool = true, @ViewBuilder content:@escaping ()->Content)
+	public init(scrollPosition:Binding<CGPoint> = .constant(.zero), magnification:Binding<CGFloat> = .constant(1.0), minMagnification:Binding<CGFloat> = .constant(1.0), maxMagnification:Binding<CGFloat> = .constant(1.0), backgroundColor:NSColor = .gray, drawsBackground:Bool = true, hasHorizontalScroller:Bool = true, hasVerticalScroller:Bool = true, allowsMagnification:Bool = true, isCentered:Bool = false, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.scrollPosition = scrollPosition
 		self.magnification = magnification
@@ -55,6 +59,7 @@ public struct BXScrollView<Content:View> : NSViewRepresentable
 		self.hasVerticalScroller = hasVerticalScroller
 		self.hasHorizontalScroller = hasHorizontalScroller
 		self.allowsMagnification = allowsMagnification
+		self.isCentered = isCentered
 		
 		self.content = content
 	}
@@ -92,6 +97,12 @@ public struct BXScrollView<Content:View> : NSViewRepresentable
 		scrollView.hasVerticalScroller = self.hasVerticalScroller
 		scrollView.hasHorizontalScroller = self.hasHorizontalScroller
 		scrollView.allowsMagnification = self.allowsMagnification
+		
+		if isCentered
+		{
+			scrollView.contentView = BXCenteredClipView(frame:.zero)
+//			scrollView.contentView.autoresizingMask = [.width,.height]
+		}
 		
 		// Install the SwiftUI content view
 		
@@ -134,3 +145,35 @@ public struct BXScrollView<Content:View> : NSViewRepresentable
 
 	
 //----------------------------------------------------------------------------------------------------------------------
+
+
+class BXCenteredClipView:NSClipView
+{
+	override func constrainBoundsRect(_ proposedBounds:NSRect) -> NSRect
+    {
+
+        var rect = super.constrainBoundsRect(proposedBounds)
+        
+        if let documentView = self.documentView
+        {
+
+            if (rect.size.width > documentView.frame.size.width)
+            {
+                rect.origin.x = (documentView.frame.width - rect.width) / 2
+            }
+
+            if(rect.size.height > documentView.frame.size.height)
+            {
+                rect.origin.y = (documentView.frame.height - rect.height) / 2
+            }
+        }
+
+        return rect
+    }
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+#endif
