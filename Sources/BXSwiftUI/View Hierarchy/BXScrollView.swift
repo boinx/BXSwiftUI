@@ -1,4 +1,4 @@
-//**********************************************************************************************************************
+	//**********************************************************************************************************************
 //
 //  BXScrollView.swift
 //	Wraps an NSScrollView and exposes its features to SwiftUI
@@ -30,6 +30,7 @@ public struct BXScrollView<Content:View> : NSViewRepresentable
     private var hasVerticalScroller:Bool = true
     private var allowsMagnification:Bool = true
     private var isCentered:Bool = false
+    private var didChangeFrameHandler:((CGRect)->Void)? = nil
 	private var content:()->Content
 	
 	
@@ -47,7 +48,7 @@ public struct BXScrollView<Content:View> : NSViewRepresentable
 	///   - allowsMagnification: Set to true if zooming is allowed
 	///   - contentView: The SwiftUI content view that is embedded in the NSScrollView
 	
-	public init(scrollPosition:Binding<CGPoint> = .constant(.zero), magnification:Binding<CGFloat> = .constant(1.0), minMagnification:Binding<CGFloat> = .constant(1.0), maxMagnification:Binding<CGFloat> = .constant(1.0), backgroundColor:NSColor = .gray, drawsBackground:Bool = true, hasHorizontalScroller:Bool = true, hasVerticalScroller:Bool = true, allowsMagnification:Bool = true, isCentered:Bool = false, @ViewBuilder content:@escaping ()->Content)
+	public init(scrollPosition:Binding<CGPoint> = .constant(.zero), magnification:Binding<CGFloat> = .constant(1.0), minMagnification:Binding<CGFloat> = .constant(1.0), maxMagnification:Binding<CGFloat> = .constant(1.0), backgroundColor:NSColor = .gray, drawsBackground:Bool = true, hasHorizontalScroller:Bool = true, hasVerticalScroller:Bool = true, allowsMagnification:Bool = true, isCentered:Bool = false, didChangeFrameHandler: ((CGRect)->Void)? = nil, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.scrollPosition = scrollPosition
 		self.magnification = magnification
@@ -61,6 +62,7 @@ public struct BXScrollView<Content:View> : NSViewRepresentable
 		self.allowsMagnification = allowsMagnification
 		self.isCentered = isCentered
 		
+		self.didChangeFrameHandler = didChangeFrameHandler
 		self.content = content
 	}
 	
@@ -98,10 +100,11 @@ public struct BXScrollView<Content:View> : NSViewRepresentable
 		scrollView.hasHorizontalScroller = self.hasHorizontalScroller
 		scrollView.allowsMagnification = self.allowsMagnification
 		
+		// If the documentView is supposed to be centered, then install a custom NSClipView subclass
+		
 		if isCentered
 		{
 			scrollView.contentView = BXCenteredClipView(frame:.zero)
-//			scrollView.contentView.autoresizingMask = [.width,.height]
 		}
 		
 		// Install the SwiftUI content view
@@ -110,6 +113,18 @@ public struct BXScrollView<Content:View> : NSViewRepresentable
 		view.setFrameSize(view.intrinsicContentSize)
 		scrollView.documentView = view
 
+		// Listen to size change notifications
+		
+		if let didChangeFrameHandler = didChangeFrameHandler
+		{
+			scrollView.postsFrameChangedNotifications = true
+			
+			context.coordinator.observers += NotificationCenter.default.publisher(for:NSView.frameDidChangeNotification, object:scrollView).sink
+			{
+				_ in didChangeFrameHandler(scrollView.frame)
+			}
+		}
+		
 		// Listen to scroll & zoom events
 		
 		scrollView.contentView.postsBoundsChangedNotifications = true
