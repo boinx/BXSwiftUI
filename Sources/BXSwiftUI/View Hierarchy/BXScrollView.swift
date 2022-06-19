@@ -9,7 +9,6 @@
 
 #if os(macOS)
 
-import FotoMagicoCore
 import BXSwiftUtils
 import SwiftUI
 import AppKit
@@ -48,7 +47,7 @@ public struct BXScrollView<Content:View> : NSViewRepresentable
 	///   - allowsMagnification: Set to true if zooming is allowed
 	///   - contentView: The SwiftUI content view that is embedded in the NSScrollView
 	
-	public init(scrollPosition:Binding<CGPoint> = .constant(.zero), magnification:Binding<CGFloat> = .constant(1.0), minMagnification:Binding<CGFloat> = .constant(1.0), maxMagnification:Binding<CGFloat> = .constant(1.0), backgroundColor:NSColor = .gray, drawsBackground:Bool = true, hasHorizontalScroller:Bool = true, hasVerticalScroller:Bool = true, allowsMagnification:Bool = true, isCentered:Bool = false, didChangeFrameHandler: ((CGRect)->Void)? = nil, @ViewBuilder content:@escaping ()->Content)
+	public init(scrollPosition:Binding<CGPoint> = .constant(.zero), magnification:Binding<CGFloat> = .constant(1.0), minMagnification:Binding<CGFloat> = .constant(1.0), maxMagnification:Binding<CGFloat> = .constant(1.0), backgroundColor:NSColor = .gray, drawsBackground:Bool = true, hasHorizontalScroller:Bool = true, hasVerticalScroller:Bool = true, allowsMagnification:Bool = false, isCentered:Bool = false, didChangeFrameHandler: ((CGRect)->Void)? = nil, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.scrollPosition = scrollPosition
 		self.magnification = magnification
@@ -109,10 +108,19 @@ public struct BXScrollView<Content:View> : NSViewRepresentable
 		
 		// Install the SwiftUI content view
 		
-		let view = NSHostingView(rootView:content())
-		view.setFrameSize(view.intrinsicContentSize)
+		let updateScrollViewSize = { self.update(scrollView, newContentSize:$0) }
+		
+		let content = content()
+			.environment(\.bxUpdateScrollViewSize, updateScrollViewSize)
+			
+		let view = NSHostingView(rootView:content)
 		scrollView.documentView = view
 
+		DispatchQueue.main.async
+		{
+			updateScrollViewSize(view.intrinsicContentSize)
+		}
+		
 		// Listen to size change notifications
 		
 		if let didChangeFrameHandler = didChangeFrameHandler
@@ -156,6 +164,29 @@ public struct BXScrollView<Content:View> : NSViewRepresentable
 		scrollView.minMagnification = self.minMagnification.wrappedValue
 		scrollView.maxMagnification = self.maxMagnification.wrappedValue
     }
+    
+    
+    /// Resizes the documentView of the NSScrollView to the new size
+	
+    internal func update(_ scrollView:NSScrollView, newContentSize:CGSize)
+    {
+		guard let documentView = scrollView.documentView else { return }
+		
+ 		var bounds = scrollView.contentView.bounds
+ 		let oldContentSize = documentView.frame.size
+		documentView.setFrameSize(newContentSize)
+		
+		// If the view is centered, then try to keep the center of the visible
+		// portion of the view centered after the zoom has happened.
+		
+		if self.isCentered
+		{
+			let factor = (newContentSize.width / oldContentSize.width).validated(fallbackValue:1.0)
+			bounds.origin.x = factor * bounds.midX - 0.5 * bounds.width // / factor
+			bounds.origin.y = factor * bounds.midY - 0.5 * bounds.height // / factor
+			scrollView.contentView.bounds = bounds
+		}
+    }
 }
 
 	
@@ -164,14 +195,15 @@ public struct BXScrollView<Content:View> : NSViewRepresentable
 
 class BXCenteredClipView:NSClipView
 {
+	// This override makes sure that the documentView is centered within the
+	// NSScrollView if it is smaller than the NSScrollView itself.
+	
 	override func constrainBoundsRect(_ proposedBounds:NSRect) -> NSRect
     {
-
         var rect = super.constrainBoundsRect(proposedBounds)
         
         if let documentView = self.documentView
         {
-
             if (rect.size.width > documentView.frame.size.width)
             {
                 rect.origin.x = (documentView.frame.width - rect.width) / 2
@@ -185,6 +217,26 @@ class BXCenteredClipView:NSClipView
 
         return rect
     }
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+// MARK: -
+
+public extension EnvironmentValues
+{
+    var bxUpdateScrollViewSize:((CGSize)->Void)?
+    {
+        set { self[BXUpdateScrollViewSizeKey.self] = newValue }
+        get { return self[BXUpdateScrollViewSizeKey.self] }
+    }
+}
+
+struct BXUpdateScrollViewSizeKey : EnvironmentKey
+{
+    static let defaultValue:((CGSize)->Void)? = { _ in }
 }
 
 
