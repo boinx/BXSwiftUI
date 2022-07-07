@@ -10,8 +10,8 @@
 #if os(macOS)
 
 import BXSwiftUtils
-import AppKit
 import SwiftUI
+import AppKit
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -126,11 +126,20 @@ public struct BXSlitViewDivider<D:View>: View
 					
 					if let initialPosition = initialPosition
 					{
-						let totalSize = self.style == .vertical ? Double(geometry.size.height) : Double(geometry.size.width)
-						let delta = self.style == .vertical ? Double(drag.translation.height) : Double(drag.translation.width)
+						let totalSize = self.style == .vertical ? geometry.size.height : geometry.size.width
+						var delta = self.style == .vertical ? drag.translation.height : drag.translation.width
 						let minValue = minFirstSize
 						let maxValue = totalSize - minSecondSize
-						self.position.wrappedValue = (initialPosition + delta).clipped(to:minValue...maxValue)
+
+						if self.style == .vertical
+						{
+							if #unavailable(macOS 12)		// On Big Sur and earlier vertical drags are for some
+							{								// reason reversed - so the delta needs to be negated
+								delta = -delta				// to account for this problem.
+							}
+						}
+						
+						self.position.wrappedValue = Double((initialPosition + delta).clipped(to:minValue...maxValue))
 					}
 				}
 				
