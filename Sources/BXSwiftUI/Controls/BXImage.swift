@@ -43,9 +43,13 @@ public struct BXImage : View
 		
 		// On macOS Catalina use our own fallback images that are shipped with the package resources
 		
-		else
+		else if Bundle.BXSwiftUI.image(forResource:name) != nil
 		{
 			SwiftUI.Image(name, bundle:Bundle.BXSwiftUI)
+		}
+		else
+		{
+			SwiftUI.Image("stop", bundle:Bundle.BXSwiftUI) 	// fallback for unavailable icon
 		}
 	}
 }
