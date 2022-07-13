@@ -80,7 +80,6 @@ open class BXProgressWindowController : NSWindowController
 			DispatchQueue.main.asyncIfNeeded
 			{
 				self.viewController?.progressTitle = self.title
-				self.makeKey()
 			}
 		}
 	}
@@ -92,7 +91,6 @@ open class BXProgressWindowController : NSWindowController
 			DispatchQueue.main.asyncIfNeeded
 			{
 				self.viewController?.progressMessage = self.message
-				self.makeKey()
 			}
 		}
 	}
@@ -104,7 +102,6 @@ open class BXProgressWindowController : NSWindowController
 			DispatchQueue.main.asyncIfNeeded
 			{
 				self.viewController?.fraction = self.value
-				self.makeKey()
 			}
 		}
 	}
@@ -116,7 +113,6 @@ open class BXProgressWindowController : NSWindowController
 			DispatchQueue.main.asyncIfNeeded
 			{
 				self.viewController?.isIndeterminate = self.isIndeterminate
-				self.makeKey()
 			}
 		}
 	}
@@ -180,11 +176,6 @@ open class BXProgressWindowController : NSWindowController
 		self.contentViewController = nil
 		self.window = nil
 		self.modalSession = nil
-	}
-	
-	func makeKey()
-	{
-		self.window?.makeKey()
 	}
 }
 
