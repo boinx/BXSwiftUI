@@ -38,6 +38,10 @@ open class BXProgressWindowController : NSWindowController
 		}
 	}
 	
+	/// The current model session
+
+	private var modalSession:NSApplication.ModalSession? = nil
+	
 	/// Returns the observable BXProgressViewController
 	
 	var viewController:BXProgressViewController?
@@ -50,8 +54,8 @@ open class BXProgressWindowController : NSWindowController
 	override open func loadWindow()
 	{
 		let frame = CGRect(x:0, y:0, width:360, height:88)
-		let style:NSWindow.StyleMask = [.nonactivatingPanel,.titled,.fullSizeContentView]			// .titled is necessary here to get a window with rounded corners - even though we do not really want a titlebar!
-		let window = NSPanel(contentRect:frame, styleMask:style, backing:.buffered, defer:true)
+		let style:NSWindow.StyleMask = [.nonactivatingPanel,.titled,.fullSizeContentView]			// .titled is necessary here to get a window with rounded corners - even though we do not want a titlebar!
+		let window = NSPanel(contentRect:frame, styleMask:style, backing:.buffered, defer:true)		// .nonactivatingPanel is necessary for full window draggabilty
 		
 		window.titleVisibility = .hidden															// These two lines hide
 		window.titlebarAppearsTransparent = true													// the titlebar again
@@ -76,6 +80,7 @@ open class BXProgressWindowController : NSWindowController
 			DispatchQueue.main.asyncIfNeeded
 			{
 				self.viewController?.progressTitle = self.title
+				self.makeKey()
 			}
 		}
 	}
@@ -87,6 +92,7 @@ open class BXProgressWindowController : NSWindowController
 			DispatchQueue.main.asyncIfNeeded
 			{
 				self.viewController?.progressMessage = self.message
+				self.makeKey()
 			}
 		}
 	}
@@ -98,6 +104,7 @@ open class BXProgressWindowController : NSWindowController
 			DispatchQueue.main.asyncIfNeeded
 			{
 				self.viewController?.fraction = self.value
+				self.makeKey()
 			}
 		}
 	}
@@ -109,6 +116,7 @@ open class BXProgressWindowController : NSWindowController
 			DispatchQueue.main.asyncIfNeeded
 			{
 				self.viewController?.isIndeterminate = self.isIndeterminate
+				self.makeKey()
 			}
 		}
 	}
@@ -136,8 +144,14 @@ open class BXProgressWindowController : NSWindowController
 	{
 		DispatchQueue.main.async
 		{
-			self.window?.center()
-			self.window?.makeKeyAndOrderFront(nil)
+			guard let window = self.window else { return }
+			
+			window.center()
+			window.makeKeyAndOrderFront(nil)
+
+			let session = NSApp.beginModalSession(for:window)
+			NSApp.runModalSession(session)
+			self.modalSession = session
 		}
 	}
 	
@@ -152,6 +166,11 @@ open class BXProgressWindowController : NSWindowController
 
 	override open func close()
 	{
+		if let session = self.modalSession
+		{
+			NSApp.endModalSession(session)
+		}
+		
 		super.close()
 		self.unloadWindow()
 	}
@@ -160,6 +179,12 @@ open class BXProgressWindowController : NSWindowController
 	{
 		self.contentViewController = nil
 		self.window = nil
+		self.modalSession = nil
+	}
+	
+	func makeKey()
+	{
+		self.window?.makeKey()
 	}
 }
 
