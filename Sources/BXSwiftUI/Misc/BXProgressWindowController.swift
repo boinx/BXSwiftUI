@@ -40,7 +40,7 @@ open class BXProgressWindowController : NSWindowController
 	
 	/// The current model session
 
-	private var modalSession:NSApplication.ModalSession? = nil
+//	private var modalSession:NSApplication.ModalSession? = nil
 	
 	/// Returns the observable BXProgressViewController
 	
@@ -145,9 +145,9 @@ open class BXProgressWindowController : NSWindowController
 			window.center()
 			window.makeKeyAndOrderFront(nil)
 
-			let session = NSApp.beginModalSession(for:window)
-			NSApp.runModalSession(session)
-			self.modalSession = session
+//			let session = NSApp.beginModalSession(for:window)
+//			NSApp.runModalSession(session)
+//			self.modalSession = session
 		}
 	}
 	
@@ -162,10 +162,10 @@ open class BXProgressWindowController : NSWindowController
 
 	override open func close()
 	{
-		if let session = self.modalSession
-		{
-			NSApp.endModalSession(session)
-		}
+//		if let session = self.modalSession
+//		{
+//			NSApp.endModalSession(session)
+//		}
 		
 		super.close()
 		self.unloadWindow()
@@ -175,7 +175,7 @@ open class BXProgressWindowController : NSWindowController
 	{
 		self.contentViewController = nil
 		self.window = nil
-		self.modalSession = nil
+//		self.modalSession = nil
 	}
 }
 
