@@ -61,7 +61,9 @@ open class BXProgressWindowController : NSWindowController
 		window.titlebarAppearsTransparent = true													// the titlebar again
 		window.hasShadow = true
 		window.isMovable = true
+		window.isExcludedFromWindowsMenu = true
 		window.isMovableByWindowBackground = true
+		window.collectionBehavior.insert(.fullScreenAuxiliary)
 		window.contentViewController = BXProgressViewController(nibName:nil, bundle:nil)
 
 		self.window = window
