@@ -19,14 +19,14 @@ extension View
 {
 	/// Injects an UndoManager into the environment. Controls in the view hierarchy may access this UndoManager to record value changes.
 	
-	public func undoManager(_ undoManager:UndoManager?) -> some View
+	public func bxUndoManager(_ undoManager:UndoManager?) -> some View
 	{
 		self.environment(\.bxUndoManager, undoManager)
 	}
 
 	/// Injects the undo name into the environment. Controls in the view hierarchy may access it to set an undo name when necessary.
 	
-	public func undoName(_ name:String) -> some View
+	public func bxUndoName(_ name:String) -> some View
 	{
         self.environment(\.bxUndoName, name)
 	}
