@@ -116,7 +116,7 @@
 		D00CE2E627A6E25B006D766C /* BXLazyVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE27A27A6E25A006D766C /* BXLazyVStack.swift */; };
 		D00CE2E727A6E25B006D766C /* BXDisableWindowDragging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE27B27A6E25A006D766C /* BXDisableWindowDragging.swift */; };
 		D00CE2E827A6E25B006D766C /* BXIndentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE27C27A6E25A006D766C /* BXIndentationView.swift */; };
-		D00D6DE8283E654E00013C39 /* View+parentWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D6DE7283E654E00013C39 /* View+parentWindow.swift */; };
+		D00D6DE8283E654E00013C39 /* View+hostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D6DE7283E654E00013C39 /* View+hostingView.swift */; };
 		D06503B32822DFFA002E52BE /* BXProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06503B02822DFFA002E52BE /* BXProgressViewController.swift */; };
 		D06503B42822DFFA002E52BE /* BXProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06503B12822DFFA002E52BE /* BXProgressView.swift */; };
 		D06503B52822DFFA002E52BE /* BXProgressWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06503B22822DFFA002E52BE /* BXProgressWindowController.swift */; };
@@ -243,7 +243,7 @@
 		D00CE27A27A6E25A006D766C /* BXLazyVStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXLazyVStack.swift; sourceTree = "<group>"; };
 		D00CE27B27A6E25A006D766C /* BXDisableWindowDragging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXDisableWindowDragging.swift; sourceTree = "<group>"; };
 		D00CE27C27A6E25A006D766C /* BXIndentationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXIndentationView.swift; sourceTree = "<group>"; };
-		D00D6DE7283E654E00013C39 /* View+parentWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+parentWindow.swift"; sourceTree = "<group>"; };
+		D00D6DE7283E654E00013C39 /* View+hostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+hostingView.swift"; sourceTree = "<group>"; };
 		D00DF1CA27FAD25700DC1D27 /* BXSplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSplitView.swift; sourceTree = "<group>"; };
 		D06503B02822DFFA002E52BE /* BXProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXProgressViewController.swift; sourceTree = "<group>"; };
 		D06503B12822DFFA002E52BE /* BXProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXProgressView.swift; sourceTree = "<group>"; };
@@ -379,7 +379,7 @@
 				D00CE23227A6E25A006D766C /* View+renderImage.swift */,
 				D00CE23327A6E25A006D766C /* View+Undo.swift */,
 				D00CE23427A6E25A006D766C /* View+layer.swift */,
-				D00D6DE7283E654E00013C39 /* View+parentWindow.swift */,
+				D00D6DE7283E654E00013C39 /* View+hostingView.swift */,
 				D00CE23527A6E25A006D766C /* Binding+Convert.swift */,
 				D00CE23627A6E25A006D766C /* NSViewController+Embed.swift */,
 				D00CE23827A6E25A006D766C /* Binding+Optional.swift */,
@@ -687,7 +687,7 @@
 				D00CE2A027A6E25A006D766C /* View+eraseToAnyView.swift in Sources */,
 				D00CE29027A6E25A006D766C /* BXArrayEditView.swift in Sources */,
 				D00CE2D527A6E25B006D766C /* BXMultiValueBoolInspectorView.swift in Sources */,
-				D00D6DE8283E654E00013C39 /* View+parentWindow.swift in Sources */,
+				D00D6DE8283E654E00013C39 /* View+hostingView.swift in Sources */,
 				D00CE2E027A6E25B006D766C /* BXPopover.swift in Sources */,
 				D00CE2C727A6E25B006D766C /* BXCustomSlider.swift in Sources */,
 				D00CE29A27A6E25A006D766C /* View+ToolTip.swift in Sources */,

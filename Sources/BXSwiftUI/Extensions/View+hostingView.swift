@@ -1,41 +1,32 @@
 //**********************************************************************************************************************
 //
-//  View+parentWindow.swift
-//	Environment key forinjecting a parent window into the view hierarchy
+//  View+hostingView.swift
+//	Environment key for injecting the hostingView (NSView or UIView
 //  Copyright ©2022 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
 
 
 import SwiftUI
+import BXSwiftUtils
 
 #if canImport(AppKit)
 import AppKit
-public typealias WindowType = NSWindow
+public typealias NativeViewType = NSView
 #endif
 
 #if canImport(UIKit)
 import UIKit
-public typealias WindowType = UIWindow
+public typealias NativeViewType = UIView
 #endif
 
 
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public struct ParentWindowKey : EnvironmentKey
+public struct HostingViewKey : EnvironmentKey
 {
-//	#if canImport(UIKit)
-//    public typealias WrappedValue = UIWindow
-//	#elseif canImport(AppKit)
-//    public typealias WrappedValue = NSWindow
-//	#endif
-//
-//	public typealias Value = () -> WrappedValue? // needed for weak link
-//
-//	public static let defaultValue: Self.Value = { nil }
-
-	public typealias Value = WindowType?
+	public typealias Value = Weak<NativeViewType>?
 	
 	public static let defaultValue:Value = nil
 }
@@ -46,16 +37,16 @@ public struct ParentWindowKey : EnvironmentKey
 
 public extension EnvironmentValues
 {
-    var parentWindow:WindowType?
+    var hostingView:Weak<NativeViewType>?
     {
         get
         {
-            return self[ParentWindowKey.self]
+            return self[HostingViewKey.self]
         }
         
         set
         {
-            self[ParentWindowKey.self] = newValue
+            self[HostingViewKey.self] = newValue
         }
     }
 }
