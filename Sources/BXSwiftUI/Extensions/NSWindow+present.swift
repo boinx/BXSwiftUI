@@ -1,7 +1,7 @@
 //**********************************************************************************************************************
 //
-//  BXPopover.swift
-//	An NSPopover subclass with SwiftUI content
+//  NSWindow+present.swift
+//	Presents a SwiftUI view in an NSWindow
 //  Copyright ©2022 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
@@ -79,32 +79,6 @@ public extension NSWindow
 		
 		return window
     }
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-public extension View
-{
-	func parentWindow(_ window:NSWindow?) -> some View
-	{
-		self.environment(\.bxParentWindow,window)
-	}
-}
-
-public extension EnvironmentValues
-{
-    var bxParentWindow:NSWindow?
-    {
-        set { self[BXParentWindowKey.self] = newValue }
-        get { self[BXParentWindowKey.self] }
-    }
-}
-
-struct BXParentWindowKey : EnvironmentKey
-{
-    static let defaultValue:NSWindow? = nil
 }
 
 

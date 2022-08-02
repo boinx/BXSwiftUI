@@ -46,7 +46,7 @@
 		D00CE2A027A6E25A006D766C /* View+eraseToAnyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE23027A6E25A006D766C /* View+eraseToAnyView.swift */; };
 		D00CE2A127A6E25A006D766C /* View+onKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE23127A6E25A006D766C /* View+onKey.swift */; };
 		D00CE2A227A6E25A006D766C /* View+renderImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE23227A6E25A006D766C /* View+renderImage.swift */; };
-		D00CE2A327A6E25A006D766C /* View+Undo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE23327A6E25A006D766C /* View+Undo.swift */; };
+		D00CE2A327A6E25A006D766C /* View+undoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE23327A6E25A006D766C /* View+undoManager.swift */; };
 		D00CE2A427A6E25B006D766C /* View+layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE23427A6E25A006D766C /* View+layer.swift */; };
 		D00CE2A527A6E25B006D766C /* Binding+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE23527A6E25A006D766C /* Binding+Convert.swift */; };
 		D00CE2A627A6E25B006D766C /* NSViewController+Embed.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE23627A6E25A006D766C /* NSViewController+Embed.swift */; };
@@ -117,6 +117,7 @@
 		D00CE2E727A6E25B006D766C /* BXDisableWindowDragging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE27B27A6E25A006D766C /* BXDisableWindowDragging.swift */; };
 		D00CE2E827A6E25B006D766C /* BXIndentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE27C27A6E25A006D766C /* BXIndentationView.swift */; };
 		D00D6DE8283E654E00013C39 /* View+hostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D6DE7283E654E00013C39 /* View+hostingView.swift */; };
+		D00FA121289915A300328105 /* View+parentWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00FA120289915A300328105 /* View+parentWindow.swift */; };
 		D06503B32822DFFA002E52BE /* BXProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06503B02822DFFA002E52BE /* BXProgressViewController.swift */; };
 		D06503B42822DFFA002E52BE /* BXProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06503B12822DFFA002E52BE /* BXProgressView.swift */; };
 		D06503B52822DFFA002E52BE /* BXProgressWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06503B22822DFFA002E52BE /* BXProgressWindowController.swift */; };
@@ -173,7 +174,7 @@
 		D00CE23027A6E25A006D766C /* View+eraseToAnyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+eraseToAnyView.swift"; sourceTree = "<group>"; };
 		D00CE23127A6E25A006D766C /* View+onKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+onKey.swift"; sourceTree = "<group>"; };
 		D00CE23227A6E25A006D766C /* View+renderImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+renderImage.swift"; sourceTree = "<group>"; };
-		D00CE23327A6E25A006D766C /* View+Undo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Undo.swift"; sourceTree = "<group>"; };
+		D00CE23327A6E25A006D766C /* View+undoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+undoManager.swift"; sourceTree = "<group>"; };
 		D00CE23427A6E25A006D766C /* View+layer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+layer.swift"; sourceTree = "<group>"; };
 		D00CE23527A6E25A006D766C /* Binding+Convert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Binding+Convert.swift"; sourceTree = "<group>"; };
 		D00CE23627A6E25A006D766C /* NSViewController+Embed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSViewController+Embed.swift"; sourceTree = "<group>"; };
@@ -245,6 +246,7 @@
 		D00CE27C27A6E25A006D766C /* BXIndentationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXIndentationView.swift; sourceTree = "<group>"; };
 		D00D6DE7283E654E00013C39 /* View+hostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+hostingView.swift"; sourceTree = "<group>"; };
 		D00DF1CA27FAD25700DC1D27 /* BXSplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSplitView.swift; sourceTree = "<group>"; };
+		D00FA120289915A300328105 /* View+parentWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+parentWindow.swift"; sourceTree = "<group>"; };
 		D06503B02822DFFA002E52BE /* BXProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXProgressViewController.swift; sourceTree = "<group>"; };
 		D06503B12822DFFA002E52BE /* BXProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXProgressView.swift; sourceTree = "<group>"; };
 		D06503B22822DFFA002E52BE /* BXProgressWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXProgressWindowController.swift; sourceTree = "<group>"; };
@@ -377,8 +379,9 @@
 				D00CE23027A6E25A006D766C /* View+eraseToAnyView.swift */,
 				D00CE23127A6E25A006D766C /* View+onKey.swift */,
 				D00CE23227A6E25A006D766C /* View+renderImage.swift */,
-				D00CE23327A6E25A006D766C /* View+Undo.swift */,
 				D00CE23427A6E25A006D766C /* View+layer.swift */,
+				D00CE23327A6E25A006D766C /* View+undoManager.swift */,
+				D00FA120289915A300328105 /* View+parentWindow.swift */,
 				D00D6DE7283E654E00013C39 /* View+hostingView.swift */,
 				D00CE23527A6E25A006D766C /* Binding+Convert.swift */,
 				D00CE23627A6E25A006D766C /* NSViewController+Embed.swift */,
@@ -580,6 +583,7 @@
 				D00CE2C527A6E25B006D766C /* BXSpinningWheel.swift in Sources */,
 				D00CE2CB27A6E25B006D766C /* BXRoundButtonStyle.swift in Sources */,
 				D00CE28B27A6E25A006D766C /* BXAutomaticEditView.swift in Sources */,
+				D00FA121289915A300328105 /* View+parentWindow.swift in Sources */,
 				D00CE2B727A6E25B006D766C /* BXMultiValueButton.swift in Sources */,
 				D00CE2A127A6E25A006D766C /* View+onKey.swift in Sources */,
 				D00CE28C27A6E25A006D766C /* BXFloatEditView.swift in Sources */,
@@ -607,7 +611,7 @@
 				D00CE2B327A6E25B006D766C /* BXPicker.swift in Sources */,
 				D00CE29227A6E25A006D766C /* Color+Native.swift in Sources */,
 				D00CE28827A6E25A006D766C /* BXCGPointEditView.swift in Sources */,
-				D00CE2A327A6E25A006D766C /* View+Undo.swift in Sources */,
+				D00CE2A327A6E25A006D766C /* View+undoManager.swift in Sources */,
 				D00CE2E427A6E25B006D766C /* BXGrid.swift in Sources */,
 				D00CE2A927A6E25B006D766C /* Formatter+Custom.swift in Sources */,
 				D0CBC147282A318800C6BABB /* NSImage+SFSymbols.swift in Sources */,

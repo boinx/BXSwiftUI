@@ -1,14 +1,15 @@
 //**********************************************************************************************************************
 //
-//  View+Undo.swift
+//  View+undoManager.swift
 //	Custom view extension to support setting undo names
-//  Copyright ©2020 Peter Baumgartner. All rights reserved.
+//  Copyright ©2020-2022 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
 
 
 import SwiftUI
 import Foundation
+import BXSwiftUtils
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -16,7 +17,7 @@ import Foundation
 
 extension View
 {
-	/// Injects the document into the environment. Controls in the view hierarchy may access it access its UndoManager.
+	/// Injects an UndoManager into the environment. Controls in the view hierarchy may access this UndoManager to record value changes.
 	
 	public func undoManager(_ undoManager:UndoManager?) -> some View
 	{
@@ -35,25 +36,42 @@ extension View
 //----------------------------------------------------------------------------------------------------------------------
 
 
+// ATTENTION
+
+// Since the UndoManager retains other object (e.g. ViewControllers that can own a SwiftUI subtree) in its undo and redo
+// stacks, we should not strongly reference the UndoManager in the environment - as this can cause retain cycles, and
+// thus memory leaks. For this reason we use the Weak() wrapper to break potential retain cycles.
+
+
 public struct BXUndoManagerKey : EnvironmentKey
 {
-    static public let defaultValue:UndoManager? = nil
+    static public let defaultValue:Weak<UndoManager>? = nil
 }
+
 
 public extension EnvironmentValues
 {
-	/// The document that provides access to the UndoManager
+	/// The UndoManager can be retrieved by a SwiftUI view to record data model property changes
 	
     var bxUndoManager:UndoManager?
     {
         set
         {
-            self[BXUndoManagerKey.self] = newValue
+			if let undoManager = newValue
+			{
+				let weakWrapper = Weak(undoManager)				// Wrap the UndoManager in Weak() to
+				self[BXUndoManagerKey.self] = weakWrapper		// break a potential retain cycles
+			}
+			else
+			{
+				self[BXUndoManagerKey.self] = nil
+			}
         }
 
         get
         {
-            return self[BXUndoManagerKey.self]
+			let weakWrapper = self[BXUndoManagerKey.self]		// Get the Weak() wrapper and
+            return weakWrapper?.value							// retrieve the UndoManager from it
         }
     }
 }
@@ -66,6 +84,7 @@ public struct BXUndoNameKey : EnvironmentKey
 {
     static public let defaultValue:String = ""
 }
+
 
 public extension EnvironmentValues
 {
