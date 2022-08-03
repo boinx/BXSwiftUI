@@ -28,38 +28,41 @@ public typealias NativeViewType = UIView
 
 // Since values injected into the Environment are strongly referenced, injecting the hosting NSView or UIView into a
 // SwiftUI view hierarchy creates a retain cycle from a child view back to its ancestor. For this reason we use the
-// Weak() wrapper to break the retain cycle.
+// BXHostingViewWrapper to break the retain cycle. This wrapper also solves the chicken-and-egg problem at the call
+// site, because the weak reference can be set after creating the NSHostingView.
 
 
-public struct BXHostingViewKey : EnvironmentKey
+fileprivate struct BXHostingViewKey : EnvironmentKey
 {
-	public static let defaultValue:Weak<NativeViewType>? = nil
+	public static let defaultValue:BXHostingViewWrapper? = nil
 }
 
 
 public extension EnvironmentValues
 {
-    var bxHostingView:NativeViewType?
+    var bxHostingView:BXHostingViewWrapper?
     {
         set
         {
-			if let view = newValue
-			{
-				let weakWrapper = Weak(view)					// Wrap the view in Weak() to
-				self[BXHostingViewKey.self] = weakWrapper		// break the retain cycle
-			}
-			else
-			{
-				self[BXHostingViewKey.self] = nil
-			}
+            self[BXHostingViewKey.self] = newValue
         }
 
         get
         {
-			let weakWrapper = self[BXHostingViewKey.self]		// Get the Weak() wrapper and
-            return weakWrapper?.value							// retrieve the view from it
+            self[BXHostingViewKey.self]
         }
         
+    }
+}
+
+
+public struct BXHostingViewWrapper
+{
+    public weak var view:NativeViewType? = nil
+    
+    public init(view:NativeViewType?)
+    {
+        self.view = view
     }
 }
 
