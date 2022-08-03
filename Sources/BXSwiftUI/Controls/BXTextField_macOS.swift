@@ -188,7 +188,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 	public class Coordinator : NSObject, NSTextFieldDelegate
     {
         var textfield:BXTextFieldWrapper<T>
-		var undoManager:UndoManager?
+		weak var undoManager:UndoManager?
 		var undoName:String
 		
         init(_ textfield:BXTextFieldWrapper<T>, _ undoManager:UndoManager?, _ undoName:String)

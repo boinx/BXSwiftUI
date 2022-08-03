@@ -147,7 +147,7 @@ class NSMultiValueSliderCell : NSSliderCell
 {
 	public var values = Set<Double>()
 	public var response:BXSliderResponse = .linear
-	public var undoManager:UndoManager?
+	public weak var undoManager:UndoManager?
 	public var undoName:String = ""
 	
 	public var fillColor:NSColor = NSColor(calibratedWhite:0.5, alpha:0.45)

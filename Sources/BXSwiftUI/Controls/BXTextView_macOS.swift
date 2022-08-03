@@ -144,7 +144,7 @@ internal struct BXTextView_macOS : NSViewRepresentable
     class Coordinator : NSObject, NSTextViewDelegate
     {
         var swituiTextView:BXTextView_macOS
-		var undoManager:UndoManager?
+		weak var undoManager:UndoManager?
 		var undoName:String
 
         init(_ textView:BXTextView_macOS, _ undoManager:UndoManager?, _ undoName:String)

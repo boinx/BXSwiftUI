@@ -116,7 +116,7 @@ public struct BXSearchFieldWrapper : NSViewRepresentable
 	public class Coordinator : NSObject, NSSearchFieldDelegate
     {
         var searchfield:BXSearchFieldWrapper
-		var undoManager:UndoManager?
+		weak var undoManager:UndoManager?
 		var undoName:String
 		
         init(_ searchfield:BXSearchFieldWrapper, _ undoManager:UndoManager?, _ undoName:String)

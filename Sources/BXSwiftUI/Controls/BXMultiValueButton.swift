@@ -107,7 +107,7 @@ public struct BXMultiValueButton : NSViewRepresentable
 	public class Coordinator : NSObject
     {
         var button:BXMultiValueButton
-		var undoManager:UndoManager?
+		weak var undoManager:UndoManager?
 		var undoName:String
 
         init(_ button:BXMultiValueButton, _ undoManager:UndoManager?, _ undoName:String)

@@ -151,7 +151,7 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 	public class Coordinator : NSObject, NSTextFieldDelegate
     {
         var textfield:BXMultiValueTextField<T>
-		var undoManager:UndoManager?
+		weak var undoManager:UndoManager?
 		var undoName:String
 
         init(_ textfield:BXMultiValueTextField<T>, _ undoManager:UndoManager?, _ undoName:String)
