@@ -25,7 +25,7 @@ public extension View
 	/// Attaches a popup menu to a view hierarchy. The items are defined by an array of BXMenuItemSpec.
 	/// Please note that you need to use BXMenuItemSpec.action or there will be nothing to execute!
 	
-	@ViewBuilder func popupMenu(value:Binding<Int>? = nil, _ itemSpecs:@autoclosure ()->[BXMenuItemSpec]) -> some View
+	@ViewBuilder func popupMenu(value:Binding<Int>? = nil, _ itemSpecs:()->[BXMenuItemSpec]) -> some View
     {
 		self.overlay(BXPopupView(itemSpecs:itemSpecs(), value:value))
 	}
@@ -236,7 +236,7 @@ public extension View
 	/// Attaches a popup menu to a view hierarchy. The items are defined by an array of BXMenuItemSpec.
 	/// Please note that you need to use BXMenuItemSpec.action or there will be nothing to execute!
 	
-    @ViewBuilder func popupMenu(value:Binding<Int>? = nil, _ itemSpecs:@autoclosure ()->[BXMenuItemSpec]) -> some View
+    @ViewBuilder func popupMenu(value:Binding<Int>? = nil, _ itemSpecs:()->[BXMenuItemSpec]) -> some View
     {
 		if #available(iOS 14, *)
 		{

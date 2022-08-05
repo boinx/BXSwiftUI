@@ -44,8 +44,8 @@ public enum NSControl
 
 public enum BXMenuItemSpec
 {
-	case action(icon:NativeImage? = nil, title:String, isEnabled:@autoclosure ()->Bool = true, state:()->NSControl.StateValue = { .off },  action:()->Void)
-	case regular(icon:NativeImage? = nil, title:String, value:Int, isEnabled:@autoclosure ()->Bool = true, representedObject:Any? = nil)
+	case action(icon:NativeImage? = nil, title:String, isEnabled:()->Bool = {true}, state:()->NSControl.StateValue = {.off},  action:()->Void)
+	case regular(icon:NativeImage? = nil, title:String, value:Int, isEnabled:()->Bool = {true}, representedObject:Any? = nil)
 	case section(title:String)
 	case divider
 }
@@ -74,7 +74,7 @@ public class BXAutoEnablingAction : NSObject
 	
 	// Creates a BXAutoEnablingAction
 	
-	public init(action:@escaping ()->Void, isEnabled:@escaping ()->Bool = {true}, state:@escaping ()->NSControl.StateValue = { .off })
+	public init(action:@escaping ()->Void, isEnabled:@escaping ()->Bool = {true}, state:@escaping ()->NSControl.StateValue = {.off})
 	{
 		self.action = action
 		self.isEnabledHandler = isEnabled
