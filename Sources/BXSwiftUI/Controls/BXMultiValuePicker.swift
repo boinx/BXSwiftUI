@@ -50,7 +50,7 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.colorScheme) private var colorScheme
 	@Environment(\.bxColorTheme) private var bxColorTheme
-	@Environment(\.bxUndoManager) private var undoManager
+	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
 	@Environment(\.bxUndoName) private var undoName
 	
 	// Init
@@ -220,7 +220,7 @@ public struct BXMultiValuePicker : NSViewRepresentable
 			picker.onBegan?()
 			picker.values.wrappedValue = Set([tag])
 			picker.onEnded?()
-			picker.undoManager?.setActionName(picker.undoName)
+			picker.undoManagerProvider.undoManager?.setActionName(picker.undoName)
         }
     }
     

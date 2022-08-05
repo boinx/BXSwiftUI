@@ -37,7 +37,7 @@ public struct BXSearchFieldWrapper : NSViewRepresentable
 	// Environment
 	
 	@Environment(\.controlSize) var controlSize:ControlSize
-	@Environment(\.bxUndoManager) private var undoManager
+	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
 	@Environment(\.bxUndoName) private var undoName
 
 	// The control size is provided by the environment. needs to be converted to NSControl datatype
@@ -199,7 +199,7 @@ public struct BXSearchFieldWrapper : NSViewRepresentable
 	
 	public func makeCoordinator() -> Coordinator
     {
-        return Coordinator(self, undoManager, undoName)
+        return Coordinator(self, self.undoManagerProvider.undoManager, undoName)
     }
 }
 

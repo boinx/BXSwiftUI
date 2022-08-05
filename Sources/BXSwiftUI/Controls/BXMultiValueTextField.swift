@@ -34,7 +34,7 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 	
 	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.controlSize) private var controlSize:ControlSize
-	@Environment(\.bxUndoManager) private var undoManager
+	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
 	@Environment(\.bxUndoName) private var undoName
 
 
@@ -205,7 +205,7 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
     
 	public func makeCoordinator() -> Coordinator
     {
-        return Coordinator(self, undoManager, undoName)
+        return Coordinator(self, undoManagerProvider.undoManager, undoName)
     }
  }
 

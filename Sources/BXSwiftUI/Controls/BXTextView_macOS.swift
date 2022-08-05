@@ -62,7 +62,7 @@ internal struct BXTextView_macOS : NSViewRepresentable
 	// Environment
 	
 	@Environment(\.isEnabled) var isEnabled:Bool
-	@Environment(\.bxUndoManager) private var undoManager
+	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
 	@Environment(\.bxUndoName) private var undoName
 
 
@@ -186,7 +186,7 @@ internal struct BXTextView_macOS : NSViewRepresentable
 	
     func makeCoordinator() -> Coordinator
     {
-        return Coordinator(self, undoManager, undoName)
+        return Coordinator(self, undoManagerProvider.undoManager, undoName)
     }
 }
 

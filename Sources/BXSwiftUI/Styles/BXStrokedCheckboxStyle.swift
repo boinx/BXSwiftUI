@@ -48,7 +48,7 @@ fileprivate struct _BXStrokedCheckbox : View
 	@Environment(\.hasMultipleValues) private var hasMultipleValues
 	@Environment(\.colorScheme) private var colorScheme
 	@Environment(\.bxColorTheme) private var bxColorTheme
-	@Environment(\.bxUndoManager) private var undoManager
+	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
 	@Environment(\.bxUndoName) private var undoName
 
 	// Layout
@@ -182,12 +182,12 @@ fileprivate struct _BXStrokedCheckbox : View
 			if self.hasMultipleValues
 			{
 				self.configuration.$isOn.wrappedValue = true
-				self.undoManager?.setActionName(self.undoName)
+				self.undoManagerProvider.undoManager?.setActionName(self.undoName)
 			}
 			else
 			{
 				self.configuration.$isOn.wrappedValue.toggle()
-				self.undoManager?.setActionName(self.undoName)
+				self.undoManagerProvider.undoManager?.setActionName(self.undoName)
 			}
 		}
 	}

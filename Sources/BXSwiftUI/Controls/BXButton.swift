@@ -25,7 +25,7 @@ public struct BXButton : View
 
 	// Environment
 	
-	@Environment(\.bxUndoManager) private var undoManager
+	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
 	@Environment(\.bxUndoName) private var undoName
 
 	// Init
@@ -52,7 +52,7 @@ public struct BXButton : View
 		let closure =
 		{
 			self.action()
-			self.undoManager?.setActionName(self.undoName)
+			self.undoManagerProvider.undoManager?.setActionName(self.undoName)
 		}
 		
 		let button = Button(action:closure)

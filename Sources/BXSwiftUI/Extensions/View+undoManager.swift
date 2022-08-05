@@ -21,7 +21,7 @@ extension View
 	
 	public func bxUndoManager(_ undoManager:UndoManager?) -> some View
 	{
-		self.environment(\.bxUndoManager, undoManager)
+		self.environment(\.bxUndoManagerProvider, BXUndoManagerManagerProvider(undoManager))
 	}
 
 	/// Injects the undo name into the environment. Controls in the view hierarchy may access it to set an undo name when necessary.
@@ -38,14 +38,16 @@ extension View
 
 // ATTENTION
 
-// Since the UndoManager retains other object (e.g. ViewControllers that can own a SwiftUI subtree) in its undo and redo
+// Since the UndoManager retains other objects (e.g. ViewControllers that can own a SwiftUI subtree) in its undo and redo
 // stacks, we should not strongly reference the UndoManager in the environment - as this can cause retain cycles, and
-// thus memory leaks. For this reason we use the Weak() wrapper to break potential retain cycles.
+// thus memory leaks. For this reason we wrap it in a BXUndoManagerManagerProvider (which contains a weak reference)
+// to break potential retain cycles. When SwiftUI views need the UndoManager, they need to retrieve at the call site
+// from this provider.
 
 
-public struct BXUndoManagerKey : EnvironmentKey
+fileprivate struct BXUndoManagerProviderKey : EnvironmentKey
 {
-    static public let defaultValue:Weak<UndoManager>? = nil
+    static public let defaultValue = BXUndoManagerManagerProvider(nil)
 }
 
 
@@ -53,27 +55,29 @@ public extension EnvironmentValues
 {
 	/// The UndoManager can be retrieved by a SwiftUI view to record data model property changes
 	
-    var bxUndoManager:UndoManager?
+    var bxUndoManagerProvider:BXUndoManagerManagerProvider
     {
         set
         {
-			if let undoManager = newValue
-			{
-				let weakWrapper = Weak(undoManager)				// Wrap the UndoManager in Weak() to
-				self[BXUndoManagerKey.self] = weakWrapper		// break a potential retain cycles
-			}
-			else
-			{
-				self[BXUndoManagerKey.self] = nil
-			}
+			self[BXUndoManagerProviderKey.self] = newValue
         }
 
         get
         {
-			let weakWrapper = self[BXUndoManagerKey.self]		// Get the Weak() wrapper and
-            return weakWrapper?.value							// retrieve the UndoManager from it
+			self[BXUndoManagerProviderKey.self]
         }
     }
+}
+
+
+public struct BXUndoManagerManagerProvider
+{
+	public weak var undoManager:UndoManager?
+	
+	public init(_ undoManager:UndoManager?)
+	{
+		self.undoManager = undoManager
+	}
 }
 
 

@@ -32,7 +32,7 @@ public struct BXCustomSlider : View
 	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.colorScheme) private var colorScheme
 	@Environment(\.bxColorTheme) private var bxColorTheme
-	@Environment(\.bxUndoManager) private var undoManager
+	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
 	@Environment(\.bxUndoName) private var undoName
 
 	// Init
@@ -184,8 +184,8 @@ public struct BXCustomSlider : View
 
 						if self.dragIteration == 0
 						{
-							self.undoManager?.groupsByEvent = false
-							self.undoManager?.beginUndoGrouping()
+							self.undoManagerProvider.undoManager?.groupsByEvent = false
+							self.undoManagerProvider.undoManager?.beginUndoGrouping()
 							self.onBegan?()
 						}
 						
@@ -204,9 +204,9 @@ public struct BXCustomSlider : View
 						_ in
 
 						self.onEnded?()
-						self.undoManager?.setActionName(self.undoName)
-						self.undoManager?.endUndoGrouping()
-						self.undoManager?.groupsByEvent = true
+						self.undoManagerProvider.undoManager?.setActionName(self.undoName)
+						self.undoManagerProvider.undoManager?.endUndoGrouping()
+						self.undoManagerProvider.undoManager?.groupsByEvent = true
 						self.dragIteration = 0
 					}
 				)

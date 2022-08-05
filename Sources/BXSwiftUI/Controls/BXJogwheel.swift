@@ -26,7 +26,7 @@ public struct BXJogwheel : View
 	// Environment
 	
 	@Environment(\.colorScheme) private var colorScheme
-	@Environment(\.bxUndoManager) private var undoManager
+	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
 	@Environment(\.bxUndoName) private var undoName
 
 	// Init
@@ -120,8 +120,8 @@ public struct BXJogwheel : View
 
 				if self.dragIteration == 0
 				{
-					self.undoManager?.groupsByEvent = false
-					self.undoManager?.beginUndoGrouping()
+					self.undoManagerProvider.undoManager?.groupsByEvent = false
+					self.undoManagerProvider.undoManager?.beginUndoGrouping()
 					self.dragInitialValue = self.value.wrappedValue
 					self.onBegan?()
 				}
@@ -149,9 +149,9 @@ public struct BXJogwheel : View
 				_ in
 
 				self.onEnded?()
-				self.undoManager?.setActionName(self.undoName)
-				self.undoManager?.endUndoGrouping()
-				self.undoManager?.groupsByEvent = true
+				self.undoManagerProvider.undoManager?.setActionName(self.undoName)
+				self.undoManagerProvider.undoManager?.endUndoGrouping()
+				self.undoManagerProvider.undoManager?.groupsByEvent = true
 				self.dragIteration = 0
 			}
 		)

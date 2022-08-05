@@ -32,7 +32,7 @@ public struct BXMultiValueButton : NSViewRepresentable
 	// Environment
 	
 	@Environment(\.isEnabled) private var isEnabled
-	@Environment(\.bxUndoManager) private var document
+	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
 	@Environment(\.bxUndoName) private var undoName
 
 	// Init
@@ -127,7 +127,7 @@ public struct BXMultiValueButton : NSViewRepresentable
 
 	public func makeCoordinator() -> Coordinator
     {
-        return Coordinator(self, document, undoName)
+        return Coordinator(self, undoManagerProvider.undoManager, undoName)
     }
 }
 

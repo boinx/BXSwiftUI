@@ -30,7 +30,7 @@ public struct BXMultiValueNativeSlider : NSViewRepresentable
 	// Environment
 	
 	@Environment(\.isEnabled) private var isEnabled
-	@Environment(\.bxUndoManager) private var undoManager
+	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
 	@Environment(\.bxUndoName) private var undoName
 	@Environment(\.bxColorTheme) private var bxColorTheme
 	@Environment(\.colorScheme) private var colorScheme
@@ -50,7 +50,7 @@ public struct BXMultiValueNativeSlider : NSViewRepresentable
 	public func makeNSView(context:Context) -> NSSlider
     {
 		let cell = NSMultiValueSliderCell()
-		cell.undoManager = undoManager
+		cell.undoManager = undoManagerProvider.undoManager
 		cell.undoName = undoName
 		cell.response = self.response
 		
