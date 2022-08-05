@@ -21,7 +21,7 @@ extension View
 	
 	public func bxUndoManager(_ undoManager:UndoManager?) -> some View
 	{
-		self.environment(\.bxUndoManagerProvider, BXUndoManagerManagerProvider(undoManager))
+		self.environment(\.bxUndoManagerProvider, BXUndoManagerProvider(undoManager))
 	}
 
 	/// Injects the undo name into the environment. Controls in the view hierarchy may access it to set an undo name when necessary.
@@ -40,14 +40,14 @@ extension View
 
 // Since the UndoManager retains other objects (e.g. ViewControllers that can own a SwiftUI subtree) in its undo and redo
 // stacks, we should not strongly reference the UndoManager in the environment - as this can cause retain cycles, and
-// thus memory leaks. For this reason we wrap it in a BXUndoManagerManagerProvider (which contains a weak reference)
+// thus memory leaks. For this reason we wrap it in a BXUndoManagerProvider (which contains a weak reference)
 // to break potential retain cycles. When SwiftUI views need the UndoManager, they need to retrieve at the call site
 // from this provider.
 
 
 fileprivate struct BXUndoManagerProviderKey : EnvironmentKey
 {
-    static public let defaultValue = BXUndoManagerManagerProvider(nil)
+    static public let defaultValue = BXUndoManagerProvider(nil)
 }
 
 
@@ -55,7 +55,7 @@ public extension EnvironmentValues
 {
 	/// The UndoManager can be retrieved by a SwiftUI view to record data model property changes
 	
-    var bxUndoManagerProvider:BXUndoManagerManagerProvider
+    var bxUndoManagerProvider:BXUndoManagerProvider
     {
         set
         {
@@ -70,7 +70,7 @@ public extension EnvironmentValues
 }
 
 
-public struct BXUndoManagerManagerProvider
+public struct BXUndoManagerProvider
 {
 	public weak var undoManager:UndoManager?
 	
