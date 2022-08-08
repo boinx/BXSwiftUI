@@ -32,6 +32,7 @@ open class BXBorderlessWindow : NSWindow, ObservableObject
 
 		self.isMovableByWindowBackground = true
 		self.isReleasedWhenClosed = true
+		self.hasShadow = true
 		
 		// Install rootView
 		
