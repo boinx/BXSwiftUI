@@ -133,10 +133,14 @@ public struct BXSlitViewDivider<D:View>: View
 
 						if self.style == .vertical
 						{
-							if #unavailable(macOS 12)		// On Big Sur and earlier vertical drags are for some
-							{								// reason reversed - so the delta needs to be negated
-								delta = -delta				// to account for this problem.
+							if #available(macOS 12, *)
+							{
+							
 							}
+							else
+							{								// On Big Sur and earlier vertical drags are for some
+								delta = -delta				// reason reversed - so the delta needs to be negated
+							}								// to account for this problem.
 						}
 						
 						self.position.wrappedValue = Double((initialPosition + delta).clipped(to:minValue...maxValue))
