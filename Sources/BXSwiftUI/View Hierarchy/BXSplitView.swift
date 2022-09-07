@@ -61,7 +61,7 @@ public struct BXSplitView<A:View,B:View,D:View> : View
 					self.firstView()
 						.frame(height:CGFloat(position.wrappedValue))
 						
-					BXSlitViewDivider(style:style, position:position, geometry:geometry, minFirstSize:minFirstSize, minSecondSize:minSecondSize, divider:divider)
+					BXSplitViewDivider(style:style, position:position, geometry:geometry, minFirstSize:minFirstSize, minSecondSize:minSecondSize, divider:divider)
 					
 					self.secondView()
 						.frame(maxHeight:.infinity)
@@ -74,7 +74,7 @@ public struct BXSplitView<A:View,B:View,D:View> : View
 					self.firstView()
 						.frame(width:CGFloat(position.wrappedValue))
 						
-					BXSlitViewDivider(style:style, position:position, geometry:geometry, minFirstSize:minFirstSize, minSecondSize:minSecondSize, divider:divider)
+					BXSplitViewDivider(style:style, position:position, geometry:geometry, minFirstSize:minFirstSize, minSecondSize:minSecondSize, divider:divider)
 					
 					self.secondView()
 						.frame(maxWidth:.infinity)
@@ -88,7 +88,7 @@ public struct BXSplitView<A:View,B:View,D:View> : View
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public struct BXSlitViewDivider<D:View>: View
+public struct BXSplitViewDivider<D:View>: View
 {
 	var style:BXSlitViewStyle
     var position:Binding<Double>
