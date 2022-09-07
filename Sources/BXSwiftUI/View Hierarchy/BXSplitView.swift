@@ -143,7 +143,9 @@ public struct BXSplitViewDivider<D:View>: View
 							}								// to account for this problem.
 						}
 						
-						self.position.wrappedValue = Double((initialPosition + delta).clipped(to:minValue...maxValue))
+						var newPosition = CGFloat(initialPosition) + delta
+						newPosition.clip(to: minValue...maxValue)
+						self.position.wrappedValue = Double(newPosition)
 					}
 				}
 				
