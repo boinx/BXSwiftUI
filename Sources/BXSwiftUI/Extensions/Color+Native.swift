@@ -2,7 +2,7 @@
 //
 //  Color+Native.swift
 //	Converts a SwiftUI Color to a native NSColor
-//  Copyright ©2020 Peter Baumgartner. All rights reserved.
+//  Copyright ©2022 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
 
@@ -32,9 +32,10 @@ public extension NSColor
 	
 	var color:Color
 	{
-		let r:CGFloat = self.redComponent
-		let g:CGFloat = self.greenComponent
-		let b:CGFloat = self.blueComponent
+		let sRGB = self.usingColorSpace(.sRGB) ?? self
+		let r:CGFloat = sRGB.redComponent
+		let g:CGFloat = sRGB.greenComponent
+		let b:CGFloat = sRGB.blueComponent
         return Color(red:r, green:g, blue:b)
 	}
 	
