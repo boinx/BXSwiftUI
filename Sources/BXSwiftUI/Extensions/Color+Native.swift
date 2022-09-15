@@ -28,6 +28,16 @@ public extension NSColor
         self.init(srgbRed:r, green:g, blue:b, alpha:a)
 	}
 
+	/// Returns a SwiftUI Color for this NSColor
+	
+	var color:Color
+	{
+		let r:CGFloat = self.redComponent
+		let g:CGFloat = self.greenComponent
+		let b:CGFloat = self.blueComponent
+        return Color(red:r, green:g, blue:b)
+	}
+	
 	/// Retrieves the (r,g,b,a) components from a SwiftUI color. This is a bit of a hack!
 	
     private static func components(for color:Color) -> (CGFloat,CGFloat,CGFloat,CGFloat)
