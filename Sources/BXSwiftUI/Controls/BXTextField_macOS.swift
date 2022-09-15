@@ -315,8 +315,6 @@ public class BXTextFieldNative : NSTextField, NSTextViewDelegate
 		let trackingArea = NSTrackingArea(rect:self.bounds, options:[.mouseEnteredAndExited,.activeAlways], owner:self, userInfo:nil)
 		self.addTrackingArea(trackingArea)
 		self.trackingArea = trackingArea
-		
-		self.window?.recalculateKeyViewLoop()
 	}
 	
 	func cleanup()
