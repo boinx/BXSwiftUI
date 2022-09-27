@@ -30,6 +30,8 @@ public struct BXMultiValueToggle : View
 	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.controlSize) private var controlSize
 	@Environment(\.hasMultipleValues) private var hasMultipleValues
+	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
+	@Environment(\.bxUndoName) private var undoName
 
 	// Init
 	
@@ -77,6 +79,7 @@ public struct BXMultiValueToggle : View
 				self.onBegan?()
 				self.values.wrappedValue = Set([$0])
 				self.onEnded?()
+				self.undoManagerProvider.undoManager?.setActionName(self.undoName)
 			})
 	}
 
