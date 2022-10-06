@@ -56,11 +56,11 @@ public struct BXCGSizeEditView : View
 		{
 			HStack
 			{
-				Text("width")
+				Text("w")
 				
 				BXTextField(value:self.w, formatter:self.formatter)
 
-				Text("height")
+				Text("h")
 				
 				BXTextField(value:self.h, formatter:self.formatter)
 			}
