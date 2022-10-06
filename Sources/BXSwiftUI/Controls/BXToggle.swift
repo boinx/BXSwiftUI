@@ -1,7 +1,7 @@
 //**********************************************************************************************************************
 //
-//  BXMultiValueToggle.swift
-//	SwiftUI wrapper for a checkbox that supports multiple values (via mixed state)
+//  BXToggle.swift
+//	SwiftUI wrapper for a checkbox
 //  Copyright ©2020 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
@@ -16,11 +16,11 @@ import AppKit
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public struct BXMultiValueToggle : View
+public struct BXToggle : View
 {
 	// Params
 	
-	private var values:Binding<Set<Bool>>
+	private var value:Binding<Bool>
 	private var label:String = ""
 	private var onBegan:(()->Void)? = nil
 	private var onEnded:(()->Void)? = nil
@@ -29,15 +29,14 @@ public struct BXMultiValueToggle : View
 	
 	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.controlSize) private var controlSize
-	@Environment(\.hasMultipleValues) private var hasMultipleValues
 	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
 	@Environment(\.bxUndoName) private var undoName
 
 	// Init
 	
-	public init(values:Binding<Set<Bool>>, label:String = "", onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil)
+	public init(value:Binding<Bool>, label:String = "", onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil)
 	{
-		self.values = values
+		self.value = value
 		self.label = label
 		self.onBegan = onBegan
 		self.onEnded = onEnded
@@ -51,7 +50,6 @@ public struct BXMultiValueToggle : View
 		{
 			Text(label)
 		}
-		.hasMultipleValues(self.values.wrappedValue.count > 1)
 	}
 
 	// Custom Binding
@@ -62,22 +60,13 @@ public struct BXMultiValueToggle : View
 		 
 			get:
 			{
-				if self.values.wrappedValue.count > 1
-				{
-					return true
-				}
-				else if let value = self.values.wrappedValue.first
-				{
-					return value
-				}
-				
-				return false
+				self.value.wrappedValue
 			},
 			
 			set:
 			{
 				self.onBegan?()
-				self.values.wrappedValue = Set([$0])
+				self.value.wrappedValue = $0
 				self.onEnded?()
 				self.undoManagerProvider.undoManager?.setActionName(self.undoName)
 			})
