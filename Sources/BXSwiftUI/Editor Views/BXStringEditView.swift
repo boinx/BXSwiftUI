@@ -36,7 +36,7 @@ public struct BXStringEditView : View
 	{
 		BXLabelView(label:label, alignment:.leading)
 		{
-			BXTextField(value:self.value)
+			BXTextField(value:self.value, allowSpaceKey:true)
 		}
 	}
 }
