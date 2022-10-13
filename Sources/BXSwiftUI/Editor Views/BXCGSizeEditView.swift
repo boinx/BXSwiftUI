@@ -54,13 +54,13 @@ public struct BXCGSizeEditView : View
 	{
 		BXLabelView(label:label, alignment:.leading)
 		{
-			HStack
+			HStack(spacing:8)
 			{
-				Text("w")
+//				Text("w")
 				
 				BXTextField(value:self.w, formatter:self.formatter)
 
-				Text("h")
+//				Text("h")
 				
 				BXTextField(value:self.h, formatter:self.formatter)
 			}
