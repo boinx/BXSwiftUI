@@ -21,13 +21,15 @@ public struct BXAttributedStringEditView : View
 	
 	private var label:String = ""
 	private var value:Binding<NSAttributedString>
+	private var statusHandler:(BXTextViewStatusHandler)? = nil
 
 	// Init
 	
-	public init(label:String = "", value:Binding<NSAttributedString>)
+	public init(label:String = "", value:Binding<NSAttributedString>, statusHandler:(BXTextViewStatusHandler)? = nil)
 	{
 		self.label = label
 		self.value = value
+		self.statusHandler = statusHandler
 	}
 	
 	// Build View
@@ -36,7 +38,7 @@ public struct BXAttributedStringEditView : View
 	{
 		BXLabelView(label:label, alignment:.leading)
 		{
-			BXTextView(value:self.value)
+			BXTextView(value:value, statusHandler:statusHandler)
 		}
 	}
 }
