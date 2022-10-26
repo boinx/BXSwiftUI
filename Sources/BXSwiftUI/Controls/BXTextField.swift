@@ -2,7 +2,7 @@
 //
 //  BXTextField.swift
 //	SwiftUI wrapper for NSTextField with custom behavior
-//  Copyright ©2020 Peter Baumgartner. All rights reserved.
+//  Copyright ©2020-2022 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
 
@@ -35,11 +35,7 @@ public struct  BXTextField<T> : View
 	
 	@Environment(\.controlSize) private var controlSize
 
-	// Internal
-	
-	private var baseline:CGFloat = 15.0
-	
-	// Build View
+	// Init
 
 	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, placeholderString:String? = nil, formatter:Formatter? = nil, selectAllOnMouseDown:Bool = true, allowSpaceKey:Bool = false,statusHandler:(BXTextFieldStatusHandler)? = nil, onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil)
 	{
@@ -53,33 +49,9 @@ public struct  BXTextField<T> : View
 		self.statusHandler = statusHandler
 		self.onBegan = onBegan
 		self.onEnded = onEnded
-		
-		// If a fixed height was not provided, then choose the height and baseline depending on environment controlSize.
-		// Please note that these hardcoded values might possibly changes in future OS versions.
-		
-		if height == nil
-		{
-			switch controlSize
-			{
-				case .regular:
-//					self.height = 21.0
-					self.baseline = 16.0
-
-				case .small:
-//					self.height = 19.0
-					self.baseline = 14.0
-
-				case .mini:
-//					self.height = 16.0
-					self.baseline = 11.0
-
-				default:
-//					self.height = 21.0
-					self.baseline = 15.0
-			}
-		}
 	}
 
+	// Build View
 
 	public var body: some View
 	{
@@ -89,6 +61,22 @@ public struct  BXTextField<T> : View
 			
 			.alignmentGuide(.firstTextBaseline, computeValue:{ _ in self.baseline })
 	}
+	
+	/// Returns the baseline for the current size
+	
+	var baseline:CGFloat
+	{
+		guard height == nil else { return 15.0 }
+		
+		switch controlSize
+		{
+			case .regular:	return 16.0
+			case .small:	return 14.0
+			case .mini:		return 11.0
+			default:		return 15.0
+		}
+	}
+	
 }
 
 
