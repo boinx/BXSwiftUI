@@ -25,7 +25,7 @@ public extension View
 	/// Attaches a popup menu to a view hierarchy. The items are defined by an array of BXMenuItemSpec.
 	/// Please note that you need to use BXMenuItemSpec.action or there will be nothing to execute!
 	
-	@ViewBuilder func popupMenu(value:Binding<Int>? = nil, margin:CGFloat = 0, _ itemSpecs:()->[BXMenuItemSpec]) -> some View
+	func popupMenu(value:Binding<Int>? = nil, margin:CGFloat = 0, _ itemSpecs:()->[BXMenuItemSpec]) -> some View
     {
 		let menuItems = itemSpecs()
 		

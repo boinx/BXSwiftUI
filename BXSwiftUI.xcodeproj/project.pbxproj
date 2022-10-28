@@ -22,7 +22,6 @@
 		D00CE28827A6E25A006D766C /* BXCGPointEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE21727A6E25A006D766C /* BXCGPointEditView.swift */; };
 		D00CE28927A6E25A006D766C /* BXCGSizeEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE21827A6E25A006D766C /* BXCGSizeEditView.swift */; };
 		D00CE28A27A6E25A006D766C /* BXBoolEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE21927A6E25A006D766C /* BXBoolEditView.swift */; };
-		D00CE28B27A6E25A006D766C /* BXAutomaticEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE21A27A6E25A006D766C /* BXAutomaticEditView.swift */; };
 		D00CE28C27A6E25A006D766C /* BXFloatEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE21B27A6E25A006D766C /* BXFloatEditView.swift */; };
 		D00CE28D27A6E25A006D766C /* BXDoubleEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE21C27A6E25A006D766C /* BXDoubleEditView.swift */; };
 		D00CE28E27A6E25A006D766C /* BXURLEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE21D27A6E25A006D766C /* BXURLEditView.swift */; };
@@ -585,7 +584,6 @@
 				D00CE2C127A6E25B006D766C /* BXMultiValueColorSlider.swift in Sources */,
 				D00CE2C527A6E25B006D766C /* BXSpinningWheel.swift in Sources */,
 				D00CE2CB27A6E25B006D766C /* BXRoundButtonStyle.swift in Sources */,
-				D00CE28B27A6E25A006D766C /* BXAutomaticEditView.swift in Sources */,
 				D00FA121289915A300328105 /* View+parentWindow.swift in Sources */,
 				D00CE2B727A6E25B006D766C /* BXMultiValueButton.swift in Sources */,
 				D00CE2A127A6E25A006D766C /* View+onKey.swift in Sources */,
