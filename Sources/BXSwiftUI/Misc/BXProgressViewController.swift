@@ -90,9 +90,9 @@ open class BXProgressViewController : UIHostingController<BXProgressView>, Obser
 		self.rootView = BXProgressView(controller:self)
 	}
 	
-	override open func viewDidDisappear()
+	override open func viewDidDisappear(_ animated:Bool)
 	{
-		super.viewDidDisappear()
+		super.viewDidDisappear(animated)
 		
 		// Break the retain cycle from above
 		
