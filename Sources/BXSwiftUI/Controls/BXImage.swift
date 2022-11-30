@@ -34,23 +34,31 @@ public struct BXImage : View
 	
 	public var body: some View
 	{
-		// On Big Sur or newer use the system SF Symbols
+		#if os(iOS)
 		
-		if #available(macOS 11, iOS 14, *)
-		{
 			SwiftUI.Image(systemName:name)
-		}
 		
-		// On macOS Catalina use our own fallback images that are shipped with the package resources
+		#else
 		
-		else if Bundle.BXSwiftUI.image(forResource:name) != nil
-		{
-			SwiftUI.Image(name, bundle:Bundle.BXSwiftUI)
-		}
-		else
-		{
-			SwiftUI.Image("stop", bundle:Bundle.BXSwiftUI) 	// fallback for unavailable icon
-		}
+			// On Big Sur or newer use the system SF Symbols
+			
+			if #available(macOS 11, iOS 14, *)
+			{
+				SwiftUI.Image(systemName:name)
+			}
+			
+			// On macOS Catalina use our own fallback images that are shipped with the package resources
+			
+			else if Bundle.BXSwiftUI.image(forResource:name) != nil
+			{
+				SwiftUI.Image(name, bundle:Bundle.BXSwiftUI)
+			}
+			else
+			{
+				SwiftUI.Image("stop", bundle:Bundle.BXSwiftUI) 	// fallback for unavailable icon
+			}
+
+		#endif
 	}
 }
 
