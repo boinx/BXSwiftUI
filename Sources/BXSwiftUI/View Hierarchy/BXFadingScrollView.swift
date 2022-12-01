@@ -100,8 +100,8 @@ public struct BXFadingScrollView<Content:View> : View
 			let a1 = isRunningOnMonterey ? A2 : A1
 			let a2 = isRunningOnMonterey ? A1 : A2
 			#else
-			let a1 = A1
-			let a2 = A2
+			let a1 = A2
+			let a2 = A1
 			#endif
 			
 			self.alpha1 = Double(a1)
