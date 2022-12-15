@@ -8,6 +8,7 @@
 
 
 import SwiftUI
+import BXSwiftUtils
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -33,7 +34,8 @@ public struct BXCircularSlider : View
 
 	// State
 	
-	@State private var dragIteration = 0
+	@GestureState private var dragIteration = 0
+	@State private var undoHelper = BXUndoGroupingHelper()
 
 	// Init
 	
@@ -66,18 +68,21 @@ public struct BXCircularSlider : View
 				.fill(Color(white:0.0, opacity:0.01))
 				.gesture( DragGesture(minimumDistance:0)
 				
+					.updating($dragIteration)
+					{
+						_,iteration,_ in iteration += 1
+					}
+					
 					.onChanged()
 					{
 						// On mouse down begin an undo group
 						
-						if self.dragIteration == 0
+						if self.dragIteration <= 1
 						{
-							self.undoManagerProvider.undoManager?.groupsByEvent = false
-							self.undoManagerProvider.undoManager?.beginUndoGrouping()
+							self.undoHelper.undoManager = self.undoManagerProvider.undoManager
+							self.undoHelper.beginUndoGrouping()
 							self.onBegan?()
 						}
-						
-						self.dragIteration += 1
 						
 						// On drag set new value
 
@@ -90,10 +95,7 @@ public struct BXCircularSlider : View
 						// On mouse up close undo group
 						
 						self.onEnded?()
-						self.undoManagerProvider.undoManager?.setActionName(self.undoName)
-						self.undoManagerProvider.undoManager?.endUndoGrouping()
-						self.undoManagerProvider.undoManager?.groupsByEvent = true
-						self.dragIteration = 0
+						self.undoHelper.endUndoGrouping(self.undoName)
 					}
 				)
 		}

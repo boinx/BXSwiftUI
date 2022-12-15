@@ -2,12 +2,13 @@
 //
 //  BXRangeSlider.swift
 //	A slider that lets you define a lower and an upper value
-//  Copyright ©2020 Peter Baumgartner. All rights reserved.
+//  Copyright ©2022 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
 
 
 import SwiftUI
+import BXSwiftUtils
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -156,7 +157,8 @@ public struct BXRangeSlider : View
 	
 	// Counts up each time we go through the onChanged handler of the DragGesture
 	
-	@State private var dragIteration = 0
+	@GestureState private var dragIteration = 0
+	@State private var undoHelper = BXUndoGroupingHelper()
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -229,6 +231,11 @@ public struct BXRangeSlider : View
 			
 			.gesture( DragGesture(minimumDistance:0.0)
 
+				.updating($dragIteration)
+				{
+					_,iteration,_ in iteration += 1
+				}
+					
 				.onChanged()
 				{
 					let value = self.value(for:$0.location.x, width:geometry.size.width)
@@ -236,10 +243,11 @@ public struct BXRangeSlider : View
 					// When dragging starts, open an undo group and decide which knob will be dragged.
 					// Choose the closest one to the mouse click.
 
-					if self.dragIteration == 0
+					if self.dragIteration <= 1
 					{
-						self.undoManagerProvider.undoManager?.groupsByEvent = false
-						self.undoManagerProvider.undoManager?.beginUndoGrouping()
+						self.undoHelper.undoManager = self.undoManagerProvider.undoManager
+						self.undoHelper.beginUndoGrouping()
+
 						if abs(value-self.lowerValue.wrappedValue) <= abs(value-self.upperValue.wrappedValue)
 						{
 							self.dragKnobIndex = 0
@@ -251,8 +259,6 @@ public struct BXRangeSlider : View
 						
 						self.onBegan?()
 					}
-					
-					self.dragIteration += 1
 
 					// Update the current value of the chosen knob
 
@@ -273,10 +279,7 @@ public struct BXRangeSlider : View
 					_ in
 
 					self.onEnded?()
-					self.undoManagerProvider.undoManager?.setActionName(self.undoName)
-					self.undoManagerProvider.undoManager?.endUndoGrouping()
-					self.undoManagerProvider.undoManager?.groupsByEvent = true
-					self.dragIteration = 0
+					self.undoHelper.endUndoGrouping(self.undoName)
 				}
 			)
 		}

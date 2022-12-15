@@ -8,6 +8,7 @@
 
 
 import SwiftUI
+import BXSwiftUtils
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -82,10 +83,12 @@ public struct BXJogwheel : View
 	
 	// Counts up each time we go through the onChanged handler of the DragGesture
 	
-	@State private var dragIteration = 0
+	@GestureState private var dragIteration = 0
+	
 	@State private var dragInitialValue:Double = 0.0
 	@State private var prevX:CGFloat = 0.0
-
+	@State private var undoHelper = BXUndoGroupingHelper()
+	
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -114,20 +117,26 @@ public struct BXJogwheel : View
 
 		.gesture( DragGesture(minimumDistance:0.0)
 
+			.updating($dragIteration)
+			{
+				_,iteration,_ in iteration += 1
+			}
+
 			.onChanged()
 			{
-				// When dragging starts, open an undo group and store intial state
-
-				if self.dragIteration == 0
+				if dragIteration <= 1
 				{
-					self.undoManagerProvider.undoManager?.groupsByEvent = false
-					self.undoManagerProvider.undoManager?.beginUndoGrouping()
-					self.dragInitialValue = self.value.wrappedValue
+					// When dragging starts open an undo group
+					
+					self.undoHelper.undoManager = self.undoManagerProvider.undoManager
+					self.undoHelper.beginUndoGrouping()
 					self.onBegan?()
+
+					// Store initial value
+					
+					self.dragInitialValue = self.value.wrappedValue
 				}
 				
-				self.dragIteration += 1
-
 				// Update the current value
 
 				let dx = $0.translation.width
@@ -149,10 +158,7 @@ public struct BXJogwheel : View
 				_ in
 
 				self.onEnded?()
-				self.undoManagerProvider.undoManager?.setActionName(self.undoName)
-				self.undoManagerProvider.undoManager?.endUndoGrouping()
-				self.undoManagerProvider.undoManager?.groupsByEvent = true
-				self.dragIteration = 0
+				self.undoHelper.endUndoGrouping(self.undoName)
 			}
 		)
 	}
