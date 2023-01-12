@@ -33,8 +33,11 @@ public extension NSImage
 		
 		else
 		{
-			guard let url = Bundle.BXSwiftUI.url(forResource:systemName, withExtension:nil) else { return nil }
-			self.init(contentsOf:url)
+			let bundle = Bundle.BXSwiftUI
+			guard let image = bundle.image(forResource:systemName) else { return nil }
+
+			self.init(size:image.size)
+			self.addRepresentations(image.representations)
 		}
 	}
 }
