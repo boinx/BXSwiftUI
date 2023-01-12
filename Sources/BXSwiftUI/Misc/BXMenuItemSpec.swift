@@ -167,14 +167,6 @@ public extension NSMenu
 			}
 		}
 	}
-	
-	/// Adds the specified NSMenuItem at the end of the menu
-	
-	@discardableResult static func += (_ menu:NSMenu, _ item:NSMenuItem) -> NSMenu
-	{
-		menu.addItem(item)
-		return menu
-	}
 }
 
 #endif
