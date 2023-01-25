@@ -140,12 +140,20 @@ public struct BXScrollView<Content:View> : NSViewRepresentable
 		
 		context.coordinator.observers += NotificationCenter.default.publisher(for:NSView.boundsDidChangeNotification, object:scrollView.contentView).sink
 		{
-			_ in self.scrollPosition.wrappedValue = scrollView.contentView.bounds.origin
+			_ in
+			DispatchQueue.main.async
+			{
+				self.scrollPosition.wrappedValue = scrollView.contentView.bounds.origin
+			}
 		}
 		
 		context.coordinator.observers += NotificationCenter.default.publisher(for:NSView.frameDidChangeNotification, object:scrollView.documentView).sink
 		{
-			_ in self.scrollPosition.wrappedValue = scrollView.contentView.bounds.origin
+			_ in
+			DispatchQueue.main.async
+			{
+				self.scrollPosition.wrappedValue = scrollView.contentView.bounds.origin
+			}
 		}
 		
 		return scrollView
