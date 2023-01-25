@@ -23,8 +23,8 @@ public struct BXScrollView<Content:View> : NSViewRepresentable
    	private var magnification:Binding<CGFloat>
    	private var minMagnification:Binding<CGFloat>
    	private var maxMagnification:Binding<CGFloat>
-	private var backgroundColor:NSColor = .white
-    private var drawsBackground:Bool = true
+	private var backgroundColor:NSColor = .clear
+    private var drawsBackground:Bool = false
     private var hasHorizontalScroller:Bool = true
     private var hasVerticalScroller:Bool = true
     private var allowsMagnification:Bool = true
@@ -93,6 +93,7 @@ public struct BXScrollView<Content:View> : NSViewRepresentable
 		scrollView.magnification = self.magnification.wrappedValue
 		scrollView.minMagnification = self.minMagnification.wrappedValue
 		scrollView.maxMagnification = self.maxMagnification.wrappedValue
+		scrollView.borderType = .noBorder
 		scrollView.backgroundColor = self.backgroundColor
 		scrollView.drawsBackground = self.drawsBackground
 		scrollView.hasVerticalScroller = self.hasVerticalScroller
@@ -105,6 +106,8 @@ public struct BXScrollView<Content:View> : NSViewRepresentable
 		{
 			scrollView.contentView = BXCenteredClipView(frame:.zero)
 		}
+		
+		scrollView.contentView.drawsBackground = false
 		
 		// Install the SwiftUI content view
 		
