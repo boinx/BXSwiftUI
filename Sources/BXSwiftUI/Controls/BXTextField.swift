@@ -2,7 +2,7 @@
 //
 //  BXTextField.swift
 //	SwiftUI wrapper for NSTextField with custom behavior
-//  Copyright ©2020-2022 Peter Baumgartner. All rights reserved.
+//  Copyright ©2020-2023 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
 
@@ -34,7 +34,7 @@ public struct  BXTextField<T> : View
 	// Environment
 	
 	@Environment(\.controlSize) private var controlSize
-
+	
 	// Init
 
 	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, placeholderString:String? = nil, formatter:Formatter? = nil, selectAllOnMouseDown:Bool = true, allowSpaceKey:Bool = false,statusHandler:(BXTextFieldStatusHandler)? = nil, onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil)
@@ -78,6 +78,8 @@ public struct  BXTextField<T> : View
 	}
 	
 }
+
+public let BXTextField_commit = Notification.Name("BXTextField.commit")
 
 
 //----------------------------------------------------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 //
 //  BXTextField_macOS.swift
 //	SwiftUI wrapper for NSTextField with custom behavior
-//  Copyright ©2020 Peter Baumgartner. All rights reserved.
+//  Copyright ©2020-2023 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
 
@@ -11,6 +11,7 @@
 
 import SwiftUI
 import AppKit
+import BXSwiftUtils
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -285,7 +286,9 @@ public class BXTextFieldNative : NSTextField, NSTextViewDelegate
 	var fixedHeight:CGFloat? = nil
 	var selectAllOnMouseDown = true
 	var allowSpaceKey = false
-
+	
+	private var observers:[Any] = []
+	
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -315,6 +318,11 @@ public class BXTextFieldNative : NSTextField, NSTextViewDelegate
 		let trackingArea = NSTrackingArea(rect:self.bounds, options:[.mouseEnteredAndExited,.activeAlways], owner:self, userInfo:nil)
 		self.addTrackingArea(trackingArea)
 		self.trackingArea = trackingArea
+		
+		self.observers += NotificationCenter.default.publisher(for:BXTextField_commit).sink
+		{
+			[weak self] _ in self?.commit()
+		}
 	}
 	
 	func cleanup()
@@ -413,6 +421,14 @@ public class BXTextFieldNative : NSTextField, NSTextViewDelegate
 		}
 		
 		return true
+	}
+	
+	/// Commits any unsaved changes by resigning first responder status
+	
+	private func commit()
+	{
+		guard let window = self.window else { return }
+		window.makeFirstResponder(nil)
 	}
 }
 
