@@ -16,8 +16,13 @@ import AppKit
 
 public extension NSAlert
 {
-	class func presentModal(style:NSAlert.Style = .informational, title:String, message:String, okButton:String = "OK", cancelButton:String? = nil, appearance:NSAppearance? = nil, okHandler:(()->Void)? = nil)
+	class func presentModal(style:NSAlert.Style = .informational, title:String, message:String, okButton:String = "OK", cancelButton:String? = nil, suppressionKey:String? = nil, appearance:NSAppearance? = nil, okHandler:(()->Void)? = nil)
 	{
+		if let suppressionKey = suppressionKey, UserDefaults.standard.bool(forKey:suppressionKey)
+		{
+			return
+		}
+
 		let alert = NSAlert()
 		
     	alert.alertStyle = style
@@ -25,6 +30,7 @@ public extension NSAlert
 		alert.messageText = title
 		alert.informativeText = message
 		alert.addButton(withTitle:okButton)
+		alert.showsSuppressionButton = suppressionKey != nil
 		
 		if let cancelButton = cancelButton
 		{
@@ -34,6 +40,11 @@ public extension NSAlert
 		if alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn
 		{
 			okHandler?()
+		}
+		
+		if let suppressionKey = suppressionKey, let checkbox = alert.suppressionButton, checkbox.state == .on
+		{
+			UserDefaults.standard.set(true, forKey:suppressionKey)
 		}
 	}
 }
