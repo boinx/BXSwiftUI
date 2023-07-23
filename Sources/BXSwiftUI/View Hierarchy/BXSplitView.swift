@@ -129,7 +129,7 @@ public struct BXSplitViewDivider<D:View>: View
 						let totalSize = self.style == .vertical ? geometry.size.height : geometry.size.width
 						var delta = self.style == .vertical ? drag.translation.height : drag.translation.width
 						let minValue = minFirstSize
-						let maxValue = totalSize - minSecondSize
+						let maxValue = max(minValue,totalSize - minSecondSize)
 
 						if self.style == .vertical
 						{
