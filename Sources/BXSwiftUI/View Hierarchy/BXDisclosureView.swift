@@ -79,7 +79,7 @@ public struct BXDisclosureButton : View
 	
 	public var body: some View
 	{
-		HStack(spacing:2.0)
+		HStack(alignment:.firstTextBaseline, spacing:2.0)
 		{
 			// Disclosure triangle
 			
