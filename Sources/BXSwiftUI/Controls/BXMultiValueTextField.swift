@@ -56,14 +56,14 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 	
 	// Appearance
 	
-	private var macControlSize:NSControl.ControlSize
+	private var NSControlSize:NSControl.ControlSize
 	{
 		switch controlSize
 		{
 			case .regular: 		return .regular
 			case .small: 		return .small
 			case .mini: 		return .mini
-			default: 	return .regular
+			default: 			return .small
 		}
 	}
 
@@ -87,7 +87,7 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
         textfield.delegate = context.coordinator
         textfield.alignment = alignment.nstextalignment
         textfield.formatter = formatter
-        textfield.controlSize = self.macControlSize
+        textfield.controlSize = self.NSControlSize
         textfield.fixedHeight = self.height
 		textfield.target = context.coordinator
 		textfield.action = action
