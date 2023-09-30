@@ -81,10 +81,9 @@ public struct BXTextView : View
 		switch controlSize
 		{
 			case .regular: 		return 15.0
-			case .small: 		return 11.0
+			case .small: 		if #available(macOS 14,*) { return 14.0 } else { return 11.0 } // Fix macOS Sonoma layout problems
 			case .mini: 		return 8.0
-			
-			default:	return 15.0
+			default:			return 15.0
 		}
 	}
 }
