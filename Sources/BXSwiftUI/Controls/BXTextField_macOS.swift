@@ -56,14 +56,14 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 
 	// The control size is provided by the environment. needs to be converted to NSControl datatype
 	
-	private var macControlSize:NSControl.ControlSize
+	private var NSControlSize:NSControl.ControlSize
 	{
 		switch controlSize
 		{
 			case .regular: 		return .regular
 			case .small: 		return .small
 			case .mini: 		return .mini
-			default: 			return .regular
+			default: 			return .small
 		}
 	}
 
@@ -113,8 +113,9 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 		
         let textfield = BXTextFieldNative(frame:.zero)
         textfield.delegate = context.coordinator
-        textfield.controlSize = self.macControlSize
-        textfield.alignment = alignment.nstextalignment
+        textfield.controlSize = self.NSControlSize
+       	textfield.font = NSFont.systemFont(ofSize:NSFont.systemFontSize(for:textfield.controlSize))
+    	textfield.alignment = alignment.nstextalignment
         textfield.formatter = formatter
         textfield.fixedHeight = self.height
 		textfield.target = context.coordinator
@@ -177,6 +178,10 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 		}
 		
 		textfield.isEnabled = context.environment.isEnabled
+
+		let size = self.NSControlSize
+    	textfield.controlSize = size
+        textfield.font = NSFont.systemFont(ofSize:NSFont.systemFontSize(for:size))
 
 		// Call statusHandler so that clients can update the appearance of the view accordingly
 		

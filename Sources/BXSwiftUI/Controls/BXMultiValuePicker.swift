@@ -49,10 +49,24 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	
 	@Environment(\.isEnabled) private var isEnabled
 	@Environment(\.colorScheme) private var colorScheme
+	@Environment(\.controlSize) private var controlSize
 	@Environment(\.bxColorTheme) private var bxColorTheme
 	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
 	@Environment(\.bxUndoName) private var undoName
 	
+	// The control size is provided by the environment. needs to be converted to NSControl datatype
+	
+	private var NSControlSize:NSControl.ControlSize
+	{
+		switch controlSize
+		{
+			case .regular: 		return .regular
+			case .small: 		return .small
+			case .mini: 		return .mini
+			default: 			return .small
+		}
+	}
+
 	// Init
 	
 	public init(values:Binding<Set<Int>>, huggingPriority:NSLayoutConstraint.Priority = .defaultLow, onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil, orderedItems:[BXMenuItemSpec])
@@ -76,6 +90,10 @@ public struct BXMultiValuePicker : NSViewRepresentable
 		popup.action = #selector(Coordinator.updateValues(with:))
 		popup.setContentHuggingPriority(self.huggingPriority, for:.horizontal)
 		popup.setContentCompressionResistancePriority(.defaultLow, for:.horizontal)
+		
+		let size = self.NSControlSize
+        popup.controlSize = size
+        popup.font = NSFont.systemFont(ofSize:NSFont.systemFontSize(for:size))
 		
 		return popup
     }

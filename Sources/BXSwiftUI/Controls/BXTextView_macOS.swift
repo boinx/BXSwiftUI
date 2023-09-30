@@ -64,7 +64,21 @@ internal struct BXTextView_macOS : NSViewRepresentable
 	@Environment(\.isEnabled) var isEnabled:Bool
 	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
 	@Environment(\.bxUndoName) private var undoName
+	@Environment(\.controlSize) private var controlSize
 
+
+	// The control size is provided by the environment. needs to be converted to NSControl datatype
+	
+	private var NSControlSize:NSControl.ControlSize
+	{
+		switch controlSize
+		{
+			case .regular: 		return .regular
+			case .small: 		return .small
+			case .mini: 		return .mini
+			default: 			return .small
+		}
+	}
 
 	// Create the underlying NSCustomTextView
 	
@@ -75,6 +89,7 @@ internal struct BXTextView_macOS : NSViewRepresentable
 		textView.isRichText = true
 		textView.usesFontPanel = true
 		textView.allowsUndo	= true
+        textView.font = NSFont.systemFont(ofSize:NSFont.systemFontSize(for:NSControlSize))
 		
         textView.delegate = context.coordinator
         textView.statusHandler = self.statusHandler
