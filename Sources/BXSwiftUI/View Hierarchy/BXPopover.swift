@@ -11,6 +11,7 @@
 
 import Cocoa
 import SwiftUI
+import BXSwiftUtils
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -50,6 +51,7 @@ public class BXPopover : NSPopover, NSPopoverDelegate, ObservableObject
 	
 	public static let closeAllNotification = NSNotification.Name("BXPopover.closeAll")
 	
+	public static let moveAllNotification = NSNotification.Name("BXPopover.moveAll")
 	
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -103,11 +105,26 @@ public class BXPopover : NSPopover, NSPopoverDelegate, ObservableObject
         self.behavior = .transient
         self.animates = true
 
-		NotificationCenter.default.addObserver(
-            self,
-            selector:#selector(close),
-            name:Self.closeAllNotification,
-            object:nil)
+		self.observers += NotificationCenter.default.publisher(for:Self.closeAllNotification, object:nil).sink
+		{
+			[weak self] _ in self?.close()
+		}
+		
+		self.observers += NotificationCenter.default.publisher(for:Self.moveAllNotification, object:nil).sink
+		{
+			[weak self] notification in
+			guard let self = self else { return }
+			guard let delta = notification.object as? CGPoint else { return }
+			var rect = self.positioningRect
+			rect.origin += delta
+			self.positioningRect = rect
+		}
+		
+//		NotificationCenter.default.addObserver(
+//            self,
+//            selector:#selector(close),
+//            name:Self.closeAllNotification,
+//            object:nil)
     }
 
     public required init?(coder:NSCoder)
@@ -146,7 +163,12 @@ public class BXPopover : NSPopover, NSPopoverDelegate, ObservableObject
 		NotificationCenter.default.postOnMain(name:Self.closeAllNotification, object:nil)
 	}
 
-    public func popoverWillClose(_ notification:Notification)
+ 	public class func moveAll(by delta:CGPoint)
+	{
+		NotificationCenter.default.postOnMain(name:Self.moveAllNotification, object:delta)
+	}
+
+   public func popoverWillClose(_ notification:Notification)
     {
 		NotificationCenter.default.removeObserver(self)
 	}
