@@ -124,6 +124,7 @@
 		D089007E27C391E800A8E6DD /* BXImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D089007D27C391E800A8E6DD /* BXImage.swift */; };
 		D089008027C393B000A8E6DD /* Bundle+BXSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D089007F27C393B000A8E6DD /* Bundle+BXSwiftUI.swift */; };
 		D089008227C394FF00A8E6DD /* BXImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D089008127C394FE00A8E6DD /* BXImage.xcassets */; };
+		D08C37342B1B5259001A43A2 /* View+identifiableBackingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08C37332B1B5259001A43A2 /* View+identifiableBackingView.swift */; };
 		D09F92E62858D0B5008DAC15 /* BXScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09F92E52858D0B4008DAC15 /* BXScrollView.swift */; };
 		D0BD92CD28E33CDB0063D029 /* BXToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD92CC28E33CDB0063D029 /* BXToggle.swift */; };
 		D0CBC147282A318800C6BABB /* NSImage+SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CBC146282A318800C6BABB /* NSImage+SFSymbols.swift */; };
@@ -254,6 +255,7 @@
 		D089007D27C391E800A8E6DD /* BXImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXImage.swift; sourceTree = "<group>"; };
 		D089007F27C393B000A8E6DD /* Bundle+BXSwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+BXSwiftUI.swift"; sourceTree = "<group>"; };
 		D089008127C394FE00A8E6DD /* BXImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BXImage.xcassets; sourceTree = "<group>"; };
+		D08C37332B1B5259001A43A2 /* View+identifiableBackingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+identifiableBackingView.swift"; sourceTree = "<group>"; };
 		D09F1B1B27A5972400097FA9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D09F1B1C27A5972400097FA9 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		D09F92E52858D0B4008DAC15 /* BXScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXScrollView.swift; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 				D00CE23327A6E25A006D766C /* View+undoManager.swift */,
 				D00FA120289915A300328105 /* View+parentWindow.swift */,
 				D00D6DE7283E654E00013C39 /* View+hostingView.swift */,
+				D08C37332B1B5259001A43A2 /* View+identifiableBackingView.swift */,
 				D00CE23527A6E25A006D766C /* Binding+Convert.swift */,
 				D00CE23627A6E25A006D766C /* NSViewController+Embed.swift */,
 				D00CE23827A6E25A006D766C /* Binding+Optional.swift */,
@@ -698,6 +701,7 @@
 				D00CE2C727A6E25B006D766C /* BXCustomSlider.swift in Sources */,
 				D00CE29A27A6E25A006D766C /* View+ToolTip.swift in Sources */,
 				D00CE28927A6E25A006D766C /* BXCGSizeEditView.swift in Sources */,
+				D08C37342B1B5259001A43A2 /* View+identifiableBackingView.swift in Sources */,
 				D00CE2BF27A6E25B006D766C /* BXLabelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
