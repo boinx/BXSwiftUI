@@ -1,6 +1,6 @@
 //**********************************************************************************************************************
 //
-//  View+identifiableBackingView.swift
+//  View+identifiableBackgroundView.swift
 //	Adds a helper NSView with a specified ID
 //  Copyright ©2022 Peter Baumgartner. All rights reserved.
 //
@@ -21,9 +21,9 @@ extension View
 	/// This modifier adds a (transparent) background NSView with the specified identifier.
 	///
 	/// This background view doesn't have any functionality except that it lets you traverse the NSView hierarchy of a window and find this
-	/// view by identifier. That way the frame of SwiftUI views can be located at runtime.
+	/// view by identifier. That way the frame of SwiftUI views can be located by AppKit at runtime.
 	
-	public func identifiableBackingView(withID id:String) -> some View
+	public func identifiableBackgroundView(withID id:String) -> some View
 	{
 		self.background(
 			BXIdentifierHelperView(id:id)
