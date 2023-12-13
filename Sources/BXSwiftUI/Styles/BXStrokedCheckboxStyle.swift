@@ -159,7 +159,7 @@ fileprivate struct _BXStrokedCheckbox : View
 				}
 				else if configuration.isOn
 				{
-					Text("✓")
+					Text(verbatim:"✓")
 						.bold()
 						.foregroundColor(self.checkmarkColor)
 						.offset(x:checkmarkOffset.x, y:checkmarkOffset.y)
