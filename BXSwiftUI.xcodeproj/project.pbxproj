@@ -124,6 +124,7 @@
 		D089007E27C391E800A8E6DD /* BXImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D089007D27C391E800A8E6DD /* BXImage.swift */; };
 		D089008027C393B000A8E6DD /* Bundle+BXSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D089007F27C393B000A8E6DD /* Bundle+BXSwiftUI.swift */; };
 		D089008227C394FF00A8E6DD /* BXImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D089008127C394FE00A8E6DD /* BXImage.xcassets */; };
+		D089F8942B49626100EED4FA /* View+onMouseInside.swift in Sources */ = {isa = PBXBuildFile; fileRef = D089F8932B49626100EED4FA /* View+onMouseInside.swift */; };
 		D08C37342B1B5259001A43A2 /* View+identifiableBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08C37332B1B5259001A43A2 /* View+identifiableBackgroundView.swift */; };
 		D09F92E62858D0B5008DAC15 /* BXScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09F92E52858D0B4008DAC15 /* BXScrollView.swift */; };
 		D0BD92CD28E33CDB0063D029 /* BXToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD92CC28E33CDB0063D029 /* BXToggle.swift */; };
@@ -255,6 +256,7 @@
 		D089007D27C391E800A8E6DD /* BXImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXImage.swift; sourceTree = "<group>"; };
 		D089007F27C393B000A8E6DD /* Bundle+BXSwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+BXSwiftUI.swift"; sourceTree = "<group>"; };
 		D089008127C394FE00A8E6DD /* BXImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BXImage.xcassets; sourceTree = "<group>"; };
+		D089F8932B49626100EED4FA /* View+onMouseInside.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+onMouseInside.swift"; sourceTree = "<group>"; };
 		D08C37332B1B5259001A43A2 /* View+identifiableBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+identifiableBackgroundView.swift"; sourceTree = "<group>"; };
 		D09F1B1B27A5972400097FA9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D09F1B1C27A5972400097FA9 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 				D00FA120289915A300328105 /* View+parentWindow.swift */,
 				D00D6DE7283E654E00013C39 /* View+hostingView.swift */,
 				D08C37332B1B5259001A43A2 /* View+identifiableBackgroundView.swift */,
+				D089F8932B49626100EED4FA /* View+onMouseInside.swift */,
 				D00CE23527A6E25A006D766C /* Binding+Convert.swift */,
 				D00CE23627A6E25A006D766C /* NSViewController+Embed.swift */,
 				D00CE23827A6E25A006D766C /* Binding+Optional.swift */,
@@ -672,6 +675,7 @@
 				D00CE2BD27A6E25B006D766C /* BXJogwheel.swift in Sources */,
 				D00CE2DF27A6E25B006D766C /* BXHuggingContainerView.swift in Sources */,
 				D00CE2E727A6E25B006D766C /* BXDisableWindowDragging.swift in Sources */,
+				D089F8942B49626100EED4FA /* View+onMouseInside.swift in Sources */,
 				D00CE2D627A6E25B006D766C /* BXMultiValueStringInspectorView.swift in Sources */,
 				D00CE2A727A6E25B006D766C /* NSSavePanel+Present.swift in Sources */,
 				D0D0EE5927B3C7B60050E20D /* NSWindow+present.swift in Sources */,
