@@ -29,6 +29,13 @@ extension View
 			BXIdentifierHelperView(id:id)
 		)
 	}
+
+	public func identifiableOverlayView(withID id:String) -> some View
+	{
+		self.overlay(
+			BXIdentifierHelperView(id:id)
+		)
+	}
 }
 
 
