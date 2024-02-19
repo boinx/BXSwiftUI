@@ -368,6 +368,8 @@ public class BXExposureTimeFormatter : NumberFormatter
 
 public class BXTimeCodeFormatter : NumberFormatter
 {
+	public var showsHours = true
+	
 	override open func string(for objectValue:Any?) -> String?
 	{
 		guard let number = objectValue as? NSNumber else { return nil }
@@ -381,13 +383,27 @@ public class BXTimeCodeFormatter : NumberFormatter
 		let SS = secs % 60
 		let fff = Int((value-Double(secs)) * 1000.0)
 		
-		if allowsFloats
+		if showsHours
 		{
-			return String(format:timecodeFormat,HH,MM,SS,fff)
+			if allowsFloats
+			{
+				return String(format:timecodeFormat,HH,MM,SS,fff)
+			}
+			else
+			{
+				return String(format:timecodeFormat,HH,MM,SS)
+			}
 		}
 		else
 		{
-			return String(format:timecodeFormat,HH,MM,SS)
+			if allowsFloats
+			{
+				return String(format:timecodeFormat,MM,SS,fff)
+			}
+			else
+			{
+				return String(format:timecodeFormat,MM,SS)
+			}
 		}
 	}
 	
@@ -412,14 +428,27 @@ public class BXTimeCodeFormatter : NumberFormatter
    
     public var timecodeFormat:String
     {
-		if self.allowsFloats
+		if showsHours
 		{
-//			let n = self.minimumFractionDigits
-			return "%d:%02d:%02d.%03d"
+			if self.allowsFloats
+			{
+				return "%d:%02d:%02d.%03d"
+			}
+			else
+			{
+				return "%d:%02d:%02d"
+			}
 		}
 		else
 		{
-			return "%d:%02d:%02d"
+			if self.allowsFloats
+			{
+				return "%02d:%02d.%03d"
+			}
+			else
+			{
+				return "%02d:%02d"
+			}
 		}
     }
 }
