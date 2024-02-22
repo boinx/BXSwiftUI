@@ -117,6 +117,7 @@
 		D00CE2E827A6E25B006D766C /* BXIndentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE27C27A6E25A006D766C /* BXIndentationView.swift */; };
 		D00D6DE8283E654E00013C39 /* View+hostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D6DE7283E654E00013C39 /* View+hostingView.swift */; };
 		D00FA121289915A300328105 /* View+parentWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00FA120289915A300328105 /* View+parentWindow.swift */; };
+		D05236A62B83C58300C98183 /* BXHelpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05236A52B83C58300C98183 /* BXHelpButton.swift */; };
 		D06503B32822DFFA002E52BE /* BXProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06503B02822DFFA002E52BE /* BXProgressViewController.swift */; };
 		D06503B42822DFFA002E52BE /* BXProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06503B12822DFFA002E52BE /* BXProgressView.swift */; };
 		D06503B52822DFFA002E52BE /* BXProgressWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06503B22822DFFA002E52BE /* BXProgressWindowController.swift */; };
@@ -249,6 +250,7 @@
 		D00D6DE7283E654E00013C39 /* View+hostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+hostingView.swift"; sourceTree = "<group>"; };
 		D00DF1CA27FAD25700DC1D27 /* BXSplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSplitView.swift; sourceTree = "<group>"; };
 		D00FA120289915A300328105 /* View+parentWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+parentWindow.swift"; sourceTree = "<group>"; };
+		D05236A52B83C58300C98183 /* BXHelpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXHelpButton.swift; sourceTree = "<group>"; };
 		D06503B02822DFFA002E52BE /* BXProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXProgressViewController.swift; sourceTree = "<group>"; };
 		D06503B12822DFFA002E52BE /* BXProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXProgressView.swift; sourceTree = "<group>"; };
 		D06503B22822DFFA002E52BE /* BXProgressWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXProgressWindowController.swift; sourceTree = "<group>"; };
@@ -430,6 +432,7 @@
 				D00CE25327A6E25A006D766C /* BXTextField.swift */,
 				D00CE25427A6E25A006D766C /* BXMultiValueTextView.swift */,
 				D00CE25527A6E25A006D766C /* BXButton.swift */,
+				D05236A52B83C58300C98183 /* BXHelpButton.swift */,
 				D00CE25627A6E25A006D766C /* BXSpinningWheel.swift */,
 				D00CE25727A6E25A006D766C /* BXProgressBar.swift */,
 				D00CE25827A6E25A006D766C /* BXCustomSlider.swift */,
@@ -687,6 +690,7 @@
 				D00CE2D727A6E25B006D766C /* BXMultiValueIntInspectorView.swift in Sources */,
 				D00CE2B827A6E25B006D766C /* BXSearchField.swift in Sources */,
 				D00CE2E627A6E25B006D766C /* BXLazyVStack.swift in Sources */,
+				D05236A62B83C58300C98183 /* BXHelpButton.swift in Sources */,
 				D00CE2BB27A6E25B006D766C /* BXTextField_macOS.swift in Sources */,
 				D00CE29827A6E25A006D766C /* Binding+attributedString.swift in Sources */,
 				D00CE2A227A6E25A006D766C /* View+renderImage.swift in Sources */,
