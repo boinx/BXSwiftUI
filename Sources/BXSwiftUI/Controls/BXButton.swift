@@ -83,7 +83,13 @@ public struct BXButton : View
 			}
 			else
 			{
-				button.foregroundColor(activeColor).buttonStyle(BorderlessButtonStyle())
+				BXImage(systemName:systemName!)
+					.offset(x:offset.x ,y:offset.y)
+					.foregroundColor(activeColor)
+					.onTapGesture
+					{
+						closure()
+					}
 			}
 		}
 	}
