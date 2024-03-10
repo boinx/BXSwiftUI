@@ -21,6 +21,7 @@ public struct BXButton : View
 	private var title:String?
 	private var isEnabled:Bool
 	private var isBordered:Bool
+	private var offset:CGPoint
 	private var action:()->Void
 
 	// Environment
@@ -30,12 +31,13 @@ public struct BXButton : View
 
 	// Init
 	
-	public init(systemName:String? = nil, title:String? = nil, isBordered:Bool = false, isEnabled:Bool = true, action:@escaping ()->Void)
+	public init(systemName:String? = nil, title:String? = nil, isBordered:Bool = false, isEnabled:Bool = true, offset:CGPoint = .zero, action:@escaping ()->Void)
 	{
 		self.systemName = systemName
 		self.title = title
 		self.isBordered = isBordered
 		self.isEnabled = isEnabled
+		self.offset = offset
 		self.action = action
 	}
 	
@@ -62,6 +64,7 @@ public struct BXButton : View
 				if systemName != nil
 				{
 					BXImage(systemName:systemName!)
+						.offset(x:offset.x ,y:offset.y)
 				}
 				
 				if title != nil
