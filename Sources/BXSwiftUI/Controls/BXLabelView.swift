@@ -78,6 +78,7 @@ public struct BXLabelView<Content> : View where Content:View
 						self.button3!()
 					}
 				}
+				.lineLimit(1)
 				
 				.resizeLabel(to:self.bxLabelWidth, for:self.bxLabelGroupID, alignment:self.alignment)
 				
