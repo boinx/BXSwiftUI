@@ -29,9 +29,13 @@ public struct BXProgressView : View
 		
 		VStack(alignment:.leading, spacing:4)
 		{
+			// Title
+			
 			Text(title)
 				.lineLimit(1)
-				
+			
+			// Progress Bar
+			
 			HStack
 			{
 				BXProgressBar(isIndeterminate:controller.isIndeterminate, value:controller.fraction, minValue:0, maxValue:1)
@@ -45,6 +49,8 @@ public struct BXProgressView : View
 					.buttonStyle(.borderless)
 				}
 			}
+			
+			// Detail Message
 			
 			Text(message)
 				.font(.caption)
