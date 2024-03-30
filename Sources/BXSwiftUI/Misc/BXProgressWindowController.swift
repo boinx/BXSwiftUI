@@ -65,7 +65,8 @@ open class BXProgressWindowController : NSWindowController
 		window.isMovableByWindowBackground = true
 		window.collectionBehavior.insert(.fullScreenAuxiliary)
 		window.contentViewController = BXProgressViewController(nibName:nil, bundle:nil)
-
+		window.isFloatingPanel = true
+		
 		self.window = window
 	}
 	
