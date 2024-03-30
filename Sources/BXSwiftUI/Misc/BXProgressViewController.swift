@@ -29,7 +29,6 @@ open class BXProgressViewController : NSViewController, ObservableObject
 	{
 		let frame = CGRect(x:0, y:0, width:360, height:88)
 		self.view = BXProgressBackgroundView(frame:frame)
-		self.view.wantsLayer = true
 		
 		// Create a SwiftUI view that observes the properties of this controller.
 		//

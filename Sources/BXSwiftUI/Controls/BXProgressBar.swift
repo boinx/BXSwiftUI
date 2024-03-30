@@ -61,16 +61,16 @@ public struct BXProgressBar : NSViewRepresentable
 		progressBar.minValue = self.minValue
 		progressBar.maxValue = self.maxValue
 		progressBar.doubleValue = self.value
-		progressBar.isIndeterminate = isIndeterminate
+		progressBar.isIndeterminate = self.isIndeterminate
 		
-		if isIndeterminate
+		if progressBar.isIndeterminate
 		{
-//			progressBar.usesThreadedAnimation = true
+			progressBar.usesThreadedAnimation = true
 			progressBar.startAnimation(nil)
 		}
 		else
 		{
-//			progressBar.usesThreadedAnimation = false
+			progressBar.usesThreadedAnimation = false
 			progressBar.stopAnimation(nil)
 		}
 	}
