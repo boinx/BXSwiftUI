@@ -129,6 +129,7 @@
 		D08C37342B1B5259001A43A2 /* View+identifiableBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08C37332B1B5259001A43A2 /* View+identifiableBackgroundView.swift */; };
 		D09F92E62858D0B5008DAC15 /* BXScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09F92E52858D0B4008DAC15 /* BXScrollView.swift */; };
 		D0BD92CD28E33CDB0063D029 /* BXToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD92CC28E33CDB0063D029 /* BXToggle.swift */; };
+		D0CB5FF82BDC0F6800A09EF4 /* BXMenuItemSpec.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D0CB5FF72BDC0F6800A09EF4 /* BXMenuItemSpec.xcstrings */; };
 		D0CBC147282A318800C6BABB /* NSImage+SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CBC146282A318800C6BABB /* NSImage+SFSymbols.swift */; };
 		D0D0EE5927B3C7B60050E20D /* NSWindow+present.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D0EE5827B3C7B60050E20D /* NSWindow+present.swift */; };
 		D0D9EDAE27FB4F0100D5D7FB /* BXSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00DF1CA27FAD25700DC1D27 /* BXSplitView.swift */; };
@@ -264,6 +265,7 @@
 		D09F1B1C27A5972400097FA9 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		D09F92E52858D0B4008DAC15 /* BXScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXScrollView.swift; sourceTree = "<group>"; };
 		D0BD92CC28E33CDB0063D029 /* BXToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXToggle.swift; sourceTree = "<group>"; };
+		D0CB5FF72BDC0F6800A09EF4 /* BXMenuItemSpec.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = BXMenuItemSpec.xcstrings; sourceTree = "<group>"; };
 		D0CBC146282A318800C6BABB /* NSImage+SFSymbols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSImage+SFSymbols.swift"; sourceTree = "<group>"; };
 		D0D0EE5827B3C7B60050E20D /* NSWindow+present.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindow+present.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -335,6 +337,7 @@
 				D00CE20B27A6E25A006D766C /* BXModifierKeys.swift */,
 				D00CE20C27A6E25A006D766C /* UserDefault.swift */,
 				D00CE20D27A6E25A006D766C /* BXMenuItemSpec.swift */,
+				D0CB5FF72BDC0F6800A09EF4 /* BXMenuItemSpec.xcstrings */,
 				D00CE20E27A6E25A006D766C /* TypeCheckable.swift */,
 				D00CE20F27A6E25A006D766C /* BXHasMultipleValuesKey.swift */,
 				D00CE21027A6E25A006D766C /* BXSliderResponse.swift */,
@@ -578,6 +581,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0CB5FF82BDC0F6800A09EF4 /* BXMenuItemSpec.xcstrings in Resources */,
 				D089008227C394FF00A8E6DD /* BXImage.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

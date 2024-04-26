@@ -134,10 +134,15 @@ public extension NSMenu
 					item.isHidden = false
 					item.tag = -1
 					menu.addItem(item)
+					
+					if name.contains("[AI]")
+					{
+						item.attributedTitle = NSAttributedString(with:name)
+					}
 						
 				// Add a regular menu item
 					
-				case .regular(let icon,let title, let value, let isEnabled, let representedObject):
+				case .regular(let icon, let title, let value, let isEnabled, let representedObject):
 				
 					item = NSMenuItem(title:title, action:nil, keyEquivalent:"")
 					item.image = icon
@@ -145,7 +150,12 @@ public extension NSMenu
 					item.representedObject = representedObject
 					item.isEnabled = isEnabled()
 					menu.addItem(item)
-				
+
+					if title.contains("[AI]")
+					{
+						item.attributedTitle = NSAttributedString(with:title)
+					}
+
 				// Add a section name (disabled)
 				
 				case .section(let title):
@@ -166,6 +176,41 @@ public extension NSMenu
 					menu.addItem(item)
 			}
 		}
+	}
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+extension NSAttributedString
+{
+	/// Creates an NSAttributedString with the specified string. It uses the regular system font, but any occurances of "[AI]" will be styled in a special way.
+	
+	public convenience init(with string:String)
+	{
+		let regularFont = NSFont.systemFont(ofSize:NSFont.systemFontSize)
+		let regularAttrs = [NSAttributedString.Key.font:regularFont]
+
+		let smallFont = NSFont.systemFont(ofSize:9)
+		let smallAttrs:[NSAttributedString.Key:Any] = [NSAttributedString.Key.font:smallFont, NSAttributedString.Key.foregroundColor:NSColor.systemYellow, NSAttributedString.Key.baselineOffset:3]
+		
+		let parts = string.components(separatedBy:"[AI]")
+		
+		let text = NSMutableAttributedString()
+		
+		for (i,part) in parts.enumerated()
+		{
+			text.append(NSMutableAttributedString(string:part, attributes:regularAttrs))
+			
+			if i < parts.count-1
+			{
+				let AI = NSLocalizedString("AI", tableName:"BXMenuItemSpec", bundle:.BXSwiftUI, comment:"AI abbreviation")
+				text.append(NSMutableAttributedString(string:AI, attributes:smallAttrs))
+			}
+		}
+		
+		self.init(attributedString:text)
 	}
 }
 
