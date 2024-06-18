@@ -26,7 +26,6 @@ import Foundation
         self.key = key.replacingOccurrences(of:".", with:"-")	// UserDefaults doesn't like keys containing "." so replace them
         self.defaultValue = defaultValue
         self.validator = validator
-        
     }
 
     public var wrappedValue : T
