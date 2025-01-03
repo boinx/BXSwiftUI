@@ -60,7 +60,7 @@ public extension View
 //----------------------------------------------------------------------------------------------------------------------
 
 
-extension NSEvent.ModifierFlags : Hashable
+extension AppKit.NSEvent.ModifierFlags : Swift.Hashable
 {
 	// Add Hashable support to ModifierFlags
 
