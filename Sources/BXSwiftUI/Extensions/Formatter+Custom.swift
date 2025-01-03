@@ -281,7 +281,7 @@ public extension NumberFormatter
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public class BXExposureTimeFormatter : NumberFormatter
+public class BXExposureTimeFormatter : NumberFormatter, @unchecked Sendable
 {
 	override open func string(for objectValue:Any?) -> String?
 	{
@@ -366,7 +366,7 @@ public class BXExposureTimeFormatter : NumberFormatter
 //----------------------------------------------------------------------------------------------------------------------
 
 
-public class BXTimeCodeFormatter : NumberFormatter
+public class BXTimeCodeFormatter : NumberFormatter, @unchecked Sendable
 {
 	public var showsHours = true
 	
