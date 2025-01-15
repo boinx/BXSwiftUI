@@ -124,6 +124,23 @@ public extension View
 		)
 	}
 
+	/// Executes an action when the Return key is pressed
+	
+	@ViewBuilder func onReturnKey(_ action:@escaping ()->Void) -> some View
+	{
+		if #available(macOS 14,*)
+		{
+			self.onKeyPress(.`return`)
+			{
+				action()
+				return .handled
+			}
+		}
+		else
+		{
+			self
+		}
+	}
 }
 
 
