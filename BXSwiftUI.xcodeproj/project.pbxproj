@@ -121,6 +121,7 @@
 		D06503B32822DFFA002E52BE /* BXProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06503B02822DFFA002E52BE /* BXProgressViewController.swift */; };
 		D06503B42822DFFA002E52BE /* BXProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06503B12822DFFA002E52BE /* BXProgressView.swift */; };
 		D06503B52822DFFA002E52BE /* BXProgressWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06503B22822DFFA002E52BE /* BXProgressWindowController.swift */; };
+		D07267522D4CC5A300C7D080 /* View+onContextClick.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07267512D4CC5A300C7D080 /* View+onContextClick.swift */; };
 		D0793E8A23D469870069327F /* BXSwiftUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0793E8923D469870069327F /* BXSwiftUtils.framework */; };
 		D089007E27C391E800A8E6DD /* BXImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D089007D27C391E800A8E6DD /* BXImage.swift */; };
 		D089008027C393B000A8E6DD /* Bundle+BXSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D089007F27C393B000A8E6DD /* Bundle+BXSwiftUI.swift */; };
@@ -255,6 +256,7 @@
 		D06503B02822DFFA002E52BE /* BXProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXProgressViewController.swift; sourceTree = "<group>"; };
 		D06503B12822DFFA002E52BE /* BXProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXProgressView.swift; sourceTree = "<group>"; };
 		D06503B22822DFFA002E52BE /* BXProgressWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXProgressWindowController.swift; sourceTree = "<group>"; };
+		D07267512D4CC5A300C7D080 /* View+onContextClick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+onContextClick.swift"; sourceTree = "<group>"; };
 		D0793E8923D469870069327F /* BXSwiftUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BXSwiftUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D089007D27C391E800A8E6DD /* BXImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXImage.swift; sourceTree = "<group>"; };
 		D089007F27C393B000A8E6DD /* Bundle+BXSwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+BXSwiftUI.swift"; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 				D00D6DE7283E654E00013C39 /* View+hostingView.swift */,
 				D08C37332B1B5259001A43A2 /* View+identifiableBackgroundView.swift */,
 				D089F8932B49626100EED4FA /* View+onMouseInside.swift */,
+				D07267512D4CC5A300C7D080 /* View+onContextClick.swift */,
 				D00CE23527A6E25A006D766C /* Binding+Convert.swift */,
 				D00CE23627A6E25A006D766C /* NSViewController+Embed.swift */,
 				D00CE23827A6E25A006D766C /* Binding+Optional.swift */,
@@ -689,6 +692,7 @@
 				D06503B32822DFFA002E52BE /* BXProgressViewController.swift in Sources */,
 				D00CE2A527A6E25B006D766C /* Binding+Convert.swift in Sources */,
 				D00CE29927A6E25A006D766C /* NSAlert+Present.swift in Sources */,
+				D07267522D4CC5A300C7D080 /* View+onContextClick.swift in Sources */,
 				D00CE28027A6E25A006D766C /* TypeCheckable.swift in Sources */,
 				D00CE29427A6E25A006D766C /* NSView+Publishers.swift in Sources */,
 				D00CE2D727A6E25B006D766C /* BXMultiValueIntInspectorView.swift in Sources */,
