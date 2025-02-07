@@ -53,6 +53,7 @@ public struct BXMultiValuePicker : NSViewRepresentable
 	@Environment(\.bxColorTheme) private var bxColorTheme
 	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
 	@Environment(\.bxUndoName) private var undoName
+	@Environment(\.bxAccessibilityIdentifier) private var bxAccessibilityIdentifier
 	
 	// The control size is provided by the environment. needs to be converted to NSControl datatype
 	
@@ -90,6 +91,7 @@ public struct BXMultiValuePicker : NSViewRepresentable
 		popup.action = #selector(Coordinator.updateValues(with:))
 		popup.setContentHuggingPriority(self.huggingPriority, for:.horizontal)
 		popup.setContentCompressionResistancePriority(.defaultLow, for:.horizontal)
+		popup.setAccessibilityIdentifier(bxAccessibilityIdentifier)
 		
 		let size = self.NSControlSize
         popup.controlSize = size

@@ -53,6 +53,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 	@Environment(\.controlSize) var controlSize:ControlSize
 	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
 	@Environment(\.bxUndoName) private var undoName
+	@Environment(\.bxAccessibilityIdentifier) private var bxAccessibilityIdentifier
 
 	// The control size is provided by the environment. needs to be converted to NSControl datatype
 	
@@ -126,6 +127,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 		textfield.placeholderString	 = self.placeholderString
 		textfield.selectAllOnMouseDown = self.selectAllOnMouseDown
 		textfield.allowSpaceKey = self.allowSpaceKey
+		textfield.setAccessibilityIdentifier(bxAccessibilityIdentifier)
 		
 		return textfield
     }

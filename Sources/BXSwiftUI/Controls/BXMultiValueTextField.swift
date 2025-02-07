@@ -36,6 +36,7 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 	@Environment(\.controlSize) private var controlSize:ControlSize
 	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
 	@Environment(\.bxUndoName) private var undoName
+	@Environment(\.bxAccessibilityIdentifier) private var bxAccessibilityIdentifier
 
 
 	// Init
@@ -93,6 +94,7 @@ public struct BXMultiValueTextField<T:Hashable> : NSViewRepresentable where T:Ty
 		textfield.selectAllOnMouseDown = self.selectAllOnMouseDown
 		textfield.allowSpaceKey = self.allowSpaceKey
 		textfield.statusHandler = self.statusHandler
+		textfield.setAccessibilityIdentifier(bxAccessibilityIdentifier)
 		
 		let size = self.NSControlSize
     	textfield.controlSize = size

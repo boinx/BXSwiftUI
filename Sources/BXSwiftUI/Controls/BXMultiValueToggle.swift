@@ -32,6 +32,7 @@ public struct BXMultiValueToggle : View
 	@Environment(\.hasMultipleValues) private var hasMultipleValues
 	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
 	@Environment(\.bxUndoName) private var undoName
+	@Environment(\.bxAccessibilityIdentifier) private var bxAccessibilityIdentifier
 
 	// Init
 	
@@ -52,6 +53,7 @@ public struct BXMultiValueToggle : View
 			Text(label)
 		}
 		.hasMultipleValues(self.values.wrappedValue.count > 1)
+		.bxAccessibilityIdentifier(bxAccessibilityIdentifier ?? "Unknown")
 	}
 
 	// Custom Binding

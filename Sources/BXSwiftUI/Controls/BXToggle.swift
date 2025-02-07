@@ -31,6 +31,7 @@ public struct BXToggle : View
 	@Environment(\.controlSize) private var controlSize
 	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
 	@Environment(\.bxUndoName) private var undoName
+	@Environment(\.bxAccessibilityIdentifier) private var bxAccessibilityIdentifier
 
 	// Init
 	
@@ -50,6 +51,7 @@ public struct BXToggle : View
 		{
 			Text(label)
 		}
+		.bxAccessibilityIdentifier(bxAccessibilityIdentifier ?? "Unknown")
 	}
 
 	// Custom Binding

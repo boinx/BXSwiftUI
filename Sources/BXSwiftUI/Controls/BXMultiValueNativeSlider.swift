@@ -33,7 +33,9 @@ public struct BXMultiValueNativeSlider : NSViewRepresentable
 	@Environment(\.bxUndoManagerProvider) private var undoManagerProvider
 	@Environment(\.bxUndoName) private var undoName
 	@Environment(\.bxColorTheme) private var bxColorTheme
+	@Environment(\.bxAccessibilityIdentifier) private var bxAccessibilityIdentifier
 	@Environment(\.colorScheme) private var colorScheme
+
 
 	// Init
 	
@@ -58,6 +60,7 @@ public struct BXMultiValueNativeSlider : NSViewRepresentable
         slider.cell = cell
 		slider.target = context.coordinator
 		slider.action = #selector(Coordinator.updateValues(with:))
+		slider.setAccessibilityIdentifier(bxAccessibilityIdentifier)
 		
 		self.setColors(for:slider)
 		
