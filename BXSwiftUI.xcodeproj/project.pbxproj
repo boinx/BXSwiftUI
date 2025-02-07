@@ -117,6 +117,7 @@
 		D00CE2E827A6E25B006D766C /* BXIndentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE27C27A6E25A006D766C /* BXIndentationView.swift */; };
 		D00D6DE8283E654E00013C39 /* View+hostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D6DE7283E654E00013C39 /* View+hostingView.swift */; };
 		D00FA121289915A300328105 /* View+parentWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00FA120289915A300328105 /* View+parentWindow.swift */; };
+		D04DE35F2D5607720000D056 /* View+bxAccessibilityIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04DE35E2D5607720000D056 /* View+bxAccessibilityIdentifier.swift */; };
 		D05236A62B83C58300C98183 /* BXHelpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05236A52B83C58300C98183 /* BXHelpButton.swift */; };
 		D06503B32822DFFA002E52BE /* BXProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06503B02822DFFA002E52BE /* BXProgressViewController.swift */; };
 		D06503B42822DFFA002E52BE /* BXProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06503B12822DFFA002E52BE /* BXProgressView.swift */; };
@@ -252,6 +253,7 @@
 		D00D6DE7283E654E00013C39 /* View+hostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+hostingView.swift"; sourceTree = "<group>"; };
 		D00DF1CA27FAD25700DC1D27 /* BXSplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSplitView.swift; sourceTree = "<group>"; };
 		D00FA120289915A300328105 /* View+parentWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+parentWindow.swift"; sourceTree = "<group>"; };
+		D04DE35E2D5607720000D056 /* View+bxAccessibilityIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+bxAccessibilityIdentifier.swift"; sourceTree = "<group>"; };
 		D05236A52B83C58300C98183 /* BXHelpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXHelpButton.swift; sourceTree = "<group>"; };
 		D06503B02822DFFA002E52BE /* BXProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXProgressViewController.swift; sourceTree = "<group>"; };
 		D06503B12822DFFA002E52BE /* BXProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXProgressView.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 				D08C37332B1B5259001A43A2 /* View+identifiableBackgroundView.swift */,
 				D089F8932B49626100EED4FA /* View+onMouseInside.swift */,
 				D07267512D4CC5A300C7D080 /* View+onContextClick.swift */,
+				D04DE35E2D5607720000D056 /* View+bxAccessibilityIdentifier.swift */,
 				D00CE23527A6E25A006D766C /* Binding+Convert.swift */,
 				D00CE23627A6E25A006D766C /* NSViewController+Embed.swift */,
 				D00CE23827A6E25A006D766C /* Binding+Optional.swift */,
@@ -638,6 +641,7 @@
 				D00CE2C327A6E25B006D766C /* BXMultiValueTextView.swift in Sources */,
 				D00CE2CD27A6E25B006D766C /* BXStrokedCheckboxStyle.swift in Sources */,
 				D00CE2AC27A6E25B006D766C /* Binding+multiValue.swift in Sources */,
+				D04DE35F2D5607720000D056 /* View+bxAccessibilityIdentifier.swift in Sources */,
 				D00CE2AB27A6E25B006D766C /* View+IntrinsicContentSize.swift in Sources */,
 				D00CE2CA27A6E25B006D766C /* BXRangeSlider.swift in Sources */,
 				D00CE28327A6E25A006D766C /* BXCGRectEditView.swift in Sources */,
