@@ -27,7 +27,7 @@ extension View
 		}
 		else
 		{
-			return self
+			return self.environment(\.bxAccessibilityIdentifier, identifier)
 		}
 	}
 }
