@@ -186,6 +186,11 @@ fileprivate struct _BXStrokedButton : View
 
 public struct BXNonDraggingView : NSViewRepresentable
 {
+	public init ()
+	{
+	
+	}
+	
 	public func makeNSView(context:Context) -> _BXNonDraggingView
     {
 		return _BXNonDraggingView(frame:.zero)
