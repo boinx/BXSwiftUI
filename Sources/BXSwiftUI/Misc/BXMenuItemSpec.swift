@@ -52,6 +52,23 @@ public enum BXMenuItemSpec
 }
 
 
+public extension BXMenuItemSpec
+{
+	/// Returns a title that is suitable for display purposes
+	
+	var title:String
+	{
+		switch self
+		{
+			case .action(_,let title,_,_,_): return title
+			case .regular(_,let title,_,_,_): return title
+			case .section(let title): return title
+			default: return ""
+		}
+	}
+}
+
+
 //----------------------------------------------------------------------------------------------------------------------
 
 
