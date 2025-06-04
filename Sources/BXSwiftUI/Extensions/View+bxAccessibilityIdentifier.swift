@@ -19,7 +19,7 @@ extension View
 	
 	public func bxAccessibilityIdentifier(_ identifier:String) -> some View
 	{
-		if #available(macOS 11,*)
+		if #available(macOS 11,iOS 14,*)
 		{
 			return self
 				.accessibilityIdentifier(identifier)
