@@ -2,7 +2,7 @@
 //
 //  BXJogwheel.swift
 //	A custom slider
-//  Copyright ©2020 Peter Baumgartner. All rights reserved.
+//  Copyright ©2020-2025 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
 
@@ -22,6 +22,14 @@ public struct BXJogwheel : View
 	
 	private var value:Binding<Double>
 	private var speed:Double
+	private var commandKeyFactor = 1.0
+	private var optionKeyFactor = 1.0
+	private var controlKeyFactor = 1.0
+	private var shiftKeyFactor = 1.0
+
+	private var stepperBinding:Binding<Double>?
+	private var stepperDelta:Double = 0.1
+	
 	private var onBegan:(()->Void)? = nil
 	private var onChanged:((Double,Double)->Void)? = nil
 	private var onEnded:(()->Void)? = nil
@@ -34,10 +42,18 @@ public struct BXJogwheel : View
 
 	// Init
 	
-	public init(value:Binding<Double>, speed:Double = 1.0, onBegan:(()->Void)? = nil, onChanged:((Double,Double)->Void)? = nil, onEnded:(()->Void)? = nil)
+	public init(value:Binding<Double>, speed:Double = 1.0, commandKeyFactor:Double = 1.0, optionKeyFactor:Double = 1.0, controlKeyFactor:Double = 1.0, shiftKeyFactor:Double = 1.0, stepperBinding:Binding<Double>? = nil, stepperDelta:Double = 0.1, onBegan:(()->Void)? = nil, onChanged:((Double,Double)->Void)? = nil, onEnded:(()->Void)? = nil)
 	{
 		self.value = value
 		self.speed = speed
+		self.commandKeyFactor = commandKeyFactor
+		self.optionKeyFactor = optionKeyFactor
+		self.controlKeyFactor = controlKeyFactor
+		self.shiftKeyFactor = shiftKeyFactor
+		
+		self.stepperBinding = stepperBinding
+		self.stepperDelta = stepperDelta
+		
 		self.onBegan = onBegan
 		self.onChanged = onChanged
 		self.onEnded = onEnded
@@ -109,6 +125,24 @@ public struct BXJogwheel : View
 			
 			BXJogwheelLines(value:self.value.wrappedValue, speed:speed)
 				.fill(self.tickmarkColor)
+			
+			if let stepperBinding = self.stepperBinding
+			{
+				HStack
+				{
+					BXJogwheelStepper()
+					{
+						stepperBinding.wrappedValue -= stepperDelta
+					}
+						
+					Spacer()
+					
+					BXJogwheelStepper()
+					{
+						stepperBinding.wrappedValue += stepperDelta
+					}
+				}
+			}
 		}
 		
 		// Dim when disabled
@@ -141,7 +175,26 @@ public struct BXJogwheel : View
 				
 				// Update the current value
 
-				let dx = $0.translation.width
+				var  dx = $0.translation.width
+				let flags = BXModifierKeys.shared.currentFlags
+				
+				if flags.contains(.command)
+				{
+					dx *= self.commandKeyFactor
+				}
+				else if flags.contains(.option)
+				{
+					dx *= self.optionKeyFactor
+				}
+				else if flags.contains(.control)
+				{
+					dx *= self.controlKeyFactor
+				}
+				else if flags.contains(.shift)
+				{
+					dx *= self.shiftKeyFactor
+				}
+			
 				let value = self.dragInitialValue + self.speed * Double(dx)
 				self.value.wrappedValue = value
 				
@@ -202,6 +255,30 @@ struct BXJogwheelLines : Shape
 
         return path
     }
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+/// The stepper is an invisible click area at both ends of a BXJogWheel that supports stepping up or down with single clicks
+
+public struct BXJogwheelStepper : View
+{
+	public var action:()->Void
+	
+	public var body: some View
+	{
+		Rectangle()
+			.fill(.clear)
+			.frame(width:8)
+			
+			.contentShape(Rectangle())
+			.onTapGesture
+			{
+				action()
+			}
+	}
 }
 
 
