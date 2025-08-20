@@ -2,7 +2,7 @@
 //
 //  BXProgressWindowController.swift
 //	A progress bar window that can be presented modally or as a sheet
-//  Copyright ©2020-2022 Peter Baumgartner. All rights reserved.
+//  Copyright ©2020-2025 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
 
@@ -139,6 +139,8 @@ open class BXProgressWindowController : NSWindowController
 	{
 		self.window?.isVisible ?? false
 	}
+	
+	public static var isCancelled:Bool = false
 	
 	
 //----------------------------------------------------------------------------------------------------------------------

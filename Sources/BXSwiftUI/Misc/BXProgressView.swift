@@ -42,9 +42,9 @@ public struct BXProgressView : View
 				
 					.id(controller.isIndeterminate) // WORKAROUND: Since switching isIndeterminate on/off doesn't work for some reason, we'll simply use id to completely replace the NSProgressIndicator instance with a new one when the value of isIndeterminate changes. Now we get to see the animation!
 					
-				if let cancelHandler = BXProgressViewController.cancelHandler
+				if BXProgressViewController.cancelHandler != nil
 				{
-					Button(action:cancelHandler)
+					Button(action:cancel)
 					{
 						BXImage(systemName:"xmark.circle")
 					}
@@ -61,6 +61,12 @@ public struct BXProgressView : View
 		}
 		.padding()
 		.edgesIgnoringSafeArea(.all) // This is essential to make the view extend below transparent titlebar of an NSWindow!
+	}
+	
+	func cancel()
+	{
+		BXProgressWindowController.isCancelled = true
+		BXProgressViewController.cancelHandler?()
 	}
 }
 

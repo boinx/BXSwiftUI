@@ -2,7 +2,7 @@
 //
 //  BXProgressViewController.swift
 //	A progress bar window that can be presented modally or as a sheet
-//  Copyright ©2020-2022 Peter Baumgartner. All rights reserved.
+//  Copyright ©2020-2025 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
 
@@ -42,6 +42,10 @@ open class BXProgressViewController : NSViewController, ObservableObject
 		hostView.bottomAnchor.constraint(equalTo:view.bottomAnchor, constant:0).isActive = true
 		hostView.leadingAnchor.constraint(equalTo:view.leadingAnchor, constant:0).isActive = true
 		hostView.trailingAnchor.constraint(equalTo:view.trailingAnchor, constant:0).isActive = true
+		
+		// Reset
+		
+		BXProgressWindowController.isCancelled = false
 	}
 		
 	override open func viewDidDisappear()
