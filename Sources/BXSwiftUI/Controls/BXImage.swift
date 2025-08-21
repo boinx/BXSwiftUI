@@ -51,11 +51,11 @@ public struct BXImage : View
 			
 			else if Bundle.BXSwiftUI.image(forResource:name) != nil
 			{
-				SwiftUI.Image(name, bundle:Bundle.BXSwiftUI)
+				SwiftUI.Image(name, bundle:.BXSwiftUI)
 			}
 			else
 			{
-				SwiftUI.Image("stop", bundle:Bundle.BXSwiftUI) 	// fallback for unavailable icon
+				SwiftUI.Image("stop", bundle:.BXSwiftUI) 	// fallback for unavailable icon
 			}
 
 		#endif
