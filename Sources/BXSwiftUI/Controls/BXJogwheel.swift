@@ -103,10 +103,11 @@ public struct BXJogwheel : View
 	
 	@GestureState private var dragIteration = 0
 	
-	@State private var dragInitialValue:Double = 0.0
-	@State private var prevX:CGFloat = 0.0
+	@State private var lastLocation:CGPoint = .zero
 	@State private var undoHelper = BXUndoGroupingHelper()
 	
+	@EnvironmentObject var modifierKeys:BXModifierKeys
+
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -123,7 +124,7 @@ public struct BXJogwheel : View
 				.fill(self.fillGradient)
 				.border(self.strokeColor, width:1)
 			
-			BXJogwheelLines(value:self.value.wrappedValue, speed:speed)
+			BXJogwheelLines(value:self.value.wrappedValue, speed:speed, speedFactor:speedModifier)
 				.fill(self.tickmarkColor)
 			
 			if let stepperBinding = self.stepperBinding
@@ -172,39 +173,23 @@ public struct BXJogwheel : View
 
 					// Store initial value
 					
-					self.dragInitialValue = self.value.wrappedValue
+					self.lastLocation = $0.startLocation
 				}
 				
 				// Update the current value
 
-				var  dx = $0.translation.width
-				let flags = BXModifierKeys.shared.currentFlags
-				
-				if flags.contains(.command)
-				{
-					dx *= self.commandKeyFactor
-				}
-				else if flags.contains(.option)
-				{
-					dx *= self.optionKeyFactor
-				}
-				else if flags.contains(.control)
-				{
-					dx *= self.controlKeyFactor
-				}
-				else if flags.contains(.shift)
-				{
-					dx *= self.shiftKeyFactor
-				}
-			
-				let value = self.dragInitialValue + self.speed * Double(dx)
+				let dx = $0.location.x - self.lastLocation.x	// Mouse delta since last iteration
+				self.lastLocation = $0.location
+
+				var delta = dx
+				delta *= speed									// Speed configuration of this particual jogwheel
+				delta *= speedModifier							// Option key slows down the speed
+
+				let value = self.value.wrappedValue + delta
 				self.value.wrappedValue = value
-				
+
 				// Call the onChanged action with current value and delta
 				
-				let x = $0.location.x
-				let delta = self.speed * Double(x - self.prevX)
-				self.prevX = x
 				self.onChanged?(value,delta)
 			}
 
@@ -219,6 +204,33 @@ public struct BXJogwheel : View
 			}
 		)
 	}
+
+
+	/// The speed is multiplied by this factor, which depends on the currently pressed modifier keys
+	
+	var speedModifier:CGFloat
+	{
+		let flags = BXModifierKeys.shared.currentFlags
+		
+		if flags.contains(.command)
+		{
+			return self.commandKeyFactor
+		}
+		else if flags.contains(.option)
+		{
+			return self.optionKeyFactor
+		}
+		else if flags.contains(.control)
+		{
+			return self.controlKeyFactor
+		}
+		else if flags.contains(.shift)
+		{
+			return self.shiftKeyFactor
+		}
+		
+		return 1.0
+	}
 }
 
 
@@ -229,6 +241,9 @@ struct BXJogwheelLines : Shape
 {
 	var value = 0.0
 	var speed = 0.015
+	var speedFactor:CGFloat = 1.0
+	
+	@EnvironmentObject var modifierKeys:BXModifierKeys
 	
     func path(in rect:CGRect) -> Path
     {
@@ -236,7 +251,8 @@ struct BXJogwheelLines : Shape
 		let v = f * value
 		
         var path = Path()
-		let n = 30
+		var n = 30
+		if speedFactor < 1.0 { n *= 2 }
 		
 		for i in 0...n
 		{
