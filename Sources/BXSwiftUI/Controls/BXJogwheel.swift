@@ -134,6 +134,7 @@ public struct BXJogwheel : View
 					{
 						stepperBinding.wrappedValue -= stepperDelta
 					}
+					.cursor(.minus, for:[])
 						
 					Spacer()
 					
@@ -141,6 +142,7 @@ public struct BXJogwheel : View
 					{
 						stepperBinding.wrappedValue += stepperDelta
 					}
+					.cursor(.plus, for:[])
 				}
 			}
 		}

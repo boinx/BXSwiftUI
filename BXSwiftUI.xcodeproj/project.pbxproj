@@ -117,6 +117,8 @@
 		D00CE2E827A6E25B006D766C /* BXIndentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CE27C27A6E25A006D766C /* BXIndentationView.swift */; };
 		D00D6DE8283E654E00013C39 /* View+hostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D6DE7283E654E00013C39 /* View+hostingView.swift */; };
 		D00FA121289915A300328105 /* View+parentWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00FA120289915A300328105 /* View+parentWindow.swift */; };
+		D01B57DE2E64B4CC00279E42 /* NSCursor+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B57DD2E64B4CC00279E42 /* NSCursor+Custom.swift */; };
+		D01B57E02E64B4D300279E42 /* NSCursor+Custom.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D01B57DF2E64B4D300279E42 /* NSCursor+Custom.xcassets */; };
 		D04DE35F2D5607720000D056 /* View+bxAccessibilityIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04DE35E2D5607720000D056 /* View+bxAccessibilityIdentifier.swift */; };
 		D05236A62B83C58300C98183 /* BXHelpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05236A52B83C58300C98183 /* BXHelpButton.swift */; };
 		D06503B32822DFFA002E52BE /* BXProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06503B02822DFFA002E52BE /* BXProgressViewController.swift */; };
@@ -253,6 +255,8 @@
 		D00D6DE7283E654E00013C39 /* View+hostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+hostingView.swift"; sourceTree = "<group>"; };
 		D00DF1CA27FAD25700DC1D27 /* BXSplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXSplitView.swift; sourceTree = "<group>"; };
 		D00FA120289915A300328105 /* View+parentWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+parentWindow.swift"; sourceTree = "<group>"; };
+		D01B57DD2E64B4CC00279E42 /* NSCursor+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCursor+Custom.swift"; sourceTree = "<group>"; };
+		D01B57DF2E64B4D300279E42 /* NSCursor+Custom.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "NSCursor+Custom.xcassets"; sourceTree = "<group>"; };
 		D04DE35E2D5607720000D056 /* View+bxAccessibilityIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+bxAccessibilityIdentifier.swift"; sourceTree = "<group>"; };
 		D05236A52B83C58300C98183 /* BXHelpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BXHelpButton.swift; sourceTree = "<group>"; };
 		D06503B02822DFFA002E52BE /* BXProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXProgressViewController.swift; sourceTree = "<group>"; };
@@ -412,6 +416,8 @@
 				D00CE23E27A6E25A006D766C /* View+onMouseDown.swift */,
 				D00CE23F27A6E25A006D766C /* NSAppearance+colorScheme.swift */,
 				D0CBC146282A318800C6BABB /* NSImage+SFSymbols.swift */,
+				D01B57DD2E64B4CC00279E42 /* NSCursor+Custom.swift */,
+				D01B57DF2E64B4D300279E42 /* NSCursor+Custom.xcassets */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -587,6 +593,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D01B57E02E64B4D300279E42 /* NSCursor+Custom.xcassets in Resources */,
 				D0CB5FF82BDC0F6800A09EF4 /* BXMenuItemSpec.xcstrings in Resources */,
 				D089008227C394FF00A8E6DD /* BXImage.xcassets in Resources */,
 			);
@@ -677,6 +684,7 @@
 				D00CE2C427A6E25B006D766C /* BXButton.swift in Sources */,
 				D00CE28527A6E25A006D766C /* BXIntEnumView.swift in Sources */,
 				D00CE2C627A6E25B006D766C /* BXProgressBar.swift in Sources */,
+				D01B57DE2E64B4CC00279E42 /* NSCursor+Custom.swift in Sources */,
 				D00CE2B627A6E25B006D766C /* BXTextView_macOS.swift in Sources */,
 				D00CE2DA27A6E25B006D766C /* BXBorderlessWindow.swift in Sources */,
 				D00CE2D027A6E25B006D766C /* BXReducedOpacityWhenDisabledModifier.swift in Sources */,
