@@ -18,7 +18,7 @@ public extension NSAlert
 {
 	/// Convenience function to show a modal alert with the specified arguments
 	
-	class func presentModal(style:NSAlert.Style = .informational, title:String, message:String, okButton:String = "OK", cancelButton:String? = nil, suppressionKey:String? = nil, appearance:NSAppearance? = nil, okHandler:(()->Void)? = nil)
+	class func presentModal(style:NSAlert.Style = .informational, title:String, message:String, okButton:String = "OK", cancelButton:String? = nil, suppressionKey:String? = nil, appearance:NSAppearance? = nil, isDestructiveAction:Bool = false, okHandler:(()->Void)? = nil)
 	{
 		// Bail out if the user clicked on the "Don't show again" checkbox
 		
@@ -42,6 +42,11 @@ public extension NSAlert
 			alert.addButton(withTitle:cancelButton)
 		}
 		
+		if #available(macOS 11,*), isDestructiveAction, let okButton = alert.buttons.first
+		{
+			okButton.hasDestructiveAction = true
+		}
+
 		// Show modal alert
 		
 		if alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn
