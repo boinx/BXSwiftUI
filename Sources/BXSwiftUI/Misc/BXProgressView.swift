@@ -65,7 +65,9 @@ public struct BXProgressView : View
 	
 	func cancel()
 	{
+		#if os(macOS)
 		BXProgressWindowController.isCancelled = true
+		#endif
 		BXProgressViewController.cancelHandler?()
 	}
 }
