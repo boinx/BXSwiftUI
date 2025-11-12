@@ -20,6 +20,7 @@ public struct BXKeyEventView : NSViewRepresentable
 {
 	/// Handler closures
 	
+	var isFocused:((Bool)->Void)? = nil
 	var onKeyDown:(NSEvent)->Void
 	var onKeyUp:(NSEvent)->Void
 	var onModifiersChanged:(NSEvent)->Void
@@ -28,6 +29,7 @@ public struct BXKeyEventView : NSViewRepresentable
 	
     public class KeyView : NSView
     {
+		var isFocused:((Bool)->Void)? = nil
 		var onKeyDown:(NSEvent)->Void = { _ in }
 		var onKeyUp:(NSEvent)->Void = { _ in }
 		var onModifiersChanged:(NSEvent)->Void = { _ in }
@@ -47,6 +49,19 @@ public struct BXKeyEventView : NSViewRepresentable
 			true
         }
         
+        public override func becomeFirstResponder() -> Bool
+		{
+			self.isFocused?(true)
+			return true
+		}
+		
+        public override func resignFirstResponder() -> Bool
+        {
+			self.isFocused?(false)
+			return true
+        }
+        
+		
         // Keyboard event handling
         
         override public func keyDown(with event:NSEvent)
@@ -56,7 +71,7 @@ public struct BXKeyEventView : NSViewRepresentable
         
         override public func keyUp(with event:NSEvent)
         {
-             self.onKeyUp(event)
+        	self.onKeyUp(event)
         }
         
 		override public func flagsChanged(with event:NSEvent)
@@ -71,6 +86,7 @@ public struct BXKeyEventView : NSViewRepresentable
 	public func makeNSView(context:Context) -> KeyView
     {
         let view = KeyView(frame:.zero)
+		view.isFocused = self.isFocused
         view.onKeyDown = self.onKeyDown
         view.onKeyUp = self.onKeyUp
         return view
@@ -90,37 +106,37 @@ public extension View
 {
 	/// Adds a keyDown handler to a view
 	
-	func onKeyDown(action:@escaping (NSEvent)->Void) -> some View
+	func onKeyDown(isFocused:((Bool)->Void)? = nil, action:@escaping (NSEvent)->Void) -> some View
 	{
 		return self.background(
-			BXKeyEventView(onKeyDown:action, onKeyUp:{ _ in }, onModifiersChanged:{ _ in })
+			BXKeyEventView(isFocused:isFocused, onKeyDown:action, onKeyUp:{ _ in }, onModifiersChanged:{ _ in })
 		)
 	}
 
 	/// Adds a keyUp handler to a view
 	
-	func onKeyUp(action:@escaping (NSEvent)->Void) -> some View
+	func onKeyUp(isFocused:((Bool)->Void)? = nil, action:@escaping (NSEvent)->Void) -> some View
 	{
 		return self.background(
-			BXKeyEventView(onKeyDown:{ _ in }, onKeyUp:action, onModifiersChanged:{ _ in })
+			BXKeyEventView(isFocused:isFocused, onKeyDown:{ _ in }, onKeyUp:action, onModifiersChanged:{ _ in })
 		)
 	}
 	
 	/// Adds a keyUp handler to a view
 	
-	func onModifiersChanged(action:@escaping (NSEvent)->Void) -> some View
+	func onModifiersChanged(isFocused:((Bool)->Void)? = nil, action:@escaping (NSEvent)->Void) -> some View
 	{
 		return self.background(
-			BXKeyEventView(onKeyDown:{ _ in }, onKeyUp:{ _ in }, onModifiersChanged:action)
+			BXKeyEventView(isFocused:isFocused, onKeyDown:{ _ in }, onKeyUp:{ _ in }, onModifiersChanged:action)
 		)
 	}
 	
 	/// Adds a keyDown/Up handlers to a view
 	
-	func onKey(down:@escaping (NSEvent)->Void = { _ in }, up:@escaping (NSEvent)->Void = { _ in }, modifiers:@escaping (NSEvent)->Void = { _ in }) -> some View
+	func onKey(isFocused:((Bool)->Void)? = nil, down:@escaping (NSEvent)->Void = { _ in }, up:@escaping (NSEvent)->Void = { _ in }, modifiers:@escaping (NSEvent)->Void = { _ in }) -> some View
 	{
 		return self.background(
-			BXKeyEventView(onKeyDown:down, onKeyUp:up, onModifiersChanged:modifiers)
+			BXKeyEventView(isFocused:isFocused, onKeyDown:down, onKeyUp:up, onModifiersChanged:modifiers)
 		)
 	}
 
