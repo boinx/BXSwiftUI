@@ -57,7 +57,7 @@ public struct  BXTextField<T> : View
 
 	public var body: some View
 	{
-		BXTextFieldWrapper(value:value, height:height, alignment:alignment, placeholderString:placeholderString, formatter:formatter, selectAllOnMouseDown:selectAllOnMouseDown, allowSpaceKey:allowSpaceKey, statusHandler:statusHandler)
+		BXTextFieldWrapper(value:value, height:height, alignment:alignment, placeholderString:placeholderString, formatter:formatter, selectAllOnMouseDown:selectAllOnMouseDown, allowSpaceKey:allowSpaceKey, statusHandler:statusHandler, onBegan:onBegan, onChanged:onChanged, onEnded:onEnded)
 
 			// Apply size specific alignment for the first baseline
 			
