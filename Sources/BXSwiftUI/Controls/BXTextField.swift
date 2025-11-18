@@ -29,6 +29,7 @@ public struct  BXTextField<T> : View
 	private var allowSpaceKey = false
 	private var statusHandler:(BXTextFieldStatusHandler)? = nil
 	private var onBegan:(()->Void)? = nil
+	private var onChanged:((String)->Void)? = nil
 	private var onEnded:(()->Void)? = nil
 
 	// Environment
@@ -37,7 +38,7 @@ public struct  BXTextField<T> : View
 	
 	// Init
 
-	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, placeholderString:String? = nil, formatter:Formatter? = nil, selectAllOnMouseDown:Bool = true, allowSpaceKey:Bool = false,statusHandler:(BXTextFieldStatusHandler)? = nil, onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil)
+	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, placeholderString:String? = nil, formatter:Formatter? = nil, selectAllOnMouseDown:Bool = true, allowSpaceKey:Bool = false,statusHandler:(BXTextFieldStatusHandler)? = nil, onBegan:(()->Void)? = nil, onChanged:((String)->Void)? = nil, onEnded:(()->Void)? = nil)
 	{
 		self.value = value
 		self.height = height
@@ -48,6 +49,7 @@ public struct  BXTextField<T> : View
 		self.allowSpaceKey = allowSpaceKey
 		self.statusHandler = statusHandler
 		self.onBegan = onBegan
+		self.onChanged = onChanged
 		self.onEnded = onEnded
 	}
 

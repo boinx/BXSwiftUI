@@ -46,6 +46,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 	public var allowSpaceKey = false
 	public var statusHandler:(BXTextFieldStatusHandler)? = nil
 	private var onBegan:(()->Void)? = nil
+	private var onChanged:((String)->Void)? = nil
 	private var onEnded:(()->Void)? = nil
 
 	// Environment
@@ -70,7 +71,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 
 	// Only needed to make init public
 	
-	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, placeholderString:String? = nil, formatter:Formatter? = nil, selectAllOnMouseDown:Bool = true, allowSpaceKey:Bool = false, statusHandler:(BXTextFieldStatusHandler)? = nil, onBegan:(()->Void)? = nil, onEnded:(()->Void)? = nil)
+	public init(value:Binding<T>, height:CGFloat? = nil, alignment:TextAlignment = .leading, placeholderString:String? = nil, formatter:Formatter? = nil, selectAllOnMouseDown:Bool = true, allowSpaceKey:Bool = false, statusHandler:(BXTextFieldStatusHandler)? = nil, onBegan:(()->Void)? = nil, onChanged:((String)->Void)? = nil, onEnded:(()->Void)? = nil)
 	{
 		self.value = value
 		self.height = height 
@@ -81,6 +82,7 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 		self.allowSpaceKey = allowSpaceKey
 		self.statusHandler = statusHandler
 		self.onBegan = onBegan
+		self.onChanged = onChanged
 		self.onEnded = onEnded
 	}
 	
@@ -215,6 +217,15 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
 			textfield.isEditing = true
 			self.textfield.onBegan?()
 		}
+
+		// Call the (optional) onChanged closure while the user is typing
+		
+    	public func controlTextDidChange(_ notification:Notification)
+    	{
+			guard let textfield = notification.object as? BXTextFieldNative else { return }
+			let string = textfield.stringValue
+			self.textfield.onChanged?(string)
+    	}
 
 		// The user has ended editing. Update the data model value, then clear the isEditing flag again.
 		
