@@ -23,6 +23,7 @@ public struct BXHuggingContainerView<Content> : View where Content:View
 	private var id:String
 	private var minWidth:CGFloat
 	private var minHeight:CGFloat
+	private var sizeDidChange:((CGSize)->Void)? = nil
 	private var content:()->Content
 
 	// State
@@ -31,11 +32,12 @@ public struct BXHuggingContainerView<Content> : View where Content:View
 	
 	// Init
 	
-	public init(minWidth:CGFloat = 0.0, minHeight:CGFloat = 0.0, @ViewBuilder content:@escaping ()->Content)
+	public init(minWidth:CGFloat = 0.0, minHeight:CGFloat = 0.0, sizeDidChange:((CGSize)->Void)? = nil, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.id = UUID().uuidString
 		self.minWidth = minWidth
 		self.minHeight = minHeight
+		self.sizeDidChange = sizeDidChange
 		self.content = content
 	}
 	
@@ -67,6 +69,7 @@ public struct BXHuggingContainerView<Content> : View where Content:View
 				}
 				
 				self.size = maxSize
+				self.sizeDidChange?(maxSize)
 			}
 			
 			// Resize to final size
