@@ -277,7 +277,21 @@ class BXPopUpButtonCell : NSPopUpButtonCell
 	
 	override open func drawInterior(withFrame cellFrame:NSRect, in controlView:NSView)
 	{
-		super.drawInterior(withFrame:cellFrame, in:controlView)
+		var frame = cellFrame
+		
+//		if #available(macOS 26,*), Bundle.SDKMajorVersion >= 26	// Building with Xcode26 for macOS 26 requires different layout
+//		{
+//			if self.controlSize == .regular
+//			{
+//				frame = frame.insetBy(dx:-3, dy:0)
+//			}
+//			else if self.controlSize == .small
+//			{
+//				frame = frame.insetBy(dx:-2, dy:0)
+//			}
+//		}
+		
+ 		super.drawInterior(withFrame:frame, in:controlView)
 	}
 	
     override open func drawBorderAndBackground(withFrame cellFrame:NSRect, in controlView:NSView)
@@ -297,7 +311,11 @@ class BXPopUpButtonCell : NSPopUpButtonCell
 		{
 			frame = cellFrame.insetBy(dx:3, dy:3).offsetBy(dx:0, dy:-1)
             
-            if #available(macOS 11,*) // Big Sur requires moving up by an additional 1pt
+			if #available(macOS 26,*), Bundle.SDKMajorVersion >= 26	// Building with Xcode26 for macOS 26 requires different layout
+			{
+				frame = frame.offsetBy(dx:0, dy:+1).insetBy(dx:-3, dy:-1)
+			}
+            else if #available(macOS 11,*) // Big Sur requires moving up by an additional 1pt
             {
                 frame = frame.offsetBy(dx:0, dy:-1)
             }
@@ -305,6 +323,11 @@ class BXPopUpButtonCell : NSPopUpButtonCell
 		else if self.controlSize == .small
 		{
 			frame = cellFrame.insetBy(dx:4, dy:2).offsetBy(dx:0, dy:-1)
+
+			if #available(macOS 26,*), Bundle.SDKMajorVersion >= 26	// Building with Xcode26 for macOS 26 requires different layout
+			{
+				frame = frame.offsetBy(dx:0, dy:+1).insetBy(dx:-4, dy:-1)
+			}
 		}
 		
 		var arrowBox = frame
