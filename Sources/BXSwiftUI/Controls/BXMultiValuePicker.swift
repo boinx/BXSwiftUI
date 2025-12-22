@@ -279,7 +279,7 @@ class BXPopUpButtonCell : NSPopUpButtonCell
 	{
 		var frame = cellFrame
 		
-//		if #available(macOS 26,*), Bundle.SDKMajorVersion >= 26	// Building with Xcode26 for macOS 26 requires different layout
+//		if #available(macOS 26,*), Bundle.SDKVersionMajor >= 26	// Building with Xcode26 for macOS 26 requires different layout
 //		{
 //			if self.controlSize == .regular
 //			{
@@ -311,7 +311,7 @@ class BXPopUpButtonCell : NSPopUpButtonCell
 		{
 			frame = cellFrame.insetBy(dx:3, dy:3).offsetBy(dx:0, dy:-1)
             
-			if #available(macOS 26,*), Bundle.SDKMajorVersion >= 26	// Building with Xcode26 for macOS 26 requires different layout
+			if #available(macOS 26,*), Bundle.SDKVersionMajor >= 26	// Building with Xcode26 for macOS 26 requires different layout
 			{
 				frame = frame.offsetBy(dx:0, dy:+1).insetBy(dx:-3, dy:-1)
 			}
@@ -324,7 +324,7 @@ class BXPopUpButtonCell : NSPopUpButtonCell
 		{
 			frame = cellFrame.insetBy(dx:4, dy:2).offsetBy(dx:0, dy:-1)
 
-			if #available(macOS 26,*), Bundle.SDKMajorVersion >= 26	// Building with Xcode26 for macOS 26 requires different layout
+			if #available(macOS 26,*), Bundle.SDKVersionMajor >= 26	// Building with Xcode26 for macOS 26 requires different layout
 			{
 				frame = frame.offsetBy(dx:0, dy:+1).insetBy(dx:-4, dy:-1)
 			}
