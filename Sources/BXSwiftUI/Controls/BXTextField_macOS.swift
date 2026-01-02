@@ -223,7 +223,17 @@ public struct BXTextFieldWrapper<T> : NSViewRepresentable
     	public func controlTextDidChange(_ notification:Notification)
     	{
 			guard let textfield = notification.object as? BXTextFieldNative else { return }
-			let string = textfield.stringValue
+			guard let editor = textfield.currentEditor() as? NSTextView else { return }
+
+			// ATTENTION:
+			// Do not get the string from textfield.stringValue, as this causes the validateEditing() method to be called
+			// and editing is ended. This has serious side effects for NSTextField with attached formatters. The cursor
+			// jumps to the end of the string (after the units) and on next key press we get an invalid string and the
+			// formatter is misbehaving. To avoid this problem we get the string directly from the field editor, which
+			// doesn't trigger any validation and ending of the editing session.
+			
+			let string = editor.string
+			
 			self.textfield.onChanged?(string)
     	}
 
