@@ -72,7 +72,17 @@ public struct  BXTextField<T> : View
 		
 		switch controlSize
 		{
-			case .regular:	return 16.0
+			case .regular:
+			
+				if #available(macOS 26,*), Bundle.SDKVersionMajor >= 26
+				{
+					return 16.0
+				}
+				else
+				{
+					return 16.0
+				}
+				
 			case .small:	return 14.0
 			case .mini:		return 11.0
 			default:		return 15.0

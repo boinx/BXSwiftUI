@@ -59,7 +59,7 @@ public struct BXLabelView<Content> : View where Content:View
 			{
 				// The label consists of a Text item and optionally some buttons
 			
-				HStack(spacing:4)
+				HStack(alignment:.firstTextBaseline, spacing:4)
 				{
 					Text(self.label)
 					
