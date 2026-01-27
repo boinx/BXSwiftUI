@@ -57,6 +57,8 @@ public final class BXModifierKeys : NSObject, ObservableObject
     {
 		self.objectWillChange.send()
 
+		self.lastKnownFlags = event.modifierFlags	// Remember current modifiers for later use
+		
 		for (_,handler) in onFlagsChanged
 		{
 			handler(event)
@@ -90,11 +92,16 @@ public final class BXModifierKeys : NSObject, ObservableObject
 		self.key = nil
     }
     
- 
+	/// Returns the current state of the modifier keys, using Apple's static API, which seems to be unreliable in certain scenarios
+	
  	public var currentFlags:NSEvent.ModifierFlags
  	{
 		NSEvent.modifierFlags
  	}
+ 	
+	/// Returns the last know state of the modifier keys. This is useful when the currentFlags is unreliable
+	
+ 	public var lastKnownFlags:NSEvent.ModifierFlags = []
 }
 
 
