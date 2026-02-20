@@ -43,7 +43,7 @@ public struct BXPinCodeTextField : View
 	
 	/// True when this text field is focused, i.e. can receive ley events
 	
-	@State private var isFocused = false
+	@State private var isFocused = true
 	
 	
 //----------------------------------------------------------------------------------------------------------------------
@@ -95,7 +95,9 @@ public struct BXPinCodeTextField : View
                 }
             }
         }
-        
+		.focusedIfAvailable(true)
+		
+	
         // Because of D we can receive key events at this level
         
 		.onKeyDown(isFocused:{ self.isFocused = $0 })
@@ -146,8 +148,8 @@ public struct BXPinCodeTextField : View
 				NSSound.beep()
 			}
 		}
-
-		// Also accept strings via copy/paste
+		
+  		// Accept strings via copy/paste
 		
 		.onPasteString
 		{
@@ -156,7 +158,8 @@ public struct BXPinCodeTextField : View
 			pinCode.wrappedValue += digits
 			self.update()
 		}
-    }
+   }
+
 
 	/// Returns the digit at the specified index
 	
@@ -215,6 +218,52 @@ fileprivate extension NSEvent
         let i = str.startIndex
         guard i < str.endIndex else { return 0 }
         return Int(str[i])
+    }
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+fileprivate extension View
+{
+    /// Applies focus using @FocusState on macOS 12+. has no effect on earlier systems.
+	
+    @ViewBuilder func focusedIfAvailable(_ isFocused:Bool) -> some View
+    {
+		if #available(macOS 12,*)
+		{
+			BXFocusedWrapper(isFocused:isFocused)
+			{
+				self
+			}
+		}
+		else
+		{
+			self
+		}
+    }
+}
+
+
+@available(macOS 12,*) fileprivate struct BXFocusedWrapper<Content:View>: View
+{
+    let isFocused: Bool
+    let content: Content
+    @FocusState private var _isFocused: Bool
+
+    init(isFocused: Bool, @ViewBuilder content:()->Content)
+    {
+        self.isFocused = isFocused
+        self.content = content()
+    }
+
+    var body: some View
+    {
+        content
+            .focused($_isFocused)
+            .onAppear { _isFocused = isFocused }
+            .onChange(of: isFocused) { _isFocused = $0 }
     }
 }
 
