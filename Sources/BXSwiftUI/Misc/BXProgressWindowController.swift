@@ -148,12 +148,13 @@ open class BXProgressWindowController : NSWindowController
 
 	// MARK: -
 	
-	open func show()
+	open func show(appearance:NSAppearance? = nil)
 	{
-		DispatchQueue.main.async
+		DispatchQueue.main.asyncIfNeeded
 		{
 			guard let window = self.window else { return }
 			
+			self.window?.appearance = appearance
 			window.center()
 			window.makeKeyAndOrderFront(nil)
 		}
