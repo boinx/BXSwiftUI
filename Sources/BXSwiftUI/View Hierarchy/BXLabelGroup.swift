@@ -2,7 +2,7 @@
 //
 //  BXLabelView.swift
 //	BXLabelViews communicate with each other and decide on a common maximum width for localization purposes
-//  Copyright ©2020-2021 Peter Baumgartner. All rights reserved.
+//  Copyright ©2020-2026 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
 
@@ -25,16 +25,22 @@ public struct BXLabelGroup<Content> : View where Content:View
 	private var content:()->Content
 
 	// State
-	
-	@State private var labelWidth:CGFloat = 60.0
-	
+
+	// Seed the initial width with minWidth so the very first layout pass already uses the caller-supplied
+	// minimum, instead of a hardcoded 60.0 that then needs a second pass to settle. This makes the
+	// PreferenceKey-driven width negotiation more robust on macOS versions where SwiftUI is reluctant
+	// to schedule a follow-up layout pass after a single preference update.
+
+	@State private var labelWidth:CGFloat
+
 	// Init
-	
+
 	public init(minWidth:CGFloat = 0.0, @ViewBuilder content:@escaping ()->Content)
 	{
 		self.labelGroupID = UUID().uuidString
 		self.minWidth = minWidth
 		self.content = content
+		self._labelWidth = State(initialValue:minWidth)
 	}
 	
 	// Build View
