@@ -277,7 +277,7 @@ class BXPopUpButtonCell : NSPopUpButtonCell
 	
 	override open func drawInterior(withFrame cellFrame:NSRect, in controlView:NSView)
 	{
-		var frame = cellFrame
+		let frame = cellFrame
 		
 //		if #available(macOS 26,*), Bundle.SDKVersionMajor >= 26	// Building with Xcode26 for macOS 26 requires different layout
 //		{
