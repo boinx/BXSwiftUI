@@ -78,6 +78,16 @@ public class BXPopover : NSPopover, NSPopoverDelegate, ObservableObject
 			textColor = Color.black.opacity(0.9)
  			scheme = .light
         }
+
+        // Force a light AppKit appearance for warning/error popovers, so that any system chrome
+        // showing through the corners or the arrow tints toward light rather than dark. The SwiftUI
+        // content already assumes a light background (black text), so this keeps the AppKit
+        // backing consistent with that assumption.
+
+        if style == .warning || style == .error
+        {
+            self.appearance = NSAppearance(named:.aqua)
+        }
         
         let content = view
 			.colorScheme(scheme)
@@ -149,9 +159,33 @@ public class BXPopover : NSPopover, NSPopoverDelegate, ObservableObject
 		let backgroundView = NSView(frame: frameView.bounds)
 		backgroundView.wantsLayer = true
 		backgroundView.layer?.backgroundColor = backgroundColor
+		backgroundView.layer?.isOpaque = true
 		backgroundView.autoresizingMask = [.width,.height]
 
-		frameView.addSubview(backgroundView, positioned: .below, relativeTo: frameView)
+		// On macOS 26 Tahoe, the popover frame view is backed by a much more aggressive translucent
+		// "Liquid Glass" material that darkens and desaturates anything placed behind it. Inserting
+		// our colored view at the bottom of the subview stack (the pre-Tahoe behavior) therefore
+		// no longer produces the intended bright pastel — we need to place it ABOVE the system
+		// NSVisualEffectView so the material can't tint our color. Keep the original placement on
+		// older systems to avoid regressing the look there.
+
+		if #available(macOS 26,*), Bundle.SDKVersionMajor >= 26
+		{
+			let visualEffectView = frameView.subviews.first { $0 is NSVisualEffectView }
+
+			if let vev = visualEffectView
+			{
+				frameView.addSubview(backgroundView, positioned:.above, relativeTo:vev)
+			}
+			else
+			{
+				frameView.addSubview(backgroundView, positioned:.below, relativeTo:nil)
+			}
+		}
+		else
+		{
+			frameView.addSubview(backgroundView, positioned: .below, relativeTo: frameView)
+		}
 	}
 
 
