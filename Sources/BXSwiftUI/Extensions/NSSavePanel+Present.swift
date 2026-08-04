@@ -11,6 +11,7 @@
 
 import SwiftUI
 import AppKit
+import UniformTypeIdentifiers
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -47,7 +48,7 @@ public extension NSSavePanel
 		
 		if let allowedExtensions = allowedExtensions
 		{
-			panel.allowedFileTypes = allowedExtensions
+			panel.allowedContentTypes = allowedExtensions.compactMap { UTType(fileType:$0) }
 		}
 		
 		let button = panel.runModal()
