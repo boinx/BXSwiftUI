@@ -250,27 +250,20 @@ public extension View
 	
     @ViewBuilder func popupMenu(value:Binding<Int>? = nil, _ itemSpecs:()->[BXMenuItemSpec]) -> some View
     {
-		if #available(iOS 14, *)
+		Menu( content:
 		{
-			Menu( content:
+			let items = itemSpecs()
+			
+			ForEach(0 ..< items.count)
 			{
-				let items = itemSpecs()
-				
-				ForEach(0 ..< items.count)
-				{
-					self.button(for:items[$0])
-				}
-			},
-			label:
-			{
-				self
-			})
-		}
-		else
+				self.button(for:items[$0])
+			}
+		},
+		label:
 		{
 			self
-		}
-    }
+		})
+}
     
     func button(for itemSpec:BXMenuItemSpec) -> some View
     {
@@ -278,19 +271,19 @@ public extension View
 		{
 			if case .action(_,let title, let isEnabled, let state, let action) = itemSpec
 			{
-						Button
-						{
-							action()
-						}
-						label:
-						{
-							HStack
-							{
-								Text(state() != .off ? "✓" : " ")
-								Text(title)
-							}
-						}
-						.enabled(isEnabled())
+				Button
+				{
+					action()
+				}
+				label:
+				{
+					HStack
+					{
+						Text(state() != .off ? "✓" : " ")
+						Text(title)
+					}
+				}
+				.enabled(isEnabled())
 			}
 			else
 			{
