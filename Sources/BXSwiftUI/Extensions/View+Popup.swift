@@ -254,7 +254,7 @@ public extension View
 		{
 			let items = itemSpecs()
 			
-			ForEach(0 ..< items.count)
+			ForEach(0 ..< items.count, id:\.self)
 			{
 				self.button(for:items[$0])
 			}
