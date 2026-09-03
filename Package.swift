@@ -33,6 +33,11 @@ let package = Package(
 
     targets:
     [
-        .target(name:"BXSwiftUI", dependencies:["BXSwiftUtils"]),
+        .target(name:"BXSwiftUI", dependencies:["BXSwiftUtils"], resources:
+        [
+            .process("Controls/BXImage.xcassets"),
+            .process("Extensions/NSCursor+Custom.xcassets"),
+            .process("Misc/BXMenuItemSpec.xcstrings"),
+        ]),
     ]
 )

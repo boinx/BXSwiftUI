@@ -43,7 +43,7 @@ public struct BXAutomaticEditView<T> : View where T:ObservableObject
 			let name = child.label ?? "unknown"
 			self.properties += Property(name:name, value:child.value)
 			
-			print("Property name:", child.label)
+			print("Property name:", name)
 			print("Property value:", child.value)
 		}
 	}
