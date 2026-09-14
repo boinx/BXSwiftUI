@@ -2,11 +2,12 @@
 //
 //  Formatter+Custom.swift
 //	Various custom formatters
-//  Copyright ©2020 Peter Baumgartner. All rights reserved.
+//  Copyright ©2020-2026 Peter Baumgartner. All rights reserved.
 //
 //**********************************************************************************************************************
 
 
+import BXSwiftUtils
 import Foundation
 
 
@@ -370,47 +371,53 @@ public class BXTimeCodeFormatter : NumberFormatter, @unchecked Sendable
 {
 	public var showsHours = true
 	
+	/// Converts a time in seconds to a timecode string.
+	
 	override open func string(for objectValue:Any?) -> String?
 	{
 		guard let number = objectValue as? NSNumber else { return nil }
 		
-		var value = number.doubleValue
-		if value.isNaN { value = 0.0 }
-		let secs = Int(value)
-		
-		let HH = secs / 3600
-		let MM = (secs / 60) % 60
-		let SS = secs % 60
-		let fff = Int((value-Double(secs)) * 1000.0)
-		
-		if showsHours
-		{
-			if allowsFloats
-			{
-				return String(format:timecodeFormat,HH,MM,SS,fff)
-			}
-			else
-			{
-				return String(format:timecodeFormat,HH,MM,SS)
-			}
-		}
-		else
-		{
-			if allowsFloats
-			{
-				return String(format:timecodeFormat,MM,SS,fff)
-			}
-			else
-			{
-				return String(format:timecodeFormat,MM,SS)
-			}
-		}
+		// The arithmetic lives in BXSwiftUtils, and deliberately so: this used to be a second copy of it, and the
+		// copy kept a trap the original had already fixed. `Int(_:)` does not saturate, so any value the Int
+		// conversion cannot represent took the whole app down - and FMAudioObject.outPoint hands this formatter
+		// Double.greatestFiniteMagnitude whenever the media file cannot be read. That is not a rare path: it
+		// happens to every missing audio file, and it crashed inside an AppKit LAYOUT pass, because NSCell asks its
+		// formatter for a string while measuring the text field's intrinsic content size. Nothing here may trap.
+
+		return number.doubleValue.timecodeString(showsHours:showsHours, showsFraction:allowsFloats)
 	}
 	
 	
+	/// Converts a timecode string back to a time in seconds.
+	
 	override open func getObjectValue(_ object:AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string:String, range:UnsafeMutablePointer<NSRange>?) throws
 	{
-		let parts = string.components(separatedBy:":")
+		// Kept separate from `String.timecodeValue()`, which is stricter than a live text field can afford to be: it
+		// rejects "90." and, decisively, it has no comma-to-point substitution, so it would stop German and French
+		// users typing "1:30,5" into a field that also sets `isLenient`.
+		
+		// This never fails. Returning an error instead would make AppKit beep and refuse to end editing, trapping the
+		// user in a field that may be showing nothing but the "--:--:--.---" placeholder.
+
+		// Take the sign off the front ONCE, before splitting. Leaving it attached makes it a property of whichever
+		// component happens to come first, which is both wrong and invisible: "-0:00:05.500" came back as POSITIVE
+		// 5.5, because the minus landed on a "-0" hours component and -0.0 times 3600 is -0.0. Now that the
+		// formatter writes a negative timecode with a leading minus, that is a live round trip, not a latent one.
+		
+		var body = string.trimmingCharacters(in:.whitespaces)
+		var sign = 1.0
+		
+		if body.hasPrefix("-")
+		{
+			sign = -1.0
+			body.removeFirst()
+		}
+		else if body.hasPrefix("+")
+		{
+			body.removeFirst()
+		}
+		
+		let parts = body.components(separatedBy:":")
 		var multiplier = 1.0
 		var value = 0.0
 		
@@ -422,10 +429,21 @@ public class BXTimeCodeFormatter : NumberFormatter, @unchecked Sendable
 			multiplier *= 60.0
 		}
 		
-		object?.pointee = NSNumber(value:value)
+		value *= sign
+		
+		// NSString.doubleValue returns HUGE_VAL on overflow, so typing "1e400" yields an infinity. Handing that to
+		// the data model would be worse than the crash it came from: FMAudioObject clips it away, but other clients
+		// do not, and JSONEncoder refuses to encode a non-finite Double - an unsaveable document.
+		
+		object?.pointee = NSNumber(value:value.isFinite ? value : 0.0)
 	}
    
    
+    /// The printf format for the current shape.
+    ///
+    /// No longer used by this class - `string(for:)` names the fields it wants instead of assembling them - but
+    /// kept because BXSwiftUI ships to other Boinx apps that are not in this workspace.
+    
     public var timecodeFormat:String
     {
 		if showsHours
