@@ -30,6 +30,10 @@ open class BXBorderlessWindow : NSWindow, ObservableObject
 			backing:.buffered,
 			defer:false)
 
+		// isMovableByWindowBackground is what makes dragging work up to macOS 26. From macOS 27 on it has no
+		// effect on SwiftUI content, so bxMovableByWindowBackground() below takes over that job. It is still
+		// set here, because it remains the mechanism on older systems.
+		
 		self.isMovableByWindowBackground = true
 		self.isReleasedWhenClosed = true
 		self.hasShadow = true
@@ -41,7 +45,7 @@ open class BXBorderlessWindow : NSWindow, ObservableObject
 		
 		// Install SwiftUI content in a NSHostingView
 		
-		let hostingView = NSHostingView(rootView:view.environmentObject(self))
+		let hostingView = NSHostingView(rootView:view.environmentObject(self).bxMovableByWindowBackground())
 		rootView.addSubview(hostingView)
 	
 		hostingView.translatesAutoresizingMaskIntoConstraints = false
